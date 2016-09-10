@@ -2,14 +2,13 @@
 using System.Windows.Forms;
 using System.Drawing;
 
-class calculator : Form
-{
-    string operand1;
-    string operand2;
-    string result = "0";
-    public string operation;
-    int cursor_pos = 1; //1 ist links von Komma, 0 ist rechts von Komma
+class calculator : Form {
     int string_length = 0;
+    bool new_operand = false;
+    bool set_new_operand = false;
+    float operand1 = 0;
+    float operand2 = 0;
+    string operation;
 
     //Erstellt Form
     private Form calc;
@@ -37,8 +36,7 @@ class calculator : Form
     private TextBox box;
 
 
-    public calculator ()
-    {
+    public calculator () {
         calc = new Form ();
 
         number0 = new Button ();
@@ -161,9 +159,14 @@ class calculator : Form
         number9.Click += new EventHandler (this.Number9_Click);
         comma.Click += new EventHandler (this.Comma_Click);
         clear.Click += new EventHandler (this.Clear_Click);
+        add.Click += new EventHandler (this.Add_Click);
+        subst.Click += new EventHandler (this.Subst_Click);
+        mult.Click += new EventHandler (this.Mult_Click);
+        div.Click += new EventHandler (this.Div_Click);
+        equals.Click += new EventHandler (this.Equals_Click);
 
         //Setze Ergebnis auf 0
-        box.Text = result;
+        box.Text = "0";
 
         //Füge Controls für die Buttons hinzu
         calc.Controls.Add (number0);
@@ -191,122 +194,165 @@ class calculator : Form
         calc.ShowDialog ();
     }
 
-    public void change_operation (string new_operation)
-    {
+    public void change_operation (string new_operation) {
         this.operation = new_operation;
     }
 
-    private void Number0_Click (object sender, System.EventArgs e)
-    {
-        if (string_length == 0)
+    private void Number0_Click (object sender, System.EventArgs e) {
+        if (string_length == 0||new_operand)
             string_length += 1;
-        else 
-        {
+        else {
             box.Text += "0";
             string_length += 1;
         }
+        new_operand = false;
     }
-    private void Number1_Click (object sender, System.EventArgs e)
-    {
-        if (string_length == 0) 
-        {
+    private void Number1_Click (object sender, System.EventArgs e) {
+        if (string_length == 0|| new_operand) {
             box.Text = "1";
             string_length += 1;
         } 
-        else 
-        {
+        else {
             box.Text += "1";
             string_length += 1;
         }
+        new_operand = false;
     }
-    private void Number2_Click (object sender, System.EventArgs e)
-    {
-        if (string_length == 0) {
+    private void Number2_Click (object sender, System.EventArgs e) {
+        if (string_length == 0|| new_operand) {
             box.Text = "2";
             string_length += 1;
         } else {
             box.Text += "2";
             string_length += 1;
         }
+        new_operand = false;
     }
-    private void Number3_Click (object sender, System.EventArgs e)
-    {
-        if (string_length == 0) {
+    private void Number3_Click (object sender, System.EventArgs e) {
+        if (string_length == 0|| new_operand) {
             box.Text = "3";
             string_length += 1;
         } else {
             box.Text += "3";
             string_length += 1;
         }
+        new_operand = false;
     }
-    private void Number4_Click (object sender, System.EventArgs e)
-    {
-        if (string_length == 0) {
+    private void Number4_Click (object sender, System.EventArgs e) {
+        if (string_length == 0|| new_operand) {
             box.Text = "4";
             string_length += 1;
         } else {
             box.Text += "4";
             string_length += 1;
         }
+        new_operand = false;
     }
-    private void Number5_Click (object sender, System.EventArgs e)
-    {
-        if (string_length == 0) {
+    private void Number5_Click (object sender, System.EventArgs e) {
+        if (string_length == 0|| new_operand) {
             box.Text = "5";
             string_length += 1;
         } else {
             box.Text += "5";
             string_length += 1;
         }
+        new_operand = false;
     }
-    private void Number6_Click (object sender, System.EventArgs e)
-    {
-        if (string_length == 0) {
+    private void Number6_Click (object sender, System.EventArgs e) {
+        if (string_length == 0|| new_operand) {
             box.Text = "6";
             string_length += 1;
         } else {
             box.Text += "6";
             string_length += 1;
         }
+        new_operand = false;
     }
-    private void Number7_Click (object sender, System.EventArgs e)
-    {
-        if (string_length == 0) {
+    private void Number7_Click (object sender, System.EventArgs e) {
+        if (string_length == 0|| new_operand) {
             box.Text = "7";
             string_length += 1;
         } else {
             box.Text += "7";
             string_length += 1;
         }
+        new_operand = false;
     }
-    private void Number8_Click (object sender, System.EventArgs e)
-    {
-        if (string_length == 0) {
+    private void Number8_Click (object sender, System.EventArgs e) {
+        if (string_length == 0|| new_operand) {
             box.Text = "8";
             string_length += 1;
         } else {
             box.Text += "8";
             string_length += 1;
         }
+        new_operand = false;
     }
-    private void Number9_Click (object sender, System.EventArgs e)
-    {
-        if (string_length == 0) {
+    private void Number9_Click (object sender, System.EventArgs e) {
+        if (string_length == 0|| new_operand) {
             box.Text = "9";
             string_length += 1;
         } else {
             box.Text += "9";
             string_length += 1;
         }
+        new_operand = false;
     }
-    private void Comma_Click (object sender, System.EventArgs e)
-    {
+    private void Comma_Click (object sender, System.EventArgs e) {
         box.Text += ".";
     }
-    private void Clear_Click (object sender, System.EventArgs e)
-    {
+    private void Clear_Click (object sender, System.EventArgs e) {
         box.Text = "0";
+        operand1 = 0;
         string_length = 0;
+    }
+    private void Add_Click (object sender, System.EventArgs e) {
+        operand1 = float.Parse (box.Text);
+        operation = "add";
+        new_operand = true;
+        set_new_operand = true;
+    }
+    private void Subst_Click (object sender, System.EventArgs e)
+    {
+        operand1 = float.Parse (box.Text);
+        operation = "subst";
+        new_operand = true;
+        set_new_operand = true;
+    }
+    private void Mult_Click (object sender, System.EventArgs e)
+    {
+        operand1 = float.Parse (box.Text);
+        operation = "mult";
+        new_operand = true;
+        set_new_operand = true;
+    }
+    private void Div_Click (object sender, System.EventArgs e)
+    {
+        operand1 = float.Parse (box.Text);
+        operation = "div";
+        new_operand = true;
+        set_new_operand = true;
+    }
+    private void Equals_Click (object sender, System.EventArgs e) {
+        if (set_new_operand)
+            operand2 = float.Parse (box.Text);
+        switch (operation) {
+        case "add":
+            box.Text = (operand1 + operand2).ToString ();
+            break;
+        case "subst":
+            box.Text = (operand1 - operand2).ToString ();
+            break;
+        case "mult":
+            box.Text = (operand1 * operand2).ToString ();
+            break;
+        case "div":
+            box.Text = (operand1 / operand2).ToString ();
+            break;
+        }
+
+        set_new_operand = false;
+        new_operand = true;
     }
 }
 class MainClass
