@@ -2,31 +2,66 @@
 using System.Windows.Forms;
 using System.Drawing;
 
-class MainClass
+class calculator : Form
 {
-    public static void Main (string [] args)
-    {
-        //Erstellt Buttons
-        Form calc = new Form ();
-        Button number0 = new Button ();
-        Button number1 = new Button ();
-        Button number2 = new Button ();
-        Button number3 = new Button ();
-        Button number4 = new Button ();
-        Button number5 = new Button ();
-        Button number6 = new Button ();
-        Button number7 = new Button ();
-        Button number8 = new Button ();
-        Button number9 = new Button ();
-        Button comma = new Button ();
-        Button clear = new Button ();
-        Button add = new Button ();
-        Button subst = new Button ();
-        Button mult = new Button ();
-        Button div = new Button ();
+    string operand1;
+    string operand2;
+    string result = "0";
+    public string operation;
+    int cursor_pos = 1; //1 ist links von Komma, 0 ist rechts von Komma
+    int string_length = 0;
 
-        //Erstellt Ergebnis-Box
-        TextBox box = new TextBox ();
+    //Erstellt Form
+    private Form calc;
+
+    //Erstellt Buttons
+    private Button number0;
+    private Button number1;
+    private Button number2;
+    private Button number3;
+    private Button number4;
+    private Button number5;
+    private Button number6;
+    private Button number7;
+    private Button number8;
+    private Button number9;
+    private Button comma;
+    private Button clear;
+    private Button add;
+    private Button subst;
+    private Button mult;
+    private Button div;
+    private Button equals;
+
+    //Erstellt TextBox
+    private TextBox box;
+
+
+    public calculator ()
+    {
+        calc = new Form ();
+
+        number0 = new Button ();
+        number1 = new Button ();
+        number2 = new Button ();
+        number3 = new Button ();
+        number4 = new Button ();
+        number5 = new Button ();
+        number6 = new Button ();
+        number7 = new Button ();
+        number8 = new Button ();
+        number9 = new Button ();
+        comma = new Button ();
+        clear = new Button ();
+        add = new Button ();
+        subst = new Button ();
+        mult = new Button ();
+        div = new Button ();
+        equals = new Button ();
+
+        box = new TextBox ();
+
+        //Setzt Box auf ReadOnly
         box.ReadOnly = true;
 
         //Legt Inhalt der Buttons fest
@@ -46,6 +81,7 @@ class MainClass
         subst.Text = ("-");
         mult.Text = ("*");
         div.Text = ("/");
+        equals.Text = ("=");
 
         //Legt Hoehe und Breite der Buttons fest
         number0.Height = 30;
@@ -69,17 +105,19 @@ class MainClass
         number9.Height = 30;
         number9.Width = 30;
         comma.Height = 30;
-        comma.Width = 30; 
+        comma.Width = 30;
         clear.Height = 30;
-        clear.Width = 30; 
+        clear.Width = 30;
         add.Height = 30;
-        add.Width = 30; 
+        add.Width = 30;
         subst.Height = 30;
-        subst.Width = 30; 
+        subst.Width = 30;
         mult.Height = 30;
-        mult.Width = 30; 
+        mult.Width = 30;
         div.Height = 30;
         div.Width = 30;
+        equals.Height = 30;
+        equals.Width = 30;
 
         //Legt Hoehe und Breite der Ergebnis-Box fest
         box.Height = 30;
@@ -106,9 +144,28 @@ class MainClass
 
         number0.Location = new Point (number1.Left, number1.Top + number1.Height + 10);
         comma.Location = new Point (number2.Left, number2.Top + number2.Height + 10);
-        clear.Location = new Point (number3.Left, number3.Top + number3.Height + 10);
-        add.Location = new Point (clear.Left + clear.Width + 50, number0.Top);
+        equals.Location = new Point (number3.Left, number3.Top + number3.Height + 10);
+        clear.Location = new Point (equals.Left + equals.Width + 10, equals.Top);
+        add.Location = new Point (equals.Left + clear.Width + 50, number0.Top);
 
+        //Erstelle EventHandler
+        number0.Click += new EventHandler (this.Number0_Click);
+        number1.Click += new EventHandler (this.Number1_Click);
+        number2.Click += new EventHandler (this.Number2_Click);
+        number3.Click += new EventHandler (this.Number3_Click);
+        number4.Click += new EventHandler (this.Number4_Click);
+        number5.Click += new EventHandler (this.Number5_Click);
+        number6.Click += new EventHandler (this.Number6_Click);
+        number7.Click += new EventHandler (this.Number7_Click);
+        number8.Click += new EventHandler (this.Number8_Click);
+        number9.Click += new EventHandler (this.Number9_Click);
+        comma.Click += new EventHandler (this.Comma_Click);
+        clear.Click += new EventHandler (this.Clear_Click);
+
+        //Setze Ergebnis auf 0
+        box.Text = result;
+
+        //Füge Controls für die Buttons hinzu
         calc.Controls.Add (number0);
         calc.Controls.Add (number1);
         calc.Controls.Add (number2);
@@ -126,12 +183,136 @@ class MainClass
         calc.Controls.Add (mult);
         calc.Controls.Add (div);
         calc.Controls.Add (box);
+        calc.Controls.Add (equals);
 
         calc.Text = ("My little calculator");
         calc.FormBorderStyle = FormBorderStyle.FixedDialog;
 
-        box.Text = "50";
-
         calc.ShowDialog ();
+    }
+
+    public void change_operation (string new_operation)
+    {
+        this.operation = new_operation;
+    }
+
+    private void Number0_Click (object sender, System.EventArgs e)
+    {
+        if (string_length == 0)
+            string_length += 1;
+        else 
+        {
+            box.Text += "0";
+            string_length += 1;
+        }
+    }
+    private void Number1_Click (object sender, System.EventArgs e)
+    {
+        if (string_length == 0) 
+        {
+            box.Text = "1";
+            string_length += 1;
+        } 
+        else 
+        {
+            box.Text += "1";
+            string_length += 1;
+        }
+    }
+    private void Number2_Click (object sender, System.EventArgs e)
+    {
+        if (string_length == 0) {
+            box.Text = "2";
+            string_length += 1;
+        } else {
+            box.Text += "2";
+            string_length += 1;
+        }
+    }
+    private void Number3_Click (object sender, System.EventArgs e)
+    {
+        if (string_length == 0) {
+            box.Text = "3";
+            string_length += 1;
+        } else {
+            box.Text += "3";
+            string_length += 1;
+        }
+    }
+    private void Number4_Click (object sender, System.EventArgs e)
+    {
+        if (string_length == 0) {
+            box.Text = "4";
+            string_length += 1;
+        } else {
+            box.Text += "4";
+            string_length += 1;
+        }
+    }
+    private void Number5_Click (object sender, System.EventArgs e)
+    {
+        if (string_length == 0) {
+            box.Text = "5";
+            string_length += 1;
+        } else {
+            box.Text += "5";
+            string_length += 1;
+        }
+    }
+    private void Number6_Click (object sender, System.EventArgs e)
+    {
+        if (string_length == 0) {
+            box.Text = "6";
+            string_length += 1;
+        } else {
+            box.Text += "6";
+            string_length += 1;
+        }
+    }
+    private void Number7_Click (object sender, System.EventArgs e)
+    {
+        if (string_length == 0) {
+            box.Text = "7";
+            string_length += 1;
+        } else {
+            box.Text += "7";
+            string_length += 1;
+        }
+    }
+    private void Number8_Click (object sender, System.EventArgs e)
+    {
+        if (string_length == 0) {
+            box.Text = "8";
+            string_length += 1;
+        } else {
+            box.Text += "8";
+            string_length += 1;
+        }
+    }
+    private void Number9_Click (object sender, System.EventArgs e)
+    {
+        if (string_length == 0) {
+            box.Text = "9";
+            string_length += 1;
+        } else {
+            box.Text += "9";
+            string_length += 1;
+        }
+    }
+    private void Comma_Click (object sender, System.EventArgs e)
+    {
+        box.Text += ".";
+    }
+    private void Clear_Click (object sender, System.EventArgs e)
+    {
+        box.Text = "0";
+        string_length = 0;
+    }
+}
+class MainClass
+{
+    public static void Main (string [] args)
+    {
+        Application.Run (new calculator ());
     }
 }
