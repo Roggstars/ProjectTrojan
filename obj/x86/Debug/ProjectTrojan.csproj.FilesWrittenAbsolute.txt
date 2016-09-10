@@ -1,0 +1,5 @@
+/Users/jroggendorf/Documents/dev/Coding/ProjectTrojan/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/jroggendorf/Documents/dev/Coding/ProjectTrojan/bin/Debug/ProjectTrojan.exe.mdb
+/Users/jroggendorf/Documents/dev/Coding/ProjectTrojan/bin/Debug/ProjectTrojan.exe
+/Users/jroggendorf/Documents/dev/Coding/ProjectTrojan/obj/x86/Debug/ProjectTrojan.exe
+/Users/jroggendorf/Documents/dev/Coding/ProjectTrojan/obj/x86/Debug/ProjectTrojan.exe.mdb
