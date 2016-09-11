@@ -334,8 +334,12 @@ class calculator : Form {
         set_new_operand = true;
     }
     private void Equals_Click (object sender, System.EventArgs e) {
-        if (set_new_operand)
+        if (set_new_operand) {
             operand2 = float.Parse (box.Text);
+        } else {
+            operand1 = float.Parse (box.Text);
+        }
+        
         switch (operation) {
         case "add":
             box.Text = (operand1 + operand2).ToString ();
@@ -350,6 +354,8 @@ class calculator : Form {
             box.Text = (operand1 / operand2).ToString ();
             break;
         }
+        Console.WriteLine (operand1);
+        Console.WriteLine (operand2);
 
         set_new_operand = false;
         new_operand = true;
