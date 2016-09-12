@@ -2,7 +2,8 @@
 using System.Windows.Forms;
 using System.Drawing;
 
-class calculator : Form {
+class calculator : Form
+{
     int string_length = 0;
     bool new_operand = false;
     bool set_new_operand = false;
@@ -31,12 +32,14 @@ class calculator : Form {
     private Button mult;
     private Button div;
     private Button equals;
+    private Button ToggleLang;
 
     //Erstellt TextBox
     private TextBox box;
 
 
-    public calculator () {
+    public calculator ()
+    {
         calc = new Form ();
 
         number0 = new Button ();
@@ -56,6 +59,7 @@ class calculator : Form {
         mult = new Button ();
         div = new Button ();
         equals = new Button ();
+        ToggleLang = new Button ();
 
         box = new TextBox ();
 
@@ -80,6 +84,7 @@ class calculator : Form {
         mult.Text = ("*");
         div.Text = ("/");
         equals.Text = ("=");
+        ToggleLang.Text = ("EN");
 
         //Legt Hoehe und Breite der Buttons fest
         number0.Height = 30;
@@ -116,6 +121,8 @@ class calculator : Form {
         div.Width = 30;
         equals.Height = 30;
         equals.Width = 30;
+        ToggleLang.Height = 30;
+        ToggleLang.Width = 30;
 
         //Legt Hoehe und Breite der Ergebnis-Box fest
         box.Height = 30;
@@ -146,6 +153,8 @@ class calculator : Form {
         clear.Location = new Point (equals.Left + equals.Width + 10, equals.Top);
         add.Location = new Point (equals.Left + clear.Width + 50, number0.Top);
 
+        ToggleLang.Location = new Point (box.Left + box.Width + 10, box.Top);
+
         //Erstelle EventHandler
         number0.Click += new EventHandler (this.Number0_Click);
         number1.Click += new EventHandler (this.Number1_Click);
@@ -164,6 +173,7 @@ class calculator : Form {
         mult.Click += new EventHandler (this.Mult_Click);
         div.Click += new EventHandler (this.Div_Click);
         equals.Click += new EventHandler (this.Equals_Click);
+        ToggleLang.Click += new EventHandler (this.ToggleLang_Click);
 
         //Setze Ergebnis auf 0
         box.Text = "0";
@@ -187,6 +197,7 @@ class calculator : Form {
         calc.Controls.Add (div);
         calc.Controls.Add (box);
         calc.Controls.Add (equals);
+        calc.Controls.Add (ToggleLang);
 
         calc.Text = ("My little calculator");
         calc.FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -194,12 +205,14 @@ class calculator : Form {
         calc.ShowDialog ();
     }
 
-    public void change_operation (string new_operation) {
+    public void change_operation (string new_operation)
+    {
         this.operation = new_operation;
     }
 
-    private void Number0_Click (object sender, System.EventArgs e) {
-        if (string_length == 0||new_operand)
+    private void Number0_Click (object sender, System.EventArgs e)
+    {
+        if (string_length == 0 || new_operand)
             string_length += 1;
         else {
             box.Text += "0";
@@ -207,19 +220,20 @@ class calculator : Form {
         }
         new_operand = false;
     }
-    private void Number1_Click (object sender, System.EventArgs e) {
-        if (string_length == 0|| new_operand) {
+    private void Number1_Click (object sender, System.EventArgs e)
+    {
+        if (string_length == 0 || new_operand) {
             box.Text = "1";
             string_length += 1;
-        } 
-        else {
+        } else {
             box.Text += "1";
             string_length += 1;
         }
         new_operand = false;
     }
-    private void Number2_Click (object sender, System.EventArgs e) {
-        if (string_length == 0|| new_operand) {
+    private void Number2_Click (object sender, System.EventArgs e)
+    {
+        if (string_length == 0 || new_operand) {
             box.Text = "2";
             string_length += 1;
         } else {
@@ -228,8 +242,9 @@ class calculator : Form {
         }
         new_operand = false;
     }
-    private void Number3_Click (object sender, System.EventArgs e) {
-        if (string_length == 0|| new_operand) {
+    private void Number3_Click (object sender, System.EventArgs e)
+    {
+        if (string_length == 0 || new_operand) {
             box.Text = "3";
             string_length += 1;
         } else {
@@ -238,8 +253,9 @@ class calculator : Form {
         }
         new_operand = false;
     }
-    private void Number4_Click (object sender, System.EventArgs e) {
-        if (string_length == 0|| new_operand) {
+    private void Number4_Click (object sender, System.EventArgs e)
+    {
+        if (string_length == 0 || new_operand) {
             box.Text = "4";
             string_length += 1;
         } else {
@@ -248,8 +264,9 @@ class calculator : Form {
         }
         new_operand = false;
     }
-    private void Number5_Click (object sender, System.EventArgs e) {
-        if (string_length == 0|| new_operand) {
+    private void Number5_Click (object sender, System.EventArgs e)
+    {
+        if (string_length == 0 || new_operand) {
             box.Text = "5";
             string_length += 1;
         } else {
@@ -258,8 +275,9 @@ class calculator : Form {
         }
         new_operand = false;
     }
-    private void Number6_Click (object sender, System.EventArgs e) {
-        if (string_length == 0|| new_operand) {
+    private void Number6_Click (object sender, System.EventArgs e)
+    {
+        if (string_length == 0 || new_operand) {
             box.Text = "6";
             string_length += 1;
         } else {
@@ -268,8 +286,9 @@ class calculator : Form {
         }
         new_operand = false;
     }
-    private void Number7_Click (object sender, System.EventArgs e) {
-        if (string_length == 0|| new_operand) {
+    private void Number7_Click (object sender, System.EventArgs e)
+    {
+        if (string_length == 0 || new_operand) {
             box.Text = "7";
             string_length += 1;
         } else {
@@ -278,8 +297,9 @@ class calculator : Form {
         }
         new_operand = false;
     }
-    private void Number8_Click (object sender, System.EventArgs e) {
-        if (string_length == 0|| new_operand) {
+    private void Number8_Click (object sender, System.EventArgs e)
+    {
+        if (string_length == 0 || new_operand) {
             box.Text = "8";
             string_length += 1;
         } else {
@@ -288,8 +308,9 @@ class calculator : Form {
         }
         new_operand = false;
     }
-    private void Number9_Click (object sender, System.EventArgs e) {
-        if (string_length == 0|| new_operand) {
+    private void Number9_Click (object sender, System.EventArgs e)
+    {
+        if (string_length == 0 || new_operand) {
             box.Text = "9";
             string_length += 1;
         } else {
@@ -298,15 +319,21 @@ class calculator : Form {
         }
         new_operand = false;
     }
-    private void Comma_Click (object sender, System.EventArgs e) {
-        box.Text += ".";
+    private void Comma_Click (object sender, System.EventArgs e)
+    {
+        if (ToggleLang.Text == "DE")
+            box.Text += ",";
+        else
+            box.Text += ".";
     }
-    private void Clear_Click (object sender, System.EventArgs e) {
+    private void Clear_Click (object sender, System.EventArgs e)
+    {
         box.Text = "0";
         operand1 = 0;
         string_length = 0;
     }
-    private void Add_Click (object sender, System.EventArgs e) {
+    private void Add_Click (object sender, System.EventArgs e)
+    {
         operand1 = float.Parse (box.Text);
         operation = "add";
         new_operand = true;
@@ -333,13 +360,14 @@ class calculator : Form {
         new_operand = true;
         set_new_operand = true;
     }
-    private void Equals_Click (object sender, System.EventArgs e) {
+    private void Equals_Click (object sender, System.EventArgs e)
+    {
         if (set_new_operand) {
             operand2 = float.Parse (box.Text);
         } else {
             operand1 = float.Parse (box.Text);
         }
-        
+
         switch (operation) {
         case "add":
             box.Text = (operand1 + operand2).ToString ();
@@ -354,11 +382,16 @@ class calculator : Form {
             box.Text = (operand1 / operand2).ToString ();
             break;
         }
-        Console.WriteLine (operand1);
-        Console.WriteLine (operand2);
 
         set_new_operand = false;
         new_operand = true;
+    }
+    private void ToggleLang_Click (object sender, System.EventArgs e)
+    {
+        if (ToggleLang.Text == "EN")
+            ToggleLang.Text = "DE";
+        else
+            ToggleLang.Text = "EN";
     }
 }
 class MainClass
@@ -366,5 +399,6 @@ class MainClass
     public static void Main (string [] args)
     {
         Application.Run (new calculator ());
+        var language = System.Threading.Thread.CurrentThread.CurrentCulture;
     }
 }
