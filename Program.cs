@@ -402,6 +402,5 @@ class MainClass
     public static void Main (string [] args)
     {
         Application.Run (new calculator ());
-        var language = System.Threading.Thread.CurrentThread.CurrentCulture;
     }
 }
