@@ -212,8 +212,11 @@ class calculator : Form
 
     private void Number0_Click (object sender, System.EventArgs e)
     {
-        if (string_length == 0 || new_operand)
+        if (string_length == 0)
             string_length += 1;
+        else if (new_operand) {
+            string_length = 0;
+        }
         else {
             box.Text += "0";
             string_length += 1;
