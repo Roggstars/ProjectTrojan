@@ -1,6 +1,6 @@
-/bin/
-/obj/
-/Debug/
+bin/
+obj/
+Debug/
 /ProjectTrojan.csproj
 /ProjectTrojan.sln
 /ProjectTrojan.userprefs
