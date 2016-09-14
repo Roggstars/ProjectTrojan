@@ -1,4 +1,4 @@
-﻿<Properties StartupItem="ProjectTrojan.csproj">
+﻿<Properties StartupConfiguration="{D19428CF-D633-444A-905A-E3DC6D6CBA78}|Default">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -6,7 +6,7 @@
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workbench ActiveDocument="Program.cs">
     <Files>
-      <File FileName="Program.cs" Line="84" Column="24" />
+      <File FileName="Program.cs" Line="11" Column="29" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.ItemProperties.ProjectTrojan PreferredExecutionTarget="MonoDevelop.Default" />
