@@ -550,14 +550,17 @@ class calculator : Form
 	{
 		operand1 = float.Parse(box.Text);
 		operation = "square";
+        box.Text = (operand1*operand1).ToString();
 		new_operand = true;
 		set_new_operand = true;
+
 	}
 
 	private void Sqrt_Click(object sender, System.EventArgs e)
 	{
 		operand1 = float.Parse(box.Text);
 		operation = "sqrt";
+        box.Text = (Math.Sqrt(operand1)).ToString();
 		new_operand = true;
 		set_new_operand = true;
 	}
@@ -574,42 +577,41 @@ class calculator : Form
 		set_new_operand = true;
 	}
 
-	private void Equals_Click(object sender, System.EventArgs e)
-	{
-		if (set_new_operand)
-		{
-			operand2 = float.Parse(box.Text);
-		}
-		else {
-			operand1 = float.Parse(box.Text);
-		}
+    private void Equals_Click(object sender, System.EventArgs e)
+    {
+        if (set_new_operand)
+        {
+            operand2 = float.Parse(box.Text);
+        }
+        else {
+            operand1 = float.Parse(box.Text);
+        }
 
-		switch (operation)
-		{
-			case "add":
-				box.Text = (operand1 + operand2).ToString();
-				break;
-			case "subst":
-				box.Text = (operand1 - operand2).ToString();
-				break;
-			case "mult":
-				box.Text = (operand1 * operand2).ToString();
-				break;
-			case "div":
-				box.Text = (operand1 / operand2).ToString();
-				break;
-			case "square":
+        switch (operation)
+        {
+            case "add":
+                box.Text = (operand1 + operand2).ToString();
+                break;
+            case "subst":
+                box.Text = (operand1 - operand2).ToString();
+                break;
+            case "mult":
+                box.Text = (operand1 * operand2).ToString();
+                break;
+            case "div":
+                box.Text = (operand1 / operand2).ToString();
+                break;
+            /*case "square":
 				box.Text = (operand1 * operand1).ToString();
 				break;
 			case "sqrt":
 				box.Text = (Math.Sqrt(operand1)).ToString();
-				break;
+				break;*/
 		}
 
 		set_new_operand = false;
 		new_operand = true;
-	}
-
+    }
 	private void ToggleLang_Click(object sender, System.EventArgs e)
 	{
 		if (ToggleLang.Text == "EN")
