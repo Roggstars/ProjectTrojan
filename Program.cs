@@ -27,7 +27,7 @@ class calculator : Form
 	private Button number7;
 	private Button number8;
 	private Button number9;
-	//private Button pi;
+	private Button pi;
 	private Button comma;
 	private Button clear;
 	private Button add;
