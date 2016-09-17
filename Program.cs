@@ -38,6 +38,7 @@ class calculator : Form
 	private Button sqrt;
 	private Button equals;
 	private Button ToggleLang;
+    private Button Exit;
 
 	//Erstellt TextBox
 	private TextBox box;
@@ -68,6 +69,7 @@ class calculator : Form
 		sqrt = new Button();
 		equals = new Button();
 		ToggleLang = new Button();
+        Exit = new Button();
 
 		box = new TextBox();
 		checkbox = new TextBox();
@@ -96,6 +98,7 @@ class calculator : Form
 		sqrt.Text = ("√¯");
 		equals.Text = ("=");
 		ToggleLang.Text = ("EN");
+        Exit.Text = ("EXIT");
 
 		//Legt Hoehe und Breite der Buttons fest
 		number0.Height = 30;
@@ -140,6 +143,8 @@ class calculator : Form
 		equals.Width = 30;
 		ToggleLang.Height = 30;
 		ToggleLang.Width = 30;
+        Exit.Height = 30;
+        Exit.Width = 60;
 
 		//Legt Hoehe und Breite der Ergebnis-Box fest
 		box.Height = 30;
@@ -181,6 +186,7 @@ class calculator : Form
 		square.Location = new Point(equals.Left + clear.Width + add.Width + 50, number0.Top);
 
 		ToggleLang.Location = new Point(box.Left + box.Width + 10, box.Top);
+        Exit.Location = new Point(ToggleLang.Left + ToggleLang.Width + 10, ToggleLang.Top);
 
 		//Erstelle EventHandler
 		number0.Click += new EventHandler(this.Number0_Click);
@@ -204,6 +210,7 @@ class calculator : Form
 		sqrt.Click += new EventHandler(this.Sqrt_Click);
 		equals.Click += new EventHandler(this.Equals_Click);
 		ToggleLang.Click += new EventHandler(this.ToggleLang_Click);
+        Exit.Click += new EventHandler(this.Exit_Click);
 
 		//Setze Ergebnis auf 0
 		box.Text = "0";
@@ -234,9 +241,12 @@ class calculator : Form
 		calc.Controls.Add(checkbox);
 		calc.Controls.Add(equals);
 		calc.Controls.Add(ToggleLang);
+        calc.Controls.Add(Exit);
 
 		calc.Text = ("My little calculator");
 		calc.FormBorderStyle = FormBorderStyle.FixedDialog;
+        calc.MinimizeBox = false;
+        calc.MaximizeBox = false;
 
 		calc.ShowDialog();
 	}
@@ -619,6 +629,12 @@ class calculator : Form
 		else
 			ToggleLang.Text = "EN";
 	}
+
+    private void Exit_Click(object sender, System.EventArgs e)
+    {
+        Application.Exit();
+    }
+
 }
 class MainClass
 {
