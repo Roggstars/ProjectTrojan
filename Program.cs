@@ -7,6 +7,7 @@ class calculator : Form
 	int input_length = 0;
 	bool new_operand = false;
 	bool set_new_operand = false;
+    bool in_operation = false;
 	float operand1 = 0;
 	float operand2 = 0;
 	string operation;
@@ -242,8 +243,12 @@ class calculator : Form
 
 	private void Number0_Click(object sender, System.EventArgs e)
 	{
-        if (input_length == 0)
-        {}
+        if (input_length == 0 && box.Text == "0")
+        { }
+        else if (input_length == 0 && box.Text != "0")
+        {
+            box.Text = "0";
+        }
 		else if (new_operand)
 		{
 			input_length = 0;
@@ -253,6 +258,7 @@ class calculator : Form
 			input_length += 1;
 		}
 		new_operand = false;
+        in_operation = false;
 	}
 
 	private void Number1_Click(object sender, System.EventArgs e)
@@ -267,6 +273,7 @@ class calculator : Form
 			input_length += 1;
 		}
 		new_operand = false;
+        in_operation = false;
 	}
 
 	private void Number2_Click(object sender, System.EventArgs e)
@@ -281,6 +288,7 @@ class calculator : Form
 			input_length += 1;
 		}
 		new_operand = false;
+        in_operation = false;
 	}
 
 	private void Number3_Click(object sender, System.EventArgs e)
@@ -295,6 +303,7 @@ class calculator : Form
 			input_length += 1;
 		}
 		new_operand = false;
+        in_operation = false;
 	}
 
 	private void Number4_Click(object sender, System.EventArgs e)
@@ -309,6 +318,7 @@ class calculator : Form
 			input_length += 1;
 		}
 		new_operand = false;
+        in_operation = false;
 	}
 
 	private void Number5_Click(object sender, System.EventArgs e)
@@ -323,6 +333,7 @@ class calculator : Form
 			input_length += 1;
 		}
 		new_operand = false;
+        in_operation = false;
 	}
 
 	private void Number6_Click(object sender, System.EventArgs e)
@@ -337,6 +348,7 @@ class calculator : Form
 			input_length += 1;
 		}
 		new_operand = false;
+        in_operation = false;
 	}
 
 	private void Number7_Click(object sender, System.EventArgs e)
@@ -351,6 +363,7 @@ class calculator : Form
 			input_length += 1;
 		}
 		new_operand = false;
+        in_operation = false;
 	}
 
 	private void Number8_Click(object sender, System.EventArgs e)
@@ -365,6 +378,7 @@ class calculator : Form
 			input_length += 1;
 		}
 		new_operand = false;
+        in_operation = false;
 	}
 
 	private void Number9_Click(object sender, System.EventArgs e)
@@ -379,6 +393,7 @@ class calculator : Form
 			input_length += 1;
 		}
 		new_operand = false;
+        in_operation = false;
 	}
 
 	/*  private void Pi_Click (object sender, System.EventArgs e)
@@ -395,9 +410,11 @@ class calculator : Form
 		if (ToggleLang.Text == "DE")
 		{
 			box.Text += ",";
+            input_length += 1;
 		}
 		else {
 			box.Text += ".";
+            input_length += 1;
 		}
 	}
 
@@ -407,97 +424,166 @@ class calculator : Form
 		operand1 = 0;
         operand2 = 0;
         input_length = 0;
+        in_operation = false;
 	}
 
 	private void Add_Click(object sender, System.EventArgs e)
 	{
-		operand1 = float.Parse(box.Text);
+        if (!in_operation)
+        {
+            switch (operation)
+            {
+                case "add":
+                    box.Text = (operand1 + float.Parse(box.Text)).ToString();
+                    break;
+                case "subst":
+                    box.Text = (operand1 - float.Parse(box.Text)).ToString();
+                    break;
+                case "mult":
+                    box.Text = (operand1 * float.Parse(box.Text)).ToString();
+                    break;
+                case "div":
+                    box.Text = (operand1 / float.Parse(box.Text)).ToString();
+                break;
+            }
+        }
+
+        operand1 = float.Parse(box.Text);
 		operation = "add";
-		input_length += 1;
+		input_length = 0;
 		new_operand = true;
 		set_new_operand = true;
+        in_operation = true;
 	}
 
 	private void Subst_Click(object sender, System.EventArgs e)
 	{
+        if (!in_operation)
+        {
+            switch (operation)
+            {
+                case "add":
+                    box.Text = (operand1 + float.Parse(box.Text)).ToString();
+                    break;
+                case "subst":
+                    box.Text = (operand1 - float.Parse(box.Text)).ToString();
+                    break;
+                case "mult":
+                    box.Text = (operand1 * float.Parse(box.Text)).ToString();
+                    break;
+                case "div":
+                    box.Text = (operand1 / float.Parse(box.Text)).ToString();
+                    break;
+            }
+        }
+
 		operand1 = float.Parse(box.Text);
 		operation = "subst";
-		input_length += 1;
+		input_length = 0;
 		new_operand = true;
 		set_new_operand = true;
 	}
 
 	private void Mult_Click(object sender, System.EventArgs e)
 	{
+        if (!in_operation)
+        {
+            switch (operation)
+            {
+                case "add":
+                    box.Text = (operand1 + float.Parse(box.Text)).ToString();
+                    break;
+                case "subst":
+                    box.Text = (operand1 - float.Parse(box.Text)).ToString();
+                    break;
+                case "mult":
+                    box.Text = (operand1 * float.Parse(box.Text)).ToString();
+                    break;
+                case "div":
+                    box.Text = (operand1 / float.Parse(box.Text)).ToString();
+                    break;
+            }
+        }
+
 		operand1 = float.Parse(box.Text);
 		operation = "mult";
-		input_length += 1;
-		new_operand = true;
-		set_new_operand = true;
-	}
-
-	private void Square_Click(object sender, System.EventArgs e)
-	{
-		operand1 = float.Parse(box.Text);
-		operation = "square";
-        box.Text = (operand1*operand1).ToString();
-		new_operand = true;
-		set_new_operand = true;
-
-	}
-
-	private void Sqrt_Click(object sender, System.EventArgs e)
-	{
-		operand1 = float.Parse(box.Text);
-		operation = "sqrt";
-        box.Text = (Math.Sqrt(operand1)).ToString();
+		input_length = 0;
 		new_operand = true;
 		set_new_operand = true;
 	}
 
 	private void Div_Click(object sender, System.EventArgs e)
 	{
+        if (!in_operation)
+        {
+            switch (operation)
+            {
+                case "add":
+                    box.Text = (operand1 + float.Parse(box.Text)).ToString();
+                    break;
+                case "subst":
+                    box.Text = (operand1 - float.Parse(box.Text)).ToString();
+                    break;
+                case "mult":
+                    box.Text = (operand1 * float.Parse(box.Text)).ToString();
+                    break;
+                case "div":
+                    box.Text = (operand1 / float.Parse(box.Text)).ToString();
+                    break;
+            }
+        }
+
 		operand1 = float.Parse(box.Text);
 		operation = "div";
-		input_length += 1;
+		input_length = 0;
 		new_operand = true;
 		set_new_operand = true;
 	}
 
+    private void Square_Click(object sender, System.EventArgs e)
+    {
+        operand1 = float.Parse(box.Text);
+        operation = "square";
+        box.Text = (operand1 * operand1).ToString();
+        new_operand = true;
+        set_new_operand = true;
+
+    }
+
+    private void Sqrt_Click(object sender, System.EventArgs e)
+    {
+        operand1 = float.Parse(box.Text);
+        operation = "sqrt";
+        box.Text = (Math.Sqrt(operand1)).ToString();
+        new_operand = true;
+        set_new_operand = true;
+    }
+
     private void Equals_Click(object sender, System.EventArgs e)
     {
-        if (set_new_operand)
+        if (!in_operation)
         {
-            operand2 = float.Parse(box.Text);
+            switch (operation)
+            {
+                case "add":
+                    box.Text = (operand1 + float.Parse(box.Text)).ToString();
+                    break;
+                case "subst":
+                    box.Text = (operand1 - float.Parse(box.Text)).ToString();
+                    break;
+                case "mult":
+                    box.Text = (operand1 * float.Parse(box.Text)).ToString();
+                    break;
+                case "div":
+                    box.Text = (operand1 / float.Parse(box.Text)).ToString();
+                    break;
+            }
         }
-        else {
-            operand1 = float.Parse(box.Text);
-        }
-
-        switch (operation)
-        {
-            case "add":
-                box.Text = (operand1 + operand2).ToString();
-                break;
-            case "subst":
-                box.Text = (operand1 - operand2).ToString();
-                break;
-            case "mult":
-                box.Text = (operand1 * operand2).ToString();
-                break;
-            case "div":
-                box.Text = (operand1 / operand2).ToString();
-                break;
-            /*case "square":
-				box.Text = (operand1 * operand1).ToString();
-				break;
-			case "sqrt":
-				box.Text = (Math.Sqrt(operand1)).ToString();
-				break;*/
-		}
 
 		set_new_operand = false;
 		new_operand = true;
+        in_operation = true;
+        input_length = 0;
     }
 	private void ToggleLang_Click(object sender, System.EventArgs e)
 	{
