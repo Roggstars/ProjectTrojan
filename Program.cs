@@ -258,8 +258,8 @@ class calculator : Form
 
 	private void Number0_Click(object sender, System.EventArgs e)
 	{
-		if (input_length == 0)
-			input_length += 1;
+        if (input_length == 0)
+        {}
 		else if (new_operand)
 		{
 			input_length = 0;
