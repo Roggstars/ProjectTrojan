@@ -98,61 +98,61 @@ class calculator : Form
 		sqrt.Text = ("√¯");
 		equals.Text = ("=");
 		ToggleLang.Text = ("EN");
-        Exit.Text = ("EXIT");
+        Exit.Text = ("ESC");
 
 		//Legt Hoehe und Breite der Buttons fest
-		number0.Height = 30;
-		number0.Width = 30;
-		number1.Height = 30;
-		number1.Width = 30;
-		number2.Height = 30;
-		number2.Width = 30;
-		number3.Height = 30;
-		number3.Width = 30;
-		number4.Height = 30;
-		number4.Width = 30;
-		number5.Height = 30;
-		number5.Width = 30;
-		number6.Height = 30;
-		number6.Width = 30;
-		number7.Height = 30;
-		number7.Width = 30;
-		number8.Height = 30;
-		number8.Width = 30;
-		number9.Height = 30;
-		number9.Width = 30;
-		//pi.Height = 30;
-		//pi.Width = 30;
-		comma.Height = 30;
-		comma.Width = 30;
-		clear.Height = 30;
-		clear.Width = 30;
-		add.Height = 30;
-		add.Width = 30;
-		subst.Height = 30;
-		subst.Width = 30;
-		mult.Height = 30;
-		mult.Width = 30;
-		div.Height = 30;
-		div.Width = 30;
-		square.Height = 30;
-		square.Width = 30;
-		sqrt.Height = 30;
-		sqrt.Width = 30;
-		equals.Height = 30;
-		equals.Width = 30;
-		ToggleLang.Height = 30;
-		ToggleLang.Width = 30;
-        Exit.Height = 30;
-        Exit.Width = 60;
+		number0.Height = 40;
+		number0.Width = 40;
+		number1.Height = 40;
+		number1.Width = 40;
+		number2.Height = 40;
+		number2.Width = 40;
+		number3.Height = 40;
+		number3.Width = 40;
+		number4.Height = 40;
+		number4.Width = 40;
+		number5.Height = 40;
+		number5.Width = 40;
+		number6.Height = 40;
+		number6.Width = 40;
+		number7.Height = 40;
+		number7.Width = 40;
+		number8.Height = 40;
+		number8.Width = 40;
+		number9.Height = 40;
+		number9.Width = 40;
+		//pi.Height = 40;
+		//pi.Width = 40;
+		comma.Height = 40;
+		comma.Width = 40;
+		clear.Height = 40;
+		clear.Width = 40;
+		add.Height = 40;
+		add.Width = 40;
+		subst.Height = 40;
+		subst.Width = 40;
+		mult.Height = 40;
+		mult.Width = 40;
+		div.Height = 40;
+		div.Width = 40;
+		square.Height = 40;
+		square.Width = 40;
+		sqrt.Height = 40;
+		sqrt.Width = 40;
+		equals.Height = 40;
+		equals.Width = 40;
+		ToggleLang.Height = 40;
+		ToggleLang.Width = 40;
+        Exit.Height = 40;
+        Exit.Width = 40;
 
 		//Legt Hoehe und Breite der Ergebnis-Box fest
-		box.Height = 30;
-		box.Width = 190;
+		box.Height = 40;
+		box.Width = 140;
 
 		//legt Hoehe und Breite der Rechen-Box fest
-		checkbox.Height = 30;
-		checkbox.Width = 190;
+		checkbox.Height = 40;
+		checkbox.Width = 140;
 
 		//Position der Ergebnis-Box
 		box.Location = new Point(10, 10);
@@ -161,7 +161,7 @@ class calculator : Form
 		checkbox.Location = new Point(10, 40);
 
 		//Positionen der Buttons, zweilenweise
-		number7.Location = new Point(10, 100);
+		number7.Location = new Point(checkbox.Left, checkbox.Top + checkbox.Height + 10);
 		number8.Location = new Point(number7.Left + number8.Width + 10, number7.Top);
 		number9.Location = new Point(number8.Left + number9.Width + 10, number7.Top);
 		div.Location = new Point(number9.Left + number9.Width + 50, number7.Top);
