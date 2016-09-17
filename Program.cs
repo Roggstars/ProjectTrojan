@@ -9,7 +9,6 @@ class calculator : Form
 	bool set_new_operand = false;
     bool in_operation = false;
 	float operand1 = 0;
-	float operand2 = 0;
 	string operation;
 
 	//Erstellt Form
@@ -422,7 +421,6 @@ class calculator : Form
 	{
 		box.Text = "0";
 		operand1 = 0;
-        operand2 = 0;
         input_length = 0;
         in_operation = false;
 	}
