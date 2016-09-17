@@ -7,8 +7,6 @@ class calculator : Form
 	int input_length = 0;
 	bool new_operand = false;
 	bool set_new_operand = false;
-	bool newoperand = false;
-	bool setnewoperand = false;
 	float operand1 = 0;
 	float operand2 = 0;
 	string operation;
@@ -42,7 +40,6 @@ class calculator : Form
 
 	//Erstellt TextBox
 	private TextBox box;
-	private TextBox checkbox;
 
 	public calculator()
 	{
@@ -72,10 +69,8 @@ class calculator : Form
         Exit = new Button();
 
 		box = new TextBox();
-		checkbox = new TextBox();
 		//Setzt Box auf ReadOnly
 		box.ReadOnly = true;
-		checkbox.ReadOnly = true;
 		//Legt Inhalt der Buttons fest
 		number0.Text = ("0");
 		number1.Text = ("1");
@@ -150,18 +145,11 @@ class calculator : Form
 		box.Height = 40;
 		box.Width = 140;
 
-		//legt Hoehe und Breite der Rechen-Box fest
-		checkbox.Height = 40;
-		checkbox.Width = 140;
-
 		//Position der Ergebnis-Box
 		box.Location = new Point(10, 10);
 
-		//Position der Rechen-Box
-		checkbox.Location = new Point(10, 40);
-
 		//Positionen der Buttons, zweilenweise
-		number7.Location = new Point(checkbox.Left, checkbox.Top + checkbox.Height + 10);
+		number7.Location = new Point(box.Left, box.Top + box.Height + 40);
 		number8.Location = new Point(number7.Left + number8.Width + 10, number7.Top);
 		number9.Location = new Point(number8.Left + number9.Width + 10, number7.Top);
 		div.Location = new Point(number9.Left + number9.Width + 50, number7.Top);
@@ -214,8 +202,6 @@ class calculator : Form
 
 		//Setze Ergebnis auf 0
 		box.Text = "0";
-		//Setzt Eingabe auf null
-		checkbox.Text = "0";
 		//Füge Controls für die Buttons hinzu
 		calc.Controls.Add(number0);
 		calc.Controls.Add(number1);
@@ -237,7 +223,6 @@ class calculator : Form
 		calc.Controls.Add(square);
 		calc.Controls.Add(sqrt);
 		calc.Controls.Add(box);
-		calc.Controls.Add(checkbox);
 		calc.Controls.Add(equals);
 		calc.Controls.Add(ToggleLang);
         calc.Controls.Add(Exit);
@@ -265,7 +250,6 @@ class calculator : Form
 		}
 		else {
 			box.Text += "0";
-			checkbox.Text += "0";
 			input_length += 1;
 		}
 		new_operand = false;
@@ -282,18 +266,7 @@ class calculator : Form
 			box.Text += "1";
 			input_length += 1;
 		}
-		if (input_length == 0)
-		{
-			checkbox.Text = "1";
-			input_length += 1;
-		}
-		if (input_length != 0 || newoperand)
-		{
-			checkbox.Text += "1";
-			input_length += 1;
-		}
 		new_operand = false;
-		newoperand = true;
 	}
 
 	private void Number2_Click(object sender, System.EventArgs e)
@@ -307,18 +280,7 @@ class calculator : Form
 			box.Text += "2";
 			input_length += 1;
 		}
-		if (input_length == 0)
-		{
-			checkbox.Text = "2";
-			input_length += 1;
-		}
-		if (input_length != 0 || newoperand)
-		{
-			checkbox.Text += "2";
-			input_length += 1;
-		}
 		new_operand = false;
-		newoperand = false;
 	}
 
 	private void Number3_Click(object sender, System.EventArgs e)
@@ -332,17 +294,7 @@ class calculator : Form
 			box.Text += "3";
 			input_length += 1;
 		}
-		if (input_length != 0 || newoperand)
-		{
-			checkbox.Text += "3";
-			input_length += 1;
-		}
-		else {
-			checkbox.Text = "3";
-			input_length += 1;
-		}
 		new_operand = false;
-		newoperand = false;
 	}
 
 	private void Number4_Click(object sender, System.EventArgs e)
@@ -356,17 +308,7 @@ class calculator : Form
 			box.Text += "4";
 			input_length += 1;
 		}
-		if (input_length != 0 || newoperand)
-		{
-			checkbox.Text += "4";
-			input_length += 1;
-		}
-		else {
-			checkbox.Text = "4";
-			input_length += 1;
-		}
 		new_operand = false;
-		newoperand = false;
 	}
 
 	private void Number5_Click(object sender, System.EventArgs e)
@@ -380,17 +322,7 @@ class calculator : Form
 			box.Text += "5";
 			input_length += 1;
 		}
-		if (input_length != 0 || newoperand)
-		{
-			checkbox.Text += "5";
-			input_length += 1;
-		}
-		else {
-			checkbox.Text = "5";
-			input_length += 1;
-		}
 		new_operand = false;
-		newoperand = false;
 	}
 
 	private void Number6_Click(object sender, System.EventArgs e)
@@ -404,17 +336,7 @@ class calculator : Form
 			box.Text += "6";
 			input_length += 1;
 		}
-		if (input_length != 0 || newoperand)
-		{
-			checkbox.Text += "6";
-			input_length += 1;
-		}
-		else {
-			checkbox.Text = "6";
-			input_length += 1;
-		}
 		new_operand = false;
-		newoperand = false;
 	}
 
 	private void Number7_Click(object sender, System.EventArgs e)
@@ -428,17 +350,7 @@ class calculator : Form
 			box.Text += "7";
 			input_length += 1;
 		}
-		if (input_length != 0 || newoperand)
-		{
-			checkbox.Text += "7";
-			input_length += 1;
-		}
-		else {
-			checkbox.Text = "7";
-			input_length += 1;
-		}
 		new_operand = false;
-		newoperand = false;
 	}
 
 	private void Number8_Click(object sender, System.EventArgs e)
@@ -452,17 +364,7 @@ class calculator : Form
 			box.Text += "8";
 			input_length += 1;
 		}
-		if (input_length != 0 || newoperand)
-		{
-			checkbox.Text += "8";
-			input_length += 1;
-		}
-		else {
-			checkbox.Text = "8";
-			input_length += 1;
-		}
 		new_operand = false;
-		newoperand = false;
 	}
 
 	private void Number9_Click(object sender, System.EventArgs e)
@@ -476,17 +378,7 @@ class calculator : Form
 			box.Text += "9";
 			input_length += 1;
 		}
-		if (input_length != 0 || newoperand)
-		{
-			checkbox.Text += "9";
-			input_length += 1;
-		}
-		else {
-			checkbox.Text = "9";
-			input_length += 1;
-		}
 		new_operand = false;
-		newoperand = false;
 	}
 
 	/*  private void Pi_Click (object sender, System.EventArgs e)
@@ -503,30 +395,25 @@ class calculator : Form
 		if (ToggleLang.Text == "DE")
 		{
 			box.Text += ",";
-			checkbox.Text += ",";
 		}
 		else {
 			box.Text += ".";
-			checkbox.Text += ".";
 		}
 	}
 
 	private void Clear_Click(object sender, System.EventArgs e)
 	{
 		box.Text = "0";
-		checkbox.Text = "0";
 		operand1 = 0;
-		input_length = 0;
+        operand2 = 0;
+        input_length = 0;
 	}
 
 	private void Add_Click(object sender, System.EventArgs e)
 	{
 		operand1 = float.Parse(box.Text);
 		operation = "add";
-		checkbox.Text += "+";
 		input_length += 1;
-		newoperand = true;
-		setnewoperand = false;
 		new_operand = true;
 		set_new_operand = true;
 	}
@@ -535,10 +422,7 @@ class calculator : Form
 	{
 		operand1 = float.Parse(box.Text);
 		operation = "subst";
-		checkbox.Text += "-";
 		input_length += 1;
-		newoperand = true;
-		setnewoperand = true;
 		new_operand = true;
 		set_new_operand = true;
 	}
@@ -547,10 +431,7 @@ class calculator : Form
 	{
 		operand1 = float.Parse(box.Text);
 		operation = "mult";
-		checkbox.Text += "*";
 		input_length += 1;
-		newoperand = true;
-		setnewoperand = true;
 		new_operand = true;
 		set_new_operand = true;
 	}
@@ -578,10 +459,7 @@ class calculator : Form
 	{
 		operand1 = float.Parse(box.Text);
 		operation = "div";
-		checkbox.Text += "/";
 		input_length += 1;
-		newoperand = true;
-		setnewoperand = true;
 		new_operand = true;
 		set_new_operand = true;
 	}
