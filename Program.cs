@@ -216,7 +216,6 @@ class calculator : Form
 		box.Text = "0";
 		//Setzt Eingabe auf null
 		checkbox.Text = "0";
-
 		//Füge Controls für die Buttons hinzu
 		calc.Controls.Add(number0);
 		calc.Controls.Add(number1);
@@ -247,7 +246,7 @@ class calculator : Form
 		calc.FormBorderStyle = FormBorderStyle.FixedDialog;
         calc.MinimizeBox = false;
         calc.MaximizeBox = false;
-
+        Exit.BackColor = Color.IndianRed;
 		calc.ShowDialog();
 	}
 
