@@ -37,6 +37,7 @@ class calculator : Form
     private Button equals;
     private Button ToggleLang;
     private Button Exit;
+    private Button del;
 
     //Erstellt TextBox
     private TextBox box;
@@ -68,6 +69,7 @@ class calculator : Form
         equals = new Button();
         ToggleLang = new Button();
         Exit = new Button();
+        del = new Button();
 
         box = new TextBox();
         //Setzt Box auf ReadOnly
@@ -96,6 +98,7 @@ class calculator : Form
         equals.Text = ("=");
         ToggleLang.Text = ("EN");
         Exit.Text = ("ESC");
+        del.Text = ("DEL");
 
         //Legt Hoehe und Breite der Buttons fest
         number0.Height = 50;
@@ -144,6 +147,8 @@ class calculator : Form
         ToggleLang.Width = 50;
         Exit.Height = 50;
         Exit.Width = 50;
+        del.Height = 50;
+        del.Width = 50;
 
         //Legt Hoehe und Breite der Ergebnis-Box fest
         box.Height = 50;
@@ -154,6 +159,7 @@ class calculator : Form
 
         //Positionen der Buttons
         clear.Location = new Point(box.Left, box.Top + box.Height + 50);
+        del.Location = new Point(clear.Left + del.Width, clear.Top);
 
         number7.Location = new Point(box.Left, box.Top + box.Height + 100);
         number8.Location = new Point(number7.Left + number8.Width, number7.Top);
@@ -206,6 +212,7 @@ class calculator : Form
         equals.Click += new EventHandler(this.Equals_Click);
         ToggleLang.Click += new EventHandler(this.ToggleLang_Click);
         Exit.Click += new EventHandler(this.Exit_Click);
+        del.Click += new EventHandler(this.Del_Click);
 
         //Setze Ergebnis auf 0
         box.Text = "0";
@@ -234,6 +241,7 @@ class calculator : Form
         calc.Controls.Add(equals);
         calc.Controls.Add(ToggleLang);
         calc.Controls.Add(Exit);
+        calc.Controls.Add(del);
 
         calc.Text = ("My little calculator");
         calc.FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -442,7 +450,17 @@ class calculator : Form
             input_length += 1;
         }
     }
+    private void Del_Click(object sender, System.EventArgs e)
+    {
+        if (new_operand == false)
+        {
 
+            if (box.TextLength > 0)
+            {
+                box.Text = box.Text.Substring(0, (box.TextLength - 1));
+        }
+        }
+    }
     private void Clear_Click(object sender, System.EventArgs e)
     {
         box.Text = "0";
