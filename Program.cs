@@ -158,10 +158,11 @@ class calculator : Form
         box.Location = new Point(5, 5);
 
         //Positionen der Buttons
-        clear.Location = new Point(box.Left, box.Top + box.Height + 50);
-        del.Location = new Point(clear.Left + del.Width, clear.Top);
+        square.Location = new Point(box.Left, box.Top + box.Height + 50);
+        pow.Location = new Point(square.Left + pow.Width, square.Top);
+        sqrt.Location = new Point(pow.Left + sqrt.Width, square.Top);
 
-        number7.Location = new Point(box.Left, box.Top + box.Height + 100);
+        number7.Location = new Point(box.Left, box.Top + box.Height + 110);
         number8.Location = new Point(number7.Left + number8.Width, number7.Top);
         number9.Location = new Point(number8.Left + number9.Width, number7.Top);
 
@@ -176,15 +177,13 @@ class calculator : Form
 
         number0.Location = new Point(number1.Left, number1.Top + number1.Height);
         comma.Location = new Point(number2.Left, number2.Top + number2.Height);
-        equals.Location = new Point(comma.Left + comma.Width, comma.Top);
-        add.Location = new Point(equals.Left + equals.Width, equals.Top);
-        subst.Location = new Point(add.Left, add.Top - subst.Height);
-        mult.Location = new Point(subst.Left, subst.Top - mult.Height);
-        div.Location = new Point(mult.Left, mult.Top - div.Height);
-        square.Location = new Point(div.Left + square.Width, div.Top);
-        pow.Location = new Point(square.Left + pow.Width, square.Top);
-        sqrt.Location = new Point(square.Left, square.Top + sqrt.Height);
-
+        equals.Location = new Point( comma.Left + comma.Height + comma.Height + 10, comma.Top);
+        add.Location = new Point(number3.Left + number3.Width + 10, number3.Top);
+        subst.Location = new Point(add.Left + add.Width, add.Top);
+        mult.Location = new Point(number6.Left + number6.Width + 10, number6.Top);
+        div.Location = new Point(mult.Left + mult.Width, mult.Top);
+        del.Location = new Point(number9.Left + del.Width + 10, number9.Top);
+        clear.Location = new Point(del.Left + clear.Width, del.Top);
         Exit.Location = new Point(box.Left + box.Width + 10, box.Top);
         ToggleLang.Location = new Point(Exit.Left, Exit.Top + Exit.Height);
 
@@ -260,9 +259,9 @@ class calculator : Form
         subst.BackColor = Color.Orange;
         mult.BackColor = Color.Orange;
         div.BackColor = Color.Orange;
-        square.BackColor = Color.Orange;
-        pow.BackColor = Color.Orange;
-        sqrt.BackColor = Color.Orange;
+        square.BackColor = Color.Gray;
+        pow.BackColor = Color.Gray;
+        sqrt.BackColor = Color.Gray;
         equals.BackColor = Color.Orange;
 
         number0.BackColor = Color.LightGray;
@@ -276,6 +275,8 @@ class calculator : Form
         number8.BackColor = Color.LightGray;
         number9.BackColor = Color.LightGray;
 
+        del.BackColor = Color.Red;
+        clear.BackColor = Color.Red;
         calc.ShowDialog();
     }
 
