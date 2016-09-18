@@ -35,6 +35,7 @@ class calculator : Form
     private Button Exit;
     private Button del;
     private Button plus_minus;
+    private Button faculty;
 
     //Erstellt TextBox
     private TextBox box;
@@ -66,6 +67,7 @@ class calculator : Form
         Exit = new Button();
         del = new Button();
         plus_minus = new Button();
+        faculty = new Button();
 
         box = new TextBox();
         //Setzt Box auf ReadOnly
@@ -96,6 +98,7 @@ class calculator : Form
         Exit.Text = ("ESC");
         del.Text = ("DEL");
         plus_minus.Text = ("+/-");
+        faculty.Text = ("x!");
 
         //Legt Hoehe und Breite der Buttons fest
         number0.Height = 50;
@@ -148,6 +151,8 @@ class calculator : Form
         del.Width = 50;
         plus_minus.Height = 50;
         plus_minus.Width = 50;
+        faculty.Height = 50;
+        faculty.Width = 50;
 
         //Legt Hoehe und Breite der Ergebnis-Box fest
         box.Height = 50;
@@ -160,6 +165,7 @@ class calculator : Form
         square.Location = new Point(box.Left, box.Top + box.Height + 50);
         pow.Location = new Point(square.Left + pow.Width, square.Top);
         sqrt.Location = new Point(pow.Left + sqrt.Width, square.Top);
+        faculty.Location = new Point(sqrt.Left + 10 + faculty.Width, sqrt.Top);
 
         number7.Location = new Point(box.Left, box.Top + box.Height + 110);
         number8.Location = new Point(number7.Left + number8.Width, number7.Top);
@@ -213,6 +219,7 @@ class calculator : Form
         del.Click += new EventHandler(this.Del_Click);
         Exit.Click += new EventHandler(this.Exit_Click);
         plus_minus.Click += new EventHandler(this.Plus_Minus_Click);
+        faculty.Click += new EventHandler(this.Factorial_Click);
 
         //Setze Ergebnis auf 0
         box.Text = "0";
@@ -243,6 +250,7 @@ class calculator : Form
         this.Controls.Add(Exit);
         this.Controls.Add(del);
         this.Controls.Add(plus_minus);
+        this.Controls.Add(faculty);
 
         this.Text = ("My little calculator");
         this.FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -264,6 +272,7 @@ class calculator : Form
         square.BackColor = Color.Gray;
         pow.BackColor = Color.Gray;
         sqrt.BackColor = Color.Gray;
+        faculty.BackColor = Color.Gray;
         equals.BackColor = Color.Orange;
 
         number0.BackColor = Color.LightGray;
@@ -281,16 +290,11 @@ class calculator : Form
         clear.BackColor = Color.Red;
     }
 
-    public void change_operation(string new_operation)
-    {
-        this.operation = new_operation;
-    }
-
     private void Number0_Click(object sender, System.EventArgs e)
     {
         if (input_length == 0 && box.Text == "0")
         { }
-        else if (input_length == 0 && box.Text != "0")
+        else if (input_length == 0 && box.Text != "0" || box.Text == "∞")
         {
             box.Text = "0";
         }
@@ -307,7 +311,7 @@ class calculator : Form
 
     private void Number1_Click(object sender, System.EventArgs e)
     {
-        if (input_length == 0 || new_operand)
+        if (input_length == 0 || new_operand || box.Text == "∞")
         {
             box.Text = "1";
             input_length += 1;
@@ -321,7 +325,7 @@ class calculator : Form
 
     private void Number2_Click(object sender, System.EventArgs e)
     {
-        if (input_length == 0 || new_operand)
+        if (input_length == 0 || new_operand || box.Text == "∞")
         {
             box.Text = "2";
             input_length += 1;
@@ -335,7 +339,7 @@ class calculator : Form
 
     private void Number3_Click(object sender, System.EventArgs e)
     {
-        if (input_length == 0 || new_operand)
+        if (input_length == 0 || new_operand || box.Text == "∞")
         {
             box.Text = "3";
             input_length += 1;
@@ -349,7 +353,7 @@ class calculator : Form
 
     private void Number4_Click(object sender, System.EventArgs e)
     {
-        if (input_length == 0 || new_operand)
+        if (input_length == 0 || new_operand || box.Text == "∞")
         {
             box.Text = "4";
             input_length += 1;
@@ -363,7 +367,7 @@ class calculator : Form
 
     private void Number5_Click(object sender, System.EventArgs e)
     {
-        if (input_length == 0 || new_operand)
+        if (input_length == 0 || new_operand || box.Text == "∞")
         {
             box.Text = "5";
             input_length += 1;
@@ -377,7 +381,7 @@ class calculator : Form
 
     private void Number6_Click(object sender, System.EventArgs e)
     {
-        if (input_length == 0 || new_operand)
+        if (input_length == 0 || new_operand || box.Text == "∞")
         {
             box.Text = "6";
             input_length += 1;
@@ -391,7 +395,7 @@ class calculator : Form
 
     private void Number7_Click(object sender, System.EventArgs e)
     {
-        if (input_length == 0 || new_operand)
+        if (input_length == 0 || new_operand || box.Text == "∞")
         {
             box.Text = "7";
             input_length += 1;
@@ -405,7 +409,7 @@ class calculator : Form
 
     private void Number8_Click(object sender, System.EventArgs e)
     {
-        if (input_length == 0 || new_operand)
+        if (input_length == 0 || new_operand || box.Text == "∞")
         {
             box.Text = "8";
             input_length += 1;
@@ -419,7 +423,7 @@ class calculator : Form
 
     private void Number9_Click(object sender, System.EventArgs e)
     {
-        if (input_length == 0 || new_operand)
+        if (input_length == 0 || new_operand || box.Text == "∞")
         {
             box.Text = "9";
             input_length += 1;
@@ -433,7 +437,7 @@ class calculator : Form
 
     /*  private void Pi_Click (object sender, System.EventArgs e)
     {
-        if (input_length == 0 || new_operand) {
+        if (input_length == 0 || new_operand || box.Text == "∞") {
             box.Text = "Pi";
             input_length += 1;
         }
@@ -520,6 +524,17 @@ class calculator : Form
             box.Text = "-" + box.Text;
         else if (box.Text != "0" && box.Text.Contains("-"))
             box.Text = box.Text.TrimStart('-');
+    }
+
+    private void Factorial_Click(object sender, System.EventArgs e)
+    {
+        float temp_max = float.Parse(box.Text);
+        float temp = 1;
+        for (int i = 1; i <= temp_max; i++)
+            temp *= i;
+
+        box.Text = temp.ToString();
+        input_length = 0;
     }
         
     private void Add_Click(object sender, System.EventArgs e)
@@ -644,19 +659,14 @@ class calculator : Form
 
     private void Square_Click(object sender, System.EventArgs e)
     {
-        operand1 = float.Parse(box.Text);
-        operation = "square";
-        box.Text = (operand1 * operand1).ToString();
-        new_operand = true;
-
+        box.Text = (float.Parse(box.Text) * float.Parse(box.Text)).ToString();
+        input_length = 0;
     }
 
     private void Sqrt_Click(object sender, System.EventArgs e)
     {
-        operand1 = float.Parse(box.Text);
-        operation = "sqrt";
-        box.Text = (Math.Sqrt(operand1)).ToString();
-        new_operand = true;
+        box.Text = (Math.Sqrt(float.Parse(box.Text))).ToString();
+        input_length = 0;
     }
 
     private void Equals_Click(object sender, System.EventArgs e)
@@ -686,6 +696,7 @@ class calculator : Form
         }
 
         new_operand = true;
+        operation = "none";
         input_length = 0;
     }
 
