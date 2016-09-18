@@ -34,6 +34,7 @@ class calculator : Form
     private Button ToggleLang;
     private Button Exit;
     private Button del;
+    private Button plus_minus;
 
     //Erstellt TextBox
     private TextBox box;
@@ -64,6 +65,7 @@ class calculator : Form
         ToggleLang = new Button();
         Exit = new Button();
         del = new Button();
+        plus_minus = new Button();
 
         box = new TextBox();
         //Setzt Box auf ReadOnly
@@ -93,6 +95,7 @@ class calculator : Form
         ToggleLang.Text = ("EN");
         Exit.Text = ("ESC");
         del.Text = ("DEL");
+        plus_minus.Text = ("+/-");
 
         //Legt Hoehe und Breite der Buttons fest
         number0.Height = 50;
@@ -143,6 +146,8 @@ class calculator : Form
         Exit.Width = 50;
         del.Height = 50;
         del.Width = 50;
+        plus_minus.Height = 50;
+        plus_minus.Width = 50;
 
         //Legt Hoehe und Breite der Ergebnis-Box fest
         box.Height = 50;
@@ -171,6 +176,7 @@ class calculator : Form
 
         number0.Location = new Point(number1.Left, number1.Top + number1.Height);
         comma.Location = new Point(number2.Left, number2.Top + number2.Height);
+        plus_minus.Location = new Point(comma.Left + plus_minus.Width, comma.Top);
         equals.Location = new Point(comma.Left + comma.Height + comma.Height + 10, comma.Top);
         add.Location = new Point(number3.Left + number3.Width + 10, number3.Top);
         subst.Location = new Point(add.Left + add.Width, add.Top);
@@ -206,6 +212,7 @@ class calculator : Form
         ToggleLang.Click += new EventHandler(this.ToggleLang_Click);
         del.Click += new EventHandler(this.Del_Click);
         Exit.Click += new EventHandler(this.Exit_Click);
+        plus_minus.Click += new EventHandler(this.Plus_Minus_Click);
 
         //Setze Ergebnis auf 0
         box.Text = "0";
@@ -235,6 +242,7 @@ class calculator : Form
         this.Controls.Add(ToggleLang);
         this.Controls.Add(Exit);
         this.Controls.Add(del);
+        this.Controls.Add(plus_minus);
 
         this.Text = ("My little calculator");
         this.FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -506,6 +514,14 @@ class calculator : Form
         new_operand = true;
     }
 
+    private void Plus_Minus_Click(object sender, System.EventArgs e)
+    {
+        if (box.Text != "0" && !box.Text.Contains("-"))
+            box.Text = "-" + box.Text;
+        else if (box.Text != "0" && box.Text.Contains("-"))
+            box.Text = box.Text.TrimStart('-');
+    }
+        
     private void Add_Click(object sender, System.EventArgs e)
     {
         if (!new_operand)
