@@ -9,9 +9,6 @@ class calculator : Form
     float operand1 = 0;
     string operation = "none";
 
-    //Erstellt Form
-    private Form calc;
-
     //Erstellt Buttons
     private Button number0;
     private Button number1;
@@ -43,8 +40,6 @@ class calculator : Form
 
     public calculator()
     {
-        calc = new Form();
-
         number0 = new Button();
         number1 = new Button();
         number2 = new Button();
@@ -176,7 +171,7 @@ class calculator : Form
 
         number0.Location = new Point(number1.Left, number1.Top + number1.Height);
         comma.Location = new Point(number2.Left, number2.Top + number2.Height);
-        equals.Location = new Point( comma.Left + comma.Height + comma.Height + 10, comma.Top);
+        equals.Location = new Point(comma.Left + comma.Height + comma.Height + 10, comma.Top);
         add.Location = new Point(number3.Left + number3.Width + 10, number3.Top);
         subst.Location = new Point(add.Left + add.Width, add.Top);
         mult.Location = new Point(number6.Left + number6.Width + 10, number6.Top);
@@ -209,44 +204,44 @@ class calculator : Form
         sqrt.Click += new EventHandler(this.Sqrt_Click);
         equals.Click += new EventHandler(this.Equals_Click);
         ToggleLang.Click += new EventHandler(this.ToggleLang_Click);
-        Exit.Click += new EventHandler(this.Exit_Click);
         del.Click += new EventHandler(this.Del_Click);
+        Exit.Click += new EventHandler(this.Exit_Click);
 
         //Setze Ergebnis auf 0
         box.Text = "0";
         //Füge Controls für die Buttons hinzu
-        calc.Controls.Add(number0);
-        calc.Controls.Add(number1);
-        calc.Controls.Add(number2);
-        calc.Controls.Add(number3);
-        calc.Controls.Add(number4);
-        calc.Controls.Add(number5);
-        calc.Controls.Add(number6);
-        calc.Controls.Add(number7);
-        calc.Controls.Add(number8);
-        calc.Controls.Add(number9);
-        //calc.Controls.Add (pi);
-        calc.Controls.Add(comma);
-        calc.Controls.Add(clear);
-        calc.Controls.Add(add);
-        calc.Controls.Add(subst);
-        calc.Controls.Add(mult);
-        calc.Controls.Add(div);
-        calc.Controls.Add(square);
-        calc.Controls.Add(pow);
-        calc.Controls.Add(sqrt);
-        calc.Controls.Add(box);
-        calc.Controls.Add(equals);
-        calc.Controls.Add(ToggleLang);
-        calc.Controls.Add(Exit);
-        calc.Controls.Add(del);
+        this.Controls.Add(number0);
+        this.Controls.Add(number1);
+        this.Controls.Add(number2);
+        this.Controls.Add(number3);
+        this.Controls.Add(number4);
+        this.Controls.Add(number5);
+        this.Controls.Add(number6);
+        this.Controls.Add(number7);
+        this.Controls.Add(number8);
+        this.Controls.Add(number9);
+        //this.Controls.Add (pi);
+        this.Controls.Add(comma);
+        this.Controls.Add(clear);
+        this.Controls.Add(add);
+        this.Controls.Add(subst);
+        this.Controls.Add(mult);
+        this.Controls.Add(div);
+        this.Controls.Add(square);
+        this.Controls.Add(pow);
+        this.Controls.Add(sqrt);
+        this.Controls.Add(box);
+        this.Controls.Add(equals);
+        this.Controls.Add(ToggleLang);
+        this.Controls.Add(Exit);
+        this.Controls.Add(del);
 
-        calc.Text = ("My little calculator");
-        calc.FormBorderStyle = FormBorderStyle.FixedDialog;
-        calc.MinimizeBox = false;
-        calc.MaximizeBox = false;
+        this.Text = ("My little calculator");
+        this.FormBorderStyle = FormBorderStyle.FixedDialog;
+        this.MinimizeBox = false;
+        this.MaximizeBox = false;
 
-        calc.Size = new System.Drawing.Size(385, 370);
+        this.Size = new System.Drawing.Size(385, 370);
 
         //Farben
         Exit.BackColor = Color.IndianRed;
@@ -276,7 +271,6 @@ class calculator : Form
 
         del.BackColor = Color.Red;
         clear.BackColor = Color.Red;
-        calc.ShowDialog();
     }
 
     public void change_operation(string new_operation)
@@ -456,6 +450,7 @@ class calculator : Form
             }
         }
     }
+
     private void Del_Click(object sender, System.EventArgs e)
     {
         if (new_operand == false)
@@ -472,6 +467,7 @@ class calculator : Form
             }
         }
     }
+
     private void Clear_Click(object sender, System.EventArgs e)
     {
         box.Text = "0";
@@ -480,6 +476,7 @@ class calculator : Form
         new_operand = false;
         operation = "none";
     }
+
     private void Pow_Click(object sender, System.EventArgs e)
     {
         if (!new_operand)
@@ -508,6 +505,7 @@ class calculator : Form
         input_length = 0;
         new_operand = true;
     }
+
     private void Add_Click(object sender, System.EventArgs e)
     {
         if (!new_operand)
@@ -665,34 +663,35 @@ class calculator : Form
                     break;
                 case "pow":
                     box.Text = (Math.Pow(operand1, float.Parse(box.Text))).ToString();
-                    break;    
+                    break;
                 case "none":
                     break;
             }
         }
 
-		new_operand = true;
+        new_operand = true;
         input_length = 0;
     }
-	private void ToggleLang_Click(object sender, System.EventArgs e)
-	{
-		if (ToggleLang.Text == "EN")
-			ToggleLang.Text = "DE";
-		else
-			ToggleLang.Text = "EN";
-	}
+
+    private void ToggleLang_Click(object sender, System.EventArgs e)
+    {
+        if (ToggleLang.Text == "EN")
+            ToggleLang.Text = "DE";
+        else
+            ToggleLang.Text = "EN";
+    }
 
     private void Exit_Click(object sender, System.EventArgs e)
     {
-        Application.Exit();
+        Environment.Exit(0);
     }
-
 }
+
 class MainClass
 {
-	public static void Main(string[] args)
-	{
-		Application.Run(new calculator());
+    public static void Main(string[] args)
+    {
+        Application.Run(new calculator());
         return;
 	}
 }
