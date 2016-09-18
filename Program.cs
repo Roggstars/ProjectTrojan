@@ -455,10 +455,15 @@ class calculator : Form
         if (new_operand == false)
         {
 
-            if (box.TextLength > 0)
+            if (box.TextLength > 1)
             {
                 box.Text = box.Text.Substring(0, (box.TextLength - 1));
-        }
+            }
+            else if (box.TextLength == 1)
+            {
+                box.Text = "0";
+                input_length = 0;
+            }
         }
     }
     private void Clear_Click(object sender, System.EventArgs e)
