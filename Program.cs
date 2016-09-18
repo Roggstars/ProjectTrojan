@@ -6,7 +6,6 @@ class calculator : Form
 {
     int input_length = 0;
     bool new_operand = false;
-    bool in_operation = false;
     float operand1 = 0;
     string operation = "none";
 
@@ -443,12 +442,18 @@ class calculator : Form
     {
         if (ToggleLang.Text == "DE")
         {
-            box.Text += ",";
-            input_length += 1;
+            if (!box.Text.Contains(","))
+            {
+                box.Text += ",";
+                input_length += 1;
+            }
         }
         else {
-            box.Text += ".";
-            input_length += 1;
+            if (!box.Text.Contains("."))
+            {
+                box.Text += ".";
+                input_length += 1;
+            }
         }
     }
     private void Del_Click(object sender, System.EventArgs e)
@@ -456,10 +461,15 @@ class calculator : Form
         if (new_operand == false)
         {
 
-            if (box.TextLength > 0)
+            if (box.TextLength > 1)
             {
                 box.Text = box.Text.Substring(0, (box.TextLength - 1));
-        }
+            }
+            else if (box.TextLength == 1)
+            {
+                box.Text = "0";
+                input_length = 0;
+            }
         }
     }
     private void Clear_Click(object sender, System.EventArgs e)
