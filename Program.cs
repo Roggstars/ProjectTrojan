@@ -33,6 +33,7 @@ class calculator : Form
     private Button div;
     private Button square;
     private Button sqrt;
+    private Button pow;
     private Button equals;
     private Button ToggleLang;
     private Button Exit;
@@ -63,6 +64,7 @@ class calculator : Form
         div = new Button();
         square = new Button();
         sqrt = new Button();
+        pow = new Button();
         equals = new Button();
         ToggleLang = new Button();
         Exit = new Button();
@@ -89,6 +91,7 @@ class calculator : Form
         mult.Text = ("*");
         div.Text = ("/");
         square.Text = ("x²");
+        pow.Text = ("x^n");
         sqrt.Text = ("√¯x");
         equals.Text = ("=");
         ToggleLang.Text = ("EN");
@@ -131,6 +134,8 @@ class calculator : Form
         div.Width = 50;
         square.Height = 50;
         square.Width = 50;
+        pow.Height = 50;
+        pow.Width = 50;
         sqrt.Height = 50;
         sqrt.Width = 50;
         equals.Height = 50;
@@ -171,6 +176,7 @@ class calculator : Form
         mult.Location = new Point(subst.Left, subst.Top - mult.Height);
         div.Location = new Point(mult.Left, mult.Top - div.Height);
         square.Location = new Point(div.Left + square.Width, div.Top);
+        pow.Location = new Point(square.Left + pow.Width, square.Top);
         sqrt.Location = new Point(square.Left, square.Top + sqrt.Height);
 
         Exit.Location = new Point(box.Left + box.Width + 10, box.Top);
@@ -195,6 +201,7 @@ class calculator : Form
         mult.Click += new EventHandler(this.Mult_Click);
         div.Click += new EventHandler(this.Div_Click);
         square.Click += new EventHandler(this.Square_Click);
+        pow.Click += new EventHandler(this.Pow_Click);
         sqrt.Click += new EventHandler(this.Sqrt_Click);
         equals.Click += new EventHandler(this.Equals_Click);
         ToggleLang.Click += new EventHandler(this.ToggleLang_Click);
@@ -221,6 +228,7 @@ class calculator : Form
         calc.Controls.Add(mult);
         calc.Controls.Add(div);
         calc.Controls.Add(square);
+        calc.Controls.Add(pow);
         calc.Controls.Add(sqrt);
         calc.Controls.Add(box);
         calc.Controls.Add(equals);
@@ -245,6 +253,7 @@ class calculator : Form
         mult.BackColor = Color.Orange;
         div.BackColor = Color.Orange;
         square.BackColor = Color.Orange;
+        pow.BackColor = Color.Orange;
         sqrt.BackColor = Color.Orange;
         equals.BackColor = Color.Orange;
 
@@ -442,7 +451,34 @@ class calculator : Form
         new_operand = false;
         operation = "none";
     }
-
+    private void Pow_Click(object sender, System.EventArgs e)
+    {
+        if (!new_operand)
+        {
+            switch (operation)
+            {
+                case "add":
+                    box.Text = (operand1 + float.Parse(box.Text)).ToString();
+                    break;
+                case "subst":
+                    box.Text = (operand1 - float.Parse(box.Text)).ToString();
+                    break;
+                case "mult":
+                    box.Text = (operand1 * float.Parse(box.Text)).ToString();
+                    break;
+                case "div":
+                    box.Text = (operand1 / float.Parse(box.Text)).ToString();
+                    break;
+                case "pow":
+                    box.Text = (Math.Pow(operand1, float.Parse(box.Text))).ToString();
+                    break;
+            }
+        }
+        operand1 = float.Parse(box.Text);
+        operation = "pow";
+        input_length = 0;
+        new_operand = true;
+    }
     private void Add_Click(object sender, System.EventArgs e)
     {
         if (!new_operand)
@@ -460,6 +496,9 @@ class calculator : Form
                     break;
                 case "div":
                     box.Text = (operand1 / float.Parse(box.Text)).ToString();
+                    break;
+                case "pow":
+                    box.Text = (Math.Pow(operand1, float.Parse(box.Text))).ToString();
                     break;
             }
         }
@@ -488,6 +527,9 @@ class calculator : Form
                 case "div":
                     box.Text = (operand1 / float.Parse(box.Text)).ToString();
                     break;
+                case "pow":
+                    box.Text = (Math.Pow(operand1, float.Parse(box.Text))).ToString();
+                    break;
             }
         }
 
@@ -515,6 +557,9 @@ class calculator : Form
                 case "div":
                     box.Text = (operand1 / float.Parse(box.Text)).ToString();
                     break;
+                case "pow":
+                    box.Text = (Math.Pow(operand1, float.Parse(box.Text))).ToString();
+                    break;
             }
         }
 
@@ -541,6 +586,9 @@ class calculator : Form
                     break;
                 case "div":
                     box.Text = (operand1 / float.Parse(box.Text)).ToString();
+                    break;
+                case "pow":
+                    box.Text = (Math.Pow(operand1, float.Parse(box.Text))).ToString();
                     break;
             }
         }
@@ -586,6 +634,9 @@ class calculator : Form
                 case "div":
                     box.Text = (operand1 / float.Parse(box.Text)).ToString();
                     break;
+                case "pow":
+                    box.Text = (Math.Pow(operand1, float.Parse(box.Text))).ToString();
+                    break;    
                 case "none":
                     break;
             }
