@@ -467,15 +467,20 @@ class calculator : Form
     {
         if (new_operand == false)
         {
-
-            if (box.TextLength > 1)
+            if ((box.Text.Contains("-") && box.TextLength == 2))
             {
-                box.Text = box.Text.Substring(0, (box.TextLength - 1));
+                box.Text = "0";
+                input_length = 0;
             }
             else if (box.TextLength == 1)
             {
                 box.Text = "0";
                 input_length = 0;
+            }
+            else if (box.TextLength > 1)
+            {
+                box.Text = box.Text.Substring(0, (box.TextLength - 1));
+                input_length -= 1;
             }
         }
     }
