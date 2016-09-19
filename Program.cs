@@ -36,6 +36,7 @@ class calculator : Form
     private Button del;
     private Button plus_minus;
     private Button faculty;
+    private Button ln;
 
     //Erstellt TextBox
     private TextBox box;
@@ -68,6 +69,7 @@ class calculator : Form
         del = new Button();
         plus_minus = new Button();
         faculty = new Button();
+        ln = new Button();
 
         box = new TextBox();
         //Setzt Box auf ReadOnly
@@ -99,6 +101,7 @@ class calculator : Form
         del.Text = ("DEL");
         plus_minus.Text = ("+/-");
         faculty.Text = ("x!");
+        ln.Text = ("ln");
 
         //Legt Hoehe und Breite der Buttons fest
         number0.Height = 50;
@@ -153,6 +156,8 @@ class calculator : Form
         plus_minus.Width = 50;
         faculty.Height = 50;
         faculty.Width = 50;
+        ln.Height = 50;
+        ln.Width = 50;
 
         //Legt Hoehe und Breite der Ergebnis-Box fest
         box.Height = 50;
@@ -166,6 +171,7 @@ class calculator : Form
         pow.Location = new Point(square.Left + pow.Width, square.Top);
         sqrt.Location = new Point(pow.Left + sqrt.Width, square.Top);
         faculty.Location = new Point(sqrt.Left + 10 + faculty.Width, sqrt.Top);
+        ln.Location = new Point(faculty.Left + ln.Width, faculty.Top);
 
         number7.Location = new Point(box.Left, box.Top + box.Height + 110);
         number8.Location = new Point(number7.Left + number8.Width, number7.Top);
@@ -220,6 +226,7 @@ class calculator : Form
         Exit.Click += new EventHandler(this.Exit_Click);
         plus_minus.Click += new EventHandler(this.Plus_Minus_Click);
         faculty.Click += new EventHandler(this.Factorial_Click);
+        ln.Click += new EventHandler(this.Ln_Click);
 
         //Setze Ergebnis auf 0
         box.Text = "0";
@@ -251,6 +258,7 @@ class calculator : Form
         this.Controls.Add(del);
         this.Controls.Add(plus_minus);
         this.Controls.Add(faculty);
+        this.Controls.Add(ln);
 
         this.Text = ("My little calculator");
         this.FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -274,6 +282,7 @@ class calculator : Form
         sqrt.BackColor = Color.Gray;
         faculty.BackColor = Color.Gray;
         equals.BackColor = Color.Orange;
+        ln.BackColor = Color.Gray;
 
         number0.BackColor = Color.LightGray;
         number1.BackColor = Color.LightGray;
@@ -678,6 +687,17 @@ class calculator : Form
     {
         box.Text = (float.Parse(box.Text) * float.Parse(box.Text)).ToString();
         input_length = 0;
+    }
+    private void Ln_Click(object sender, System.EventArgs e)
+    {
+      double ln_value = float.Parse(box.Text);
+
+        if (ln_value > 0)
+        {
+            box.Text = (Math.Log(ln_value)).ToString();
+            input_length = 0;
+        }
+        else box.Text = "Error";
     }
 
     private void Sqrt_Click(object sender, System.EventArgs e)
