@@ -462,7 +462,6 @@ class calculator : Form
             }
         }
     }
-
     private void Del_Click(object sender, System.EventArgs e)
     {
         if (new_operand == false)
@@ -538,8 +537,21 @@ class calculator : Form
         for (int i = 1; i <= temp_max; i++)
             temp *= i;
 
-        box.Text = temp.ToString();
-        input_length = 0;
+        int fac_max = (int)temp_max;
+        int fac = 1;
+        for (int i = 1; i <= fac_max; i++)
+            fac *= i;
+
+        int temp_int = (int)temp;
+        if (temp_int == fac)
+        {
+            box.Text = temp.ToString();
+            input_length = 0;
+        }
+        else {
+            box.Text = "Error";
+            input_length = 0;
+        }
     }
         
     private void Add_Click(object sender, System.EventArgs e)
