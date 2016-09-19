@@ -475,7 +475,12 @@ class calculator : Form
     {
         if (new_operand == false)
         {
-            if ((box.Text.Contains("-") && box.TextLength == 2))
+            if (box.Text == "Error")
+            {
+                box.Text = "0";
+                input_length = 0;
+            }
+            else if ((box.Text.Contains("-") && box.TextLength == 2))
             {
                 box.Text = "0";
                 input_length = 0;
