@@ -20,7 +20,8 @@ class calculator : Form
     private Button number7;
     private Button number8;
     private Button number9;
-    //private Button pi;
+    private Button pi;
+    private Button E;
     private Button comma;
     private Button clear;
     private Button add;
@@ -37,6 +38,12 @@ class calculator : Form
     private Button plus_minus;
     private Button faculty;
     private Button ln;
+    private Button sinus;
+    private Button cosinus;
+    private Button tangens;
+    private Button gradrad;
+
+    private CheckBox math;
 
     //Erstellt TextBox
     private TextBox box;
@@ -53,7 +60,8 @@ class calculator : Form
         number7 = new Button();
         number8 = new Button();
         number9 = new Button();
-        //pi = new Button ();
+        pi = new Button();
+        E = new Button();
         comma = new Button();
         clear = new Button();
         add = new Button();
@@ -70,6 +78,12 @@ class calculator : Form
         plus_minus = new Button();
         faculty = new Button();
         ln = new Button();
+        sinus = new Button();
+        cosinus = new Button();
+        tangens = new Button();
+        gradrad = new Button();
+
+        math = new CheckBox();
 
         box = new TextBox();
         //Setzt Box auf ReadOnly
@@ -85,7 +99,8 @@ class calculator : Form
         number7.Text = ("7");
         number8.Text = ("8");
         number9.Text = ("9");
-        //pi.Text = ("pi");
+        pi.Text = ("π");
+        E.Text = ("e");
         comma.Text = (",");
         clear.Text = ("AC");
         add.Text = ("+");
@@ -102,6 +117,11 @@ class calculator : Form
         plus_minus.Text = ("+/-");
         faculty.Text = ("x!");
         ln.Text = ("ln");
+        math.Text = (" ");
+        sinus.Text = ("sin");
+        cosinus.Text = ("cos");
+        tangens.Text = ("tan");
+        gradrad.Text = ("rad");
 
         //Legt Hoehe und Breite der Buttons fest
         number0.Height = 50;
@@ -124,8 +144,10 @@ class calculator : Form
         number8.Width = 50;
         number9.Height = 50;
         number9.Width = 50;
-        //pi.Height = 40;
-        //pi.Width = 40;
+        pi.Height = 50;
+        pi.Width = 50;
+        E.Height = 50;
+        E.Width = 50;
         comma.Height = 50;
         comma.Width = 50;
         clear.Height = 50;
@@ -158,6 +180,18 @@ class calculator : Form
         faculty.Width = 50;
         ln.Height = 50;
         ln.Width = 50;
+        sinus.Height = 50;
+        sinus.Width = 50;
+        cosinus.Height = 50;
+        cosinus.Width = 50;
+        tangens.Width = 50;
+        tangens.Height = 50;
+        gradrad.Height = 50;
+        gradrad.Width = 50;
+
+
+        math.Height = 50;
+        math.Width = 50;
 
         //Legt Hoehe und Breite der Ergebnis-Box fest
         box.Height = 50;
@@ -184,7 +218,6 @@ class calculator : Form
         number1.Location = new Point(number4.Left, number4.Top + number4.Height);
         number2.Location = new Point(number5.Left, number5.Top + number5.Height);
         number3.Location = new Point(number6.Left, number6.Top + number6.Height);
-        //pi.Location = new Point (number3.Left + number3.Width + 10, number3.Top);
 
         number0.Location = new Point(number1.Left, number1.Top + number1.Height);
         comma.Location = new Point(number2.Left, number2.Top + number2.Height);
@@ -194,10 +227,19 @@ class calculator : Form
         subst.Location = new Point(add.Left + add.Width, add.Top);
         mult.Location = new Point(number6.Left + number6.Width + 10, number6.Top);
         div.Location = new Point(mult.Left + mult.Width, mult.Top);
+
+        pi.Location = new Point(div.Left + div.Width + 10, div.Top);
+        E.Location = new Point(pi.Left, pi.Top + pi.Height);
         del.Location = new Point(number9.Left + del.Width + 10, number9.Top);
         clear.Location = new Point(del.Left + clear.Width, del.Top);
         Exit.Location = new Point(box.Left + box.Width + 10, box.Top);
         ToggleLang.Location = new Point(Exit.Left, Exit.Top + Exit.Height);
+        sinus.Location = new Point(10, 8);
+        cosinus.Location = new Point(10, 8);
+        tangens.Location = new Point(10, 8);
+        gradrad.Location = new Point(10, 8);
+
+        math.Location = new Point(ToggleLang.Left, ToggleLang.Top + ToggleLang.Height);
 
         //Erstelle EventHandler
         number0.Click += new EventHandler(this.Number0_Click);
@@ -210,7 +252,8 @@ class calculator : Form
         number7.Click += new EventHandler(this.Number7_Click);
         number8.Click += new EventHandler(this.Number8_Click);
         number9.Click += new EventHandler(this.Number9_Click);
-        //pi.Click += new EventHandler (this.Pi_Click);
+        pi.Click += new EventHandler(this.Pi_Click);
+        E.Click += new EventHandler(this.E_Click);
         comma.Click += new EventHandler(this.Comma_Click);
         clear.Click += new EventHandler(this.Clear_Click);
         add.Click += new EventHandler(this.Add_Click);
@@ -227,6 +270,12 @@ class calculator : Form
         plus_minus.Click += new EventHandler(this.Plus_Minus_Click);
         faculty.Click += new EventHandler(this.Factorial_Click);
         ln.Click += new EventHandler(this.Ln_Click);
+        sinus.Click += new EventHandler(this.Sinus_Click);
+        cosinus.Click += new EventHandler(this.Cosinus_Click);
+        tangens.Click += new EventHandler(this.Tangens_Click);
+        gradrad.Click += new EventHandler(this.GradRad_Click);
+
+        math.Click += new EventHandler(this.math_Click);
 
         //Setze Ergebnis auf 0
         box.Text = "0";
@@ -241,7 +290,8 @@ class calculator : Form
         this.Controls.Add(number7);
         this.Controls.Add(number8);
         this.Controls.Add(number9);
-        //this.Controls.Add (pi);
+        this.Controls.Add(pi);
+        this.Controls.Add(E);
         this.Controls.Add(comma);
         this.Controls.Add(clear);
         this.Controls.Add(add);
@@ -259,13 +309,20 @@ class calculator : Form
         this.Controls.Add(plus_minus);
         this.Controls.Add(faculty);
         this.Controls.Add(ln);
+        this.Controls.Add(sinus);
+        this.Controls.Add(cosinus);
+        this.Controls.Add(tangens);
+        this.Controls.Add(gradrad);
+
+
+        this.Controls.Add(math);
 
         this.Text = ("My little calculator");
         this.FormBorderStyle = FormBorderStyle.FixedDialog;
         this.MinimizeBox = false;
         this.MaximizeBox = false;
 
-        this.Size = new System.Drawing.Size(385, 370);
+        this.Size = new System.Drawing.Size(390, 400);
 
         //Farben
         Exit.BackColor = Color.IndianRed;
@@ -283,6 +340,14 @@ class calculator : Form
         faculty.BackColor = Color.Gray;
         equals.BackColor = Color.Orange;
         ln.BackColor = Color.Gray;
+
+        E.BackColor = Color.Gray;
+        pi.BackColor = Color.Gray;
+
+        sinus.BackColor = Color.Gray;
+        cosinus.BackColor = Color.Gray;
+        tangens.BackColor = Color.Gray;
+        gradrad.BackColor = Color.Gray;
 
         number0.BackColor = Color.LightGray;
         number1.BackColor = Color.LightGray;
@@ -444,14 +509,14 @@ class calculator : Form
         new_operand = false;
     }
 
-    /*  private void Pi_Click (object sender, System.EventArgs e)
+      private void Pi_Click (object sender, System.EventArgs e)
     {
-        if (input_length == 0 || new_operand || box.Text == "∞") {
-            box.Text = "Pi";
-            input_length += 1;
-        }
-        new_operand = false;
-    } */
+        box.Text = (Math.PI).ToString();
+    }
+    private void E_Click(object sender, System.EventArgs e)
+    {
+        box.Text = (Math.E).ToString();
+    }
 
     private void Comma_Click(object sender, System.EventArgs e)
     {
@@ -542,6 +607,29 @@ class calculator : Form
             box.Text = "-" + box.Text;
         else if (box.Text != "0" && box.Text.Contains("-"))
             box.Text = box.Text.TrimStart('-');
+    }
+    private void GradRad_Click(object sender, System.EventArgs e)
+    {
+        if (gradrad.Text == "Rad")
+            gradrad.Text = "Grad";
+        else
+            gradrad.Text = "Rad";
+    }
+
+    private void Sinus_Click(object sender, System.EventArgs e)
+    {
+        box.Text = (Math.Sin(float.Parse(box.Text))).ToString();
+        input_length = 0;
+    }
+    private void Cosinus_Click(object sender, System.EventArgs e)
+    {
+        box.Text = (Math.Cos(float.Parse(box.Text))).ToString();
+        input_length = 0;
+    }
+    private void Tangens_Click(object sender, System.EventArgs e)
+    {
+        box.Text = (Math.Tan(float.Parse(box.Text))).ToString();
+        input_length = 0;
     }
 
     private void Factorial_Click(object sender, System.EventArgs e)
@@ -740,6 +828,88 @@ class calculator : Form
         new_operand = true;
         operation = "none";
         input_length = 0;
+    }
+    private void math_Click(object sender, System.EventArgs e)
+    {
+        if (math.Checked)
+        {
+            this.Size = new System.Drawing.Size(390, 450);
+            square.Location = new Point(box.Left, box.Top + box.Height + 60);
+            pow.Location = new Point(square.Left + pow.Width, square.Top);
+            sqrt.Location = new Point(pow.Left + sqrt.Width, square.Top);
+            faculty.Location = new Point(sqrt.Left + 10 + faculty.Width, sqrt.Top);
+            ln.Location = new Point(faculty.Left + ln.Width, faculty.Top);
+
+            number7.Location = new Point(box.Left, box.Top + box.Height + 130);
+            number8.Location = new Point(number7.Left + number8.Width, number7.Top);
+            number9.Location = new Point(number8.Left + number9.Width, number7.Top);
+
+            number4.Location = new Point(number7.Left, number7.Top + number7.Height);
+            number5.Location = new Point(number8.Left, number8.Top + number8.Height);
+            number6.Location = new Point(number9.Left, number9.Top + number9.Height);
+
+            number1.Location = new Point(number4.Left, number4.Top + number4.Height);
+            number2.Location = new Point(number5.Left, number5.Top + number5.Height);
+            number3.Location = new Point(number6.Left, number6.Top + number6.Height);
+
+            number0.Location = new Point(number1.Left, number1.Top + number1.Height);
+            comma.Location = new Point(number2.Left, number2.Top + number2.Height);
+            plus_minus.Location = new Point(comma.Left + plus_minus.Width, comma.Top);
+            equals.Location = new Point(comma.Left + comma.Height + comma.Height + 10, comma.Top);
+            add.Location = new Point(number3.Left + number3.Width + 10, number3.Top);
+            subst.Location = new Point(add.Left + add.Width, add.Top);
+            mult.Location = new Point(number6.Left + number6.Width + 10, number6.Top);
+            div.Location = new Point(mult.Left + mult.Width, mult.Top);
+            del.Location = new Point(number9.Left + del.Width + 10, number9.Top);
+            clear.Location = new Point(del.Left + clear.Width, del.Top);
+            pi.Location = new Point(div.Left + div.Width + 10, div.Top);
+            E.Location = new Point(pi.Left, pi.Top + pi.Height);
+
+
+            sinus.Location = new Point(box.Left, box.Top + box.Height + 10);
+            cosinus.Location = new Point(sinus.Left + sinus.Height, sinus.Top);
+            tangens.Location = new Point(cosinus.Left + cosinus.Height, sinus.Top);
+            gradrad.Location = new Point(tangens.Left + tangens.Height + 10, sinus.Top);
+        }
+        else {
+            this.Size = new System.Drawing.Size(390, 400);
+
+            square.Location = new Point(box.Left, box.Top + box.Height + 10);
+            pow.Location = new Point(square.Left + pow.Width, square.Top);
+            sqrt.Location = new Point(pow.Left + sqrt.Width, square.Top);
+            faculty.Location = new Point(sqrt.Left + 10 + faculty.Width, sqrt.Top);
+            ln.Location = new Point(faculty.Left + ln.Width, faculty.Top);
+
+            number7.Location = new Point(box.Left, box.Top + box.Height + 70);
+            number8.Location = new Point(number7.Left + number8.Width, number7.Top);
+            number9.Location = new Point(number8.Left + number9.Width, number7.Top);
+
+            number4.Location = new Point(number7.Left, number7.Top + number7.Height);
+            number5.Location = new Point(number8.Left, number8.Top + number8.Height);
+            number6.Location = new Point(number9.Left, number9.Top + number9.Height);
+
+            number1.Location = new Point(number4.Left, number4.Top + number4.Height);
+            number2.Location = new Point(number5.Left, number5.Top + number5.Height);
+            number3.Location = new Point(number6.Left, number6.Top + number6.Height);
+
+            number0.Location = new Point(number1.Left, number1.Top + number1.Height);
+            comma.Location = new Point(number2.Left, number2.Top + number2.Height);
+            plus_minus.Location = new Point(comma.Left + plus_minus.Width, comma.Top);
+            equals.Location = new Point(comma.Left + comma.Height + comma.Height + 10, comma.Top);
+            add.Location = new Point(number3.Left + number3.Width + 10, number3.Top);
+            subst.Location = new Point(add.Left + add.Width, add.Top);
+            mult.Location = new Point(number6.Left + number6.Width + 10, number6.Top);
+            div.Location = new Point(mult.Left + mult.Width, mult.Top);
+            del.Location = new Point(number9.Left + del.Width + 10, number9.Top);
+            clear.Location = new Point(del.Left + clear.Width, del.Top);
+            pi.Location = new Point(div.Left + div.Width + 10, div.Top);
+            E.Location = new Point(pi.Left, pi.Top + pi.Height);
+
+            sinus.Location = new Point(10,8);
+            cosinus.Location = new Point(10,8);
+            tangens.Location = new Point(10,8);
+            gradrad.Location = new Point(10,8);
+        }
     }
 
     private void ToggleLang_Click(object sender, System.EventArgs e)
