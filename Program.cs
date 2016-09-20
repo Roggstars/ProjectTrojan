@@ -301,7 +301,12 @@ class calculator : Form
 
     private void Number0_Click(object sender, System.EventArgs e)
     {
-        if (input_length == 0 && box.Text == "0")
+        if (box.Text == "Error")
+        {
+            box.Text = "0";
+            input_length = 0;
+        }      
+        else if (input_length == 0 && box.Text == "0")
         { }
         else if (input_length == 0 && box.Text != "0" || box.Text == "∞")
         {
@@ -320,10 +325,15 @@ class calculator : Form
 
     private void Number1_Click(object sender, System.EventArgs e)
     {
-        if (input_length == 0 || new_operand || box.Text == "∞")
+        if (box.Text == "Error")
         {
             box.Text = "1";
-            input_length += 1;
+            input_length = 1;
+        }
+        else if (input_length == 0 || new_operand || box.Text == "∞")
+        {
+            box.Text = "1";
+            input_length = 1;
         }
         else {
             box.Text += "1";
@@ -334,10 +344,15 @@ class calculator : Form
 
     private void Number2_Click(object sender, System.EventArgs e)
     {
-        if (input_length == 0 || new_operand || box.Text == "∞")
+        if (box.Text == "Error")
         {
             box.Text = "2";
-            input_length += 1;
+            input_length = 1;
+        }
+        else if (input_length == 0 || new_operand || box.Text == "∞")
+        {
+            box.Text = "2";
+            input_length = 1;
         }
         else {
             box.Text += "2";
@@ -348,10 +363,15 @@ class calculator : Form
 
     private void Number3_Click(object sender, System.EventArgs e)
     {
-        if (input_length == 0 || new_operand || box.Text == "∞")
+        if (box.Text == "Error")
         {
             box.Text = "3";
-            input_length += 1;
+            input_length = 1;
+        }
+        else if (input_length == 0 || new_operand || box.Text == "∞")
+        {
+            box.Text = "3";
+            input_length = 1;
         }
         else {
             box.Text += "3";
@@ -362,10 +382,15 @@ class calculator : Form
 
     private void Number4_Click(object sender, System.EventArgs e)
     {
-        if (input_length == 0 || new_operand || box.Text == "∞")
+        if (box.Text == "Error")
         {
             box.Text = "4";
-            input_length += 1;
+            input_length = 1;
+        }
+        else if (input_length == 0 || new_operand || box.Text == "∞")
+        {
+            box.Text = "4";
+            input_length = 1;
         }
         else {
             box.Text += "4";
@@ -376,10 +401,15 @@ class calculator : Form
 
     private void Number5_Click(object sender, System.EventArgs e)
     {
-        if (input_length == 0 || new_operand || box.Text == "∞")
+        if (box.Text == "Error")
         {
             box.Text = "5";
-            input_length += 1;
+            input_length = 1;
+        }
+        else if (input_length == 0 || new_operand || box.Text == "∞")
+        {
+            box.Text = "5";
+            input_length = 1;
         }
         else {
             box.Text += "5";
@@ -390,10 +420,15 @@ class calculator : Form
 
     private void Number6_Click(object sender, System.EventArgs e)
     {
-        if (input_length == 0 || new_operand || box.Text == "∞")
+        if (box.Text == "Error")
         {
             box.Text = "6";
-            input_length += 1;
+            input_length = 1;
+        }
+        else if (input_length == 0 || new_operand || box.Text == "∞")
+        {
+            box.Text = "6";
+            input_length = 1;
         }
         else {
             box.Text += "6";
@@ -404,10 +439,15 @@ class calculator : Form
 
     private void Number7_Click(object sender, System.EventArgs e)
     {
-        if (input_length == 0 || new_operand || box.Text == "∞")
+        if (box.Text == "Error")
         {
             box.Text = "7";
-            input_length += 1;
+            input_length = 1;
+        }
+        else if (input_length == 0 || new_operand || box.Text == "∞")
+        {
+            box.Text = "7";
+            input_length = 1;
         }
         else {
             box.Text += "7";
@@ -418,10 +458,15 @@ class calculator : Form
 
     private void Number8_Click(object sender, System.EventArgs e)
     {
-        if (input_length == 0 || new_operand || box.Text == "∞")
+        if (box.Text == "Error")
         {
             box.Text = "8";
-            input_length += 1;
+            input_length = 1;
+        }
+        else if (input_length == 0 || new_operand || box.Text == "∞")
+        {
+            box.Text = "8";
+            input_length = 1;
         }
         else {
             box.Text += "8";
@@ -432,10 +477,15 @@ class calculator : Form
 
     private void Number9_Click(object sender, System.EventArgs e)
     {
-        if (input_length == 0 || new_operand || box.Text == "∞")
+        if (box.Text == "Error")
         {
             box.Text = "9";
-            input_length += 1;
+            input_length = 1;
+        }
+        else if (input_length == 0 || new_operand || box.Text == "∞")
+        {
+            box.Text = "9";
+            input_length = 1;
         }
         else {
             box.Text += "9";
