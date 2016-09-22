@@ -121,7 +121,7 @@ class calculator : Form
         sinus.Text = ("sin");
         cosinus.Text = ("cos");
         tangens.Text = ("tan");
-        gradrad.Text = ("rad");
+        gradrad.Text = ("Rad");
 
         //Legt Hoehe und Breite der Buttons fest
         number0.Height = 50;
