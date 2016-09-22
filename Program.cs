@@ -11,44 +11,44 @@ class calculator : Form
     bool function;
 
     //Erstellt Buttons
-    private Button number0;
-    private Button number1;
-    private Button number2;
-    private Button number3;
-    private Button number4;
-    private Button number5;
-    private Button number6;
-    private Button number7;
-    private Button number8;
-    private Button number9;
-    private Button pi;
-    private Button E;
-    private Button comma;
-    private Button clear;
-    private Button add;
-    private Button subst;
-    private Button mult;
-    private Button div;
-    private Button square;
-    private Button sqrt;
-    private Button pow;
-    private Button equals;
-    private Button ToggleLang;
-    private Button Exit;
-    private Button del;
-    private Button plus_minus;
-    private Button faculty;
-    private Button ln;
-    private Button sinus;
-    private Button cosinus;
-    private Button tangens;
-    private Button gradrad;
-    private Button shift;
+    Button number0;
+    Button number1;
+    Button number2;
+    Button number3;
+    Button number4;
+    Button number5;
+    Button number6;
+    Button number7;
+    Button number8;
+    Button number9;
+    Button pi;
+    Button E;
+    Button comma;
+    Button clear;
+    Button add;
+    Button subst;
+    Button mult;
+    Button div;
+    Button square;
+    Button sqrt;
+    Button pow;
+    Button equals;
+    Button ToggleLang;
+    Button Exit;
+    Button del;
+    Button plus_minus;
+    Button faculty;
+    Button ln;
+    Button sinus;
+    Button cosinus;
+    Button tangens;
+    Button gradrad;
+    Button shift;
 
-    private CheckBox math;
+    CheckBox math;
 
     //Erstellt TextBox
-    private TextBox box;
+    TextBox box;
 
     public calculator()
     {
@@ -126,6 +126,8 @@ class calculator : Form
         tangens.Text = ("tan");
         gradrad.Text = ("Rad");
         shift.Text = ("Fn");
+
+        Size = new Size(390, 400); //Fenstergröße
 
         //Legt Hoehe und Breite der Buttons fest
         number0.Height = 50;
@@ -241,14 +243,11 @@ class calculator : Form
         clear.Location = new Point(del.Left + clear.Width, del.Top);
         Exit.Location = new Point(box.Left + box.Width + 10, box.Top);
         ToggleLang.Location = new Point(Exit.Left, Exit.Top + Exit.Height);
-        sinus.Location = new Point(10, 8);
-        cosinus.Location = new Point(10, 8);
-        tangens.Location = new Point(10, 8);
-        gradrad.Location = new Point(10, 8);
 
         math.Location = new Point(ToggleLang.Left, ToggleLang.Top + ToggleLang.Height);
 
-        //Erstelle EventHandler
+        //Erstelle EventHandler mit entsprechenden _Click Funktionen um ClickEvent der Buttons zu
+        //kontrollieren.
         number0.Click += Number0_Click;
         number1.Click += Number1_Click;
         number2.Click += Number2_Click;
@@ -287,6 +286,7 @@ class calculator : Form
 
         //Setze Ergebnis auf 0
         box.Text = "0";
+
         //Füge Controls für die Buttons hinzu
         Controls.Add(number0);
         Controls.Add(number1);
@@ -317,23 +317,29 @@ class calculator : Form
         Controls.Add(plus_minus);
         Controls.Add(faculty);
         Controls.Add(ln);
-        Controls.Add(sinus);
-        Controls.Add(cosinus);
-        Controls.Add(tangens);
-        Controls.Add(gradrad);
         Controls.Add(shift);
-
-
         Controls.Add(math);
 
-        Text = ("My little calculator");
+        Text = ("My little calculator"); //Fenstertitel
         FormBorderStyle = FormBorderStyle.FixedDialog;
-        MinimizeBox = false;
+        MinimizeBox = false; //Deaktivieren der minimize und maximize Box neben der Schließen-Box
+                             //in der Titelleiste
         MaximizeBox = false;
 
-        Size = new Size(390, 400);
+        Size = new Size(390, 400); //Fenstergröße
 
         //Farben
+        number0.BackColor = Color.LightGray;
+        number1.BackColor = Color.LightGray;
+        number2.BackColor = Color.LightGray;
+        number3.BackColor = Color.LightGray;
+        number4.BackColor = Color.LightGray;
+        number5.BackColor = Color.LightGray;
+        number6.BackColor = Color.LightGray;
+        number7.BackColor = Color.LightGray;
+        number8.BackColor = Color.LightGray;
+        number9.BackColor = Color.LightGray;
+
         Exit.BackColor = Color.IndianRed;
         box.Font = new Font("Arial", 30, FontStyle.Bold);
         box.TextAlign = HorizontalAlignment.Right;
@@ -358,22 +364,16 @@ class calculator : Form
         tangens.BackColor = Color.Gray;
         gradrad.BackColor = Color.Gray;
 
-        number0.BackColor = Color.LightGray;
-        number1.BackColor = Color.LightGray;
-        number2.BackColor = Color.LightGray;
-        number3.BackColor = Color.LightGray;
-        number4.BackColor = Color.LightGray;
-        number5.BackColor = Color.LightGray;
-        number6.BackColor = Color.LightGray;
-        number7.BackColor = Color.LightGray;
-        number8.BackColor = Color.LightGray;
-        number9.BackColor = Color.LightGray;
-
         del.BackColor = Color.Red;
         clear.BackColor = Color.Red;
     }
 
-    private void Shift_Click(object sender, System.EventArgs e)
+    //Diese Methode reagiert auf den Klick auf den Funktions/Shift Button, welcher benoetigt wird,
+    //um ein uebersichtlicheres UI zu gewaehrleisten. Dazu werden einem Button mehrere Funktionen
+    //zugewiesen anstatt viele neue (Platz einnehmende) Buttons zu erzeugen.
+    //
+    //WIP
+    void Shift_Click(object sender, EventArgs e)
     {
         if (!function)
         {
@@ -396,7 +396,10 @@ class calculator : Form
         }
     }
 
-    private void Number0_Click(object sender, System.EventArgs e)
+    //Diese Methode reagiert auf den Klick auf den Ziffer 0 Button. Dieser erstellt, je nach
+    //bisheriger Eingabe entweder eine 0 in der TextBox oder haengt eine '0' an den aktuellen
+    //TextBox String an, erweitert somit die Eingabe um eine Zehnerpotenz.
+    void Number0_Click(object sender, EventArgs e)
     {
         if (box.Text == "Error")
         {
@@ -420,7 +423,10 @@ class calculator : Form
         new_operand = false;
     }
 
-    private void Number1_Click(object sender, System.EventArgs e)
+    //Diese Methode reagiert auf den Klick auf den Ziffer 1 Button. Dieser erstellt, je nach
+    //bisheriger Eingabe entweder eine '1' in der TextBox oder haengt eine '1' an den aktuellen
+    //TextBox String an.
+    void Number1_Click(object sender, EventArgs e)
     {
         if (box.Text == "Error")
         {
@@ -439,7 +445,10 @@ class calculator : Form
         new_operand = false;
     }
 
-    private void Number2_Click(object sender, System.EventArgs e)
+    //Diese Methode reagiert auf den Klick auf den Ziffer 2 Button. Dieser erstellt, je nach
+    //bisheriger Eingabe entweder eine '2' in der TextBox oder haengt eine '2' an den aktuellen
+    //TextBox String an.
+    void Number2_Click(object sender, EventArgs e)
     {
         if (box.Text == "Error")
         {
@@ -458,7 +467,10 @@ class calculator : Form
         new_operand = false;
     }
 
-    private void Number3_Click(object sender, System.EventArgs e)
+    //Diese Methode reagiert auf den Klick auf den Ziffer 3 Button. Dieser erstellt, je nach
+    //bisheriger Eingabe entweder eine '3' in der TextBox oder haengt eine '3' an den aktuellen
+    //TextBox String an.
+    void Number3_Click(object sender, EventArgs e)
     {
         if (box.Text == "Error")
         {
@@ -477,7 +489,10 @@ class calculator : Form
         new_operand = false;
     }
 
-    private void Number4_Click(object sender, System.EventArgs e)
+    //Diese Methode reagiert auf den Klick auf den Ziffer 4 Button. Dieser erstellt, je nach
+    //bisheriger Eingabe entweder eine '4' in der TextBox oder haengt eine '4' an den aktuellen
+    //TextBox String an.
+    void Number4_Click(object sender, EventArgs e)
     {
         if (box.Text == "Error")
         {
@@ -496,7 +511,10 @@ class calculator : Form
         new_operand = false;
     }
 
-    private void Number5_Click(object sender, System.EventArgs e)
+    //Diese Methode reagiert auf den Klick auf den Ziffer 5 Button. Dieser erstellt, je nach
+    //bisheriger Eingabe entweder eine '5' in der TextBox oder haengt eine '5' an den aktuellen
+    //TextBox String an.
+    void Number5_Click(object sender, EventArgs e)
     {
         if (box.Text == "Error")
         {
@@ -515,7 +533,10 @@ class calculator : Form
         new_operand = false;
     }
 
-    private void Number6_Click(object sender, System.EventArgs e)
+    //Diese Methode reagiert auf den Klick auf den Ziffer 6 Button. Dieser erstellt, je nach
+    //bisheriger Eingabe entweder eine '6' in der TextBox oder haengt eine '6' an den aktuellen
+    //TextBox String an.
+    void Number6_Click(object sender, EventArgs e)
     {
         if (box.Text == "Error")
         {
@@ -534,7 +555,10 @@ class calculator : Form
         new_operand = false;
     }
 
-    private void Number7_Click(object sender, System.EventArgs e)
+    //Diese Methode reagiert auf den Klick auf den Ziffer 7 Button. Dieser erstellt, je nach
+    //bisheriger Eingabe entweder eine '7' in der TextBox oder haengt eine '7' an den aktuellen
+    //TextBox String an.
+    void Number7_Click(object sender, EventArgs e)
     {
         if (box.Text == "Error")
         {
@@ -553,7 +577,10 @@ class calculator : Form
         new_operand = false;
     }
 
-    private void Number8_Click(object sender, System.EventArgs e)
+    //Diese Methode reagiert auf den Klick auf den Ziffer 8 Button. Dieser erstellt, je nach
+    //bisheriger Eingabe entweder eine '8' in der TextBox oder haengt eine '8' an den aktuellen
+    //TextBox String an.
+    void Number8_Click(object sender, EventArgs e)
     {
         if (box.Text == "Error")
         {
@@ -572,7 +599,10 @@ class calculator : Form
         new_operand = false;
     }
 
-    private void Number9_Click(object sender, System.EventArgs e)
+    //Diese Methode reagiert auf den Klick auf den Ziffer 9 Button. Dieser erstellt, je nach
+    //bisheriger Eingabe entweder eine '9' in der TextBox oder haengt eine '9' an den aktuellen
+    //TextBox String an.
+    void Number9_Click(object sender, EventArgs e)
     {
         if (box.Text == "Error")
         {
@@ -591,16 +621,22 @@ class calculator : Form
         new_operand = false;
     }
 
-    private void Pi_Click(object sender, System.EventArgs e)
+    //Diese Methode reagiert auf den Klick auf den Button der Konstante Pi. Sie setzt den String der
+    //TextBox auf die Konstante Pi.
+    void Pi_Click(object sender, EventArgs e)
     {
         box.Text = (Math.PI).ToString();
     }
-    private void E_Click(object sender, System.EventArgs e)
+
+    void E_Click(object sender, EventArgs e)
     {
         box.Text = (Math.E).ToString();
     }
 
-    private void Comma_Click(object sender, System.EventArgs e)
+    //Diese Methode reagiert auf den Klick auf den Komma Button. Es muss von System zu System,
+    //abhaengig von der Sprache, unterschieden werden, ob ein '.' oder ein ',' eingesetzt wird,
+    //da Systeme verschieden auf die beiden Zeichen reagieren. Siehe dazu 'ToggleLang_Click'.
+    void Comma_Click(object sender, EventArgs e)
     {
         if (ToggleLang.Text == "DE")
         {
@@ -618,7 +654,10 @@ class calculator : Form
             }
         }
     }
-    private void Del_Click(object sender, System.EventArgs e)
+
+    //Diese Methode reagiert auf den Klick auf den Delete Button, welcher den zuletzt eingegebenen
+    //Teil der TextBox entfernt (bspw. im Falle eines Vertippens).
+    void Del_Click(object sender, EventArgs e)
     {
         if (new_operand == false)
         {
@@ -645,7 +684,9 @@ class calculator : Form
         }
     }
 
-    private void Clear_Click(object sender, System.EventArgs e)
+    //Diese Methode reagiert auf den Klick auf den Clear Button, welcher saemtliche gespeicherten
+    //Ergebnisse sowie die aktuelle Eingabe leert.
+    void Clear_Click(object sender, EventArgs e)
     {
         box.Text = "0";
         operand1 = 0;
@@ -654,7 +695,9 @@ class calculator : Form
         operation = "none";
     }
 
-    private void Pow_Click(object sender, System.EventArgs e)
+    //Diese Methode reagiert auf den Klick auf den Power Button, welcher die aktuelle Eingabe mit
+    //einer nach dem Druecken des Buttons eingegebenen Zahl potenziert.
+    void Pow_Click(object sender, EventArgs e)
     {
         if (!new_operand)
         {
@@ -683,14 +726,19 @@ class calculator : Form
         new_operand = true;
     }
 
-    private void Plus_Minus_Click(object sender, System.EventArgs e)
+    //Diese Methode reagiert auf den Klick auf den Plus_Minus Button. Er bewirkt ein Umschalten
+    //der aktuellen Eingabe zwischen negativem und positivem Vorzeichen.
+    void Plus_Minus_Click(object sender, EventArgs e)
     {
         if (box.Text != "0" && !box.Text.Contains("-"))
             box.Text = "-" + box.Text;
         else if (box.Text != "0" && box.Text.Contains("-"))
             box.Text = box.Text.TrimStart('-');
     }
-    private void GradRad_Click(object sender, System.EventArgs e)
+
+    //Diese Methode reagiert auf den Klick auf den GradRad Button und schaltet zwischen dem
+    //Grad und dem Radian Modus von Winkelfunktionen (0°-360°/0-2*Pi) um.
+    void GradRad_Click(object sender, EventArgs e)
     {
         if (gradrad.Text == "Rad")
             gradrad.Text = "Grad";
@@ -698,47 +746,58 @@ class calculator : Form
             gradrad.Text = "Rad";
     }
 
-    private void Sinus_Click(object sender, System.EventArgs e)
+    //Diese Methode reagiert auf den Klick auf den Sinus Button und bewirkt eine Berechnung des
+    //Sinus fuer die aktuelle Eingabe.
+    void Sinus_Click(object sender, EventArgs e)
     {
         box.Text = (Math.Sin(float.Parse(box.Text))).ToString();
         input_length = 0;
     }
-    private void Cosinus_Click(object sender, System.EventArgs e)
+
+    //Diese Methode reagiert auf den Klick auf den Cosinus Button und bewirkt eine Berechnung des
+    //Cosinus fuer die aktuelle Eingabe.
+    void Cosinus_Click(object sender, EventArgs e)
     {
         box.Text = (Math.Cos(float.Parse(box.Text))).ToString();
         input_length = 0;
     }
-    private void Tangens_Click(object sender, System.EventArgs e)
+
+    //Diese Methode reagiert auf den Klick auf den Tangens Button und bewirkt eine Berechnung des
+    //Tangens fuer die aktuelle Eingabe.
+    void Tangens_Click(object sender, EventArgs e)
     {
         box.Text = (Math.Tan(float.Parse(box.Text))).ToString();
         input_length = 0;
     }
 
-    private void Factorial_Click(object sender, System.EventArgs e)
+    //Diese Methode reagiert auf den Klick auf den Factorial Button und bewirkt die Berechnung der
+    //Fakultaet (Produkt saemtlicher ganzer Zahlen kleiner gleich der Eingabe). Dabei ist zu
+    //beachten, dass die Fakultaet nur fuer natuerliche Zahlen und '0' definiert ist. 
+    void Factorial_Click(object sender, EventArgs e)
     {
         float temp_max = float.Parse(box.Text);
-        float temp = 1;
-        for (int i = 1; i <= temp_max; i++)
-            temp *= i;
-
-        var fac_max = (int)temp_max;
-        int fac = 1;
-        for (int i = 1; i <= fac_max; i++)
-            fac *= i;
-
-        var temp_int = (int)temp;
-        if (temp_int == fac)
+        float EPSILON = 0.0000000000000001f;
+        if (Math.Abs((temp_max % 1)) < EPSILON)
         {
+            float temp = 1;
+            for (int i = 1; i <= temp_max; i++)
+                temp *= i;
+            
             box.Text = temp.ToString();
-            input_length = 0;
+            new_operand = true;
         }
-        else {
+        else 
+        {
             box.Text = "Error";
-            input_length = 0;
+            new_operand = true;
         }
     }
 
-    private void Add_Click(object sender, System.EventArgs e)
+    //Diese Methode reagiert auf den Klick auf den Add Button und bewirkt die Berechnung der Summe
+    //der aktuellen Eingabe und einer nach dem Klick einzugebenen Zahl. Die Berechnung wird nach
+    //einem weiteren Klick auf eine der Operations Buttons (Add, Subst, Mult, Div) oder den Equals
+    //Button ausgefuehrt und angezeigt.
+    void Add_Click(object sender, EventArgs e)
     {
         if (!new_operand)
         {
@@ -768,7 +827,11 @@ class calculator : Form
         new_operand = true;
     }
 
-    private void Subst_Click(object sender, System.EventArgs e)
+    //Diese Methode reagiert auf den Klick auf den Subst Button und bewirkt die Berechnung der
+    //Differenz der aktuellen Eingabe und einer nach dem Klick einzugebenen Zahl. Die Berechnung
+    //wird nach einem weiteren Klick auf eine der Operations Buttons (Add, Subst, Mult, Div) oder
+    //den Equals Button ausgefuehrt und angezeigt.
+    void Subst_Click(object sender, EventArgs e)
     {
         if (!new_operand)
         {
@@ -798,7 +861,11 @@ class calculator : Form
         new_operand = true;
     }
 
-    private void Mult_Click(object sender, System.EventArgs e)
+    //Diese Methode reagiert auf den Klick auf den Mult Button und bewirkt die Berechnung des
+    //Produkts der aktuellen Eingabe und einer nach dem Klick einzugebenen Zahl. Die Berechnung wird
+    //nach einem weiteren Klick auf eine der Operations Buttons (Add, Subst, Mult, Div) oder den
+    //Equals Button ausgefuehrt und angezeigt.
+    void Mult_Click(object sender, EventArgs e)
     {
         if (!new_operand)
         {
@@ -828,7 +895,11 @@ class calculator : Form
         new_operand = true;
     }
 
-    private void Div_Click(object sender, System.EventArgs e)
+    //Diese Methode reagiert auf den Klick auf den Div Button und bewirkt die Berechnung des
+    //Quotienten der aktuellen Eingabe und einer nach dem Klick einzugebenen Zahl. Die Berechnung
+    //wird nach einem weiteren Klick auf eine der Operations Buttons (Add, Subst, Mult, Div) oder
+    //den Equals Button ausgefuehrt und angezeigt.
+    void Div_Click(object sender, EventArgs e)
     {
         if (!new_operand)
         {
@@ -858,12 +929,19 @@ class calculator : Form
         new_operand = true;
     }
 
-    private void Square_Click(object sender, System.EventArgs e)
+    //Diese Methode reagiert auf den Klick auf den Square Button und bewirkt die Quadrierung der
+    //aktuellen Eingabe.
+    void Square_Click(object sender, EventArgs e)
     {
         box.Text = (float.Parse(box.Text) * float.Parse(box.Text)).ToString();
         input_length = 0;
+        new_operand = true;
     }
-    private void Ln_Click(object sender, System.EventArgs e)
+
+    //Diese Methode reagiert auf den Klick auf den Ln Button und bewirkt die Berechnung des
+    //natuerlichen Logarithmus der aktuellen Eingabe. Dieser ist nur fuer positive Zahlen
+    //definiert.
+    void Ln_Click(object sender, EventArgs e)
     {
         double ln_value = float.Parse(box.Text);
 
@@ -872,16 +950,29 @@ class calculator : Form
             box.Text = (Math.Log(ln_value)).ToString();
             input_length = 0;
         }
-        else box.Text = "Error";
+        else 
+            box.Text = "Error";
+        new_operand = true;
     }
 
-    private void Sqrt_Click(object sender, System.EventArgs e)
+    //Diese Methode reagiert auf den Klick auf den Sqrt Button und berechnet die Quadratwurzel
+    //des aktuell eingegebenen Wertes. Ist dieser negativ wird ein Error ausgegeben.
+    void Sqrt_Click(object sender, EventArgs e)
     {
-        box.Text = (Math.Sqrt(float.Parse(box.Text))).ToString();
-        input_length = 0;
+        double sqrt_value = Math.Sqrt(float.Parse(box.Text));
+
+        if (sqrt_value > 0)
+            box.Text = (Math.Sqrt(float.Parse(box.Text))).ToString();
+        else
+        {
+            box.Text = "Error";
+        }
+        new_operand = true;
     }
 
-    private void Equals_Click(object sender, System.EventArgs e)
+    //Diese Methode reagiert auf den Klick auf den Equals Button und bewirkt die Berechnung der
+    //aktuelle Operation.
+    void Equals_Click(object sender, EventArgs e)
     {
         if (!new_operand)
         {
@@ -911,11 +1002,23 @@ class calculator : Form
         operation = "none";
         input_length = 0;
     }
-    private void math_Click(object sender, System.EventArgs e)
+
+    //Diese Methode reagiert auf das Ticken oder Unticken der Checkbox und bewirkt ein Umschalten
+    //zwischen dem wissenschaftlichen und dem normalen Modus des Taschenrechners.
+    //Im wissenschaftlichen Modus kommen Funktionen wie Winkelfunktionen etc. hinzu.
+    //
+    //WIP
+    void math_Click(object sender, EventArgs e)
     {
         if (math.Checked)
         {
+            Controls.Add(sinus);
+            Controls.Add(cosinus);
+            Controls.Add(tangens);
+            Controls.Add(gradrad);
+
             Size = new Size(390, 450);
+            box.Location = new Point(5, 5);
             square.Location = new Point(box.Left, box.Top + box.Height + 60);
             pow.Location = new Point(square.Left + pow.Width, square.Top);
             sqrt.Location = new Point(pow.Left + sqrt.Width, square.Top);
@@ -946,23 +1049,29 @@ class calculator : Form
             clear.Location = new Point(del.Left + clear.Width, del.Top);
             pi.Location = new Point(div.Left + div.Width + 10, div.Top);
             E.Location = new Point(pi.Left, pi.Top + pi.Height);
-
+            shift.Location = new Point(equals.Left + shift.Width, equals.Top);
 
             sinus.Location = new Point(box.Left, box.Top + box.Height + 10);
             cosinus.Location = new Point(sinus.Left + sinus.Height, sinus.Top);
             tangens.Location = new Point(cosinus.Left + cosinus.Height, sinus.Top);
             gradrad.Location = new Point(tangens.Left + tangens.Height + 10, sinus.Top);
         }
-        else {
-            Size = new Size(390, 400);
+        else 
+        {
+            Controls.Remove(sinus);
+            Controls.Remove(cosinus);
+            Controls.Remove(tangens);
+            Controls.Remove(gradrad);
 
-            square.Location = new Point(box.Left, box.Top + box.Height + 10);
+            Size = new Size(390, 400);
+            box.Location = new Point(5, 5);
+            square.Location = new Point(box.Left, box.Top + box.Height + 17);
             pow.Location = new Point(square.Left + pow.Width, square.Top);
             sqrt.Location = new Point(pow.Left + sqrt.Width, square.Top);
             faculty.Location = new Point(sqrt.Left + 10 + faculty.Width, sqrt.Top);
             ln.Location = new Point(faculty.Left + ln.Width, faculty.Top);
 
-            number7.Location = new Point(box.Left, box.Top + box.Height + 70);
+            number7.Location = new Point(square.Left, square.Top + square.Height + 10);
             number8.Location = new Point(number7.Left + number8.Width, number7.Top);
             number9.Location = new Point(number8.Left + number9.Width, number7.Top);
 
@@ -986,15 +1095,13 @@ class calculator : Form
             clear.Location = new Point(del.Left + clear.Width, del.Top);
             pi.Location = new Point(div.Left + div.Width + 10, div.Top);
             E.Location = new Point(pi.Left, pi.Top + pi.Height);
-
-            sinus.Location = new Point(10, 8);
-            cosinus.Location = new Point(10, 8);
-            tangens.Location = new Point(10, 8);
-            gradrad.Location = new Point(10, 8);
+            shift.Location = new Point(equals.Left + shift.Width, equals.Top);
         }
     }
 
-    private void ToggleLang_Click(object sender, System.EventArgs e)
+    //Diese Methode reagiert auf den Klick auf den ToggleLang Button, welcher zwischen englischem
+    //und deutschem Separator (',' und '.') unterscheidet.
+    void ToggleLang_Click(object sender, EventArgs e)
     {
         if (ToggleLang.Text == "EN")
             ToggleLang.Text = "DE";
@@ -1002,7 +1109,9 @@ class calculator : Form
             ToggleLang.Text = "EN";
     }
 
-    private void Exit_Click(object sender, System.EventArgs e)
+    //Diese Methode reagiert auf den Klick auf den Esc Button und bewirkt ein Schliessen des
+    //Taschenrechners.
+    void Exit_Click(object sender, EventArgs e)
     {
         Environment.Exit(0);
     }
@@ -1010,6 +1119,8 @@ class calculator : Form
 
 class MainClass
 {
+    //Diese Methode erzeugt die Standardnachrichtenschleife um die ClickEvents des 'calculator'
+    //abzufragen.
     public static void Main()
     {
         Application.Run(new calculator());
