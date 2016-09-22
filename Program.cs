@@ -4,10 +4,11 @@ using System.Drawing;
 
 class calculator : Form
 {
-    int input_length = 0;
-    bool new_operand = false;
-    float operand1 = 0;
+    int input_length;
+    bool new_operand;
+    float operand1;
     string operation = "none";
+    bool function;
 
     //Erstellt Buttons
     private Button number0;
@@ -42,6 +43,7 @@ class calculator : Form
     private Button cosinus;
     private Button tangens;
     private Button gradrad;
+    private Button shift;
 
     private CheckBox math;
 
@@ -82,6 +84,7 @@ class calculator : Form
         cosinus = new Button();
         tangens = new Button();
         gradrad = new Button();
+        shift = new Button();
 
         math = new CheckBox();
 
@@ -122,6 +125,7 @@ class calculator : Form
         cosinus.Text = ("cos");
         tangens.Text = ("tan");
         gradrad.Text = ("Rad");
+        shift.Text = ("Fn");
 
         //Legt Hoehe und Breite der Buttons fest
         number0.Height = 50;
@@ -188,6 +192,8 @@ class calculator : Form
         tangens.Height = 50;
         gradrad.Height = 50;
         gradrad.Width = 50;
+        shift.Height = 50;
+        shift.Width = 50;
 
 
         math.Height = 50;
@@ -223,6 +229,7 @@ class calculator : Form
         comma.Location = new Point(number2.Left, number2.Top + number2.Height);
         plus_minus.Location = new Point(comma.Left + plus_minus.Width, comma.Top);
         equals.Location = new Point(comma.Left + comma.Height + comma.Height + 10, comma.Top);
+        shift.Location = new Point(equals.Left + shift.Width, equals.Top);
         add.Location = new Point(number3.Left + number3.Width + 10, number3.Top);
         subst.Location = new Point(add.Left + add.Width, add.Top);
         mult.Location = new Point(number6.Left + number6.Width + 10, number6.Top);
@@ -242,91 +249,93 @@ class calculator : Form
         math.Location = new Point(ToggleLang.Left, ToggleLang.Top + ToggleLang.Height);
 
         //Erstelle EventHandler
-        number0.Click += new EventHandler(this.Number0_Click);
-        number1.Click += new EventHandler(this.Number1_Click);
-        number2.Click += new EventHandler(this.Number2_Click);
-        number3.Click += new EventHandler(this.Number3_Click);
-        number4.Click += new EventHandler(this.Number4_Click);
-        number5.Click += new EventHandler(this.Number5_Click);
-        number6.Click += new EventHandler(this.Number6_Click);
-        number7.Click += new EventHandler(this.Number7_Click);
-        number8.Click += new EventHandler(this.Number8_Click);
-        number9.Click += new EventHandler(this.Number9_Click);
-        pi.Click += new EventHandler(this.Pi_Click);
-        E.Click += new EventHandler(this.E_Click);
-        comma.Click += new EventHandler(this.Comma_Click);
-        clear.Click += new EventHandler(this.Clear_Click);
-        add.Click += new EventHandler(this.Add_Click);
-        subst.Click += new EventHandler(this.Subst_Click);
-        mult.Click += new EventHandler(this.Mult_Click);
-        div.Click += new EventHandler(this.Div_Click);
-        square.Click += new EventHandler(this.Square_Click);
-        pow.Click += new EventHandler(this.Pow_Click);
-        sqrt.Click += new EventHandler(this.Sqrt_Click);
-        equals.Click += new EventHandler(this.Equals_Click);
-        ToggleLang.Click += new EventHandler(this.ToggleLang_Click);
-        del.Click += new EventHandler(this.Del_Click);
-        Exit.Click += new EventHandler(this.Exit_Click);
-        plus_minus.Click += new EventHandler(this.Plus_Minus_Click);
-        faculty.Click += new EventHandler(this.Factorial_Click);
-        ln.Click += new EventHandler(this.Ln_Click);
-        sinus.Click += new EventHandler(this.Sinus_Click);
-        cosinus.Click += new EventHandler(this.Cosinus_Click);
-        tangens.Click += new EventHandler(this.Tangens_Click);
-        gradrad.Click += new EventHandler(this.GradRad_Click);
+        number0.Click += Number0_Click;
+        number1.Click += Number1_Click;
+        number2.Click += Number2_Click;
+        number3.Click += Number3_Click;
+        number4.Click += Number4_Click;
+        number5.Click += Number5_Click;
+        number6.Click += Number6_Click;
+        number7.Click += Number7_Click;
+        number8.Click += Number8_Click;
+        number9.Click += Number9_Click;
+        pi.Click += Pi_Click;
+        E.Click += E_Click;
+        comma.Click += Comma_Click;
+        clear.Click += Clear_Click;
+        add.Click += Add_Click;
+        subst.Click += Subst_Click;
+        mult.Click += Mult_Click;
+        div.Click += Div_Click;
+        square.Click += Square_Click;
+        pow.Click += Pow_Click;
+        sqrt.Click += Sqrt_Click;
+        equals.Click += Equals_Click;
+        ToggleLang.Click += ToggleLang_Click;
+        del.Click += Del_Click;
+        Exit.Click += Exit_Click;
+        plus_minus.Click += Plus_Minus_Click;
+        faculty.Click += Factorial_Click;
+        ln.Click += Ln_Click;
+        sinus.Click += Sinus_Click;
+        cosinus.Click += Cosinus_Click;
+        tangens.Click += Tangens_Click;
+        gradrad.Click += GradRad_Click;
+        shift.Click += Shift_Click;
 
-        math.Click += new EventHandler(this.math_Click);
+        math.Click += math_Click;
 
         //Setze Ergebnis auf 0
         box.Text = "0";
         //Füge Controls für die Buttons hinzu
-        this.Controls.Add(number0);
-        this.Controls.Add(number1);
-        this.Controls.Add(number2);
-        this.Controls.Add(number3);
-        this.Controls.Add(number4);
-        this.Controls.Add(number5);
-        this.Controls.Add(number6);
-        this.Controls.Add(number7);
-        this.Controls.Add(number8);
-        this.Controls.Add(number9);
-        this.Controls.Add(pi);
-        this.Controls.Add(E);
-        this.Controls.Add(comma);
-        this.Controls.Add(clear);
-        this.Controls.Add(add);
-        this.Controls.Add(subst);
-        this.Controls.Add(mult);
-        this.Controls.Add(div);
-        this.Controls.Add(square);
-        this.Controls.Add(pow);
-        this.Controls.Add(sqrt);
-        this.Controls.Add(box);
-        this.Controls.Add(equals);
-        this.Controls.Add(ToggleLang);
-        this.Controls.Add(Exit);
-        this.Controls.Add(del);
-        this.Controls.Add(plus_minus);
-        this.Controls.Add(faculty);
-        this.Controls.Add(ln);
-        this.Controls.Add(sinus);
-        this.Controls.Add(cosinus);
-        this.Controls.Add(tangens);
-        this.Controls.Add(gradrad);
+        Controls.Add(number0);
+        Controls.Add(number1);
+        Controls.Add(number2);
+        Controls.Add(number3);
+        Controls.Add(number4);
+        Controls.Add(number5);
+        Controls.Add(number6);
+        Controls.Add(number7);
+        Controls.Add(number8);
+        Controls.Add(number9);
+        Controls.Add(pi);
+        Controls.Add(E);
+        Controls.Add(comma);
+        Controls.Add(clear);
+        Controls.Add(add);
+        Controls.Add(subst);
+        Controls.Add(mult);
+        Controls.Add(div);
+        Controls.Add(square);
+        Controls.Add(pow);
+        Controls.Add(sqrt);
+        Controls.Add(box);
+        Controls.Add(equals);
+        Controls.Add(ToggleLang);
+        Controls.Add(Exit);
+        Controls.Add(del);
+        Controls.Add(plus_minus);
+        Controls.Add(faculty);
+        Controls.Add(ln);
+        Controls.Add(sinus);
+        Controls.Add(cosinus);
+        Controls.Add(tangens);
+        Controls.Add(gradrad);
+        Controls.Add(shift);
 
 
-        this.Controls.Add(math);
+        Controls.Add(math);
 
-        this.Text = ("My little calculator");
-        this.FormBorderStyle = FormBorderStyle.FixedDialog;
-        this.MinimizeBox = false;
-        this.MaximizeBox = false;
+        Text = ("My little calculator");
+        FormBorderStyle = FormBorderStyle.FixedDialog;
+        MinimizeBox = false;
+        MaximizeBox = false;
 
-        this.Size = new System.Drawing.Size(390, 400);
+        Size = new Size(390, 400);
 
         //Farben
         Exit.BackColor = Color.IndianRed;
-        box.Font = new System.Drawing.Font("Arial", 30, FontStyle.Bold);
+        box.Font = new Font("Arial", 30, FontStyle.Bold);
         box.TextAlign = HorizontalAlignment.Right;
         box.ForeColor = Color.WhiteSmoke;
         box.BackColor = Color.Black;
@@ -364,13 +373,36 @@ class calculator : Form
         clear.BackColor = Color.Red;
     }
 
+    private void Shift_Click(object sender, System.EventArgs e)
+    {
+        if (!function)
+        {
+            function = true;
+            shift.BackColor = Color.Lime;
+            add.Click -= Add_Click;
+            add.Click += Subst_Click;
+            subst.Click -= Subst_Click;
+            subst.Click += Add_Click;
+        }
+
+        else
+        {
+            function = false;
+            shift.BackColor = SystemColors.Control;
+            add.Click += Add_Click;
+            add.Click -= Subst_Click;
+            subst.Click += Subst_Click;
+            subst.Click -= Add_Click;
+        }
+    }
+
     private void Number0_Click(object sender, System.EventArgs e)
     {
         if (box.Text == "Error")
         {
             box.Text = "0";
             input_length = 0;
-        }      
+        }
         else if (input_length == 0 && box.Text == "0")
         { }
         else if (input_length == 0 && box.Text != "0" || box.Text == "∞")
@@ -559,7 +591,7 @@ class calculator : Form
         new_operand = false;
     }
 
-      private void Pi_Click (object sender, System.EventArgs e)
+    private void Pi_Click(object sender, System.EventArgs e)
     {
         box.Text = (Math.PI).ToString();
     }
@@ -689,12 +721,12 @@ class calculator : Form
         for (int i = 1; i <= temp_max; i++)
             temp *= i;
 
-        int fac_max = (int)temp_max;
+        var fac_max = (int)temp_max;
         int fac = 1;
         for (int i = 1; i <= fac_max; i++)
             fac *= i;
 
-        int temp_int = (int)temp;
+        var temp_int = (int)temp;
         if (temp_int == fac)
         {
             box.Text = temp.ToString();
@@ -705,7 +737,7 @@ class calculator : Form
             input_length = 0;
         }
     }
-        
+
     private void Add_Click(object sender, System.EventArgs e)
     {
         if (!new_operand)
@@ -833,7 +865,7 @@ class calculator : Form
     }
     private void Ln_Click(object sender, System.EventArgs e)
     {
-      double ln_value = float.Parse(box.Text);
+        double ln_value = float.Parse(box.Text);
 
         if (ln_value > 0)
         {
@@ -883,7 +915,7 @@ class calculator : Form
     {
         if (math.Checked)
         {
-            this.Size = new System.Drawing.Size(390, 450);
+            Size = new Size(390, 450);
             square.Location = new Point(box.Left, box.Top + box.Height + 60);
             pow.Location = new Point(square.Left + pow.Width, square.Top);
             sqrt.Location = new Point(pow.Left + sqrt.Width, square.Top);
@@ -922,7 +954,7 @@ class calculator : Form
             gradrad.Location = new Point(tangens.Left + tangens.Height + 10, sinus.Top);
         }
         else {
-            this.Size = new System.Drawing.Size(390, 400);
+            Size = new Size(390, 400);
 
             square.Location = new Point(box.Left, box.Top + box.Height + 10);
             pow.Location = new Point(square.Left + pow.Width, square.Top);
@@ -955,10 +987,10 @@ class calculator : Form
             pi.Location = new Point(div.Left + div.Width + 10, div.Top);
             E.Location = new Point(pi.Left, pi.Top + pi.Height);
 
-            sinus.Location = new Point(10,8);
-            cosinus.Location = new Point(10,8);
-            tangens.Location = new Point(10,8);
-            gradrad.Location = new Point(10,8);
+            sinus.Location = new Point(10, 8);
+            cosinus.Location = new Point(10, 8);
+            tangens.Location = new Point(10, 8);
+            gradrad.Location = new Point(10, 8);
         }
     }
 
@@ -978,9 +1010,9 @@ class calculator : Form
 
 class MainClass
 {
-    public static void Main(string[] args)
+    public static void Main()
     {
         Application.Run(new calculator());
         return;
-	}
+    }
 }
