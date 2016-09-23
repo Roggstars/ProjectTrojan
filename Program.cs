@@ -45,7 +45,6 @@ class calculator : Form
     Button tangens;
     Button gradrad;
     Button shift;
-    Button SHIFT;
     Stopwatch watch;
 
     CheckBox math;
@@ -88,7 +87,6 @@ class calculator : Form
         tangens = new Button();
         gradrad = new Button();
         shift = new Button();
-        SHIFT = new Button();
 
         math = new CheckBox();
 
@@ -133,7 +131,6 @@ class calculator : Form
         tangens.Text = ("tan");
         gradrad.Text = ("Rad");
         shift.Text = ("Fn");
-        SHIFT.Text = ("SHIFT");
 
         Size = new Size(390, 400); //Fenstergröße
 
@@ -204,9 +201,6 @@ class calculator : Form
         gradrad.Width = 50;
         shift.Height = 50;
         shift.Width = 50;
-        SHIFT.Height = 50;
-        SHIFT.Width = 50;
-
 
         math.Height = 50;
         math.Width = 50;
@@ -249,7 +243,6 @@ class calculator : Form
 
         pi.Location = new Point(div.Left + div.Width + 10, div.Top);
         E.Location = new Point(pi.Left, pi.Top + pi.Height);
-        SHIFT.Location = new Point(E.Left, E.Top + E.Height);
         del.Location = new Point(number9.Left + del.Width + 10, number9.Top);
         clear.Location = new Point(del.Left + clear.Width, del.Top);
         Exit.Location = new Point(box.Left + box.Width + 10, box.Top);
@@ -292,7 +285,6 @@ class calculator : Form
         tangens.Click += Tangens_Click;
         gradrad.Click += GradRad_Click;
         shift.Click += Shift_Click;
-        SHIFT.Click += SHIFT_Click;
 
         math.Click += math_Click;
 
@@ -331,7 +323,6 @@ class calculator : Form
         Controls.Add(ln);
         Controls.Add(shift);
         Controls.Add(math);
-        Controls.Add(SHIFT);
 
         Text = ("My little calculator"); //Fenstertitel
         FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -376,7 +367,6 @@ class calculator : Form
         cosinus.BackColor = Color.Gray;
         tangens.BackColor = Color.Gray;
         gradrad.BackColor = Color.Gray;
-        SHIFT.BackColor = Color.DarkOrchid;
 
         del.BackColor = Color.Red;
         clear.BackColor = Color.Red;
@@ -384,44 +374,44 @@ class calculator : Form
 
     //Diese Methode reagiert auf den Klick auf den Funktions/Shift Button, welcher benoetigt wird,
     //um ein uebersichtlicheres UI zu gewaehrleisten. Dazu werden einem Button mehrere Funktionen
-    //zugewiesen anstatt viele neue (Platz einnehmende) Buttons zu erzeugen.
-    //
-    //WIP
+    //zugewiesen anstatt viele neue (Platz einnehmende) Buttons zu erzeugen. Der Button schaltet
+    //zwischen Winkelfunktionen und ihren Umkehrfunktionen um.
     void Shift_Click(object sender, EventArgs e)
     {
         if (!function)
         {
+            sinus.Click -= Sinus_Click;
+            sinus.Click += ASinus_Click;
+            cosinus.Click -= Cosinus_Click;
+            cosinus.Click += ACosinus_Click;
+            tangens.Click -= Tangens_Click;
+            tangens.Click += ATangens_Click;
+
+            sinus.Text = "arcsin";
+            cosinus.Text = "arccos";
+            tangens.Text = "arctan";
+
             function = true;
-            shift.BackColor = Color.Lime;
-            add.Click -= Add_Click;
-            add.Click += Subst_Click;
-            subst.Click -= Subst_Click;
-            subst.Click += Add_Click;
+
+            shift.BackColor = Color.Red;
         }
 
         else
         {
-            function = false;
-            shift.BackColor = SystemColors.Control;
-            add.Click += Add_Click;
-            add.Click -= Subst_Click;
-            subst.Click += Subst_Click;
-            subst.Click -= Add_Click;
-        }
-    }
-
-    void SHIFT_Click(object sender, EventArgs e)
-    {
-        watch.Start();
-        sinus.Text = "arcsin";
-        cosinus.Text = "arccos";
-        tangens.Text = "arctan";
-        if (watch.Elapsed.ToString() == "10")
-        {
-            watch.Stop();
+            sinus.Click += Sinus_Click;
+            sinus.Click -= ASinus_Click;
+            cosinus.Click += Cosinus_Click;
+            cosinus.Click -= ACosinus_Click;
+            tangens.Click += Tangens_Click;
+            tangens.Click -= ATangens_Click;
+        
             sinus.Text = "sin";
             cosinus.Text = "cos";
             tangens.Text = "tan";
+
+            function = false;
+
+            shift.BackColor = SystemColors.Control;
         }
     }
 
@@ -943,55 +933,50 @@ class calculator : Form
     //Sinus fuer die aktuelle Eingabe.
     void Sinus_Click(object sender, EventArgs e)
     {
-        if (sinus.Text == "sin")
-        {
-            box.Text = (Math.Sin(float.Parse(box.Text))).ToString();
-            input_length = 0;
-        }
-        else { 
-            box.Text = (Math.Asin(float.Parse(box.Text))).ToString();
-            input_length = 0;
-            sinus.Text = "sin";
-            cosinus.Text = "cos";
-            tangens.Text = "tan";
-        }
+        box.Text = (Math.Sin(float.Parse(box.Text))).ToString();
+        new_operand = true;
     }
 
     //Diese Methode reagiert auf den Klick auf den Cosinus Button und bewirkt eine Berechnung des
     //Cosinus fuer die aktuelle Eingabe.
     void Cosinus_Click(object sender, EventArgs e)
     {
-        if (cosinus.Text == "cos")
-        {
-            box.Text = (Math.Cos(float.Parse(box.Text))).ToString();
-            input_length = 0;
-        }
-        else {
-            box.Text = (Math.Acos(float.Parse(box.Text))).ToString();
-            input_length = 0;
-            sinus.Text = "sin";
-            cosinus.Text = "cos";
-            tangens.Text = "tan";
-        }
+        box.Text = (Math.Cos(float.Parse(box.Text))).ToString();
+        new_operand = true;
     }
 
     //Diese Methode reagiert auf den Klick auf den Tangens Button und bewirkt eine Berechnung des
     //Tangens fuer die aktuelle Eingabe.
     void Tangens_Click(object sender, EventArgs e)
     {
-        if (tangens.Text == "tan")
-        {
-            box.Text = (Math.Tan(float.Parse(box.Text))).ToString();
-            input_length = 0;
-        }
-        else {
-            box.Text = (Math.Atan(float.Parse(box.Text))).ToString();
-            input_length = 0;
-            sinus.Text = "sin";
-            cosinus.Text = "cos";
-            tangens.Text = "tan";
-        }
+        box.Text = (Math.Tan(float.Parse(box.Text))).ToString();
+        new_operand = true;
     }
+
+    //Diese Methode reagiert auf den Klick auf den ASinus Button und bewirkt eine Berechnung des
+    //ArcSinus fuer die aktuelle Eingabe.
+    void ASinus_Click(object sender, EventArgs e)
+    {
+        box.Text = (Math.Asin(float.Parse(box.Text))).ToString();
+        new_operand = true;
+    }
+
+    //Diese Methode reagiert auf den Klick auf den ACosinus Button und bewirkt eine Berechnung des
+    //ArcCosinus fuer die aktuelle Eingabe.
+    void ACosinus_Click(object sender, EventArgs e)
+    {
+        box.Text = (Math.Acos(float.Parse(box.Text))).ToString();
+        new_operand = true;
+    }
+
+    //Diese Methode reagiert auf den Klick auf den ATangens Button und bewirkt eine Berechnung des
+    //ArcTangens fuer die aktuelle Eingabe.
+    void ATangens_Click(object sender, EventArgs e)
+    {
+        box.Text = (Math.Atan(float.Parse(box.Text))).ToString();
+        new_operand = true;
+    }
+
 
 //Weitere mathematische Optionen
 
@@ -1141,7 +1126,6 @@ class calculator : Form
             pi.Location = new Point(div.Left + div.Width + 10, div.Top);
             E.Location = new Point(pi.Left, pi.Top + pi.Height);
             shift.Location = new Point(equals.Left + shift.Width, equals.Top);
-            SHIFT.Location = new Point(E.Left, E.Top + E.Height);
 
             sinus.Location = new Point(box.Left, box.Top + box.Height + 10);
             cosinus.Location = new Point(sinus.Left + sinus.Height, sinus.Top);
@@ -1188,7 +1172,6 @@ class calculator : Form
             pi.Location = new Point(div.Left + div.Width + 10, div.Top);
             E.Location = new Point(pi.Left, pi.Top + pi.Height);
             shift.Location = new Point(equals.Left + shift.Width, equals.Top);
-            SHIFT.Location = new Point(E.Left, E.Top + E.Height);
         }
     }
 }
