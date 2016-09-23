@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Diagnostics;
 
 class calculator : Form
 {
@@ -44,6 +45,8 @@ class calculator : Form
     Button tangens;
     Button gradrad;
     Button shift;
+    Button SHIFT;
+    Stopwatch watch;
 
     CheckBox math;
 
@@ -85,10 +88,14 @@ class calculator : Form
         tangens = new Button();
         gradrad = new Button();
         shift = new Button();
+        SHIFT = new Button();
 
         math = new CheckBox();
 
         box = new TextBox();
+
+        watch = new Stopwatch();
+
         //Setzt Box auf ReadOnly
         box.ReadOnly = true;
         //Legt Inhalt der Buttons fest
@@ -126,6 +133,7 @@ class calculator : Form
         tangens.Text = ("tan");
         gradrad.Text = ("Rad");
         shift.Text = ("Fn");
+        SHIFT.Text = ("SHIFT");
 
         Size = new Size(390, 400); //Fenstergröße
 
@@ -196,6 +204,8 @@ class calculator : Form
         gradrad.Width = 50;
         shift.Height = 50;
         shift.Width = 50;
+        SHIFT.Height = 50;
+        SHIFT.Width = 50;
 
 
         math.Height = 50;
@@ -239,6 +249,7 @@ class calculator : Form
 
         pi.Location = new Point(div.Left + div.Width + 10, div.Top);
         E.Location = new Point(pi.Left, pi.Top + pi.Height);
+        SHIFT.Location = new Point(E.Left, E.Top + E.Height);
         del.Location = new Point(number9.Left + del.Width + 10, number9.Top);
         clear.Location = new Point(del.Left + clear.Width, del.Top);
         Exit.Location = new Point(box.Left + box.Width + 10, box.Top);
@@ -281,6 +292,7 @@ class calculator : Form
         tangens.Click += Tangens_Click;
         gradrad.Click += GradRad_Click;
         shift.Click += Shift_Click;
+        SHIFT.Click += SHIFT_Click;
 
         math.Click += math_Click;
 
@@ -319,6 +331,7 @@ class calculator : Form
         Controls.Add(ln);
         Controls.Add(shift);
         Controls.Add(math);
+        Controls.Add(SHIFT);
 
         Text = ("My little calculator"); //Fenstertitel
         FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -363,6 +376,7 @@ class calculator : Form
         cosinus.BackColor = Color.Gray;
         tangens.BackColor = Color.Gray;
         gradrad.BackColor = Color.Gray;
+        SHIFT.BackColor = Color.DarkOrchid;
 
         del.BackColor = Color.Red;
         clear.BackColor = Color.Red;
@@ -395,6 +409,23 @@ class calculator : Form
             subst.Click -= Add_Click;
         }
     }
+
+    void SHIFT_Click(object sender, EventArgs e)
+    {
+        watch.Start();
+        sinus.Text = "arcsin";
+        cosinus.Text = "arccos";
+        tangens.Text = "arctan";
+        if (watch.Elapsed.ToString() == "10")
+        {
+            watch.Stop();
+            sinus.Text = "sin";
+            cosinus.Text = "cos";
+            tangens.Text = "tan";
+        }
+    }
+
+//Zahlen
 
     //Diese Methode reagiert auf den Klick auf den Ziffer 0 Button. Dieser erstellt, je nach
     //bisheriger Eingabe entweder eine 0 in der TextBox oder haengt eine '0' an den aktuellen
@@ -633,6 +664,8 @@ class calculator : Form
         box.Text = (Math.E).ToString();
     }
 
+//Vereinfacht und erweitern die Bedienung des Rechners
+
     //Diese Methode reagiert auf den Klick auf den Komma Button. Es muss von System zu System,
     //abhaengig von der Sprache, unterschieden werden, ob ein '.' oder ein ',' eingesetzt wird,
     //da Systeme verschieden auf die beiden Zeichen reagieren. Siehe dazu 'ToggleLang_Click'.
@@ -654,6 +687,49 @@ class calculator : Form
             }
         }
     }
+
+    //Diese Methode reagiert auf den Klick auf den Clear Button, welcher saemtliche gespeicherten
+    //Ergebnisse sowie die aktuelle Eingabe leert.
+    void Clear_Click(object sender, EventArgs e)
+    {
+        box.Text = "0";
+        sinus.Text = "sin";
+        cosinus.Text = "cos";
+        tangens.Text = "tan";
+        operand1 = 0;
+        input_length = 0;
+        new_operand = false;
+        operation = "none";
+    }
+
+    //Diese Methode reagiert auf den Klick auf den Plus_Minus Button. Er bewirkt ein Umschalten
+    //der aktuellen Eingabe zwischen negativem und positivem Vorzeichen.
+    void Plus_Minus_Click(object sender, EventArgs e)
+    {
+        if (box.Text != "0" && !box.Text.Contains("-"))
+            box.Text = "-" + box.Text;
+        else if (box.Text != "0" && box.Text.Contains("-"))
+            box.Text = box.Text.TrimStart('-');
+    }
+
+    //Diese Methode reagiert auf den Klick auf den ToggleLang Button, welcher zwischen englischem
+    //und deutschem Separator (',' und '.') unterscheidet.
+    void ToggleLang_Click(object sender, EventArgs e)
+    {
+        if (ToggleLang.Text == "EN")
+            ToggleLang.Text = "DE";
+        else
+            ToggleLang.Text = "EN";
+    }
+
+    //Diese Methode reagiert auf den Klick auf den Esc Button und bewirkt ein Schliessen des
+    //Taschenrechners.
+    void Exit_Click(object sender, EventArgs e)
+    {
+        Environment.Exit(0);
+    }
+
+//Grundrechenarten
 
     //Diese Methode reagiert auf den Klick auf den Delete Button, welcher den zuletzt eingegebenen
     //Teil der TextBox entfernt (bspw. im Falle eines Vertippens).
@@ -682,17 +758,6 @@ class calculator : Form
                 input_length -= 1;
             }
         }
-    }
-
-    //Diese Methode reagiert auf den Klick auf den Clear Button, welcher saemtliche gespeicherten
-    //Ergebnisse sowie die aktuelle Eingabe leert.
-    void Clear_Click(object sender, EventArgs e)
-    {
-        box.Text = "0";
-        operand1 = 0;
-        input_length = 0;
-        new_operand = false;
-        operation = "none";
     }
 
     //Diese Methode reagiert auf den Klick auf den Power Button, welcher die aktuelle Eingabe mit
@@ -724,73 +789,6 @@ class calculator : Form
         operation = "pow";
         input_length = 0;
         new_operand = true;
-    }
-
-    //Diese Methode reagiert auf den Klick auf den Plus_Minus Button. Er bewirkt ein Umschalten
-    //der aktuellen Eingabe zwischen negativem und positivem Vorzeichen.
-    void Plus_Minus_Click(object sender, EventArgs e)
-    {
-        if (box.Text != "0" && !box.Text.Contains("-"))
-            box.Text = "-" + box.Text;
-        else if (box.Text != "0" && box.Text.Contains("-"))
-            box.Text = box.Text.TrimStart('-');
-    }
-
-    //Diese Methode reagiert auf den Klick auf den GradRad Button und schaltet zwischen dem
-    //Grad und dem Radian Modus von Winkelfunktionen (0°-360°/0-2*Pi) um.
-    void GradRad_Click(object sender, EventArgs e)
-    {
-        if (gradrad.Text == "Rad")
-            gradrad.Text = "Grad";
-        else
-            gradrad.Text = "Rad";
-    }
-
-    //Diese Methode reagiert auf den Klick auf den Sinus Button und bewirkt eine Berechnung des
-    //Sinus fuer die aktuelle Eingabe.
-    void Sinus_Click(object sender, EventArgs e)
-    {
-        box.Text = (Math.Sin(float.Parse(box.Text))).ToString();
-        input_length = 0;
-    }
-
-    //Diese Methode reagiert auf den Klick auf den Cosinus Button und bewirkt eine Berechnung des
-    //Cosinus fuer die aktuelle Eingabe.
-    void Cosinus_Click(object sender, EventArgs e)
-    {
-        box.Text = (Math.Cos(float.Parse(box.Text))).ToString();
-        input_length = 0;
-    }
-
-    //Diese Methode reagiert auf den Klick auf den Tangens Button und bewirkt eine Berechnung des
-    //Tangens fuer die aktuelle Eingabe.
-    void Tangens_Click(object sender, EventArgs e)
-    {
-        box.Text = (Math.Tan(float.Parse(box.Text))).ToString();
-        input_length = 0;
-    }
-
-    //Diese Methode reagiert auf den Klick auf den Factorial Button und bewirkt die Berechnung der
-    //Fakultaet (Produkt saemtlicher ganzer Zahlen kleiner gleich der Eingabe). Dabei ist zu
-    //beachten, dass die Fakultaet nur fuer natuerliche Zahlen und '0' definiert ist. 
-    void Factorial_Click(object sender, EventArgs e)
-    {
-        float temp_max = float.Parse(box.Text);
-        float EPSILON = 0.0000000000000001f;
-        if (Math.Abs((temp_max % 1)) < EPSILON)
-        {
-            float temp = 1;
-            for (int i = 1; i <= temp_max; i++)
-                temp *= i;
-            
-            box.Text = temp.ToString();
-            new_operand = true;
-        }
-        else 
-        {
-            box.Text = "Error";
-            new_operand = true;
-        }
     }
 
     //Diese Methode reagiert auf den Klick auf den Add Button und bewirkt die Berechnung der Summe
@@ -929,6 +927,97 @@ class calculator : Form
         new_operand = true;
     }
 
+//Winkelfunktionen
+
+     //Diese Methode reagiert auf den Klick auf den GradRad Button und schaltet zwischen dem
+    //Grad und dem Radian Modus von Winkelfunktionen (0°-360°/0-2*Pi) um.
+    void GradRad_Click(object sender, EventArgs e)
+    {
+        if (gradrad.Text == "Rad")
+            gradrad.Text = "Grad"; //Ist noch nicht fertig eingebunden nur der Button steht schon
+        else
+            gradrad.Text = "Rad";
+    }
+
+    //Diese Methode reagiert auf den Klick auf den Sinus Button und bewirkt eine Berechnung des
+    //Sinus fuer die aktuelle Eingabe.
+    void Sinus_Click(object sender, EventArgs e)
+    {
+        if (sinus.Text == "sin")
+        {
+            box.Text = (Math.Sin(float.Parse(box.Text))).ToString();
+            input_length = 0;
+        }
+        else { 
+            box.Text = (Math.Asin(float.Parse(box.Text))).ToString();
+            input_length = 0;
+            sinus.Text = "sin";
+            cosinus.Text = "cos";
+            tangens.Text = "tan";
+        }
+    }
+
+    //Diese Methode reagiert auf den Klick auf den Cosinus Button und bewirkt eine Berechnung des
+    //Cosinus fuer die aktuelle Eingabe.
+    void Cosinus_Click(object sender, EventArgs e)
+    {
+        if (cosinus.Text == "cos")
+        {
+            box.Text = (Math.Cos(float.Parse(box.Text))).ToString();
+            input_length = 0;
+        }
+        else {
+            box.Text = (Math.Acos(float.Parse(box.Text))).ToString();
+            input_length = 0;
+            sinus.Text = "sin";
+            cosinus.Text = "cos";
+            tangens.Text = "tan";
+        }
+    }
+
+    //Diese Methode reagiert auf den Klick auf den Tangens Button und bewirkt eine Berechnung des
+    //Tangens fuer die aktuelle Eingabe.
+    void Tangens_Click(object sender, EventArgs e)
+    {
+        if (tangens.Text == "tan")
+        {
+            box.Text = (Math.Tan(float.Parse(box.Text))).ToString();
+            input_length = 0;
+        }
+        else {
+            box.Text = (Math.Atan(float.Parse(box.Text))).ToString();
+            input_length = 0;
+            sinus.Text = "sin";
+            cosinus.Text = "cos";
+            tangens.Text = "tan";
+        }
+    }
+
+//Weitere mathematische Optionen
+
+    //Diese Methode reagiert auf den Klick auf den Factorial Button und bewirkt die Berechnung der
+    //Fakultaet (Produkt saemtlicher ganzer Zahlen kleiner gleich der Eingabe). Dabei ist zu
+    //beachten, dass die Fakultaet nur fuer natuerliche Zahlen und '0' definiert ist. 
+    void Factorial_Click(object sender, EventArgs e)
+    {
+        float temp_max = float.Parse(box.Text);
+        float EPSILON = 0.0000000000000001f;
+        if (Math.Abs((temp_max % 1)) < EPSILON)
+        {
+            float temp = 1;
+            for (int i = 1; i <= temp_max; i++)
+                temp *= i;
+            
+            box.Text = temp.ToString();
+            new_operand = true;
+        }
+        else 
+        {
+            box.Text = "Error";
+            new_operand = true;
+        }
+    }
+
     //Diese Methode reagiert auf den Klick auf den Square Button und bewirkt die Quadrierung der
     //aktuellen Eingabe.
     void Square_Click(object sender, EventArgs e)
@@ -1003,6 +1092,8 @@ class calculator : Form
         input_length = 0;
     }
 
+//Änderung des Layout und Einbindung weiterer Funktionen
+
     //Diese Methode reagiert auf das Ticken oder Unticken der Checkbox und bewirkt ein Umschalten
     //zwischen dem wissenschaftlichen und dem normalen Modus des Taschenrechners.
     //Im wissenschaftlichen Modus kommen Funktionen wie Winkelfunktionen etc. hinzu.
@@ -1050,6 +1141,7 @@ class calculator : Form
             pi.Location = new Point(div.Left + div.Width + 10, div.Top);
             E.Location = new Point(pi.Left, pi.Top + pi.Height);
             shift.Location = new Point(equals.Left + shift.Width, equals.Top);
+            SHIFT.Location = new Point(E.Left, E.Top + E.Height);
 
             sinus.Location = new Point(box.Left, box.Top + box.Height + 10);
             cosinus.Location = new Point(sinus.Left + sinus.Height, sinus.Top);
@@ -1096,24 +1188,8 @@ class calculator : Form
             pi.Location = new Point(div.Left + div.Width + 10, div.Top);
             E.Location = new Point(pi.Left, pi.Top + pi.Height);
             shift.Location = new Point(equals.Left + shift.Width, equals.Top);
+            SHIFT.Location = new Point(E.Left, E.Top + E.Height);
         }
-    }
-
-    //Diese Methode reagiert auf den Klick auf den ToggleLang Button, welcher zwischen englischem
-    //und deutschem Separator (',' und '.') unterscheidet.
-    void ToggleLang_Click(object sender, EventArgs e)
-    {
-        if (ToggleLang.Text == "EN")
-            ToggleLang.Text = "DE";
-        else
-            ToggleLang.Text = "EN";
-    }
-
-    //Diese Methode reagiert auf den Klick auf den Esc Button und bewirkt ein Schliessen des
-    //Taschenrechners.
-    void Exit_Click(object sender, EventArgs e)
-    {
-        Environment.Exit(0);
     }
 }
 
