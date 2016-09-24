@@ -7,8 +7,9 @@ class calculator : Form
 {
     int input_length;
     bool new_operand;
-    float operand1;
-    string operation = "none";
+    double operand1;
+    string operation = "add";
+    string precision = "n4";
     bool function;
 
     //Erstellt Buttons
@@ -45,7 +46,7 @@ class calculator : Form
     Button tangens;
     Button gradrad;
     Button shift;
-    Stopwatch watch;
+    Button comma_precision;
 
     CheckBox math;
 
@@ -87,12 +88,11 @@ class calculator : Form
         tangens = new Button();
         gradrad = new Button();
         shift = new Button();
+        comma_precision = new Button();
 
         math = new CheckBox();
 
         box = new TextBox();
-
-        watch = new Stopwatch();
 
         //Setzt Box auf ReadOnly
         box.ReadOnly = true;
@@ -131,6 +131,7 @@ class calculator : Form
         tangens.Text = ("tan");
         gradrad.Text = ("Rad");
         shift.Text = ("Fn");
+        comma_precision.Text = ("4 Dgts");
 
         Size = new Size(390, 400); //Fenstergröße
 
@@ -201,9 +202,11 @@ class calculator : Form
         gradrad.Width = 50;
         shift.Height = 50;
         shift.Width = 50;
+        comma_precision.Height = 50;
+        comma_precision.Width = 50;
 
-        math.Height = 50;
-        math.Width = 50;
+        math.Height = 13;
+        math.Width = 13;
 
         //Legt Hoehe und Breite der Ergebnis-Box fest
         box.Height = 50;
@@ -248,7 +251,9 @@ class calculator : Form
         Exit.Location = new Point(box.Left + box.Width + 10, box.Top);
         ToggleLang.Location = new Point(Exit.Left, Exit.Top + Exit.Height);
 
-        math.Location = new Point(ToggleLang.Left, ToggleLang.Top + ToggleLang.Height);
+        math.Location = new Point(ToggleLang.Left, ToggleLang.Top + ToggleLang.Height + 5);
+
+        comma_precision.Location = new Point(math.Left, math.Top + math.Height + 5);
 
         //Erstelle EventHandler mit entsprechenden _Click Funktionen um ClickEvent der Buttons zu
         //kontrollieren.
@@ -285,6 +290,7 @@ class calculator : Form
         tangens.Click += Tangens_Click;
         gradrad.Click += GradRad_Click;
         shift.Click += Shift_Click;
+        comma_precision.Click += Comma_Precision_Click;
 
         math.Click += math_Click;
 
@@ -323,6 +329,7 @@ class calculator : Form
         Controls.Add(ln);
         Controls.Add(shift);
         Controls.Add(math);
+        Controls.Add(comma_precision);
 
         Text = ("My little calculator"); //Fenstertitel
         FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -646,12 +653,12 @@ class calculator : Form
     //TextBox auf die Konstante Pi.
     void Pi_Click(object sender, EventArgs e)
     {
-        box.Text = (Math.PI).ToString();
+        box.Text = (Math.PI).ToString(precision);
     }
 
     void E_Click(object sender, EventArgs e)
     {
-        box.Text = (Math.E).ToString();
+        box.Text = (Math.E).ToString(precision);
     }
 
 //Vereinfacht und erweitern die Bedienung des Rechners
@@ -686,6 +693,8 @@ class calculator : Form
         sinus.Text = "sin";
         cosinus.Text = "cos";
         tangens.Text = "tan";
+        shift.BackColor = SystemColors.Control;
+        function = false;
         operand1 = 0;
         input_length = 0;
         new_operand = false;
@@ -759,23 +768,28 @@ class calculator : Form
             switch (operation)
             {
                 case "add":
-                    box.Text = (operand1 + float.Parse(box.Text)).ToString();
+                    operand1 = (operand1 + double.Parse(box.Text));
+                    box.Text = operand1.ToString(precision);
                     break;
                 case "subst":
-                    box.Text = (operand1 - float.Parse(box.Text)).ToString();
+                    operand1 = (operand1 - double.Parse(box.Text));
+                    box.Text = operand1.ToString(precision);
                     break;
                 case "mult":
-                    box.Text = (operand1 * float.Parse(box.Text)).ToString();
+                    operand1 = (operand1 * double.Parse(box.Text));
+                    box.Text = operand1.ToString(precision);
                     break;
                 case "div":
-                    box.Text = (operand1 / float.Parse(box.Text)).ToString();
+                    operand1 = (operand1 / double.Parse(box.Text));
+                    box.Text = operand1.ToString(precision);
                     break;
                 case "pow":
-                    box.Text = (Math.Pow(operand1, float.Parse(box.Text))).ToString();
+                    operand1 = (Math.Pow(operand1, double.Parse(box.Text)));
+                    box.Text = operand1.ToString(precision);
                     break;
             }
         }
-        operand1 = float.Parse(box.Text);
+
         operation = "pow";
         input_length = 0;
         new_operand = true;
@@ -792,24 +806,28 @@ class calculator : Form
             switch (operation)
             {
                 case "add":
-                    box.Text = (operand1 + float.Parse(box.Text)).ToString();
+                    operand1 = (operand1 + double.Parse(box.Text));
+                    box.Text = operand1.ToString(precision);
                     break;
                 case "subst":
-                    box.Text = (operand1 - float.Parse(box.Text)).ToString();
+                    operand1 = (operand1 - double.Parse(box.Text));
+                    box.Text = operand1.ToString(precision);
                     break;
                 case "mult":
-                    box.Text = (operand1 * float.Parse(box.Text)).ToString();
+                    operand1 = (operand1 * double.Parse(box.Text));
+                    box.Text = operand1.ToString(precision);
                     break;
                 case "div":
-                    box.Text = (operand1 / float.Parse(box.Text)).ToString();
+                    operand1 = (operand1 / double.Parse(box.Text));
+                    box.Text = operand1.ToString(precision);
                     break;
                 case "pow":
-                    box.Text = (Math.Pow(operand1, float.Parse(box.Text))).ToString();
+                    operand1 = (Math.Pow(operand1, double.Parse(box.Text)));
+                    box.Text = operand1.ToString(precision);
                     break;
             }
         }
 
-        operand1 = float.Parse(box.Text);
         operation = "add";
         input_length = 0;
         new_operand = true;
@@ -826,24 +844,28 @@ class calculator : Form
             switch (operation)
             {
                 case "add":
-                    box.Text = (operand1 + float.Parse(box.Text)).ToString();
+                    operand1 = (operand1 + double.Parse(box.Text));
+                    box.Text = operand1.ToString(precision);
                     break;
                 case "subst":
-                    box.Text = (operand1 - float.Parse(box.Text)).ToString();
+                    operand1 = (operand1 - double.Parse(box.Text));
+                    box.Text = operand1.ToString(precision);
                     break;
                 case "mult":
-                    box.Text = (operand1 * float.Parse(box.Text)).ToString();
+                    operand1 = (operand1 * double.Parse(box.Text));
+                    box.Text = operand1.ToString(precision);
                     break;
                 case "div":
-                    box.Text = (operand1 / float.Parse(box.Text)).ToString();
+                    operand1 = (operand1 / double.Parse(box.Text));
+                    box.Text = operand1.ToString(precision);
                     break;
                 case "pow":
-                    box.Text = (Math.Pow(operand1, float.Parse(box.Text))).ToString();
+                    operand1 = (Math.Pow(operand1, double.Parse(box.Text)));
+                    box.Text = operand1.ToString(precision);
                     break;
             }
         }
 
-        operand1 = float.Parse(box.Text);
         operation = "subst";
         input_length = 0;
         new_operand = true;
@@ -860,24 +882,28 @@ class calculator : Form
             switch (operation)
             {
                 case "add":
-                    box.Text = (operand1 + float.Parse(box.Text)).ToString();
+                    operand1 = (operand1 + double.Parse(box.Text));
+                    box.Text = operand1.ToString(precision);
                     break;
                 case "subst":
-                    box.Text = (operand1 - float.Parse(box.Text)).ToString();
+                    operand1 = (operand1 - double.Parse(box.Text));
+                    box.Text = operand1.ToString(precision);
                     break;
                 case "mult":
-                    box.Text = (operand1 * float.Parse(box.Text)).ToString();
+                    operand1 = (operand1 * double.Parse(box.Text));
+                    box.Text = operand1.ToString(precision);
                     break;
                 case "div":
-                    box.Text = (operand1 / float.Parse(box.Text)).ToString();
+                    operand1 = (operand1 / double.Parse(box.Text));
+                    box.Text = operand1.ToString(precision);
                     break;
                 case "pow":
-                    box.Text = (Math.Pow(operand1, float.Parse(box.Text))).ToString();
+                    operand1 = (Math.Pow(operand1, double.Parse(box.Text)));
+                    box.Text = operand1.ToString(precision);
                     break;
             }
         }
 
-        operand1 = float.Parse(box.Text);
         operation = "mult";
         input_length = 0;
         new_operand = true;
@@ -894,24 +920,28 @@ class calculator : Form
             switch (operation)
             {
                 case "add":
-                    box.Text = (operand1 + float.Parse(box.Text)).ToString();
+                    operand1 = (operand1 + double.Parse(box.Text));
+                    box.Text = operand1.ToString(precision);
                     break;
                 case "subst":
-                    box.Text = (operand1 - float.Parse(box.Text)).ToString();
+                    operand1 = (operand1 - double.Parse(box.Text));
+                    box.Text = operand1.ToString(precision);
                     break;
                 case "mult":
-                    box.Text = (operand1 * float.Parse(box.Text)).ToString();
+                    operand1 = (operand1 * double.Parse(box.Text));
+                    box.Text = operand1.ToString(precision);
                     break;
                 case "div":
-                    box.Text = (operand1 / float.Parse(box.Text)).ToString();
+                    operand1 = (operand1 / double.Parse(box.Text));
+                    box.Text = operand1.ToString(precision);
                     break;
                 case "pow":
-                    box.Text = (Math.Pow(operand1, float.Parse(box.Text))).ToString();
+                    operand1 = (Math.Pow(operand1, double.Parse(box.Text)));
+                    box.Text = operand1.ToString(precision);
                     break;
             }
         }
 
-        operand1 = float.Parse(box.Text);
         operation = "div";
         input_length = 0;
         new_operand = true;
@@ -933,7 +963,22 @@ class calculator : Form
     //Sinus fuer die aktuelle Eingabe.
     void Sinus_Click(object sender, EventArgs e)
     {
-        box.Text = (Math.Sin(float.Parse(box.Text))).ToString();
+        if (gradrad.Text == "Rad")
+        {
+            operand1 = (Math.Sin(double.Parse(box.Text)));
+            box.Text = operand1.ToString(precision);
+
+        }
+        else if (gradrad.Text == "Grad")
+        {
+            var temp = double.Parse(box.Text);
+            temp *= (Math.PI / 180);
+            operand1 = Math.Sin(temp);
+            box.Text = operand1.ToString(precision);
+        }
+        else
+            box.Text = "Error";
+
         new_operand = true;
     }
 
@@ -941,7 +986,22 @@ class calculator : Form
     //Cosinus fuer die aktuelle Eingabe.
     void Cosinus_Click(object sender, EventArgs e)
     {
-        box.Text = (Math.Cos(float.Parse(box.Text))).ToString();
+        if (gradrad.Text == "Rad")
+        {
+            operand1 = (Math.Cos(double.Parse(box.Text)));
+            box.Text = operand1.ToString(precision);
+
+        }
+        else if (gradrad.Text == "Grad")
+        {
+            var temp = double.Parse(box.Text);
+            temp *= (Math.PI / 180);
+            operand1 = Math.Cos(temp);
+            box.Text = operand1.ToString(precision);
+        }
+        else
+            box.Text = "Error";
+
         new_operand = true;
     }
 
@@ -949,7 +1009,22 @@ class calculator : Form
     //Tangens fuer die aktuelle Eingabe.
     void Tangens_Click(object sender, EventArgs e)
     {
-        box.Text = (Math.Tan(float.Parse(box.Text))).ToString();
+        if (gradrad.Text == "Rad")
+        {
+            operand1 = (Math.Tan(double.Parse(box.Text)));
+            box.Text = operand1.ToString(precision);
+
+        }
+        else if (gradrad.Text == "Grad")
+        {
+            var temp = double.Parse(box.Text);
+            temp *= (Math.PI / 180);
+            operand1 = Math.Tan(temp);
+            box.Text = operand1.ToString(precision);
+        }
+        else
+            box.Text = "Error";
+
         new_operand = true;
     }
 
@@ -957,7 +1032,20 @@ class calculator : Form
     //ArcSinus fuer die aktuelle Eingabe.
     void ASinus_Click(object sender, EventArgs e)
     {
-        box.Text = (Math.Asin(float.Parse(box.Text))).ToString();
+        if (gradrad.Text == "Rad")
+        {
+            operand1 = (Math.Asin(double.Parse(box.Text)));
+            box.Text = operand1.ToString(precision);
+
+        }
+        else if (gradrad.Text == "Grad")
+        {
+            operand1 = Math.Asin(double.Parse(box.Text)) * 180 / Math.PI;
+            box.Text = operand1.ToString(precision);
+        }
+        else
+            box.Text = "Error";
+
         new_operand = true;
     }
 
@@ -965,7 +1053,20 @@ class calculator : Form
     //ArcCosinus fuer die aktuelle Eingabe.
     void ACosinus_Click(object sender, EventArgs e)
     {
-        box.Text = (Math.Acos(float.Parse(box.Text))).ToString();
+        if (gradrad.Text == "Rad")
+        {
+            operand1 = (Math.Acos(double.Parse(box.Text)));
+            box.Text = operand1.ToString(precision);
+
+        }
+        else if (gradrad.Text == "Grad")
+        {
+            operand1 = Math.Acos(double.Parse(box.Text)) * 180 / Math.PI;
+            box.Text = operand1.ToString(precision);
+        }
+        else
+            box.Text = "Error";
+
         new_operand = true;
     }
 
@@ -973,7 +1074,20 @@ class calculator : Form
     //ArcTangens fuer die aktuelle Eingabe.
     void ATangens_Click(object sender, EventArgs e)
     {
-        box.Text = (Math.Atan(float.Parse(box.Text))).ToString();
+        if (gradrad.Text == "Rad")
+        {
+            operand1 = (Math.Atan(double.Parse(box.Text)));
+            box.Text = operand1.ToString(precision);
+
+        }
+        else if (gradrad.Text == "Grad")
+        {
+            operand1 = Math.Atan(double.Parse(box.Text)) * 180 / Math.PI;
+            box.Text = operand1.ToString(precision);
+        }
+        else
+            box.Text = "Error";
+
         new_operand = true;
     }
 
@@ -985,15 +1099,15 @@ class calculator : Form
     //beachten, dass die Fakultaet nur fuer natuerliche Zahlen und '0' definiert ist. 
     void Factorial_Click(object sender, EventArgs e)
     {
-        float temp_max = float.Parse(box.Text);
-        float EPSILON = 0.0000000000000001f;
+        double temp_max = double.Parse(box.Text);
+        double EPSILON = 0.0000000000000001f;
         if (Math.Abs((temp_max % 1)) < EPSILON)
         {
-            float temp = 1;
+            double temp = 1;
             for (int i = 1; i <= temp_max; i++)
                 temp *= i;
             
-            box.Text = temp.ToString();
+            box.Text = temp.ToString(precision);
             new_operand = true;
         }
         else 
@@ -1007,7 +1121,7 @@ class calculator : Form
     //aktuellen Eingabe.
     void Square_Click(object sender, EventArgs e)
     {
-        box.Text = (float.Parse(box.Text) * float.Parse(box.Text)).ToString();
+        box.Text = (double.Parse(box.Text) * double.Parse(box.Text)).ToString(precision);
         input_length = 0;
         new_operand = true;
     }
@@ -1017,11 +1131,11 @@ class calculator : Form
     //definiert.
     void Ln_Click(object sender, EventArgs e)
     {
-        double ln_value = float.Parse(box.Text);
+        double ln_value = double.Parse(box.Text);
 
         if (ln_value > 0)
         {
-            box.Text = (Math.Log(ln_value)).ToString();
+            box.Text = (Math.Log(ln_value)).ToString(precision);
             input_length = 0;
         }
         else 
@@ -1033,10 +1147,10 @@ class calculator : Form
     //des aktuell eingegebenen Wertes. Ist dieser negativ wird ein Error ausgegeben.
     void Sqrt_Click(object sender, EventArgs e)
     {
-        double sqrt_value = Math.Sqrt(float.Parse(box.Text));
+        double sqrt_value = Math.Sqrt(double.Parse(box.Text));
 
         if (sqrt_value > 0)
-            box.Text = (Math.Sqrt(float.Parse(box.Text))).ToString();
+            box.Text = (Math.Sqrt(double.Parse(box.Text))).ToString(precision);
         else
         {
             box.Text = "Error";
@@ -1053,21 +1167,24 @@ class calculator : Form
             switch (operation)
             {
                 case "add":
-                    box.Text = (operand1 + float.Parse(box.Text)).ToString();
+                    operand1 = (operand1 + double.Parse(box.Text));
+                    box.Text = operand1.ToString(precision);
                     break;
                 case "subst":
-                    box.Text = (operand1 - float.Parse(box.Text)).ToString();
+                    operand1 = (operand1 - double.Parse(box.Text));
+                    box.Text = operand1.ToString(precision);
                     break;
                 case "mult":
-                    box.Text = (operand1 * float.Parse(box.Text)).ToString();
+                    operand1 = (operand1 * double.Parse(box.Text));
+                    box.Text = operand1.ToString(precision);
                     break;
                 case "div":
-                    box.Text = (operand1 / float.Parse(box.Text)).ToString();
+                    operand1 = (operand1 / double.Parse(box.Text));
+                    box.Text = operand1.ToString(precision);
                     break;
                 case "pow":
-                    box.Text = (Math.Pow(operand1, float.Parse(box.Text))).ToString();
-                    break;
-                case "none":
+                    operand1 = (Math.Pow(operand1, double.Parse(box.Text)));
+                    box.Text = operand1.ToString(precision);
                     break;
             }
         }
@@ -1172,6 +1289,57 @@ class calculator : Form
             pi.Location = new Point(div.Left + div.Width + 10, div.Top);
             E.Location = new Point(pi.Left, pi.Top + pi.Height);
             shift.Location = new Point(equals.Left + shift.Width, equals.Top);
+        }
+    }
+
+    void Comma_Precision_Click(object sender, EventArgs e)
+    {
+        if (precision == "n1")
+        {
+            precision = "n2";
+            comma_precision.Text = "2 Dgts";
+        }
+
+        else if (precision == "n2")
+        {
+            precision = "n3";
+            comma_precision.Text = "3 Dgts";
+        }
+
+        else if (precision == "n3")
+        {
+            precision = "n4";
+            comma_precision.Text = "4 Dgts";
+        }
+
+        else if (precision == "n4")
+        {
+            precision = "n5";
+            comma_precision.Text = "5 Dgts";
+        }
+
+        else if (precision == "n5")
+        {
+            precision = "n6";
+            comma_precision.Text = "6 Dgts";
+        }
+
+        else if (precision == "n6")
+        {
+            precision = "n7";
+            comma_precision.Text = "7 Dgts";
+        }
+
+        else if (precision == "n7")
+        {
+            precision = "n8";
+            comma_precision.Text = "8 Dgts";
+        }
+
+        else if (precision == "n8")
+        {
+            precision = "n1";
+            comma_precision.Text = "1 Dgts";
         }
     }
 }
