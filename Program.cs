@@ -8,7 +8,7 @@ class calculator : Form
     int input_length;
     bool new_operand;
     double operand1;
-    string operation = "add";
+    string operation = "none";
     string precision = "n4";
     bool function;
 
@@ -787,6 +787,9 @@ class calculator : Form
                     operand1 = (Math.Pow(operand1, double.Parse(box.Text)));
                     box.Text = operand1.ToString(precision);
                     break;
+                case "none":
+                    operand1 = double.Parse(box.Text);
+                    break;
             }
         }
 
@@ -824,6 +827,9 @@ class calculator : Form
                 case "pow":
                     operand1 = (Math.Pow(operand1, double.Parse(box.Text)));
                     box.Text = operand1.ToString(precision);
+                    break;
+                case "none":
+                    operand1 = double.Parse(box.Text);
                     break;
             }
         }
@@ -863,6 +869,9 @@ class calculator : Form
                     operand1 = (Math.Pow(operand1, double.Parse(box.Text)));
                     box.Text = operand1.ToString(precision);
                     break;
+                case "none":
+                    operand1 = double.Parse(box.Text);
+                    break;
             }
         }
 
@@ -901,6 +910,9 @@ class calculator : Form
                     operand1 = (Math.Pow(operand1, double.Parse(box.Text)));
                     box.Text = operand1.ToString(precision);
                     break;
+                case "none":
+                    operand1 = double.Parse(box.Text);
+                    break;
             }
         }
 
@@ -938,6 +950,9 @@ class calculator : Form
                 case "pow":
                     operand1 = (Math.Pow(operand1, double.Parse(box.Text)));
                     box.Text = operand1.ToString(precision);
+                    break;
+                case "none":
+                    operand1 = double.Parse(box.Text);
                     break;
             }
         }
