@@ -37,7 +37,6 @@ class calculator : Form
     Button ToggleLang;
     Button Exit;
     Button del;
-    Button plus_minus;
     Button faculty;
     Button ln;
     Button sinus;
@@ -79,7 +78,6 @@ class calculator : Form
         ToggleLang = new Button();
         Exit = new Button();
         del = new Button();
-        plus_minus = new Button();
         faculty = new Button();
         ln = new Button();
         sinus = new Button();
@@ -121,7 +119,6 @@ class calculator : Form
         ToggleLang.Text = ("EN");
         Exit.Text = ("ESC");
         del.Text = ("DEL");
-        plus_minus.Text = ("+/-");
         faculty.Text = ("x!");
         ln.Text = ("ln");
         math.Text = (" ");
@@ -185,8 +182,6 @@ class calculator : Form
         Exit.Width = 50;
         del.Height = 50;
         del.Width = 50;
-        plus_minus.Height = 50;
-        plus_minus.Width = 50;
         faculty.Height = 50;
         faculty.Width = 50;
         ln.Height = 50;
@@ -235,7 +230,6 @@ class calculator : Form
 
         number0.Location = new Point(number1.Left, number1.Top + number1.Height);
         comma.Location = new Point(number2.Left, number2.Top + number2.Height);
-        plus_minus.Location = new Point(comma.Left + plus_minus.Width, comma.Top);
         equals.Location = new Point(comma.Left + comma.Height + comma.Height + 10, comma.Top);
         shift.Location = new Point(equals.Left + shift.Width, equals.Top);
         add.Location = new Point(number3.Left + number3.Width + 10, number3.Top);
@@ -281,7 +275,6 @@ class calculator : Form
         ToggleLang.Click += ToggleLang_Click;
         del.Click += Del_Click;
         Exit.Click += Exit_Click;
-        plus_minus.Click += Plus_Minus_Click;
         faculty.Click += Factorial_Click;
         ln.Click += Ln_Click;
         sinus.Click += Sinus_Click;
@@ -323,7 +316,6 @@ class calculator : Form
         Controls.Add(ToggleLang);
         Controls.Add(Exit);
         Controls.Add(del);
-        Controls.Add(plus_minus);
         Controls.Add(faculty);
         Controls.Add(ln);
         Controls.Add(shift);
@@ -698,16 +690,6 @@ class calculator : Form
         input_length = 0;
         new_operand = false;
         operation = "none";
-    }
-
-    //Diese Methode reagiert auf den Klick auf den Plus_Minus Button. Er bewirkt ein Umschalten
-    //der aktuellen Eingabe zwischen negativem und positivem Vorzeichen.
-    void Plus_Minus_Click(object sender, EventArgs e)
-    {
-        if (box.Text != "0" && !box.Text.Contains("-"))
-            box.Text = "-" + box.Text;
-        else if (box.Text != "0" && box.Text.Contains("-"))
-            box.Text = box.Text.TrimStart('-');
     }
 
     //Diese Methode reagiert auf den Klick auf den ToggleLang Button, welcher zwischen englischem
@@ -1246,7 +1228,6 @@ class calculator : Form
 
             number0.Location = new Point(number1.Left, number1.Top + number1.Height);
             comma.Location = new Point(number2.Left, number2.Top + number2.Height);
-            plus_minus.Location = new Point(comma.Left + plus_minus.Width, comma.Top);
             equals.Location = new Point(comma.Left + comma.Height + comma.Height + 10, comma.Top);
             add.Location = new Point(number3.Left + number3.Width + 10, number3.Top);
             subst.Location = new Point(add.Left + add.Width, add.Top);
@@ -1292,7 +1273,6 @@ class calculator : Form
 
             number0.Location = new Point(number1.Left, number1.Top + number1.Height);
             comma.Location = new Point(number2.Left, number2.Top + number2.Height);
-            plus_minus.Location = new Point(comma.Left + plus_minus.Width, comma.Top);
             equals.Location = new Point(comma.Left + comma.Height + comma.Height + 10, comma.Top);
             add.Location = new Point(number3.Left + number3.Width + 10, number3.Top);
             subst.Location = new Point(add.Left + add.Width, add.Top);
