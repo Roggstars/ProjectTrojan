@@ -1288,52 +1288,44 @@ class calculator : Form
 
     void Comma_Precision_Click(object sender, EventArgs e)
     {
-        if (precision == "n1")
+        switch (precision)
         {
-            precision = "n2";
-            comma_precision.Text = "2 Dgts";
-        }
-
-        else if (precision == "n2")
-        {
-            precision = "n3";
-            comma_precision.Text = "3 Dgts";
-        }
-
-        else if (precision == "n3")
-        {
-            precision = "n4";
-            comma_precision.Text = "4 Dgts";
-        }
-
-        else if (precision == "n4")
-        {
-            precision = "n5";
-            comma_precision.Text = "5 Dgts";
-        }
-
-        else if (precision == "n5")
-        {
-            precision = "n6";
-            comma_precision.Text = "6 Dgts";
-        }
-
-        else if (precision == "n6")
-        {
-            precision = "n7";
-            comma_precision.Text = "7 Dgts";
-        }
-
-        else if (precision == "n7")
-        {
-            precision = "n8";
-            comma_precision.Text = "8 Dgts";
-        }
-
-        else if (precision == "n8")
-        {
-            precision = "n1";
-            comma_precision.Text = "1 Dgts";
+            case "n0":
+                precision = "n1";
+                comma_precision.Text = "1 Dgts";
+                break;
+            case "n1":
+                precision = "n2";
+                comma_precision.Text = "2 Dgts";
+                break;
+            case "n2":
+                precision = "n3";
+                comma_precision.Text = "3 Dgts";
+                break;
+            case "n3":
+                precision = "n4";
+                comma_precision.Text = "4 Dgts";
+                break;
+            case "n4":
+                precision = "n5";
+                comma_precision.Text = "5 Dgts";
+                break;
+            case "n5":
+                precision = "n6";
+                comma_precision.Text = "6 Dgts";
+                break;
+            case "n6":
+                precision = "n7";
+                comma_precision.Text = "7 Dgts";
+                break;
+            case "n7":
+                precision = "n8";
+                comma_precision.Text = "8 Dgts";
+                break;
+            case "n8":
+                precision = "n0";
+                comma_precision.Text = "0 Dgts";
+                break;
         }
     }
 }
