@@ -43,6 +43,8 @@ class calculator : Form
     Button sinus;
     Button cosinus;
     Button tangens;
+    Button cosinush;
+    Button sinush;
     Button gradrad;
     Button shift;
     Button comma_precision;
@@ -86,6 +88,8 @@ class calculator : Form
         sinus = new Button();
         cosinus = new Button();
         tangens = new Button();
+        sinush = new Button();
+        cosinush = new Button();
         gradrad = new Button();
         shift = new Button();
         comma_precision = new Button();
@@ -130,6 +134,8 @@ class calculator : Form
         sinus.Text = ("sin");
         cosinus.Text = ("cos");
         tangens.Text = ("tan");
+        sinush.Text = ("sinh");
+        cosinush.Text = ("cosh");
         gradrad.Text = ("Rad");
         shift.Text = ("Fn");
         comma_precision.Text = ("4 Dgts");
@@ -197,6 +203,10 @@ class calculator : Form
         sinus.Width = 50;
         cosinus.Height = 50;
         cosinus.Width = 50;
+        cosinush.Width = 50;
+        cosinush.Height = 50;
+        sinush.Height = 50;
+        sinush.Width = 50;
         tangens.Width = 50;
         tangens.Height = 50;
         gradrad.Height = 50;
@@ -291,6 +301,8 @@ class calculator : Form
         faculty.Click += Factorial_Click;
         ln.Click += Ln_Click;
         sinus.Click += Sinus_Click;
+        sinush.Click += Sinush_Click;
+        cosinush.Click += Cosinush_Click;
         cosinus.Click += Cosinus_Click;
         tangens.Click += Tangens_Click;
         gradrad.Click += GradRad_Click;
@@ -382,6 +394,8 @@ class calculator : Form
 
         sinus.BackColor = Color.Gray;
         cosinus.BackColor = Color.Gray;
+        sinush.BackColor = Color.Gray;
+        cosinush.BackColor = Color.Gray;
         tangens.BackColor = Color.Gray;
         gradrad.BackColor = Color.Gray;
 
@@ -1039,6 +1053,29 @@ class calculator : Form
         new_operand = true;
     }
 
+    //Diese Methode reagiert auf den Klick auf den Sinush Button und bewirkt eine Berechnung des
+    //Sinush fuer die aktuelle Eingabe.
+    void Sinush_Click(object sender, EventArgs e)
+    {
+        if (gradrad.Text == "Rad")
+        {
+            operand1 = (Math.Sinh(double.Parse(box.Text)));
+            box.Text = operand1.ToString(precision);
+
+        }
+        else if (gradrad.Text == "Grad")
+        {
+            var temp = double.Parse(box.Text);
+            temp *= (Math.PI / 180);
+            operand1 = Math.Sinh(temp);
+            box.Text = operand1.ToString(precision);
+        }
+        else
+            box.Text = "Error";
+
+        new_operand = true;
+    }
+
     //Diese Methode reagiert auf den Klick auf den Cosinus Button und bewirkt eine Berechnung des
     //Cosinus fuer die aktuelle Eingabe.
     void Cosinus_Click(object sender, EventArgs e)
@@ -1054,6 +1091,29 @@ class calculator : Form
             var temp = double.Parse(box.Text);
             temp *= (Math.PI / 180);
             operand1 = Math.Cos(temp);
+            box.Text = operand1.ToString(precision);
+        }
+        else
+            box.Text = "Error";
+
+        new_operand = true;
+    }
+
+    //Diese Methode reagiert auf den Klick auf den Cosinush Button und bewirkt eine Berechnung des
+    //Cosinush fuer die aktuelle Eingabe.
+    void Cosinush_Click(object sender, EventArgs e)
+    {
+        if (gradrad.Text == "Rad")
+        {
+            operand1 = (Math.Cosh(double.Parse(box.Text)));
+            box.Text = operand1.ToString(precision);
+
+        }
+        else if (gradrad.Text == "Grad")
+        {
+            var temp = double.Parse(box.Text);
+            temp *= (Math.PI / 180);
+            operand1 = Math.Cosh(temp);
             box.Text = operand1.ToString(precision);
         }
         else
@@ -1265,17 +1325,19 @@ class calculator : Form
             Controls.Add(sinus);
             Controls.Add(cosinus);
             Controls.Add(tangens);
+            Controls.Add(sinush);
+            Controls.Add(cosinush);
             Controls.Add(gradrad);
 
-            Size = new Size(390, 450);
+            Size = new Size(390, 500);
             box.Location = new Point(5, 5);
-            square.Location = new Point(box.Left, box.Top + box.Height + 60);
+            square.Location = new Point(box.Left, box.Top + box.Height + 110);
             pow.Location = new Point(square.Left + pow.Width, square.Top);
             sqrt.Location = new Point(pow.Left + sqrt.Width, square.Top);
             faculty.Location = new Point(sqrt.Left + 10 + faculty.Width, sqrt.Top);
             ln.Location = new Point(faculty.Left + ln.Width, faculty.Top);
 
-            number7.Location = new Point(box.Left, box.Top + box.Height + 130);
+            number7.Location = new Point(box.Left, box.Top + box.Height + 200);
             number8.Location = new Point(number7.Left + number8.Width, number7.Top);
             number9.Location = new Point(number8.Left + number9.Width, number7.Top);
 
@@ -1300,12 +1362,14 @@ class calculator : Form
             pi.Location = new Point(div.Left + div.Width + 10, div.Top);
             E.Location = new Point(pi.Left, pi.Top + pi.Height);
             shift.Location = new Point(equals.Left + shift.Width, equals.Top);
-            mp.Location = new Point(shift.Left + shift.Width, equals.Top);
+            mp.Location = new Point(shift.Left + shift.Width + 10, equals.Top);
 
-            sinus.Location = new Point(box.Left, box.Top + box.Height + 10);
+            sinush.Location = new Point(box.Left, box.Top + box.Height  + 10);
+            sinus.Location = new Point(box.Left, box.Top + box.Height + box.Height + 10);
             cosinus.Location = new Point(sinus.Left + sinus.Height, sinus.Top);
             tangens.Location = new Point(cosinus.Left + cosinus.Height, sinus.Top);
             gradrad.Location = new Point(tangens.Left + tangens.Height + 10, sinus.Top);
+            cosinush.Location = new Point(gradrad.Left + tangens.Height, sinus.Top);
         }
         else 
         {
@@ -1313,6 +1377,8 @@ class calculator : Form
             Controls.Remove(cosinus);
             Controls.Remove(tangens);
             Controls.Remove(gradrad);
+            Controls.Remove(sinush);
+            Controls.Remove(cosinush);
 
             Size = new Size(390, 400);
             box.Location = new Point(5, 5);
