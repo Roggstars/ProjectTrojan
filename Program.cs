@@ -421,11 +421,14 @@ class calculator : Form
             M.Click += MC_Click;
             mp.Click -= mp_Click;
             mp.Click += mm_Click;
+            faculty.Click -= Factorial_Click;
+            faculty.Click += MarketValue_Click;
 
 
             sinus.Text = "arcsin";
             cosinus.Text = "arccos";
             tangens.Text = "arctan";
+            faculty.Text = "1/X";
             M.Text = "MC";
             mp.Text = "M-";
 
@@ -446,11 +449,14 @@ class calculator : Form
             M.Click -= MC_Click;
             mp.Click += mp_Click;
             mp.Click -= mm_Click;
+            faculty.Click += Factorial_Click;
+            faculty.Click -= MarketValue_Click;
         
             sinus.Text = "sin";
             cosinus.Text = "cos";
             tangens.Text = "tan";
             M.Text = "M";
+            faculty.Text = "!";
             mp.Text = "M+";
 
             function = false;
@@ -1230,6 +1236,26 @@ class calculator : Form
         else 
         {
             box.Text = "Error";
+            new_operand = true;
+        }
+    }
+
+    //Diese Methode reagiert auf den Klick auf den Factorial Button wenn SHIFT zuvorgedrückt wurde und bewirkt die Berechnung des
+    //Kehrwertes. Dabei ist darauf zu achten, dass der Wert ungleich 0 ist.
+    void MarketValue_Click(object sender, EventArgs e)
+    {
+        double X = double.Parse(box.Text);
+        double EPSILON = 0.0000000000000001f;
+        if (Math.Abs(X) < EPSILON)
+        {
+            box.Text = "Error";
+            new_operand = true;
+        }
+        else
+        {
+            double x = 0;
+            x = 1 / X;
+            box.Text = x.ToString(precision);
             new_operand = true;
         }
     }
