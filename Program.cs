@@ -10,6 +10,7 @@ class calculator : Form
     string operation = "none";
     string precision = "n4";
     bool function;
+    double a = 0;
 
     //Erstellt Buttons
     Button number0;
@@ -42,9 +43,13 @@ class calculator : Form
     Button sinus;
     Button cosinus;
     Button tangens;
+    Button cosinush;
+    Button sinush;
     Button gradrad;
     Button shift;
     Button comma_precision;
+    Button M;
+    Button mp;
 
     CheckBox math;
 
@@ -83,9 +88,13 @@ class calculator : Form
         sinus = new Button();
         cosinus = new Button();
         tangens = new Button();
+        sinush = new Button();
+        cosinush = new Button();
         gradrad = new Button();
         shift = new Button();
         comma_precision = new Button();
+        M = new Button();
+        mp = new Button();
 
         math = new CheckBox();
 
@@ -125,9 +134,13 @@ class calculator : Form
         sinus.Text = ("sin");
         cosinus.Text = ("cos");
         tangens.Text = ("tan");
+        sinush.Text = ("sinh");
+        cosinush.Text = ("cosh");
         gradrad.Text = ("Rad");
         shift.Text = ("Fn");
         comma_precision.Text = ("4 Dgts");
+        M.Text = ("M");
+        mp.Text = ("M+");
 
         Size = new Size(390, 400); //Fenstergröße
 
@@ -190,6 +203,10 @@ class calculator : Form
         sinus.Width = 50;
         cosinus.Height = 50;
         cosinus.Width = 50;
+        cosinush.Width = 50;
+        cosinush.Height = 50;
+        sinush.Height = 50;
+        sinush.Width = 50;
         tangens.Width = 50;
         tangens.Height = 50;
         gradrad.Height = 50;
@@ -198,6 +215,10 @@ class calculator : Form
         shift.Width = 50;
         comma_precision.Height = 50;
         comma_precision.Width = 50;
+        M.Height = 50;
+        M.Width = 50;
+        mp.Height = 50;
+        mp.Width = 50;
 
         math.Height = 13;
         math.Width = 13;
@@ -230,8 +251,10 @@ class calculator : Form
 
         number0.Location = new Point(number1.Left, number1.Top + number1.Height);
         comma.Location = new Point(number2.Left, number2.Top + number2.Height);
-        equals.Location = new Point(comma.Left + comma.Height + comma.Height + 10, comma.Top);
+        M.Location = new Point(comma.Left + comma.Width, comma.Top);
+        equals.Location = new Point(M.Left + comma.Height + 10, comma.Top);
         shift.Location = new Point(equals.Left + shift.Width, equals.Top);
+        mp.Location = new Point(shift.Left + shift.Width + 10, equals.Top);
         add.Location = new Point(number3.Left + number3.Width + 10, number3.Top);
         subst.Location = new Point(add.Left + add.Width, add.Top);
         mult.Location = new Point(number6.Left + number6.Width + 10, number6.Top);
@@ -278,11 +301,15 @@ class calculator : Form
         faculty.Click += Factorial_Click;
         ln.Click += Ln_Click;
         sinus.Click += Sinus_Click;
+        sinush.Click += Sinush_Click;
+        cosinush.Click += Cosinush_Click;
         cosinus.Click += Cosinus_Click;
         tangens.Click += Tangens_Click;
         gradrad.Click += GradRad_Click;
         shift.Click += Shift_Click;
         comma_precision.Click += Comma_Precision_Click;
+        mp.Click += mp_Click;
+        M.Click += M_Click;
 
         math.Click += math_Click;
 
@@ -321,6 +348,8 @@ class calculator : Form
         Controls.Add(shift);
         Controls.Add(math);
         Controls.Add(comma_precision);
+        Controls.Add(M);
+        Controls.Add(mp);
 
         Text = ("My little calculator"); //Fenstertitel
         FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -357,12 +386,16 @@ class calculator : Form
         faculty.BackColor = Color.Gray;
         equals.BackColor = Color.Orange;
         ln.BackColor = Color.Gray;
+        M.BackColor = Color.Gray;
+        mp.BackColor = Color.Gray; 
 
         E.BackColor = Color.Gray;
         pi.BackColor = Color.Gray;
 
         sinus.BackColor = Color.Gray;
         cosinus.BackColor = Color.Gray;
+        sinush.BackColor = Color.Gray;
+        cosinush.BackColor = Color.Gray;
         tangens.BackColor = Color.Gray;
         gradrad.BackColor = Color.Gray;
 
@@ -384,10 +417,20 @@ class calculator : Form
             cosinus.Click += ACosinus_Click;
             tangens.Click -= Tangens_Click;
             tangens.Click += ATangens_Click;
+            M.Click -= M_Click;
+            M.Click += MC_Click;
+            mp.Click -= mp_Click;
+            mp.Click += mm_Click;
+            faculty.Click -= Factorial_Click;
+            faculty.Click += MarketValue_Click;
+
 
             sinus.Text = "arcsin";
             cosinus.Text = "arccos";
             tangens.Text = "arctan";
+            faculty.Text = "1/X";
+            M.Text = "MC";
+            mp.Text = "M-";
 
             function = true;
 
@@ -402,16 +445,50 @@ class calculator : Form
             cosinus.Click -= ACosinus_Click;
             tangens.Click += Tangens_Click;
             tangens.Click -= ATangens_Click;
+            M.Click += M_Click;
+            M.Click -= MC_Click;
+            mp.Click += mp_Click;
+            mp.Click -= mm_Click;
+            faculty.Click += Factorial_Click;
+            faculty.Click -= MarketValue_Click;
         
             sinus.Text = "sin";
             cosinus.Text = "cos";
             tangens.Text = "tan";
+            M.Text = "M";
+            faculty.Text = "!";
+            mp.Text = "M+";
 
             function = false;
 
             shift.BackColor = SystemColors.Control;
         }
     }
+//M Funktionen
+
+    // Abspeichern des Inhaltes der Box 
+    void M_Click(object sender, EventArgs e)
+    {
+        a = double.Parse(box.Text);
+    }
+
+    //Löschen des Speichers
+    void MC_Click(object sender, EventArgs e)
+    {
+        a = 0;
+    }
+    void mp_Click(object sender, EventArgs e)
+    {
+        operand1 = (double.Parse(box.Text)+a);
+        box.Text = operand1.ToString(precision);
+    }
+
+    void mm_Click(object sender, EventArgs e)
+    {
+        operand1 = (double.Parse(box.Text)-a);
+        box.Text = operand1.ToString(precision);
+    }
+
 
 //Zahlen
 
@@ -684,12 +761,15 @@ class calculator : Form
         sinus.Text = "sin";
         cosinus.Text = "cos";
         tangens.Text = "tan";
+        M.Text = "M";
+        mp.Text = "M+";
         shift.BackColor = SystemColors.Control;
         function = false;
         operand1 = 0;
         input_length = 0;
         new_operand = false;
         operation = "none";
+        //Soll der Speicher gelöscht werden??? Aber dafür gibt es doch MC oder?
     }
 
     //Diese Methode reagiert auf den Klick auf den ToggleLang Button, welcher zwischen englischem
@@ -779,6 +859,7 @@ class calculator : Form
         new_operand = true;
     }
 
+
     //Diese Methode reagiert auf den Klick auf den Add Button und bewirkt die Berechnung der Summe
     //der aktuellen Eingabe und einer nach dem Klick einzugebenen Zahl. Die Berechnung wird nach
     //einem weiteren Klick auf eine der Operations Buttons (Add, Subst, Mult, Div) oder den Equals
@@ -852,7 +933,7 @@ class calculator : Form
                     break;
                 case "none":
                     operand1 = double.Parse(box.Text);
-                    break;
+                    break;    
             }
         }
 
@@ -893,7 +974,7 @@ class calculator : Form
                     break;
                 case "none":
                     operand1 = double.Parse(box.Text);
-                    break;
+                    break; 
             }
         }
 
@@ -985,6 +1066,29 @@ class calculator : Form
         new_operand = true;
     }
 
+    //Diese Methode reagiert auf den Klick auf den Sinush Button und bewirkt eine Berechnung des
+    //Sinush fuer die aktuelle Eingabe.
+    void Sinush_Click(object sender, EventArgs e)
+    {
+        if (gradrad.Text == "Rad")
+        {
+            operand1 = (Math.Sinh(double.Parse(box.Text)));
+            box.Text = operand1.ToString(precision);
+
+        }
+        else if (gradrad.Text == "Grad")
+        {
+            var temp = double.Parse(box.Text);
+            temp *= (Math.PI / 180);
+            operand1 = Math.Sinh(temp);
+            box.Text = operand1.ToString(precision);
+        }
+        else
+            box.Text = "Error";
+
+        new_operand = true;
+    }
+
     //Diese Methode reagiert auf den Klick auf den Cosinus Button und bewirkt eine Berechnung des
     //Cosinus fuer die aktuelle Eingabe.
     void Cosinus_Click(object sender, EventArgs e)
@@ -1011,6 +1115,29 @@ class calculator : Form
                 input_length = 0;
                 break;
         }
+
+        new_operand = true;
+    }
+
+    //Diese Methode reagiert auf den Klick auf den Cosinush Button und bewirkt eine Berechnung des
+    //Cosinush fuer die aktuelle Eingabe.
+    void Cosinush_Click(object sender, EventArgs e)
+    {
+        if (gradrad.Text == "Rad")
+        {
+            operand1 = (Math.Cosh(double.Parse(box.Text)));
+            box.Text = operand1.ToString(precision);
+
+        }
+        else if (gradrad.Text == "Grad")
+        {
+            var temp = double.Parse(box.Text);
+            temp *= (Math.PI / 180);
+            operand1 = Math.Cosh(temp);
+            box.Text = operand1.ToString(precision);
+        }
+        else
+            box.Text = "Error";
 
         new_operand = true;
     }
@@ -1159,6 +1286,26 @@ class calculator : Form
         }
     }
 
+    //Diese Methode reagiert auf den Klick auf den Factorial Button wenn SHIFT zuvorgedrückt wurde und bewirkt die Berechnung des
+    //Kehrwertes. Dabei ist darauf zu achten, dass der Wert ungleich 0 ist.
+    void MarketValue_Click(object sender, EventArgs e)
+    {
+        double X = double.Parse(box.Text);
+        double EPSILON = 0.0000000000000001f;
+        if (Math.Abs(X) < EPSILON)
+        {
+            box.Text = "Error";
+            new_operand = true;
+        }
+        else
+        {
+            double x = 0;
+            x = 1 / X;
+            box.Text = x.ToString(precision);
+            new_operand = true;
+        }
+    }
+
     //Diese Methode reagiert auf den Klick auf den Square Button und bewirkt die Quadrierung der
     //aktuellen Eingabe.
     void Square_Click(object sender, EventArgs e)
@@ -1265,17 +1412,19 @@ class calculator : Form
             Controls.Add(sinus);
             Controls.Add(cosinus);
             Controls.Add(tangens);
+            Controls.Add(sinush);
+            Controls.Add(cosinush);
             Controls.Add(gradrad);
 
-            Size = new Size(390, 450);
+            Size = new Size(390, 500);
             box.Location = new Point(5, 5);
-            square.Location = new Point(box.Left, box.Top + box.Height + 60);
+            square.Location = new Point(box.Left, box.Top + box.Height + 110);
             pow.Location = new Point(square.Left + pow.Width, square.Top);
             sqrt.Location = new Point(pow.Left + sqrt.Width, square.Top);
             faculty.Location = new Point(sqrt.Left + 10 + faculty.Width, sqrt.Top);
             ln.Location = new Point(faculty.Left + ln.Width, faculty.Top);
 
-            number7.Location = new Point(box.Left, box.Top + box.Height + 130);
+            number7.Location = new Point(box.Left, box.Top + box.Height + 200);
             number8.Location = new Point(number7.Left + number8.Width, number7.Top);
             number9.Location = new Point(number8.Left + number9.Width, number7.Top);
 
@@ -1289,6 +1438,7 @@ class calculator : Form
 
             number0.Location = new Point(number1.Left, number1.Top + number1.Height);
             comma.Location = new Point(number2.Left, number2.Top + number2.Height);
+            M.Location = new Point(comma.Left + comma.Width, comma.Top);
             equals.Location = new Point(comma.Left + comma.Height + comma.Height + 10, comma.Top);
             add.Location = new Point(number3.Left + number3.Width + 10, number3.Top);
             subst.Location = new Point(add.Left + add.Width, add.Top);
@@ -1299,11 +1449,14 @@ class calculator : Form
             pi.Location = new Point(div.Left + div.Width + 10, div.Top);
             E.Location = new Point(pi.Left, pi.Top + pi.Height);
             shift.Location = new Point(equals.Left + shift.Width, equals.Top);
+            mp.Location = new Point(shift.Left + shift.Width + 10, equals.Top);
 
-            sinus.Location = new Point(box.Left, box.Top + box.Height + 10);
+            sinush.Location = new Point(box.Left, box.Top + box.Height  + 10);
+            sinus.Location = new Point(box.Left, box.Top + box.Height + box.Height + 10);
             cosinus.Location = new Point(sinus.Left + sinus.Height, sinus.Top);
             tangens.Location = new Point(cosinus.Left + cosinus.Height, sinus.Top);
             gradrad.Location = new Point(tangens.Left + tangens.Height + 10, sinus.Top);
+            cosinush.Location = new Point(gradrad.Left + tangens.Height, sinus.Top);
         }
         else 
         {
@@ -1311,6 +1464,8 @@ class calculator : Form
             Controls.Remove(cosinus);
             Controls.Remove(tangens);
             Controls.Remove(gradrad);
+            Controls.Remove(sinush);
+            Controls.Remove(cosinush);
 
             Size = new Size(390, 400);
             box.Location = new Point(5, 5);
@@ -1334,6 +1489,7 @@ class calculator : Form
 
             number0.Location = new Point(number1.Left, number1.Top + number1.Height);
             comma.Location = new Point(number2.Left, number2.Top + number2.Height);
+            M.Location = new Point(comma.Left + comma.Width, comma.Top);
             equals.Location = new Point(comma.Left + comma.Height + comma.Height + 10, comma.Top);
             add.Location = new Point(number3.Left + number3.Width + 10, number3.Top);
             subst.Location = new Point(add.Left + add.Width, add.Top);
@@ -1344,6 +1500,7 @@ class calculator : Form
             pi.Location = new Point(div.Left + div.Width + 10, div.Top);
             E.Location = new Point(pi.Left, pi.Top + pi.Height);
             shift.Location = new Point(equals.Left + shift.Width, equals.Top);
+            mp.Location = new Point(shift.Left + shift.Width + 10, equals.Top);
         }
     }
 
