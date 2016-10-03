@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 using System.Drawing;
 
@@ -8,7 +8,7 @@ class calculator : Form
     bool new_operand;
     double operand1;
     string operation = "none";
-    string precision = "n4";
+    string precision = "g4";
     bool function;
     double memory = 0;
 
@@ -475,7 +475,7 @@ class calculator : Form
     //Löschen des Speichers
     void MC_Click(object sender, EventArgs e)
     {
-        memory
+        memory = 0;
     }
     void mp_Click(object sender, EventArgs e)
     {
@@ -1275,8 +1275,9 @@ class calculator : Form
             double temp = 1;
             for (int i = 1; i <= temp_max; i++)
                 temp *= i;
-            
-            box.Text = temp.ToString(precision);
+
+            operand1 = temp;
+            box.Text = operand1.ToString(precision);
             new_operand = true;
         }
         else 
@@ -1301,7 +1302,8 @@ class calculator : Form
         {
             double x = 0;
             x = 1 / X;
-            box.Text = x.ToString(precision);
+            operand1 = x;
+            box.Text = operand1.ToString(precision);
             new_operand = true;
         }
     }
@@ -1313,7 +1315,8 @@ class calculator : Form
         if (box.Text == "Error" || box.Text == "∞")
             return;
 
-        box.Text = (double.Parse(box.Text) * double.Parse(box.Text)).ToString(precision);
+        operand1 = double.Parse(box.Text) * double.Parse(box.Text);
+        box.Text = operand1.ToString(precision);
         input_length = 0;
         new_operand = true;
     }
@@ -1330,7 +1333,8 @@ class calculator : Form
 
         if (ln_value > 0)
         {
-            box.Text = (Math.Log(ln_value)).ToString(precision);
+            operand1 = Math.Log(ln_value);
+            box.Text = operand1.ToString(precision);
             input_length = 0;
         }
         else
@@ -1352,7 +1356,10 @@ class calculator : Form
         double sqrt_value = Math.Sqrt(double.Parse(box.Text));
 
         if (sqrt_value > 0)
-            box.Text = (Math.Sqrt(double.Parse(box.Text))).ToString(precision);
+        {
+            operand1 = Math.Sqrt(double.Parse(box.Text));
+            box.Text = operand1.ToString(precision);
+        }
         else
         {
             box.Text = "Error";
@@ -1508,40 +1515,40 @@ class calculator : Form
     {
         switch (precision)
         {
-            case "n0":
-                precision = "n1";
+            case "g0":
+                precision = "g1";
                 comma_precision.Text = "1 Dgts";
                 break;
-            case "n1":
-                precision = "n2";
+            case "g1":
+                precision = "g2";
                 comma_precision.Text = "2 Dgts";
                 break;
-            case "n2":
-                precision = "n3";
+            case "g2":
+                precision = "g3";
                 comma_precision.Text = "3 Dgts";
                 break;
-            case "n3":
-                precision = "n4";
+            case "g3":
+                precision = "g4";
                 comma_precision.Text = "4 Dgts";
                 break;
-            case "n4":
-                precision = "n5";
+            case "g4":
+                precision = "g5";
                 comma_precision.Text = "5 Dgts";
                 break;
-            case "n5":
-                precision = "n6";
+            case "g5":
+                precision = "g6";
                 comma_precision.Text = "6 Dgts";
                 break;
-            case "n6":
-                precision = "n7";
+            case "g6":
+                precision = "g7";
                 comma_precision.Text = "7 Dgts";
                 break;
-            case "n7":
-                precision = "n8";
+            case "g7":
+                precision = "g8";
                 comma_precision.Text = "8 Dgts";
                 break;
-            case "n8":
-                precision = "n0";
+            case "g8":
+                precision = "g0";
                 comma_precision.Text = "0 Dgts";
                 break;
         }
