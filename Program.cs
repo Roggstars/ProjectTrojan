@@ -469,24 +469,33 @@ class calculator : Form
     // Abspeichern des Inhaltes der Box 
     void M_Click(object sender, EventArgs e)
     {
-        memory = double.Parse(box.Text);
+        if (memory != 0)
+            box.Text = memory.ToString(precision);
+        new_operand = false;
     }
 
     //Löschen des Speichers
     void MC_Click(object sender, EventArgs e)
     {
         memory = 0;
+        M.BackColor = Color.PaleVioletRed;
     }
     void mp_Click(object sender, EventArgs e)
     {
-        operand1 = (double.Parse(box.Text) + memory);
-        box.Text = operand1.ToString(precision);
+        memory += double.Parse(box.Text);
+        if (memory != 0)
+            M.BackColor = Color.PaleVioletRed;
+        else
+            M.BackColor = Color.Gray;
     }
 
     void mm_Click(object sender, EventArgs e)
     {
-        operand1 = (double.Parse(box.Text) - memory);
-        box.Text = operand1.ToString(precision);
+        memory -= double.Parse(box.Text);
+        if (memory != 0)
+            M.BackColor = Color.PaleVioletRed;
+        else
+            M.BackColor = Color.Gray;
     }
 
 
@@ -769,7 +778,6 @@ class calculator : Form
         input_length = 0;
         new_operand = false;
         operation = "none";
-        //Soll der Speicher gelöscht werden??? Aber dafür gibt es doch MC oder?
     }
 
     //Diese Methode reagiert auf den Klick auf den ToggleLang Button, welcher zwischen englischem
