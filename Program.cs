@@ -10,7 +10,7 @@ class calculator : Form
     string operation = "none";
     string precision = "n4";
     bool function;
-    double a = 0;
+    double memory = 0;
 
     //Erstellt Buttons
     Button number0;
@@ -469,23 +469,23 @@ class calculator : Form
     // Abspeichern des Inhaltes der Box 
     void M_Click(object sender, EventArgs e)
     {
-        a = double.Parse(box.Text);
+        memory = double.Parse(box.Text);
     }
 
     //Löschen des Speichers
     void MC_Click(object sender, EventArgs e)
     {
-        a = 0;
+        memory
     }
     void mp_Click(object sender, EventArgs e)
     {
-        operand1 = (double.Parse(box.Text)+a);
+        operand1 = (double.Parse(box.Text) + memory);
         box.Text = operand1.ToString(precision);
     }
 
     void mm_Click(object sender, EventArgs e)
     {
-        operand1 = (double.Parse(box.Text)-a);
+        operand1 = (double.Parse(box.Text) - memory);
         box.Text = operand1.ToString(precision);
     }
 
