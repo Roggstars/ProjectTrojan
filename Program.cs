@@ -1078,21 +1078,26 @@ class calculator : Form
     //Sinush fuer die aktuelle Eingabe.
     void Sinush_Click(object sender, EventArgs e)
     {
-        if (gradrad.Text == "Rad")
+        switch (gradrad.Text)
         {
-            operand1 = (Math.Sinh(double.Parse(box.Text)));
-            box.Text = operand1.ToString(precision);
-
+            case "Error":
+                break;
+            case "∞":
+                break;
+            case "Rad":
+                operand1 = (Math.Sinh(double.Parse(box.Text)));
+                box.Text = operand1.ToString(precision);
+                break;
+            case "Grad":
+                var temp = double.Parse(box.Text);
+                temp *= (Math.PI / 180);
+                operand1 = Math.Sinh(temp);
+                box.Text = operand1.ToString(precision);
+                break;
+            default:
+                box.Text = "Error";
+                break;
         }
-        else if (gradrad.Text == "Grad")
-        {
-            var temp = double.Parse(box.Text);
-            temp *= (Math.PI / 180);
-            operand1 = Math.Sinh(temp);
-            box.Text = operand1.ToString(precision);
-        }
-        else
-            box.Text = "Error";
 
         new_operand = true;
     }
@@ -1131,21 +1136,26 @@ class calculator : Form
     //Cosinush fuer die aktuelle Eingabe.
     void Cosinush_Click(object sender, EventArgs e)
     {
-        if (gradrad.Text == "Rad")
+        switch (gradrad.Text)
         {
-            operand1 = (Math.Cosh(double.Parse(box.Text)));
-            box.Text = operand1.ToString(precision);
-
+            case "Error":
+                break;
+            case "∞":
+                break;
+            case "Rad":
+                operand1 = (Math.Cosh(double.Parse(box.Text)));
+                box.Text = operand1.ToString(precision);
+                break;
+            case "Grad":
+                var temp = double.Parse(box.Text);
+                temp *= (Math.PI / 180);
+                operand1 = Math.Cosh(temp);
+                box.Text = operand1.ToString(precision);
+                break;
+            default:
+                box.Text = "Error";
+                break;
         }
-        else if (gradrad.Text == "Grad")
-        {
-            var temp = double.Parse(box.Text);
-            temp *= (Math.PI / 180);
-            operand1 = Math.Cosh(temp);
-            box.Text = operand1.ToString(precision);
-        }
-        else
-            box.Text = "Error";
 
         new_operand = true;
     }
