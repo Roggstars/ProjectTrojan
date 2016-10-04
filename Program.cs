@@ -731,11 +731,13 @@ class calculator : Form
     void Pi_Click(object sender, EventArgs e)
     {
         box.Text = (Math.PI).ToString(precision);
+        new_operand = false;
     }
 
     void E_Click(object sender, EventArgs e)
     {
         box.Text = (Math.E).ToString(precision);
+        new_operand = false;
     }
 
 //Vereinfacht und erweitern die Bedienung des Rechners
