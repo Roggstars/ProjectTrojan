@@ -836,32 +836,7 @@ class calculator : Form
     {
         if (!new_operand)
         {
-            switch (operation)
-            {
-                case "add":
-                    operand1 = (operand1 + double.Parse(box.Text));
-                    box.Text = operand1.ToString(precision);
-                    break;
-                case "subst":
-                    operand1 = (operand1 - double.Parse(box.Text));
-                    box.Text = operand1.ToString(precision);
-                    break;
-                case "mult":
-                    operand1 = (operand1 * double.Parse(box.Text));
-                    box.Text = operand1.ToString(precision);
-                    break;
-                case "div":
-                    operand1 = (operand1 / double.Parse(box.Text));
-                    box.Text = operand1.ToString(precision);
-                    break;
-                case "pow":
-                    operand1 = (Math.Pow(operand1, double.Parse(box.Text)));
-                    box.Text = operand1.ToString(precision);
-                    break;
-                case "none":
-                    operand1 = double.Parse(box.Text);
-                    break;
-            }
+            perform_current_operation(operation);
         }
 
         operation = "pow";
@@ -878,32 +853,7 @@ class calculator : Form
     {
         if (!new_operand)
         {
-            switch (operation)
-            {
-                case "add":
-                    operand1 = (operand1 + double.Parse(box.Text));
-                    box.Text = operand1.ToString(precision);
-                    break;
-                case "subst":
-                    operand1 = (operand1 - double.Parse(box.Text));
-                    box.Text = operand1.ToString(precision);
-                    break;
-                case "mult":
-                    operand1 = (operand1 * double.Parse(box.Text));
-                    box.Text = operand1.ToString(precision);
-                    break;
-                case "div":
-                    operand1 = (operand1 / double.Parse(box.Text));
-                    box.Text = operand1.ToString(precision);
-                    break;
-                case "pow":
-                    operand1 = (Math.Pow(operand1, double.Parse(box.Text)));
-                    box.Text = operand1.ToString(precision);
-                    break;
-                case "none":
-                    operand1 = double.Parse(box.Text);
-                    break;
-            }
+            perform_current_operation(operation);
         }
 
         operation = "add";
@@ -919,32 +869,7 @@ class calculator : Form
     {
         if (!new_operand)
         {
-            switch (operation)
-            {
-                case "add":
-                    operand1 = (operand1 + double.Parse(box.Text));
-                    box.Text = operand1.ToString(precision);
-                    break;
-                case "subst":
-                    operand1 = (operand1 - double.Parse(box.Text));
-                    box.Text = operand1.ToString(precision);
-                    break;
-                case "mult":
-                    operand1 = (operand1 * double.Parse(box.Text));
-                    box.Text = operand1.ToString(precision);
-                    break;
-                case "div":
-                    operand1 = (operand1 / double.Parse(box.Text));
-                    box.Text = operand1.ToString(precision);
-                    break;
-                case "pow":
-                    operand1 = (Math.Pow(operand1, double.Parse(box.Text)));
-                    box.Text = operand1.ToString(precision);
-                    break;
-                case "none":
-                    operand1 = double.Parse(box.Text);
-                    break;    
-            }
+            perform_current_operation(operation);
         }
 
         operation = "subst";
@@ -960,32 +885,7 @@ class calculator : Form
     {
         if (!new_operand)
         {
-            switch (operation)
-            {
-                case "add":
-                    operand1 = (operand1 + double.Parse(box.Text));
-                    box.Text = operand1.ToString(precision);
-                    break;
-                case "subst":
-                    operand1 = (operand1 - double.Parse(box.Text));
-                    box.Text = operand1.ToString(precision);
-                    break;
-                case "mult":
-                    operand1 = (operand1 * double.Parse(box.Text));
-                    box.Text = operand1.ToString(precision);
-                    break;
-                case "div":
-                    operand1 = (operand1 / double.Parse(box.Text));
-                    box.Text = operand1.ToString(precision);
-                    break;
-                case "pow":
-                    operand1 = (Math.Pow(operand1, double.Parse(box.Text)));
-                    box.Text = operand1.ToString(precision);
-                    break;
-                case "none":
-                    operand1 = double.Parse(box.Text);
-                    break; 
-            }
+            perform_current_operation(operation);
         }
 
         operation = "mult";
@@ -1001,32 +901,7 @@ class calculator : Form
     {
         if (!new_operand)
         {
-            switch (operation)
-            {
-                case "add":
-                    operand1 = (operand1 + double.Parse(box.Text));
-                    box.Text = operand1.ToString(precision);
-                    break;
-                case "subst":
-                    operand1 = (operand1 - double.Parse(box.Text));
-                    box.Text = operand1.ToString(precision);
-                    break;
-                case "mult":
-                    operand1 = (operand1 * double.Parse(box.Text));
-                    box.Text = operand1.ToString(precision);
-                    break;
-                case "div":
-                    operand1 = (operand1 / double.Parse(box.Text));
-                    box.Text = operand1.ToString(precision);
-                    break;
-                case "pow":
-                    operand1 = (Math.Pow(operand1, double.Parse(box.Text)));
-                    box.Text = operand1.ToString(precision);
-                    break;
-                case "none":
-                    operand1 = double.Parse(box.Text);
-                    break;
-            }
+            perform_current_operation(operation);
         }
 
         operation = "div";
@@ -1395,29 +1270,7 @@ class calculator : Form
     {
         if (!new_operand)
         {
-            switch (operation)
-            {
-                case "add":
-                    operand1 = (operand1 + double.Parse(box.Text));
-                    box.Text = operand1.ToString(precision);
-                    break;
-                case "subst":
-                    operand1 = (operand1 - double.Parse(box.Text));
-                    box.Text = operand1.ToString(precision);
-                    break;
-                case "mult":
-                    operand1 = (operand1 * double.Parse(box.Text));
-                    box.Text = operand1.ToString(precision);
-                    break;
-                case "div":
-                    operand1 = (operand1 / double.Parse(box.Text));
-                    box.Text = operand1.ToString(precision);
-                    break;
-                case "pow":
-                    operand1 = (Math.Pow(operand1, double.Parse(box.Text)));
-                    box.Text = operand1.ToString(precision);
-                    break;
-            }
+            perform_current_operation(operation);
         }
 
         new_operand = true;
@@ -1570,6 +1423,36 @@ class calculator : Form
             case "g8":
                 precision = "g0";
                 comma_precision.Text = "0 Dgts";
+                break;
+        }
+    }
+
+    private void perform_current_operation(string operation)
+    {
+        switch (operation)
+        {
+            case "add":
+                operand1 = (operand1 + double.Parse(box.Text));
+                box.Text = operand1.ToString(precision);
+                break;
+            case "subst":
+                operand1 = (operand1 - double.Parse(box.Text));
+                box.Text = operand1.ToString(precision);
+                break;
+            case "mult":
+                operand1 = (operand1 * double.Parse(box.Text));
+                box.Text = operand1.ToString(precision);
+                break;
+            case "div":
+                operand1 = (operand1 / double.Parse(box.Text));
+                box.Text = operand1.ToString(precision);
+                break;
+            case "pow":
+                operand1 = (Math.Pow(operand1, double.Parse(box.Text)));
+                box.Text = operand1.ToString(precision);
+                break;
+            case "none":
+                operand1 = double.Parse(box.Text);
                 break;
         }
     }
