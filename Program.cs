@@ -37,7 +37,7 @@ class calculator : Form
     Button pow;
     Button equals;
     Button del;
-    Button faculty;
+    Button factorial;
     Button ln;
     Button sinus;
     Button cosinus;
@@ -80,7 +80,7 @@ class calculator : Form
         pow = new Button();
         equals = new Button();
         del = new Button();
-        faculty = new Button();
+        factorial = new Button();
         ln = new Button();
         sinus = new Button();
         cosinus = new Button();
@@ -121,7 +121,7 @@ class calculator : Form
         sqrt.Text = ("√¯x");
         equals.Text = ("=");
         del.Text = ("DEL");
-        faculty.Text = ("x!");
+        factorial.Text = ("x!");
         ln.Text = ("ln");
         sinus.Text = ("sin");
         cosinus.Text = ("cos");
@@ -133,6 +133,8 @@ class calculator : Form
         comma_precision.Text = ("4 Dgts");
         M.Text = ("M");
         mp.Text = ("M+");
+
+        Size = new Size(390, 500);
 
         //Legt Hoehe und Breite der Buttons fest
         number0.Height = 50;
@@ -181,8 +183,8 @@ class calculator : Form
         equals.Width = 50;
         del.Height = 50;
         del.Width = 50;
-        faculty.Height = 50;
-        faculty.Width = 50;
+        factorial.Height = 50;
+        factorial.Width = 50;
         ln.Height = 50;
         ln.Width = 50;
         sinus.Height = 50;
@@ -208,49 +210,50 @@ class calculator : Form
 
         //Legt Hoehe und Breite der Ergebnis-Box fest
         box.Height = 50;
-        box.Width = 300;
+        box.Width = 320;
 
-        Size = new Size(390, 500);
         box.Location = new Point(5, 5);
-        square.Location = new Point(box.Left, box.Top + box.Height + 110);
-        pow.Location = new Point(square.Left + pow.Width, square.Top);
-        sqrt.Location = new Point(pow.Left + sqrt.Width, square.Top);
-        faculty.Location = new Point(sqrt.Left + 10 + faculty.Width, sqrt.Top);
-        ln.Location = new Point(faculty.Left + ln.Width, faculty.Top);
 
-        number7.Location = new Point(box.Left, box.Top + box.Height + 200);
+        sinus.Location = new Point(box.Left, box.Top + box.Height + 10);
+        cosinus.Location = new Point(sinus.Left + sinus.Width, sinus.Top);
+        tangens.Location = new Point(cosinus.Left + cosinus.Width, cosinus.Top);
+        gradrad.Location = new Point(tangens.Left + 10 + ln.Width + E.Width + 10, tangens.Top);
+
+        sinush.Location = new Point(sinus.Left, sinus.Top + sinus.Height);
+        cosinush.Location = new Point(cosinus.Left, cosinus.Top + cosinus.Height);
+        pi.Location = new Point(tangens.Left, tangens.Top + tangens.Height);
+        shift.Location = new Point(pi.Left + 10 + ln.Width + E.Width + 10, pi.Top);
+
+        square.Location = new Point(sinush.Top + sinush.Height + 10, sinush.Left);
+        sqrt.Location = new Point(square.Left + square.Width, square.Top);
+        factorial.Location = new Point(sqrt.Left + sqrt.Width, sqrt.Top);
+        ln.Location = new Point(factorial.Left + factorial.Width + 10, factorial.Top);
+        E.Location = new Point(ln.Left + ln.Width, ln.Top);
+        comma_precision.Location = new Point(E.Left + E.Width + 10, E.Top);
+
+        number7.Location = new Point(sqrt.Left, sqrt.Top + sqrt.Height + 20);
         number8.Location = new Point(number7.Left + number8.Width, number7.Top);
         number9.Location = new Point(number8.Left + number9.Width, number7.Top);
+        del.Location = new Point(number9.Left + number9.Width + 10, number9.Top);
+        clear.Location = new Point(del.Left + del.Width, del.Top);
 
         number4.Location = new Point(number7.Left, number7.Top + number7.Height);
-        number5.Location = new Point(number8.Left, number8.Top + number8.Height);
-        number6.Location = new Point(number9.Left, number9.Top + number9.Height);
+        number5.Location = new Point(number4.Left + number4.Width, number4.Top);
+        number6.Location = new Point(number5.Left + number5.Width, number5.Top);
+        mult.Location = new Point(number6.Left + number6.Width + 10, number6.Top);
+        div.Location = new Point(mult.Left + mult.Width, mult.Top);
 
         number1.Location = new Point(number4.Left, number4.Top + number4.Height);
         number2.Location = new Point(number5.Left, number5.Top + number5.Height);
         number3.Location = new Point(number6.Left, number6.Top + number6.Height);
+        add.Location = new Point(number3.Left + number3.Width + 10, number3.Top);
+        subst.Location = new Point(add.Left + add.Width, add.Top);
 
         number0.Location = new Point(number1.Left, number1.Top + number1.Height);
         comma.Location = new Point(number2.Left, number2.Top + number2.Height);
         M.Location = new Point(comma.Left + comma.Width, comma.Top);
-        equals.Location = new Point(comma.Left + comma.Height + comma.Height + 10, comma.Top);
-        add.Location = new Point(number3.Left + number3.Width + 10, number3.Top);
-        subst.Location = new Point(add.Left + add.Width, add.Top);
-        mult.Location = new Point(number6.Left + number6.Width + 10, number6.Top);
-        div.Location = new Point(mult.Left + mult.Width, mult.Top);
-        del.Location = new Point(number9.Left + del.Width + 10, number9.Top);
-        clear.Location = new Point(del.Left + clear.Width, del.Top);
-        pi.Location = new Point(div.Left + div.Width + 10, div.Top);
-        E.Location = new Point(pi.Left, pi.Top + pi.Height);
-        shift.Location = new Point(equals.Left + shift.Width, equals.Top);
-        mp.Location = new Point(shift.Left + shift.Width + 10, equals.Top);
-
-        sinush.Location = new Point(box.Left, box.Top + box.Height + 10);
-        sinus.Location = new Point(box.Left, box.Top + box.Height + box.Height + 10);
-        cosinus.Location = new Point(sinus.Left + sinus.Height, sinus.Top);
-        tangens.Location = new Point(cosinus.Left + cosinus.Height, sinus.Top);
-        gradrad.Location = new Point(tangens.Left + tangens.Height + 10, sinus.Top);
-        cosinush.Location = new Point(gradrad.Left + tangens.Height, sinus.Top);
+        mp.Location = new Point(M.Left + M.Width + 10, M.Top);
+        equals.Location = new Point(mp.Left + mp.Width, mp.Top);
 
         //Erstelle EventHandler mit entsprechenden _Click Funktionen um ClickEvent der Buttons zu
         //kontrollieren.
@@ -277,7 +280,7 @@ class calculator : Form
         sqrt.Click += Sqrt_Click;
         equals.Click += Equals_Click;
         del.Click += Del_Click;
-        faculty.Click += Factorial_Click;
+        factorial.Click += Factorial_Click;
         ln.Click += Ln_Click;
         sinus.Click += Sinus_Click;
         sinush.Click += Sinush_Click;
@@ -318,7 +321,7 @@ class calculator : Form
         Controls.Add(box);
         Controls.Add(equals);
         Controls.Add(del);
-        Controls.Add(faculty);
+        Controls.Add(factorial);
         Controls.Add(ln);
         Controls.Add(shift);
         Controls.Add(comma_precision);
@@ -360,7 +363,7 @@ class calculator : Form
         square.BackColor = Color.Gray;
         pow.BackColor = Color.Gray;
         sqrt.BackColor = Color.Gray;
-        faculty.BackColor = Color.Gray;
+        factorial.BackColor = Color.Gray;
         equals.BackColor = Color.Orange;
         ln.BackColor = Color.Gray;
         M.BackColor = Color.Gray;
@@ -398,14 +401,14 @@ class calculator : Form
             M.Click += MC_Click;
             mp.Click -= mp_Click;
             mp.Click += mm_Click;
-            faculty.Click -= Factorial_Click;
-            faculty.Click += MarketValue_Click;
+            factorial.Click -= Factorial_Click;
+            factorial.Click += MarketValue_Click;
 
 
             sinus.Text = "arcsin";
             cosinus.Text = "arccos";
             tangens.Text = "arctan";
-            faculty.Text = "1/x";
+            factorial.Text = "1/x";
             M.Text = "MC";
             mp.Text = "M-";
 
@@ -426,14 +429,14 @@ class calculator : Form
             M.Click -= MC_Click;
             mp.Click += mp_Click;
             mp.Click -= mm_Click;
-            faculty.Click += Factorial_Click;
-            faculty.Click -= MarketValue_Click;
+            factorial.Click += Factorial_Click;
+            factorial.Click -= MarketValue_Click;
         
             sinus.Text = "sin";
             cosinus.Text = "cos";
             tangens.Text = "tan";
             M.Text = "M";
-            faculty.Text = "x!";
+            factorial.Text = "x!";
             mp.Text = "M+";
 
             function = false;
