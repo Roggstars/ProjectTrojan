@@ -5,6 +5,7 @@ using System.Drawing;
 class calculator : Form
 {
     int input_length;
+    string system_language;
     bool new_operand;
     double operand1;
     string operation = "none";
@@ -35,7 +36,6 @@ class calculator : Form
     Button sqrt;
     Button pow;
     Button equals;
-    Button ToggleLang;
     Button Exit;
     Button del;
     Button faculty;
@@ -58,6 +58,8 @@ class calculator : Form
 
     public calculator()
     {
+        setCurrentLanguage();
+
         number0 = new Button();
         number1 = new Button();
         number2 = new Button();
@@ -80,7 +82,6 @@ class calculator : Form
         sqrt = new Button();
         pow = new Button();
         equals = new Button();
-        ToggleLang = new Button();
         Exit = new Button();
         del = new Button();
         faculty = new Button();
@@ -125,7 +126,6 @@ class calculator : Form
         pow.Text = ("x^n");
         sqrt.Text = ("√¯x");
         equals.Text = ("=");
-        ToggleLang.Text = ("EN");
         Exit.Text = ("ESC");
         del.Text = ("DEL");
         faculty.Text = ("x!");
@@ -189,8 +189,6 @@ class calculator : Form
         sqrt.Width = 50;
         equals.Height = 50;
         equals.Width = 50;
-        ToggleLang.Height = 50;
-        ToggleLang.Width = 50;
         Exit.Height = 50;
         Exit.Width = 50;
         del.Height = 50;
@@ -265,9 +263,8 @@ class calculator : Form
         del.Location = new Point(number9.Left + del.Width + 10, number9.Top);
         clear.Location = new Point(del.Left + clear.Width, del.Top);
         Exit.Location = new Point(box.Left + box.Width + 10, box.Top);
-        ToggleLang.Location = new Point(Exit.Left, Exit.Top + Exit.Height);
 
-        math.Location = new Point(ToggleLang.Left, ToggleLang.Top + ToggleLang.Height + 5);
+        math.Location = new Point(Exit.Left, Exit.Top + Exit.Height + 5);
 
         comma_precision.Location = new Point(math.Left, math.Top + math.Height + 5);
 
@@ -295,7 +292,6 @@ class calculator : Form
         pow.Click += Pow_Click;
         sqrt.Click += Sqrt_Click;
         equals.Click += Equals_Click;
-        ToggleLang.Click += ToggleLang_Click;
         del.Click += Del_Click;
         Exit.Click += Exit_Click;
         faculty.Click += Factorial_Click;
@@ -340,7 +336,6 @@ class calculator : Form
         Controls.Add(sqrt);
         Controls.Add(box);
         Controls.Add(equals);
-        Controls.Add(ToggleLang);
         Controls.Add(Exit);
         Controls.Add(del);
         Controls.Add(faculty);
@@ -599,10 +594,10 @@ class calculator : Form
 
     //Diese Methode reagiert auf den Klick auf den Komma Button. Es muss von System zu System,
     //abhaengig von der Sprache, unterschieden werden, ob ein '.' oder ein ',' eingesetzt wird,
-    //da Systeme verschieden auf die beiden Zeichen reagieren. Siehe dazu 'ToggleLang_Click'.
+    //da Systeme verschieden auf die beiden Zeichen reagieren.
     void Comma_Click(object sender, EventArgs e)
     {
-        if (ToggleLang.Text == "DE")
+        if (system_language == "de")
         {
             if (!box.Text.Contains(","))
             {
@@ -635,16 +630,6 @@ class calculator : Form
         input_length = 0;
         new_operand = false;
         operation = "none";
-    }
-
-    //Diese Methode reagiert auf den Klick auf den ToggleLang Button, welcher zwischen englischem
-    //und deutschem Separator (',' und '.') unterscheidet.
-    void ToggleLang_Click(object sender, EventArgs e)
-    {
-        if (ToggleLang.Text == "EN")
-            ToggleLang.Text = "DE";
-        else
-            ToggleLang.Text = "EN";
     }
 
     //Diese Methode reagiert auf den Klick auf den Esc Button und bewirkt ein Schliessen des
@@ -1288,6 +1273,13 @@ class calculator : Form
             input_length += 1;
         }
         new_operand = false;
+    }
+
+    private void setCurrentLanguage()
+    {
+        system_language = 
+            System.Globalization.CultureInfo.InstalledUICulture.ToString().Substring(0, 2);
+        Console.WriteLine("Set system language to {0}", system_language);
     }
 }
 
