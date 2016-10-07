@@ -209,7 +209,6 @@ class calculator : Form
         mp.Width = 50;
 
         //Legt Hoehe und Breite der Ergebnis-Box fest
-        box.Height = 50;
         box.Width = 320;
 
         box.Location = new Point(5, 5);
@@ -224,7 +223,7 @@ class calculator : Form
         pi.Location = new Point(tangens.Left, tangens.Top + tangens.Height);
         shift.Location = new Point(pi.Left + 10 + ln.Width + E.Width + 10, pi.Top);
 
-        square.Location = new Point(sinush.Top + sinush.Height + 10, sinush.Left);
+        square.Location = new Point(sinush.Left, sinush.Top + sinush.Height + 10);
         sqrt.Location = new Point(square.Left + square.Width, square.Top);
         factorial.Location = new Point(sqrt.Left + sqrt.Width, sqrt.Top);
         ln.Location = new Point(factorial.Left + factorial.Width + 10, factorial.Top);
