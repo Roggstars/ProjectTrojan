@@ -50,8 +50,6 @@ class calculator : Form
     Button M;
     Button mp;
 
-    CheckBox math;
-
     //Erstellt TextBox
     TextBox box;
 
@@ -95,8 +93,6 @@ class calculator : Form
         M = new Button();
         mp = new Button();
 
-        math = new CheckBox();
-
         box = new TextBox();
 
         //Setzt Box auf ReadOnly
@@ -127,7 +123,6 @@ class calculator : Form
         del.Text = ("DEL");
         faculty.Text = ("x!");
         ln.Text = ("ln");
-        math.Text = (" ");
         sinus.Text = ("sin");
         cosinus.Text = ("cos");
         tangens.Text = ("tan");
@@ -212,9 +207,6 @@ class calculator : Form
         M.Width = 50;
         mp.Height = 50;
         mp.Width = 50;
-
-        math.Height = 13;
-        math.Width = 13;
 
         //Legt Hoehe und Breite der Ergebnis-Box fest
         box.Height = 50;
@@ -331,7 +323,6 @@ class calculator : Form
         Controls.Add(faculty);
         Controls.Add(ln);
         Controls.Add(shift);
-        Controls.Add(math);
         Controls.Add(comma_precision);
         Controls.Add(M);
         Controls.Add(mp);
