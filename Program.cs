@@ -428,7 +428,7 @@ class calculator : Form
             sinus.Text = "arcsin";
             cosinus.Text = "arccos";
             tangens.Text = "arctan";
-            faculty.Text = "1/X";
+            faculty.Text = "1/x";
             M.Text = "MC";
             mp.Text = "M-";
 
@@ -456,7 +456,7 @@ class calculator : Form
             cosinus.Text = "cos";
             tangens.Text = "tan";
             M.Text = "M";
-            faculty.Text = "!";
+            faculty.Text = "x!";
             mp.Text = "M+";
 
             function = false;
@@ -506,26 +506,7 @@ class calculator : Form
     //TextBox String an, erweitert somit die Eingabe um eine Zehnerpotenz.
     void Number0_Click(object sender, EventArgs e)
     {
-        if (box.Text == "Error")
-        {
-            box.Text = "0";
-            input_length = 0;
-        }
-        else if (input_length == 0 && box.Text == "0")
-        { }
-        else if (input_length == 0 && box.Text != "0" || box.Text == "∞")
-        {
-            box.Text = "0";
-        }
-        else if (new_operand)
-        {
-            input_length = 0;
-        }
-        else {
-            box.Text += "0";
-            input_length += 1;
-        }
-        new_operand = false;
+        setOrAddNumber(0);
     }
 
     //Diese Methode reagiert auf den Klick auf den Ziffer 1 Button. Dieser erstellt, je nach
@@ -533,21 +514,7 @@ class calculator : Form
     //TextBox String an.
     void Number1_Click(object sender, EventArgs e)
     {
-        if (box.Text == "Error")
-        {
-            box.Text = "1";
-            input_length = 1;
-        }
-        else if (input_length == 0 || new_operand || box.Text == "∞")
-        {
-            box.Text = "1";
-            input_length = 1;
-        }
-        else {
-            box.Text += "1";
-            input_length += 1;
-        }
-        new_operand = false;
+        setOrAddNumber(1);
     }
 
     //Diese Methode reagiert auf den Klick auf den Ziffer 2 Button. Dieser erstellt, je nach
@@ -555,21 +522,7 @@ class calculator : Form
     //TextBox String an.
     void Number2_Click(object sender, EventArgs e)
     {
-        if (box.Text == "Error")
-        {
-            box.Text = "2";
-            input_length = 1;
-        }
-        else if (input_length == 0 || new_operand || box.Text == "∞")
-        {
-            box.Text = "2";
-            input_length = 1;
-        }
-        else {
-            box.Text += "2";
-            input_length += 1;
-        }
-        new_operand = false;
+        setOrAddNumber(2);
     }
 
     //Diese Methode reagiert auf den Klick auf den Ziffer 3 Button. Dieser erstellt, je nach
@@ -577,21 +530,7 @@ class calculator : Form
     //TextBox String an.
     void Number3_Click(object sender, EventArgs e)
     {
-        if (box.Text == "Error")
-        {
-            box.Text = "3";
-            input_length = 1;
-        }
-        else if (input_length == 0 || new_operand || box.Text == "∞")
-        {
-            box.Text = "3";
-            input_length = 1;
-        }
-        else {
-            box.Text += "3";
-            input_length += 1;
-        }
-        new_operand = false;
+        setOrAddNumber(3);
     }
 
     //Diese Methode reagiert auf den Klick auf den Ziffer 4 Button. Dieser erstellt, je nach
@@ -599,21 +538,7 @@ class calculator : Form
     //TextBox String an.
     void Number4_Click(object sender, EventArgs e)
     {
-        if (box.Text == "Error")
-        {
-            box.Text = "4";
-            input_length = 1;
-        }
-        else if (input_length == 0 || new_operand || box.Text == "∞")
-        {
-            box.Text = "4";
-            input_length = 1;
-        }
-        else {
-            box.Text += "4";
-            input_length += 1;
-        }
-        new_operand = false;
+        setOrAddNumber(4);
     }
 
     //Diese Methode reagiert auf den Klick auf den Ziffer 5 Button. Dieser erstellt, je nach
@@ -621,21 +546,7 @@ class calculator : Form
     //TextBox String an.
     void Number5_Click(object sender, EventArgs e)
     {
-        if (box.Text == "Error")
-        {
-            box.Text = "5";
-            input_length = 1;
-        }
-        else if (input_length == 0 || new_operand || box.Text == "∞")
-        {
-            box.Text = "5";
-            input_length = 1;
-        }
-        else {
-            box.Text += "5";
-            input_length += 1;
-        }
-        new_operand = false;
+        setOrAddNumber(5);
     }
 
     //Diese Methode reagiert auf den Klick auf den Ziffer 6 Button. Dieser erstellt, je nach
@@ -643,21 +554,7 @@ class calculator : Form
     //TextBox String an.
     void Number6_Click(object sender, EventArgs e)
     {
-        if (box.Text == "Error")
-        {
-            box.Text = "6";
-            input_length = 1;
-        }
-        else if (input_length == 0 || new_operand || box.Text == "∞")
-        {
-            box.Text = "6";
-            input_length = 1;
-        }
-        else {
-            box.Text += "6";
-            input_length += 1;
-        }
-        new_operand = false;
+        setOrAddNumber(6);
     }
 
     //Diese Methode reagiert auf den Klick auf den Ziffer 7 Button. Dieser erstellt, je nach
@@ -665,21 +562,7 @@ class calculator : Form
     //TextBox String an.
     void Number7_Click(object sender, EventArgs e)
     {
-        if (box.Text == "Error")
-        {
-            box.Text = "7";
-            input_length = 1;
-        }
-        else if (input_length == 0 || new_operand || box.Text == "∞")
-        {
-            box.Text = "7";
-            input_length = 1;
-        }
-        else {
-            box.Text += "7";
-            input_length += 1;
-        }
-        new_operand = false;
+        setOrAddNumber(7);
     }
 
     //Diese Methode reagiert auf den Klick auf den Ziffer 8 Button. Dieser erstellt, je nach
@@ -687,21 +570,7 @@ class calculator : Form
     //TextBox String an.
     void Number8_Click(object sender, EventArgs e)
     {
-        if (box.Text == "Error")
-        {
-            box.Text = "8";
-            input_length = 1;
-        }
-        else if (input_length == 0 || new_operand || box.Text == "∞")
-        {
-            box.Text = "8";
-            input_length = 1;
-        }
-        else {
-            box.Text += "8";
-            input_length += 1;
-        }
-        new_operand = false;
+        setOrAddNumber(8);
     }
 
     //Diese Methode reagiert auf den Klick auf den Ziffer 9 Button. Dieser erstellt, je nach
@@ -709,21 +578,7 @@ class calculator : Form
     //TextBox String an.
     void Number9_Click(object sender, EventArgs e)
     {
-        if (box.Text == "Error")
-        {
-            box.Text = "9";
-            input_length = 1;
-        }
-        else if (input_length == 0 || new_operand || box.Text == "∞")
-        {
-            box.Text = "9";
-            input_length = 1;
-        }
-        else {
-            box.Text += "9";
-            input_length += 1;
-        }
-        new_operand = false;
+        setOrAddNumber(9);
     }
 
     //Diese Methode reagiert auf den Klick auf den Button der Konstante Pi. Sie setzt den String der
@@ -1417,6 +1272,22 @@ class calculator : Form
             comma_precision.Text = precision.Substring(1, 1) + " Dgt";
         else
             comma_precision.Text = precision.Substring(1, 1) + " Dgts";
+    }
+
+    private void setOrAddNumber(int number)
+    {
+        if (input_length == 0 && box.Text == "0" && number == 0)
+        { }
+        else if (input_length == 0 || new_operand || box.Text == "∞" || box.Text == "Error")
+        {
+            box.Text = number.ToString();
+            input_length = 1;
+        }
+        else {
+            box.Text += number.ToString();
+            input_length += 1;
+        }
+        new_operand = false;
     }
 }
 
