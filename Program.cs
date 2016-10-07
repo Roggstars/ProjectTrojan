@@ -210,18 +210,19 @@ class calculator : Form
 
         //Legt Hoehe und Breite der Ergebnis-Box fest
         box.Width = 320;
+        box.Font = new Font("Arial", 30, FontStyle.Bold);
 
         box.Location = new Point(5, 5);
 
         sinus.Location = new Point(box.Left, box.Top + box.Height + 10);
         cosinus.Location = new Point(sinus.Left + sinus.Width, sinus.Top);
         tangens.Location = new Point(cosinus.Left + cosinus.Width, cosinus.Top);
-        gradrad.Location = new Point(tangens.Left + 10 + ln.Width + E.Width + 10, tangens.Top);
+        gradrad.Location = new Point(tangens.Left + tangens.Width + 10 + ln.Width + E.Width + 10, tangens.Top);
 
         sinush.Location = new Point(sinus.Left, sinus.Top + sinus.Height);
         cosinush.Location = new Point(cosinus.Left, cosinus.Top + cosinus.Height);
         pi.Location = new Point(tangens.Left, tangens.Top + tangens.Height);
-        shift.Location = new Point(pi.Left + 10 + ln.Width + E.Width + 10, pi.Top);
+        shift.Location = new Point(pi.Left + pi.Width + 10 + ln.Width + E.Width + 10, pi.Top);
 
         square.Location = new Point(sinush.Left, sinush.Top + sinush.Height + 10);
         sqrt.Location = new Point(square.Left + square.Width, square.Top);
@@ -230,7 +231,7 @@ class calculator : Form
         E.Location = new Point(ln.Left + ln.Width, ln.Top);
         comma_precision.Location = new Point(E.Left + E.Width + 10, E.Top);
 
-        number7.Location = new Point(sqrt.Left, sqrt.Top + sqrt.Height + 20);
+        number7.Location = new Point(square.Left, square.Top + square.Height + 20);
         number8.Location = new Point(number7.Left + number8.Width, number7.Top);
         number9.Location = new Point(number8.Left + number9.Width, number7.Top);
         del.Location = new Point(number9.Left + number9.Width + 10, number9.Top);
@@ -351,7 +352,6 @@ class calculator : Form
         number8.BackColor = Color.LightGray;
         number9.BackColor = Color.LightGray;
 
-        box.Font = new Font("Arial", 30, FontStyle.Bold);
         box.TextAlign = HorizontalAlignment.Right;
         box.ForeColor = Color.WhiteSmoke;
         box.BackColor = Color.Black;
