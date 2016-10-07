@@ -854,7 +854,7 @@ class calculator : Form
             perform_current_operation();
         }
 
-        update_operation("add")
+        update_operation("add");
     }
 
     //Diese Methode reagiert auf den Klick auf den Subst Button und bewirkt die Berechnung der
@@ -868,7 +868,7 @@ class calculator : Form
             perform_current_operation();
         }
 
-        update_operation("subst")
+        update_operation("subst");
     }
 
     //Diese Methode reagiert auf den Klick auf den Mult Button und bewirkt die Berechnung des
@@ -917,7 +917,7 @@ class calculator : Form
     {
         check_for_error_or_inf();
 
-        else if (gradrad.Text == "Rad")
+        if (gradrad.Text == "Rad")
         {
             operand1 = (Math.Sin(double.Parse(box.Text)));
             box.Text = operand1.ToString(precision);
@@ -945,7 +945,7 @@ class calculator : Form
     {
         check_for_error_or_inf();
 
-        else if (gradrad.Text == "Rad")
+        if (gradrad.Text == "Rad")
         {
             operand1 = (Math.Sinh(double.Parse(box.Text)));
             box.Text = operand1.ToString(precision);
@@ -971,7 +971,7 @@ class calculator : Form
     {
         check_for_error_or_inf();
 
-        else if (gradrad.Text == "Rad")
+        if (gradrad.Text == "Rad")
         {
             operand1 = (Math.Cos(double.Parse(box.Text)));
             box.Text = operand1.ToString(precision);
@@ -999,7 +999,7 @@ class calculator : Form
     {
         check_for_error_or_inf();
 
-        else if (gradrad.Text == "Rad")
+        if (gradrad.Text == "Rad")
         {
             operand1 = (Math.Cosh(double.Parse(box.Text)));
             box.Text = operand1.ToString(precision);
@@ -1025,7 +1025,7 @@ class calculator : Form
     {
         check_for_error_or_inf();
 
-        else if (gradrad.Text == "Rad")
+        if (gradrad.Text == "Rad")
         {
             operand1 = (Math.Tan(double.Parse(box.Text)));
             box.Text = operand1.ToString(precision);
@@ -1053,7 +1053,7 @@ class calculator : Form
     {
         check_for_error_or_inf();
 
-        else if (gradrad.Text == "Rad")
+        if (gradrad.Text == "Rad")
         {
             operand1 = (Math.Asin(double.Parse(box.Text)));
             box.Text = operand1.ToString(precision);
@@ -1356,45 +1356,7 @@ class calculator : Form
 
     void Comma_Precision_Click(object sender, EventArgs e)
     {
-        switch (precision)
-        {
-            case "g0":
-                precision = "g1";
-                comma_precision.Text = "1 Dgt";
-                break;
-            case "g1":
-                precision = "g2";
-                comma_precision.Text = "2 Dgts";
-                break;
-            case "g2":
-                precision = "g3";
-                comma_precision.Text = "3 Dgts";
-                break;
-            case "g3":
-                precision = "g4";
-                comma_precision.Text = "4 Dgts";
-                break;
-            case "g4":
-                precision = "g5";
-                comma_precision.Text = "5 Dgts";
-                break;
-            case "g5":
-                precision = "g6";
-                comma_precision.Text = "6 Dgts";
-                break;
-            case "g6":
-                precision = "g7";
-                comma_precision.Text = "7 Dgts";
-                break;
-            case "g7":
-                precision = "g8";
-                comma_precision.Text = "8 Dgts";
-                break;
-            case "g8":
-                precision = "g0";
-                comma_precision.Text = "0 Dgts";
-                break;
-        }
+        setNewPrecision(precision);
     }
 
     private void perform_current_operation()
@@ -1438,6 +1400,23 @@ class calculator : Form
     {
         if (box.Text == "Error" || box.Text == "∞")
             return;
+    }
+
+    private void setNewPrecision(string newPrecision)
+    {
+        if (newPrecision != "g8")
+        {
+            int newPrecisionInt = int.Parse(newPrecision.Substring(1, 1));
+            newPrecisionInt += 1;
+            precision = "g" + newPrecisionInt.ToString();
+        }
+        else
+            precision = "g0";
+
+        if (precision == "g1")
+            comma_precision.Text = precision.Substring(1, 1) + " Dgt";
+        else
+            comma_precision.Text = precision.Substring(1, 1) + " Dgts";
     }
 }
 
