@@ -1021,9 +1021,7 @@ class calculator : Form
         }
         else
         {
-            box.Text = "Error";
-            operand1 = 0;
-            input_length = 0;
+            errorMessage();
         }
         new_operand = true;
     }
@@ -1043,9 +1041,7 @@ class calculator : Form
         }
         else
         {
-            box.Text = "Error";
-            operand1 = 0;
-            input_length = 0;
+            errorMessage();
         }
         new_operand = true;
     }
@@ -1149,6 +1145,12 @@ class calculator : Form
     {
         system_language = 
             System.Globalization.CultureInfo.InstalledUICulture.ToString().Substring(0, 2);
+    }
+    private void errorMessage()
+    {
+        box.Text = "Error";
+        operand1 = 0;
+        input_length = 0;
     }
 }
 
