@@ -134,8 +134,6 @@ class calculator : Form
         M.Text = ("M");
         mp.Text = ("M+");
 
-        Size = new Size(390, 400); //Fenstergröße
-
         //Legt Hoehe und Breite der Buttons fest
         number0.Height = 50;
         number0.Width = 50;
@@ -338,8 +336,6 @@ class calculator : Form
         MinimizeBox = false; //Deaktivieren der minimize und maximize Box neben der Schließen-Box
                              //in der Titelleiste
         MaximizeBox = false;
-
-        Size = new Size(390, 400); //Fenstergröße
 
         //Farben
         number0.BackColor = Color.LightGray;
