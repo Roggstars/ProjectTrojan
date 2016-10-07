@@ -580,14 +580,14 @@ class calculator : Form
     {
         if (system_language == "de")
         {
-            if (!box.Text.Contains(","))
+            if (!box.Text.Contains(",") && box.Text != "Error")
             {
                 box.Text += ",";
                 input_length += 1;
             }
         }
         else {
-            if (!box.Text.Contains("."))
+            if (!box.Text.Contains(".") && box.Text != "Error")
             {
                 box.Text += ".";
                 input_length += 1;
@@ -964,8 +964,7 @@ class calculator : Form
         }
         else 
         {
-            box.Text = "Error";
-            new_operand = true;
+            errorMessage();
         }
     }
 
@@ -979,8 +978,7 @@ class calculator : Form
         double EPSILON = 0.0000000000000001f;
         if (Math.Abs(X) < EPSILON)
         {
-            box.Text = "Error";
-            new_operand = true;
+            errorMessage();
         }
         else
         {
@@ -1149,8 +1147,7 @@ class calculator : Form
     private void errorMessage()
     {
         box.Text = "Error";
-        operand1 = 0;
-        input_length = 0;
+        new_operand = true;
     }
 }
 
