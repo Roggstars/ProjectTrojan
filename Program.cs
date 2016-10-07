@@ -402,12 +402,14 @@ class calculator : Form
             mp.Click += mm_Click;
             factorial.Click -= Factorial_Click;
             factorial.Click += MarketValue_Click;
-
+            square.Click += Pow_Click;
+            square.Click -= Square_Click;
 
             sinus.Text = "arcsin";
             cosinus.Text = "arccos";
             tangens.Text = "arctan";
             factorial.Text = "1/x";
+            square.Text = "x^n";
             M.Text = "MC";
             mp.Text = "M-";
 
@@ -430,12 +432,15 @@ class calculator : Form
             mp.Click -= mm_Click;
             factorial.Click += Factorial_Click;
             factorial.Click -= MarketValue_Click;
+            square.Click += Square_Click;
+            square.Click -= Pow_Click;
         
             sinus.Text = "sin";
             cosinus.Text = "cos";
             tangens.Text = "tan";
             M.Text = "M";
             factorial.Text = "x!";
+            square.Text = "x²";
             mp.Text = "M+";
 
             function = false;
