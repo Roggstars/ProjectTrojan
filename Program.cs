@@ -1142,7 +1142,7 @@ class calculator : Form
     private void setCurrentLanguage()
     {
         system_language = 
-            System.Globalization.CultureInfo.InstalledUICulture.ToString().Substring(0, 2);
+            System.Globalization.CultureInfo.CurrentCulture.ToString().Substring(0, 2);
     }
     private void errorMessage()
     {
