@@ -34,7 +34,6 @@ class calculator : Form
     Button div;
     Button square;
     Button sqrt;
-    Button pow;
     Button equals;
     Button del;
     Button factorial;
@@ -77,7 +76,6 @@ class calculator : Form
         div = new Button();
         square = new Button();
         sqrt = new Button();
-        pow = new Button();
         equals = new Button();
         del = new Button();
         factorial = new Button();
@@ -117,7 +115,6 @@ class calculator : Form
         mult.Text = ("*");
         div.Text = ("/");
         square.Text = ("x²");
-        pow.Text = ("x^n");
         sqrt.Text = ("√¯x");
         equals.Text = ("=");
         del.Text = ("DEL");
@@ -175,8 +172,6 @@ class calculator : Form
         div.Width = 50;
         square.Height = 50;
         square.Width = 50;
-        pow.Height = 50;
-        pow.Width = 50;
         sqrt.Height = 50;
         sqrt.Width = 50;
         equals.Height = 50;
@@ -276,7 +271,6 @@ class calculator : Form
         mult.Click += Mult_Click;
         div.Click += Div_Click;
         square.Click += Square_Click;
-        pow.Click += Pow_Click;
         sqrt.Click += Sqrt_Click;
         equals.Click += Equals_Click;
         del.Click += Del_Click;
@@ -316,7 +310,6 @@ class calculator : Form
         Controls.Add(mult);
         Controls.Add(div);
         Controls.Add(square);
-        Controls.Add(pow);
         Controls.Add(sqrt);
         Controls.Add(box);
         Controls.Add(equals);
@@ -360,7 +353,6 @@ class calculator : Form
         mult.BackColor = Color.Orange;
         div.BackColor = Color.Orange;
         square.BackColor = Color.Gray;
-        pow.BackColor = Color.Gray;
         sqrt.BackColor = Color.Gray;
         factorial.BackColor = Color.Gray;
         equals.BackColor = Color.Orange;
