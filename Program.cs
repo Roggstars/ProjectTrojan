@@ -583,6 +583,9 @@ class calculator : Form
     //da Systeme verschieden auf die beiden Zeichen reagieren.
     void commaButtonClick(object sender, EventArgs e)
     {
+        if (OutputContainsErrorOrInfinity())
+            return;
+
         if (systemLanguage == "de")
         {
             if (!inputOutputBox.Text.Contains(","))
@@ -734,7 +737,8 @@ class calculator : Form
     //Sinus fuer die aktuelle Eingabe.
     void sinusButtonClick(object sender, EventArgs e)
     {
-        checkForErrorOrInfinity();
+        if (OutputContainsErrorOrInfinity())
+            return;
 
         if (unitOfAngle.Text == "Rad")
         {
@@ -762,7 +766,8 @@ class calculator : Form
     //sinusHyp fuer die aktuelle Eingabe.
     void sinusHypButtonClick(object sender, EventArgs e)
     {
-        checkForErrorOrInfinity();
+        if (OutputContainsErrorOrInfinity())
+            return;
 
         if (unitOfAngle.Text == "Rad")
         {
@@ -788,7 +793,8 @@ class calculator : Form
     //Cosinus fuer die aktuelle Eingabe.
     void cosinusButtonClick(object sender, EventArgs e)
     {
-        checkForErrorOrInfinity();
+        if (OutputContainsErrorOrInfinity())
+            return;
 
         if (unitOfAngle.Text == "Rad")
         {
@@ -816,7 +822,8 @@ class calculator : Form
     //cosinusHyp fuer die aktuelle Eingabe.
     void cosinusHypButtonClick(object sender, EventArgs e)
     {
-        checkForErrorOrInfinity();
+        if (OutputContainsErrorOrInfinity())
+            return;
 
         if (unitOfAngle.Text == "Rad")
         {
@@ -842,7 +849,8 @@ class calculator : Form
     //Tangens fuer die aktuelle Eingabe.
     void tangensButtonClick(object sender, EventArgs e)
     {
-        checkForErrorOrInfinity();
+        if (OutputContainsErrorOrInfinity())
+            return;
 
         if (unitOfAngle.Text == "Rad")
         {
@@ -870,7 +878,8 @@ class calculator : Form
     //ArcSinus fuer die aktuelle Eingabe.
     void arcSinusButtonClick(object sender, EventArgs e)
     {
-        checkForErrorOrInfinity();
+        if (OutputContainsErrorOrInfinity())
+            return;
 
         if (unitOfAngle.Text == "Rad")
         {
@@ -896,7 +905,8 @@ class calculator : Form
     //ArcCosinus fuer die aktuelle Eingabe.
     void arcCosinusbuttonClick(object sender, EventArgs e)
     {
-        checkForErrorOrInfinity();
+        if (OutputContainsErrorOrInfinity())
+            return;
 
         if (unitOfAngle.Text == "Rad")
         {
@@ -922,7 +932,8 @@ class calculator : Form
     //ArcTangens fuer die aktuelle Eingabe.
     void arcTangensButtonClick(object sender, EventArgs e)
     {
-        checkForErrorOrInfinity();
+        if (OutputContainsErrorOrInfinity())
+            return;
 
         if (unitOfAngle.Text == "Rad")
         {
@@ -952,8 +963,9 @@ class calculator : Form
     //beachten, dass die Fakultaet nur fuer natuerliche Zahlen und '0' definiert ist. 
     void factorialButtonClick(object sender, EventArgs e)
     {
-        checkForErrorOrInfinity();
-        
+        if (OutputContainsErrorOrInfinity())
+            return;
+
         double EPSILON = 0.0000000000000001f;
         double tempMax = double.Parse(inputOutputBox.Text);
 
@@ -978,7 +990,8 @@ class calculator : Form
     //Kehrwertes. Dabei ist darauf zu achten, dass der Wert ungleich 0 ist.
     void reciprocalButtonClick(object sender, EventArgs e)
     {
-        checkForErrorOrInfinity();
+        if (OutputContainsErrorOrInfinity())
+            return;
 
         double X = double.Parse(inputOutputBox.Text);
         double EPSILON = 0.0000000000000001f;
@@ -1001,7 +1014,8 @@ class calculator : Form
     //aktuellen Eingabe.
     void squareButtonClick(object sender, EventArgs e)
     {
-        checkForErrorOrInfinity();
+        if (OutputContainsErrorOrInfinity())
+            return;
 
         operand1 = double.Parse(inputOutputBox.Text) * double.Parse(inputOutputBox.Text);
         inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
@@ -1014,7 +1028,8 @@ class calculator : Form
     //definiert.
     void lnButtonClick(object sender, EventArgs e)
     {
-        checkForErrorOrInfinity();
+        if (OutputContainsErrorOrInfinity())
+            return;
 
         double lnValue = double.Parse(inputOutputBox.Text);
 
@@ -1035,7 +1050,8 @@ class calculator : Form
     //des aktuell eingegebenen Wertes. Ist dieser negativ wird ein Error ausgegeben.
     void sqrtButtonClick(object sender, EventArgs e)
     {
-        checkForErrorOrInfinity();
+        if (OutputContainsErrorOrInfinity())
+            return;
 
         double sqrtValue = Math.Sqrt(double.Parse(inputOutputBox.Text));
 
@@ -1107,10 +1123,12 @@ class calculator : Form
         inputLength = 0;
     }
 
-    private void checkForErrorOrInfinity()
+    private bool OutputContainsErrorOrInfinity()
     {
         if (inputOutputBox.Text == "Error" || inputOutputBox.Text == "∞")
-            return;
+            return true;
+        else
+            return false;
     }
 
     private void setNewPrecision(string newPrecision)
