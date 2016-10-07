@@ -351,7 +351,7 @@ class calculator : Form
         Controls.Add(M);
         Controls.Add(mp);
 
-        Text = ("My little calculator"); //Fenstertitel
+        Text = ("Project Trojan"); //Fenstertitel
         FormBorderStyle = FormBorderStyle.FixedDialog;
         MinimizeBox = false; //Deaktivieren der minimize und maximize Box neben der Schließen-Box
                              //in der Titelleiste
@@ -805,7 +805,7 @@ class calculator : Form
     //Teil der TextBox entfernt (bspw. im Falle eines Vertippens).
     void Del_Click(object sender, EventArgs e)
     {
-        if (new_operand == false)
+        if (!new_operand)
         {
             if (box.Text == "Error")
             {
@@ -836,12 +836,10 @@ class calculator : Form
     {
         if (!new_operand)
         {
-            perform_current_operation(operation);
+            perform_current_operation();
         }
 
-        operation = "pow";
-        input_length = 0;
-        new_operand = true;
+        update_operation("pow");
     }
 
 
@@ -853,12 +851,10 @@ class calculator : Form
     {
         if (!new_operand)
         {
-            perform_current_operation(operation);
+            perform_current_operation();
         }
 
-        operation = "add";
-        input_length = 0;
-        new_operand = true;
+        update_operation("add")
     }
 
     //Diese Methode reagiert auf den Klick auf den Subst Button und bewirkt die Berechnung der
@@ -869,12 +865,10 @@ class calculator : Form
     {
         if (!new_operand)
         {
-            perform_current_operation(operation);
+            perform_current_operation();
         }
 
-        operation = "subst";
-        input_length = 0;
-        new_operand = true;
+        update_operation("subst")
     }
 
     //Diese Methode reagiert auf den Klick auf den Mult Button und bewirkt die Berechnung des
@@ -885,12 +879,10 @@ class calculator : Form
     {
         if (!new_operand)
         {
-            perform_current_operation(operation);
+            perform_current_operation();
         }
 
-        operation = "mult";
-        input_length = 0;
-        new_operand = true;
+        update_operation("mult");
     }
 
     //Diese Methode reagiert auf den Klick auf den Div Button und bewirkt die Berechnung des
@@ -901,12 +893,10 @@ class calculator : Form
     {
         if (!new_operand)
         {
-            perform_current_operation(operation);
+            perform_current_operation();
         }
 
-        operation = "div";
-        input_length = 0;
-        new_operand = true;
+        update_operation("div");
     }
 
 //Winkelfunktionen
@@ -925,27 +915,25 @@ class calculator : Form
     //Sinus fuer die aktuelle Eingabe.
     void Sinus_Click(object sender, EventArgs e)
     {
-        switch (gradrad.Text)
+        check_for_error_or_inf();
+
+        else if (gradrad.Text == "Rad")
         {
-            case "Error":
-                break;
-            case "∞":
-                break;
-            case "Rad":
-                operand1 = (Math.Sin(double.Parse(box.Text)));
-                box.Text = operand1.ToString(precision);
-                break;
-            case "Grad":
-                var temp = double.Parse(box.Text);
-                temp *= (Math.PI / 180);
-                operand1 = Math.Sin(temp);
-                box.Text = operand1.ToString(precision);
-                break;
-            default:
-                box.Text = "Error";
-                operand1 = 0;
-                input_length = 0;
-                break;
+            operand1 = (Math.Sin(double.Parse(box.Text)));
+            box.Text = operand1.ToString(precision);
+        }
+        else if (gradrad.Text == "Grad")
+        {
+            var temp = double.Parse(box.Text);
+            temp *= (Math.PI / 180);
+            operand1 = Math.Sin(temp);
+            box.Text = operand1.ToString(precision);
+        }
+        else
+        {
+            box.Text = "Error";
+            operand1 = 0;
+            input_length = 0;
         }
 
         new_operand = true;
@@ -955,25 +943,23 @@ class calculator : Form
     //Sinush fuer die aktuelle Eingabe.
     void Sinush_Click(object sender, EventArgs e)
     {
-        switch (gradrad.Text)
+        check_for_error_or_inf();
+
+        else if (gradrad.Text == "Rad")
         {
-            case "Error":
-                break;
-            case "∞":
-                break;
-            case "Rad":
-                operand1 = (Math.Sinh(double.Parse(box.Text)));
-                box.Text = operand1.ToString(precision);
-                break;
-            case "Grad":
-                var temp = double.Parse(box.Text);
-                temp *= (Math.PI / 180);
-                operand1 = Math.Sinh(temp);
-                box.Text = operand1.ToString(precision);
-                break;
-            default:
-                box.Text = "Error";
-                break;
+            operand1 = (Math.Sinh(double.Parse(box.Text)));
+            box.Text = operand1.ToString(precision);
+        }
+        else if (gradrad.Text == "Grad")
+        {
+            var temp = double.Parse(box.Text);
+            temp *= (Math.PI / 180);
+            operand1 = Math.Sinh(temp);
+            box.Text = operand1.ToString(precision);
+        }
+        else
+        {
+            box.Text = "Error";
         }
 
         new_operand = true;
@@ -983,27 +969,25 @@ class calculator : Form
     //Cosinus fuer die aktuelle Eingabe.
     void Cosinus_Click(object sender, EventArgs e)
     {
-        switch (gradrad.Text)
+        check_for_error_or_inf();
+
+        else if (gradrad.Text == "Rad")
         {
-            case "Error":
-                break;
-            case "∞":
-                break;
-            case "Rad":
-                operand1 = (Math.Cos(double.Parse(box.Text)));
-                box.Text = operand1.ToString(precision);
-                break;
-            case "Grad":
-                var temp = double.Parse(box.Text);
-                temp *= (Math.PI / 180);
-                operand1 = Math.Cos(temp);
-                box.Text = operand1.ToString(precision);
-                break;
-            default:
-                box.Text = "Error";
-                operand1 = 0;
-                input_length = 0;
-                break;
+            operand1 = (Math.Cos(double.Parse(box.Text)));
+            box.Text = operand1.ToString(precision);
+        }
+        else if (gradrad.Text == "Grad")
+        {
+            var temp = double.Parse(box.Text);
+            temp *= (Math.PI / 180);
+            operand1 = Math.Cos(temp);
+            box.Text = operand1.ToString(precision);
+        }
+        else
+        {
+            box.Text = "Error";
+            operand1 = 0;
+            input_length = 0;
         }
 
         new_operand = true;
@@ -1013,25 +997,23 @@ class calculator : Form
     //Cosinush fuer die aktuelle Eingabe.
     void Cosinush_Click(object sender, EventArgs e)
     {
-        switch (gradrad.Text)
+        check_for_error_or_inf();
+
+        else if (gradrad.Text == "Rad")
         {
-            case "Error":
-                break;
-            case "∞":
-                break;
-            case "Rad":
-                operand1 = (Math.Cosh(double.Parse(box.Text)));
-                box.Text = operand1.ToString(precision);
-                break;
-            case "Grad":
-                var temp = double.Parse(box.Text);
-                temp *= (Math.PI / 180);
-                operand1 = Math.Cosh(temp);
-                box.Text = operand1.ToString(precision);
-                break;
-            default:
-                box.Text = "Error";
-                break;
+            operand1 = (Math.Cosh(double.Parse(box.Text)));
+            box.Text = operand1.ToString(precision);
+        }
+        else if (gradrad.Text == "Grad")
+        {
+            var temp = double.Parse(box.Text);
+            temp *= (Math.PI / 180);
+            operand1 = Math.Cosh(temp);
+            box.Text = operand1.ToString(precision);
+        }
+        else
+        {
+            box.Text = "Error";
         }
 
         new_operand = true;
@@ -1041,27 +1023,25 @@ class calculator : Form
     //Tangens fuer die aktuelle Eingabe.
     void Tangens_Click(object sender, EventArgs e)
     {
-        switch (gradrad.Text)
+        check_for_error_or_inf();
+
+        else if (gradrad.Text == "Rad")
         {
-            case "Error":
-                break;
-            case "∞":
-                break;
-            case "Rad":
-                operand1 = (Math.Tan(double.Parse(box.Text)));
-                box.Text = operand1.ToString(precision);
-                break;
-            case "Grad":
-                var temp = double.Parse(box.Text);
-                temp *= (Math.PI / 180);
-                operand1 = Math.Tan(temp);
-                box.Text = operand1.ToString(precision);
-                break;
-            default:
-                box.Text = "Error";
-                operand1 = 0;
-                input_length = 0;
-                break;
+            operand1 = (Math.Tan(double.Parse(box.Text)));
+            box.Text = operand1.ToString(precision);
+        }
+        else if (gradrad.Text == "Grad")
+        {
+            var temp = double.Parse(box.Text);
+            temp *= (Math.PI / 180);
+            operand1 = Math.Tan(temp);
+            box.Text = operand1.ToString(precision);
+        }
+        else
+        {
+            box.Text = "Error";
+            operand1 = 0;
+            input_length = 0;
         }
 
         new_operand = true;
@@ -1071,25 +1051,23 @@ class calculator : Form
     //ArcSinus fuer die aktuelle Eingabe.
     void ASinus_Click(object sender, EventArgs e)
     {
-        switch (gradrad.Text)
+        check_for_error_or_inf();
+
+        else if (gradrad.Text == "Rad")
         {
-            case "Error":
-                break;
-            case "∞":
-                break;
-            case "Rad":
-                operand1 = (Math.Asin(double.Parse(box.Text)));
-                box.Text = operand1.ToString(precision);
-                break;
-            case "Grad":
-                operand1 = Math.Asin(double.Parse(box.Text)) * 180 / Math.PI;
-                box.Text = operand1.ToString(precision);
-                break;
-            default:
-                box.Text = "Error";
-                operand1 = 0;
-                input_length = 0;
-                break;
+            operand1 = (Math.Asin(double.Parse(box.Text)));
+            box.Text = operand1.ToString(precision);
+        }
+        else if (gradrad.Text == "Grad")
+        {
+            operand1 = Math.Asin(double.Parse(box.Text)) * 180 / Math.PI;
+            box.Text = operand1.ToString(precision);
+        }
+        else
+        {
+            box.Text = "Error";
+            operand1 = 0;
+            input_length = 0;
         }
 
         new_operand = true;
@@ -1099,25 +1077,23 @@ class calculator : Form
     //ArcCosinus fuer die aktuelle Eingabe.
     void ACosinus_Click(object sender, EventArgs e)
     {
-        switch (gradrad.Text)
+        check_for_error_or_inf();
+
+        if (gradrad.Text == "Rad")
         {
-            case "Error":
-                break;
-            case "∞":
-                break;
-            case "Rad":
-                operand1 = (Math.Acos(double.Parse(box.Text)));
-                box.Text = operand1.ToString(precision);
-                break;
-            case "Grad":
-                operand1 = Math.Acos(double.Parse(box.Text)) * 180 / Math.PI;
-                box.Text = operand1.ToString(precision);
-                break;
-            default:
-                box.Text = "Error";
-                operand1 = 0;
-                input_length = 0;
-                break;
+            operand1 = (Math.Acos(double.Parse(box.Text)));
+            box.Text = operand1.ToString(precision);
+        }
+        else if (gradrad.Text == "Grad")
+        {
+            operand1 = Math.Acos(double.Parse(box.Text)) * 180 / Math.PI;
+            box.Text = operand1.ToString(precision);
+        }
+        else
+        {
+            box.Text = "Error";
+            operand1 = 0;
+            input_length = 0;
         }
 
         new_operand = true;
@@ -1127,25 +1103,23 @@ class calculator : Form
     //ArcTangens fuer die aktuelle Eingabe.
     void ATangens_Click(object sender, EventArgs e)
     {
-        switch (gradrad.Text)
+        check_for_error_or_inf();
+
+        if (gradrad.Text == "Rad")
         {
-            case "Error":
-                break;
-            case "∞":
-                break;
-            case "Rad":
-                operand1 = (Math.Atan(double.Parse(box.Text)));
-                box.Text = operand1.ToString(precision);
-                break;
-            case "Grad":
-                operand1 = Math.Atan(double.Parse(box.Text)) * 180 / Math.PI;
-                box.Text = operand1.ToString(precision);
-                break;
-            default:
-                box.Text = "Error";
-                operand1 = 0;
-                input_length = 0;
-                break;
+            operand1 = (Math.Atan(double.Parse(box.Text)));
+            box.Text = operand1.ToString(precision);
+        }
+        else if (gradrad.Text == "Grad")
+        {
+            operand1 = Math.Atan(double.Parse(box.Text)) * 180 / Math.PI;
+            box.Text = operand1.ToString(precision);
+        }
+        else
+        {
+            box.Text = "Error";
+            operand1 = 0;
+            input_length = 0;
         }
 
         new_operand = true;
@@ -1159,8 +1133,7 @@ class calculator : Form
     //beachten, dass die Fakultaet nur fuer natuerliche Zahlen und '0' definiert ist. 
     void Factorial_Click(object sender, EventArgs e)
     {
-        if (box.Text == "Error" || box.Text == "∞")
-            return;
+        check_for_error_or_inf();
         
         double EPSILON = 0.0000000000000001f;
         double temp_max = double.Parse(box.Text);
@@ -1186,6 +1159,8 @@ class calculator : Form
     //Kehrwertes. Dabei ist darauf zu achten, dass der Wert ungleich 0 ist.
     void MarketValue_Click(object sender, EventArgs e)
     {
+        check_for_error_or_inf();
+
         double X = double.Parse(box.Text);
         double EPSILON = 0.0000000000000001f;
         if (Math.Abs(X) < EPSILON)
@@ -1207,8 +1182,7 @@ class calculator : Form
     //aktuellen Eingabe.
     void Square_Click(object sender, EventArgs e)
     {
-        if (box.Text == "Error" || box.Text == "∞")
-            return;
+        check_for_error_or_inf();
 
         operand1 = double.Parse(box.Text) * double.Parse(box.Text);
         box.Text = operand1.ToString(precision);
@@ -1221,8 +1195,7 @@ class calculator : Form
     //definiert.
     void Ln_Click(object sender, EventArgs e)
     {
-        if (box.Text == "Error" || box.Text == "∞")
-            return;
+        check_for_error_or_inf();
 
         double ln_value = double.Parse(box.Text);
 
@@ -1245,8 +1218,7 @@ class calculator : Form
     //des aktuell eingegebenen Wertes. Ist dieser negativ wird ein Error ausgegeben.
     void Sqrt_Click(object sender, EventArgs e)
     {
-        if (box.Text == "Error" || box.Text == "∞")
-            return;
+        check_for_error_or_inf();
 
         double sqrt_value = Math.Sqrt(double.Parse(box.Text));
 
@@ -1270,12 +1242,10 @@ class calculator : Form
     {
         if (!new_operand)
         {
-            perform_current_operation(operation);
+            perform_current_operation();
         }
 
-        new_operand = true;
-        operation = "none";
-        input_length = 0;
+        update_operation("none");
     }
 
 //Änderung des Layout und Einbindung weiterer Funktionen
@@ -1390,7 +1360,7 @@ class calculator : Form
         {
             case "g0":
                 precision = "g1";
-                comma_precision.Text = "1 Dgts";
+                comma_precision.Text = "1 Dgt";
                 break;
             case "g1":
                 precision = "g2";
@@ -1427,7 +1397,7 @@ class calculator : Form
         }
     }
 
-    private void perform_current_operation(string operation)
+    private void perform_current_operation()
     {
         switch (operation)
         {
@@ -1455,6 +1425,19 @@ class calculator : Form
                 operand1 = double.Parse(box.Text);
                 break;
         }
+    }
+
+    private void update_operation(string new_operation)
+    {
+        new_operand = true;
+        operation = new_operation;
+        input_length = 0;
+    }
+
+    private void check_for_error_or_inf()
+    {
+        if (box.Text == "Error" || box.Text == "∞")
+            return;
     }
 }
 
