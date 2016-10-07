@@ -1125,7 +1125,7 @@ class calculator : Form
 
     private bool OutputContainsErrorOrInfinity()
     {
-        if (inputOutputBox.Text == "Error" || inputOutputBox.Text == "∞")
+        if (inputOutputBox.Text == "Error" || inputOutputBox.Text == "∞" || inputOutputBox.Text == "NaN")
             return true;
         else
             return false;
