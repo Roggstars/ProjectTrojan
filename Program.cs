@@ -1157,7 +1157,6 @@ class calculator : Form
     {
         system_language = 
             System.Globalization.CultureInfo.InstalledUICulture.ToString().Substring(0, 2);
-        Console.WriteLine("Set system language to {0}", system_language);
     }
 }
 
