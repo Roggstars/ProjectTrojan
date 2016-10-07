@@ -36,7 +36,6 @@ class calculator : Form
     Button sqrt;
     Button pow;
     Button equals;
-    Button Exit;
     Button del;
     Button faculty;
     Button ln;
@@ -82,7 +81,6 @@ class calculator : Form
         sqrt = new Button();
         pow = new Button();
         equals = new Button();
-        Exit = new Button();
         del = new Button();
         faculty = new Button();
         ln = new Button();
@@ -126,7 +124,6 @@ class calculator : Form
         pow.Text = ("x^n");
         sqrt.Text = ("√¯x");
         equals.Text = ("=");
-        Exit.Text = ("ESC");
         del.Text = ("DEL");
         faculty.Text = ("x!");
         ln.Text = ("ln");
@@ -189,8 +186,6 @@ class calculator : Form
         sqrt.Width = 50;
         equals.Height = 50;
         equals.Width = 50;
-        Exit.Height = 50;
-        Exit.Width = 50;
         del.Height = 50;
         del.Width = 50;
         faculty.Height = 50;
@@ -225,17 +220,15 @@ class calculator : Form
         box.Height = 50;
         box.Width = 300;
 
-        //Position der Ergebnis-Box
+        Size = new Size(390, 500);
         box.Location = new Point(5, 5);
-
-        //Positionen der Buttons
-        square.Location = new Point(box.Left, box.Top + box.Height + 50);
+        square.Location = new Point(box.Left, box.Top + box.Height + 110);
         pow.Location = new Point(square.Left + pow.Width, square.Top);
         sqrt.Location = new Point(pow.Left + sqrt.Width, square.Top);
         faculty.Location = new Point(sqrt.Left + 10 + faculty.Width, sqrt.Top);
         ln.Location = new Point(faculty.Left + ln.Width, faculty.Top);
 
-        number7.Location = new Point(box.Left, box.Top + box.Height + 110);
+        number7.Location = new Point(box.Left, box.Top + box.Height + 200);
         number8.Location = new Point(number7.Left + number8.Width, number7.Top);
         number9.Location = new Point(number8.Left + number9.Width, number7.Top);
 
@@ -250,23 +243,24 @@ class calculator : Form
         number0.Location = new Point(number1.Left, number1.Top + number1.Height);
         comma.Location = new Point(number2.Left, number2.Top + number2.Height);
         M.Location = new Point(comma.Left + comma.Width, comma.Top);
-        equals.Location = new Point(M.Left + comma.Height + 10, comma.Top);
-        shift.Location = new Point(equals.Left + shift.Width, equals.Top);
-        mp.Location = new Point(shift.Left + shift.Width + 10, equals.Top);
+        equals.Location = new Point(comma.Left + comma.Height + comma.Height + 10, comma.Top);
         add.Location = new Point(number3.Left + number3.Width + 10, number3.Top);
         subst.Location = new Point(add.Left + add.Width, add.Top);
         mult.Location = new Point(number6.Left + number6.Width + 10, number6.Top);
         div.Location = new Point(mult.Left + mult.Width, mult.Top);
-
-        pi.Location = new Point(div.Left + div.Width + 10, div.Top);
-        E.Location = new Point(pi.Left, pi.Top + pi.Height);
         del.Location = new Point(number9.Left + del.Width + 10, number9.Top);
         clear.Location = new Point(del.Left + clear.Width, del.Top);
-        Exit.Location = new Point(box.Left + box.Width + 10, box.Top);
+        pi.Location = new Point(div.Left + div.Width + 10, div.Top);
+        E.Location = new Point(pi.Left, pi.Top + pi.Height);
+        shift.Location = new Point(equals.Left + shift.Width, equals.Top);
+        mp.Location = new Point(shift.Left + shift.Width + 10, equals.Top);
 
-        math.Location = new Point(Exit.Left, Exit.Top + Exit.Height + 5);
-
-        comma_precision.Location = new Point(math.Left, math.Top + math.Height + 5);
+        sinush.Location = new Point(box.Left, box.Top + box.Height + 10);
+        sinus.Location = new Point(box.Left, box.Top + box.Height + box.Height + 10);
+        cosinus.Location = new Point(sinus.Left + sinus.Height, sinus.Top);
+        tangens.Location = new Point(cosinus.Left + cosinus.Height, sinus.Top);
+        gradrad.Location = new Point(tangens.Left + tangens.Height + 10, sinus.Top);
+        cosinush.Location = new Point(gradrad.Left + tangens.Height, sinus.Top);
 
         //Erstelle EventHandler mit entsprechenden _Click Funktionen um ClickEvent der Buttons zu
         //kontrollieren.
@@ -293,7 +287,6 @@ class calculator : Form
         sqrt.Click += Sqrt_Click;
         equals.Click += Equals_Click;
         del.Click += Del_Click;
-        Exit.Click += Exit_Click;
         faculty.Click += Factorial_Click;
         ln.Click += Ln_Click;
         sinus.Click += Sinus_Click;
@@ -306,8 +299,6 @@ class calculator : Form
         comma_precision.Click += Comma_Precision_Click;
         mp.Click += mp_Click;
         M.Click += M_Click;
-
-        math.Click += math_Click;
 
         //Setze Ergebnis auf 0
         box.Text = "0";
@@ -336,7 +327,6 @@ class calculator : Form
         Controls.Add(sqrt);
         Controls.Add(box);
         Controls.Add(equals);
-        Controls.Add(Exit);
         Controls.Add(del);
         Controls.Add(faculty);
         Controls.Add(ln);
@@ -345,6 +335,12 @@ class calculator : Form
         Controls.Add(comma_precision);
         Controls.Add(M);
         Controls.Add(mp);
+        Controls.Add(sinus);
+        Controls.Add(cosinus);
+        Controls.Add(tangens);
+        Controls.Add(sinush);
+        Controls.Add(cosinush);
+        Controls.Add(gradrad);
 
         Text = ("Project Trojan"); //Fenstertitel
         FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -366,7 +362,6 @@ class calculator : Form
         number8.BackColor = Color.LightGray;
         number9.BackColor = Color.LightGray;
 
-        Exit.BackColor = Color.IndianRed;
         box.Font = new Font("Arial", 30, FontStyle.Bold);
         box.TextAlign = HorizontalAlignment.Right;
         box.ForeColor = Color.WhiteSmoke;
@@ -630,13 +625,6 @@ class calculator : Form
         input_length = 0;
         new_operand = false;
         operation = "none";
-    }
-
-    //Diese Methode reagiert auf den Klick auf den Esc Button und bewirkt ein Schliessen des
-    //Taschenrechners.
-    void Exit_Click(object sender, EventArgs e)
-    {
-        Environment.Exit(0);
     }
 
 //Grundrechenarten
@@ -1089,110 +1077,6 @@ class calculator : Form
     }
 
 //Änderung des Layout und Einbindung weiterer Funktionen
-
-    //Diese Methode reagiert auf das Ticken oder Unticken der Checkbox und bewirkt ein Umschalten
-    //zwischen dem wissenschaftlichen und dem normalen Modus des Taschenrechners.
-    //Im wissenschaftlichen Modus kommen Funktionen wie Winkelfunktionen etc. hinzu.
-    //
-    //WIP
-    void math_Click(object sender, EventArgs e)
-    {
-        if (math.Checked)
-        {
-            Controls.Add(sinus);
-            Controls.Add(cosinus);
-            Controls.Add(tangens);
-            Controls.Add(sinush);
-            Controls.Add(cosinush);
-            Controls.Add(gradrad);
-
-            Size = new Size(390, 500);
-            box.Location = new Point(5, 5);
-            square.Location = new Point(box.Left, box.Top + box.Height + 110);
-            pow.Location = new Point(square.Left + pow.Width, square.Top);
-            sqrt.Location = new Point(pow.Left + sqrt.Width, square.Top);
-            faculty.Location = new Point(sqrt.Left + 10 + faculty.Width, sqrt.Top);
-            ln.Location = new Point(faculty.Left + ln.Width, faculty.Top);
-
-            number7.Location = new Point(box.Left, box.Top + box.Height + 200);
-            number8.Location = new Point(number7.Left + number8.Width, number7.Top);
-            number9.Location = new Point(number8.Left + number9.Width, number7.Top);
-
-            number4.Location = new Point(number7.Left, number7.Top + number7.Height);
-            number5.Location = new Point(number8.Left, number8.Top + number8.Height);
-            number6.Location = new Point(number9.Left, number9.Top + number9.Height);
-
-            number1.Location = new Point(number4.Left, number4.Top + number4.Height);
-            number2.Location = new Point(number5.Left, number5.Top + number5.Height);
-            number3.Location = new Point(number6.Left, number6.Top + number6.Height);
-
-            number0.Location = new Point(number1.Left, number1.Top + number1.Height);
-            comma.Location = new Point(number2.Left, number2.Top + number2.Height);
-            M.Location = new Point(comma.Left + comma.Width, comma.Top);
-            equals.Location = new Point(comma.Left + comma.Height + comma.Height + 10, comma.Top);
-            add.Location = new Point(number3.Left + number3.Width + 10, number3.Top);
-            subst.Location = new Point(add.Left + add.Width, add.Top);
-            mult.Location = new Point(number6.Left + number6.Width + 10, number6.Top);
-            div.Location = new Point(mult.Left + mult.Width, mult.Top);
-            del.Location = new Point(number9.Left + del.Width + 10, number9.Top);
-            clear.Location = new Point(del.Left + clear.Width, del.Top);
-            pi.Location = new Point(div.Left + div.Width + 10, div.Top);
-            E.Location = new Point(pi.Left, pi.Top + pi.Height);
-            shift.Location = new Point(equals.Left + shift.Width, equals.Top);
-            mp.Location = new Point(shift.Left + shift.Width + 10, equals.Top);
-
-            sinush.Location = new Point(box.Left, box.Top + box.Height  + 10);
-            sinus.Location = new Point(box.Left, box.Top + box.Height + box.Height + 10);
-            cosinus.Location = new Point(sinus.Left + sinus.Height, sinus.Top);
-            tangens.Location = new Point(cosinus.Left + cosinus.Height, sinus.Top);
-            gradrad.Location = new Point(tangens.Left + tangens.Height + 10, sinus.Top);
-            cosinush.Location = new Point(gradrad.Left + tangens.Height, sinus.Top);
-        }
-        else 
-        {
-            Controls.Remove(sinus);
-            Controls.Remove(cosinus);
-            Controls.Remove(tangens);
-            Controls.Remove(gradrad);
-            Controls.Remove(sinush);
-            Controls.Remove(cosinush);
-
-            Size = new Size(390, 400);
-            box.Location = new Point(5, 5);
-            square.Location = new Point(box.Left, box.Top + box.Height + 17);
-            pow.Location = new Point(square.Left + pow.Width, square.Top);
-            sqrt.Location = new Point(pow.Left + sqrt.Width, square.Top);
-            faculty.Location = new Point(sqrt.Left + 10 + faculty.Width, sqrt.Top);
-            ln.Location = new Point(faculty.Left + ln.Width, faculty.Top);
-
-            number7.Location = new Point(square.Left, square.Top + square.Height + 10);
-            number8.Location = new Point(number7.Left + number8.Width, number7.Top);
-            number9.Location = new Point(number8.Left + number9.Width, number7.Top);
-
-            number4.Location = new Point(number7.Left, number7.Top + number7.Height);
-            number5.Location = new Point(number8.Left, number8.Top + number8.Height);
-            number6.Location = new Point(number9.Left, number9.Top + number9.Height);
-
-            number1.Location = new Point(number4.Left, number4.Top + number4.Height);
-            number2.Location = new Point(number5.Left, number5.Top + number5.Height);
-            number3.Location = new Point(number6.Left, number6.Top + number6.Height);
-
-            number0.Location = new Point(number1.Left, number1.Top + number1.Height);
-            comma.Location = new Point(number2.Left, number2.Top + number2.Height);
-            M.Location = new Point(comma.Left + comma.Width, comma.Top);
-            equals.Location = new Point(comma.Left + comma.Height + comma.Height + 10, comma.Top);
-            add.Location = new Point(number3.Left + number3.Width + 10, number3.Top);
-            subst.Location = new Point(add.Left + add.Width, add.Top);
-            mult.Location = new Point(number6.Left + number6.Width + 10, number6.Top);
-            div.Location = new Point(mult.Left + mult.Width, mult.Top);
-            del.Location = new Point(number9.Left + del.Width + 10, number9.Top);
-            clear.Location = new Point(del.Left + clear.Width, del.Top);
-            pi.Location = new Point(div.Left + div.Width + 10, div.Top);
-            E.Location = new Point(pi.Left, pi.Top + pi.Height);
-            shift.Location = new Point(equals.Left + shift.Width, equals.Top);
-            mp.Location = new Point(shift.Left + shift.Width + 10, equals.Top);
-        }
-    }
 
     void Comma_Precision_Click(object sender, EventArgs e)
     {
