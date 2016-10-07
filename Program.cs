@@ -4,14 +4,14 @@ using System.Drawing;
 
 class calculator : Form
 {
-    int input_length;
-    string system_language;
-    bool new_operand;
+    int inputLength;
+    string systemLanguage;
+    bool newOperand;
     double operand1;
-    string operation = "none";
-    string precision = "g4";
-    bool function;
-    double memory = 0;
+    string currentOperation = "none";
+    string outputCommaPrecision = "g4";
+    bool alternativeFunctionsActive;
+    double memoryValue = 0;
 
     //Erstellt Buttons
     Button number0;
@@ -25,13 +25,13 @@ class calculator : Form
     Button number8;
     Button number9;
     Button pi;
-    Button E;
+    Button e;
     Button comma;
     Button clear;
-    Button add;
-    Button subst;
-    Button mult;
-    Button div;
+    Button addition;
+    Button substraction;
+    Button multiplication;
+    Button division;
     Button square;
     Button sqrt;
     Button equals;
@@ -41,17 +41,17 @@ class calculator : Form
     Button sinus;
     Button cosinus;
     Button tangens;
-    Button cosinush;
-    Button sinush;
-    Button gradrad;
+    Button cosinusHyp;
+    Button sinusHyp;
+    Button unitOfAngle;
     Button shift;
-    Button comma_precision;
-    Button M;
+    Button outputPrecisionButton;
+    Button m;
     Button mp;
 
     //Erstellt TextBox
-    TextBox box;
-
+    TextBox inputOutputBox;
+    
     public calculator()
     {
         setCurrentLanguage();
@@ -67,13 +67,13 @@ class calculator : Form
         number8 = new Button();
         number9 = new Button();
         pi = new Button();
-        E = new Button();
+        e = new Button();
         comma = new Button();
         clear = new Button();
-        add = new Button();
-        subst = new Button();
-        mult = new Button();
-        div = new Button();
+        addition = new Button();
+        substraction = new Button();
+        multiplication = new Button();
+        division = new Button();
         square = new Button();
         sqrt = new Button();
         equals = new Button();
@@ -83,18 +83,18 @@ class calculator : Form
         sinus = new Button();
         cosinus = new Button();
         tangens = new Button();
-        sinush = new Button();
-        cosinush = new Button();
-        gradrad = new Button();
+        sinusHyp = new Button();
+        cosinusHyp = new Button();
+        unitOfAngle = new Button();
         shift = new Button();
-        comma_precision = new Button();
-        M = new Button();
+        outputPrecisionButton = new Button();
+        m = new Button();
         mp = new Button();
 
-        box = new TextBox();
+        inputOutputBox = new TextBox();
 
-        //Setzt Box auf ReadOnly
-        box.ReadOnly = true;
+        //Setzt inputOutputBox auf ReadOnly
+        inputOutputBox.ReadOnly = true;
         //Legt Inhalt der Buttons fest
         number0.Text = ("0");
         number1.Text = ("1");
@@ -107,13 +107,13 @@ class calculator : Form
         number8.Text = ("8");
         number9.Text = ("9");
         pi.Text = ("π");
-        E.Text = ("e");
+        e.Text = ("e");
         comma.Text = (",");
         clear.Text = ("AC");
-        add.Text = ("+");
-        subst.Text = ("-");
-        mult.Text = ("*");
-        div.Text = ("/");
+        addition.Text = ("+");
+        substraction.Text = ("-");
+        multiplication.Text = ("*");
+        division.Text = ("/");
         square.Text = ("x²");
         sqrt.Text = ("√¯x");
         equals.Text = ("=");
@@ -123,12 +123,12 @@ class calculator : Form
         sinus.Text = ("sin");
         cosinus.Text = ("cos");
         tangens.Text = ("tan");
-        sinush.Text = ("sinh");
-        cosinush.Text = ("cosh");
-        gradrad.Text = ("Rad");
+        sinusHyp.Text = ("sinh");
+        cosinusHyp.Text = ("cosh");
+        unitOfAngle.Text = ("Rad");
         shift.Text = ("Fn");
-        comma_precision.Text = ("4 Dgts");
-        M.Text = ("M");
+        outputPrecisionButton.Text = ("4 Dgts");
+        m.Text = ("M");
         mp.Text = ("M+");
 
         Size = new Size(390, 500);
@@ -156,20 +156,20 @@ class calculator : Form
         number9.Width = 50;
         pi.Height = 50;
         pi.Width = 50;
-        E.Height = 50;
-        E.Width = 50;
+        e.Height = 50;
+        e.Width = 50;
         comma.Height = 50;
         comma.Width = 50;
         clear.Height = 50;
         clear.Width = 50;
-        add.Height = 50;
-        add.Width = 50;
-        subst.Height = 50;
-        subst.Width = 50;
-        mult.Height = 50;
-        mult.Width = 50;
-        div.Height = 50;
-        div.Width = 50;
+        addition.Height = 50;
+        addition.Width = 50;
+        substraction.Height = 50;
+        substraction.Width = 50;
+        multiplication.Height = 50;
+        multiplication.Width = 50;
+        division.Height = 50;
+        division.Width = 50;
         square.Height = 50;
         square.Width = 50;
         sqrt.Height = 50;
@@ -186,45 +186,45 @@ class calculator : Form
         sinus.Width = 50;
         cosinus.Height = 50;
         cosinus.Width = 50;
-        cosinush.Width = 50;
-        cosinush.Height = 50;
-        sinush.Height = 50;
-        sinush.Width = 50;
+        cosinusHyp.Width = 50;
+        cosinusHyp.Height = 50;
+        sinusHyp.Height = 50;
+        sinusHyp.Width = 50;
         tangens.Width = 50;
         tangens.Height = 50;
-        gradrad.Height = 50;
-        gradrad.Width = 50;
+        unitOfAngle.Height = 50;
+        unitOfAngle.Width = 50;
         shift.Height = 50;
         shift.Width = 50;
-        comma_precision.Height = 50;
-        comma_precision.Width = 50;
-        M.Height = 50;
-        M.Width = 50;
+        outputPrecisionButton.Height = 50;
+        outputPrecisionButton.Width = 50;
+        m.Height = 50;
+        m.Width = 50;
         mp.Height = 50;
         mp.Width = 50;
 
-        //Legt Hoehe und Breite der Ergebnis-Box fest
-        box.Width = 320;
-        box.Font = new Font("Arial", 30, FontStyle.Bold);
+        //Legt Hoehe und Breite der Ergebnis-inputOutputBox fest
+        inputOutputBox.Width = 320;
+        inputOutputBox.Font = new Font("Arial", 30, FontStyle.Bold);
 
-        box.Location = new Point(5, 5);
+        inputOutputBox.Location = new Point(5, 5);
 
-        sinus.Location = new Point(box.Left, box.Top + box.Height + 10);
+        sinus.Location = new Point(inputOutputBox.Left, inputOutputBox.Top + inputOutputBox.Height + 10);
         cosinus.Location = new Point(sinus.Left + sinus.Width, sinus.Top);
         tangens.Location = new Point(cosinus.Left + cosinus.Width, cosinus.Top);
-        gradrad.Location = new Point(tangens.Left + tangens.Width + 10 + ln.Width + E.Width + 10, tangens.Top);
+        unitOfAngle.Location = new Point(tangens.Left + tangens.Width + 10 + ln.Width + e.Width + 10, tangens.Top);
 
-        sinush.Location = new Point(sinus.Left, sinus.Top + sinus.Height);
-        cosinush.Location = new Point(cosinus.Left, cosinus.Top + cosinus.Height);
+        sinusHyp.Location = new Point(sinus.Left, sinus.Top + sinus.Height);
+        cosinusHyp.Location = new Point(cosinus.Left, cosinus.Top + cosinus.Height);
         pi.Location = new Point(tangens.Left, tangens.Top + tangens.Height);
-        shift.Location = new Point(pi.Left + pi.Width + 10 + ln.Width + E.Width + 10, pi.Top);
+        shift.Location = new Point(pi.Left + pi.Width + 10 + ln.Width + e.Width + 10, pi.Top);
 
-        square.Location = new Point(sinush.Left, sinush.Top + sinush.Height + 10);
+        square.Location = new Point(sinusHyp.Left, sinusHyp.Top + sinusHyp.Height + 10);
         sqrt.Location = new Point(square.Left + square.Width, square.Top);
         factorial.Location = new Point(sqrt.Left + sqrt.Width, sqrt.Top);
         ln.Location = new Point(factorial.Left + factorial.Width + 10, factorial.Top);
-        E.Location = new Point(ln.Left + ln.Width, ln.Top);
-        comma_precision.Location = new Point(E.Left + E.Width + 10, E.Top);
+        e.Location = new Point(ln.Left + ln.Width, ln.Top);
+        outputPrecisionButton.Location = new Point(e.Left + e.Width + 10, e.Top);
 
         number7.Location = new Point(square.Left, square.Top + square.Height + 20);
         number8.Location = new Point(number7.Left + number8.Width, number7.Top);
@@ -235,60 +235,60 @@ class calculator : Form
         number4.Location = new Point(number7.Left, number7.Top + number7.Height);
         number5.Location = new Point(number4.Left + number4.Width, number4.Top);
         number6.Location = new Point(number5.Left + number5.Width, number5.Top);
-        mult.Location = new Point(number6.Left + number6.Width + 10, number6.Top);
-        div.Location = new Point(mult.Left + mult.Width, mult.Top);
+        multiplication.Location = new Point(number6.Left + number6.Width + 10, number6.Top);
+        division.Location = new Point(multiplication.Left + multiplication.Width, multiplication.Top);
 
         number1.Location = new Point(number4.Left, number4.Top + number4.Height);
         number2.Location = new Point(number5.Left, number5.Top + number5.Height);
         number3.Location = new Point(number6.Left, number6.Top + number6.Height);
-        add.Location = new Point(number3.Left + number3.Width + 10, number3.Top);
-        subst.Location = new Point(add.Left + add.Width, add.Top);
+        addition.Location = new Point(number3.Left + number3.Width + 10, number3.Top);
+        substraction.Location = new Point(addition.Left + addition.Width, addition.Top);
 
         number0.Location = new Point(number1.Left, number1.Top + number1.Height);
         comma.Location = new Point(number2.Left, number2.Top + number2.Height);
-        M.Location = new Point(comma.Left + comma.Width, comma.Top);
-        mp.Location = new Point(M.Left + M.Width + 10, M.Top);
+        m.Location = new Point(comma.Left + comma.Width, comma.Top);
+        mp.Location = new Point(m.Left + m.Width + 10, m.Top);
         equals.Location = new Point(mp.Left + mp.Width, mp.Top);
 
-        //Erstelle EventHandler mit entsprechenden _Click Funktionen um ClickEvent der Buttons zu
+        //Erstelle EventHandler mit entsprechenden ButtonClick Funktionen um ClickEvent der Buttons zu
         //kontrollieren.
-        number0.Click += Number0_Click;
-        number1.Click += Number1_Click;
-        number2.Click += Number2_Click;
-        number3.Click += Number3_Click;
-        number4.Click += Number4_Click;
-        number5.Click += Number5_Click;
-        number6.Click += Number6_Click;
-        number7.Click += Number7_Click;
-        number8.Click += Number8_Click;
-        number9.Click += Number9_Click;
-        pi.Click += Pi_Click;
-        E.Click += E_Click;
-        comma.Click += Comma_Click;
-        clear.Click += Clear_Click;
-        add.Click += Add_Click;
-        subst.Click += Subst_Click;
-        mult.Click += Mult_Click;
-        div.Click += Div_Click;
-        square.Click += Square_Click;
-        sqrt.Click += Sqrt_Click;
-        equals.Click += Equals_Click;
-        del.Click += Del_Click;
-        factorial.Click += Factorial_Click;
-        ln.Click += Ln_Click;
-        sinus.Click += Sinus_Click;
-        sinush.Click += Sinush_Click;
-        cosinush.Click += Cosinush_Click;
-        cosinus.Click += Cosinus_Click;
-        tangens.Click += Tangens_Click;
-        gradrad.Click += GradRad_Click;
-        shift.Click += Shift_Click;
-        comma_precision.Click += Comma_Precision_Click;
-        mp.Click += mp_Click;
-        M.Click += M_Click;
+        number0.Click += number0ButtonClick;
+        number1.Click += number1ButtonClick;
+        number2.Click += number2ButtonClick;
+        number3.Click += number3ButtonClick;
+        number4.Click += number4ButtonClick;
+        number5.Click += number5ButtonClick;
+        number6.Click += number6ButtonClick;
+        number7.Click += number7ButtonClick;
+        number8.Click += number8ButtonClick;
+        number9.Click += number9ButtonClick;
+        pi.Click += piButtonClick;
+        e.Click += eButtonClick;
+        comma.Click += commaButtonClick;
+        clear.Click += clearButtonClick;
+        addition.Click += addButtonClick;
+        substraction.Click += substButtonClick;
+        multiplication.Click += multButtonClick;
+        division.Click += divButtonClick;
+        square.Click += squareButtonClick;
+        sqrt.Click += sqrtButtonClick;
+        equals.Click += equalsButtonClick;
+        del.Click += delButtonClick;
+        factorial.Click += factorialButtonClick;
+        ln.Click += lnButtonClick;
+        sinus.Click += sinusButtonClick;
+        sinusHyp.Click += sinusHypButtonClick;
+        cosinusHyp.Click += cosinusHypButtonClick;
+        cosinus.Click += cosinusButtonClick;
+        tangens.Click += tangensButtonClick;
+        unitOfAngle.Click += unitOfAngleButtonClick;
+        shift.Click += shiftButtonClick;
+        outputPrecisionButton.Click += outputPrecisionButtonClick;
+        mp.Click += memoryPButtonClick;
+        m.Click += memoryButtonClick;
 
         //Setze Ergebnis auf 0
-        box.Text = "0";
+        inputOutputBox.Text = "0";
 
         //Füge Controls für die Buttons hinzu
         Controls.Add(number0);
@@ -302,34 +302,34 @@ class calculator : Form
         Controls.Add(number8);
         Controls.Add(number9);
         Controls.Add(pi);
-        Controls.Add(E);
+        Controls.Add(e);
         Controls.Add(comma);
         Controls.Add(clear);
-        Controls.Add(add);
-        Controls.Add(subst);
-        Controls.Add(mult);
-        Controls.Add(div);
+        Controls.Add(addition);
+        Controls.Add(substraction);
+        Controls.Add(multiplication);
+        Controls.Add(division);
         Controls.Add(square);
         Controls.Add(sqrt);
-        Controls.Add(box);
+        Controls.Add(inputOutputBox);
         Controls.Add(equals);
         Controls.Add(del);
         Controls.Add(factorial);
         Controls.Add(ln);
         Controls.Add(shift);
-        Controls.Add(comma_precision);
-        Controls.Add(M);
+        Controls.Add(outputPrecisionButton);
+        Controls.Add(m);
         Controls.Add(mp);
         Controls.Add(sinus);
         Controls.Add(cosinus);
         Controls.Add(tangens);
-        Controls.Add(sinush);
-        Controls.Add(cosinush);
-        Controls.Add(gradrad);
+        Controls.Add(sinusHyp);
+        Controls.Add(cosinusHyp);
+        Controls.Add(unitOfAngle);
 
         Text = ("Project Trojan"); //Fenstertitel
         FormBorderStyle = FormBorderStyle.FixedDialog;
-        MinimizeBox = false; //Deaktivieren der minimize und maximize Box neben der Schließen-Box
+        MinimizeBox = false; //Deaktivieren der minimize und maximize inputOutputBox neben der Schließen-inputOutputBox
                              //in der Titelleiste
         MaximizeBox = false;
 
@@ -345,30 +345,30 @@ class calculator : Form
         number8.BackColor = Color.LightGray;
         number9.BackColor = Color.LightGray;
 
-        box.TextAlign = HorizontalAlignment.Right;
-        box.ForeColor = Color.WhiteSmoke;
-        box.BackColor = Color.Black;
-        add.BackColor = Color.Orange;
-        subst.BackColor = Color.Orange;
-        mult.BackColor = Color.Orange;
-        div.BackColor = Color.Orange;
+        inputOutputBox.TextAlign = HorizontalAlignment.Right;
+        inputOutputBox.ForeColor = Color.WhiteSmoke;
+        inputOutputBox.BackColor = Color.Black;
+        addition.BackColor = Color.Orange;
+        substraction.BackColor = Color.Orange;
+        multiplication.BackColor = Color.Orange;
+        division.BackColor = Color.Orange;
         square.BackColor = Color.Gray;
         sqrt.BackColor = Color.Gray;
         factorial.BackColor = Color.Gray;
         equals.BackColor = Color.Orange;
         ln.BackColor = Color.Gray;
-        M.BackColor = Color.Gray;
+        m.BackColor = Color.Gray;
         mp.BackColor = Color.Gray; 
 
-        E.BackColor = Color.Gray;
+        e.BackColor = Color.Gray;
         pi.BackColor = Color.Gray;
 
         sinus.BackColor = Color.Gray;
         cosinus.BackColor = Color.Gray;
-        sinush.BackColor = Color.Gray;
-        cosinush.BackColor = Color.Gray;
+        sinusHyp.BackColor = Color.Gray;
+        cosinusHyp.BackColor = Color.Gray;
         tangens.BackColor = Color.Gray;
-        gradrad.BackColor = Color.Gray;
+        unitOfAngle.BackColor = Color.Gray;
 
         del.BackColor = Color.Red;
         clear.BackColor = Color.Red;
@@ -378,100 +378,105 @@ class calculator : Form
     //um ein uebersichtlicheres UI zu gewaehrleisten. Dazu werden einem Button mehrere Funktionen
     //zugewiesen anstatt viele neue (Platz einnehmende) Buttons zu erzeugen. Der Button schaltet
     //zwischen Winkelfunktionen und ihren Umkehrfunktionen um.
-    void Shift_Click(object sender, EventArgs e)
+    void shiftButtonClick(object sender, EventArgs e)
     {
-        if (!function)
+        if (!alternativeFunctionsActive)
         {
-            sinus.Click -= Sinus_Click;
-            sinus.Click += ASinus_Click;
-            cosinus.Click -= Cosinus_Click;
-            cosinus.Click += ACosinus_Click;
-            tangens.Click -= Tangens_Click;
-            tangens.Click += ATangens_Click;
-            M.Click -= M_Click;
-            M.Click += MC_Click;
-            mp.Click -= mp_Click;
-            mp.Click += mm_Click;
-            factorial.Click -= Factorial_Click;
-            factorial.Click += MarketValue_Click;
-            square.Click += Pow_Click;
-            square.Click -= Square_Click;
+            sinus.Click -= sinusButtonClick;
+            sinus.Click += arcSinusButtonClick;
+            cosinus.Click -= cosinusButtonClick;
+            cosinus.Click += arcCosinusbuttonClick;
+            tangens.Click -= tangensButtonClick;
+            tangens.Click += arcTangensButtonClick;
+            m.Click -= memoryButtonClick;
+            m.Click += memoryClearButtonClick;
+            mp.Click -= memoryPButtonClick;
+            mp.Click += memoryMButtonClick;
+            factorial.Click -= factorialButtonClick;
+            factorial.Click += reciprocalButtonClick;
+            square.Click += exponentButtonClick;
+            square.Click -= squareButtonClick;
 
             sinus.Text = "arcsin";
             cosinus.Text = "arccos";
             tangens.Text = "arctan";
             factorial.Text = "1/x";
             square.Text = "x^n";
-            M.Text = "MC";
+            m.Text = "MC";
             mp.Text = "M-";
 
-            function = true;
+            alternativeFunctionsActive = true;
 
             shift.BackColor = Color.Red;
         }
 
         else
         {
-            sinus.Click += Sinus_Click;
-            sinus.Click -= ASinus_Click;
-            cosinus.Click += Cosinus_Click;
-            cosinus.Click -= ACosinus_Click;
-            tangens.Click += Tangens_Click;
-            tangens.Click -= ATangens_Click;
-            M.Click += M_Click;
-            M.Click -= MC_Click;
-            mp.Click += mp_Click;
-            mp.Click -= mm_Click;
-            factorial.Click += Factorial_Click;
-            factorial.Click -= MarketValue_Click;
-            square.Click += Square_Click;
-            square.Click -= Pow_Click;
+            sinus.Click += sinusButtonClick;
+            sinus.Click -= arcSinusButtonClick;
+            cosinus.Click += cosinusButtonClick;
+            cosinus.Click -= arcCosinusbuttonClick;
+            tangens.Click += tangensButtonClick;
+            tangens.Click -= arcTangensButtonClick;
+            m.Click += memoryButtonClick;
+            m.Click -= memoryClearButtonClick;
+            mp.Click += memoryPButtonClick;
+            mp.Click -= memoryMButtonClick;
+            factorial.Click += factorialButtonClick;
+            factorial.Click -= reciprocalButtonClick;
+            square.Click += squareButtonClick;
+            square.Click -= exponentButtonClick;
         
             sinus.Text = "sin";
             cosinus.Text = "cos";
             tangens.Text = "tan";
-            M.Text = "M";
+            m.Text = "M";
             factorial.Text = "x!";
             square.Text = "x²";
             mp.Text = "M+";
 
-            function = false;
+            alternativeFunctionsActive = false;
 
             shift.BackColor = SystemColors.Control;
         }
     }
-//M Funktionen
+//m Funktionen
 
-    // Abspeichern des Inhaltes der Box 
-    void M_Click(object sender, EventArgs e)
+    // Abspeichern des Inhaltes der inputOutputBox 
+    void memoryButtonClick(object sender, EventArgs e)
     {
-        if (memory != 0)
-            box.Text = memory.ToString(precision);
-        new_operand = false;
+        if (memoryValue != 0)
+        {
+            inputOutputBox.Text = memoryValue.ToString(outputCommaPrecision);
+            newOperand = false;
+        }
     }
 
     //Löschen des Speichers
-    void MC_Click(object sender, EventArgs e)
+    void memoryClearButtonClick(object sender, EventArgs e)
     {
-        memory = 0;
-        M.BackColor = Color.PaleVioletRed;
-    }
-    void mp_Click(object sender, EventArgs e)
-    {
-        memory += double.Parse(box.Text);
-        if (memory != 0)
-            M.BackColor = Color.PaleVioletRed;
-        else
-            M.BackColor = Color.Gray;
+        memoryValue = 0;
+        m.BackColor = Color.Gray;
     }
 
-    void mm_Click(object sender, EventArgs e)
+    void memoryPButtonClick(object sender, EventArgs e)
     {
-        memory -= double.Parse(box.Text);
-        if (memory != 0)
-            M.BackColor = Color.PaleVioletRed;
+        memoryValue += double.Parse(inputOutputBox.Text);
+        if (memoryValue != 0)
+            m.BackColor = Color.PaleVioletRed;
         else
-            M.BackColor = Color.Gray;
+            m.BackColor = Color.Gray;
+        newOperand = true;
+    }
+
+    void memoryMButtonClick(object sender, EventArgs e)
+    {
+        memoryValue -= double.Parse(inputOutputBox.Text);
+        if (memoryValue != 0)
+            m.BackColor = Color.PaleVioletRed;
+        else
+            m.BackColor = Color.Gray;
+        newOperand = true;
     }
 
 
@@ -480,7 +485,7 @@ class calculator : Form
     //Diese Methode reagiert auf den Klick auf den Ziffer 0 Button. Dieser erstellt, je nach
     //bisheriger Eingabe entweder eine 0 in der TextBox oder haengt eine '0' an den aktuellen
     //TextBox String an, erweitert somit die Eingabe um eine Zehnerpotenz.
-    void Number0_Click(object sender, EventArgs e)
+    void number0ButtonClick(object sender, EventArgs e)
     {
         setOrAddNumber(0);
     }
@@ -488,7 +493,7 @@ class calculator : Form
     //Diese Methode reagiert auf den Klick auf den Ziffer 1 Button. Dieser erstellt, je nach
     //bisheriger Eingabe entweder eine '1' in der TextBox oder haengt eine '1' an den aktuellen
     //TextBox String an.
-    void Number1_Click(object sender, EventArgs e)
+    void number1ButtonClick(object sender, EventArgs e)
     {
         setOrAddNumber(1);
     }
@@ -496,7 +501,7 @@ class calculator : Form
     //Diese Methode reagiert auf den Klick auf den Ziffer 2 Button. Dieser erstellt, je nach
     //bisheriger Eingabe entweder eine '2' in der TextBox oder haengt eine '2' an den aktuellen
     //TextBox String an.
-    void Number2_Click(object sender, EventArgs e)
+    void number2ButtonClick(object sender, EventArgs e)
     {
         setOrAddNumber(2);
     }
@@ -504,7 +509,7 @@ class calculator : Form
     //Diese Methode reagiert auf den Klick auf den Ziffer 3 Button. Dieser erstellt, je nach
     //bisheriger Eingabe entweder eine '3' in der TextBox oder haengt eine '3' an den aktuellen
     //TextBox String an.
-    void Number3_Click(object sender, EventArgs e)
+    void number3ButtonClick(object sender, EventArgs e)
     {
         setOrAddNumber(3);
     }
@@ -512,7 +517,7 @@ class calculator : Form
     //Diese Methode reagiert auf den Klick auf den Ziffer 4 Button. Dieser erstellt, je nach
     //bisheriger Eingabe entweder eine '4' in der TextBox oder haengt eine '4' an den aktuellen
     //TextBox String an.
-    void Number4_Click(object sender, EventArgs e)
+    void number4ButtonClick(object sender, EventArgs e)
     {
         setOrAddNumber(4);
     }
@@ -520,7 +525,7 @@ class calculator : Form
     //Diese Methode reagiert auf den Klick auf den Ziffer 5 Button. Dieser erstellt, je nach
     //bisheriger Eingabe entweder eine '5' in der TextBox oder haengt eine '5' an den aktuellen
     //TextBox String an.
-    void Number5_Click(object sender, EventArgs e)
+    void number5ButtonClick(object sender, EventArgs e)
     {
         setOrAddNumber(5);
     }
@@ -528,7 +533,7 @@ class calculator : Form
     //Diese Methode reagiert auf den Klick auf den Ziffer 6 Button. Dieser erstellt, je nach
     //bisheriger Eingabe entweder eine '6' in der TextBox oder haengt eine '6' an den aktuellen
     //TextBox String an.
-    void Number6_Click(object sender, EventArgs e)
+    void number6ButtonClick(object sender, EventArgs e)
     {
         setOrAddNumber(6);
     }
@@ -536,7 +541,7 @@ class calculator : Form
     //Diese Methode reagiert auf den Klick auf den Ziffer 7 Button. Dieser erstellt, je nach
     //bisheriger Eingabe entweder eine '7' in der TextBox oder haengt eine '7' an den aktuellen
     //TextBox String an.
-    void Number7_Click(object sender, EventArgs e)
+    void number7ButtonClick(object sender, EventArgs e)
     {
         setOrAddNumber(7);
     }
@@ -544,7 +549,7 @@ class calculator : Form
     //Diese Methode reagiert auf den Klick auf den Ziffer 8 Button. Dieser erstellt, je nach
     //bisheriger Eingabe entweder eine '8' in der TextBox oder haengt eine '8' an den aktuellen
     //TextBox String an.
-    void Number8_Click(object sender, EventArgs e)
+    void number8ButtonClick(object sender, EventArgs e)
     {
         setOrAddNumber(8);
     }
@@ -552,23 +557,23 @@ class calculator : Form
     //Diese Methode reagiert auf den Klick auf den Ziffer 9 Button. Dieser erstellt, je nach
     //bisheriger Eingabe entweder eine '9' in der TextBox oder haengt eine '9' an den aktuellen
     //TextBox String an.
-    void Number9_Click(object sender, EventArgs e)
+    void number9ButtonClick(object sender, EventArgs e)
     {
         setOrAddNumber(9);
     }
 
     //Diese Methode reagiert auf den Klick auf den Button der Konstante Pi. Sie setzt den String der
     //TextBox auf die Konstante Pi.
-    void Pi_Click(object sender, EventArgs e)
+    void piButtonClick(object sender, EventArgs e)
     {
-        box.Text = (Math.PI).ToString(precision);
-        new_operand = false;
+        inputOutputBox.Text = (Math.PI).ToString(outputCommaPrecision);
+        newOperand = false;
     }
 
-    void E_Click(object sender, EventArgs e)
+    void eButtonClick(object sender, EventArgs e)
     {
-        box.Text = (Math.E).ToString(precision);
-        new_operand = false;
+        inputOutputBox.Text = (Math.E).ToString(outputCommaPrecision);
+        newOperand = false;
     }
 
 //Vereinfacht und erweitern die Bedienung des Rechners
@@ -576,367 +581,367 @@ class calculator : Form
     //Diese Methode reagiert auf den Klick auf den Komma Button. Es muss von System zu System,
     //abhaengig von der Sprache, unterschieden werden, ob ein '.' oder ein ',' eingesetzt wird,
     //da Systeme verschieden auf die beiden Zeichen reagieren.
-    void Comma_Click(object sender, EventArgs e)
+    void commaButtonClick(object sender, EventArgs e)
     {
-        if (system_language == "de")
+        if (systemLanguage == "de")
         {
-            if (!box.Text.Contains(",") && box.Text != "Error")
+            if (!inputOutputBox.Text.Contains(","))
             {
-                box.Text += ",";
-                input_length += 1;
+                inputOutputBox.Text += ",";
+                inputLength += 1;
             }
         }
         else {
-            if (!box.Text.Contains(".") && box.Text != "Error")
+            if (!inputOutputBox.Text.Contains("."))
             {
-                box.Text += ".";
-                input_length += 1;
+                inputOutputBox.Text += ".";
+                inputLength += 1;
             }
         }
     }
 
     //Diese Methode reagiert auf den Klick auf den Clear Button, welcher saemtliche gespeicherten
     //Ergebnisse sowie die aktuelle Eingabe leert.
-    void Clear_Click(object sender, EventArgs e)
+    void clearButtonClick(object sender, EventArgs e)
     {
-        box.Text = "0";
+        inputOutputBox.Text = "0";
         sinus.Text = "sin";
         cosinus.Text = "cos";
         tangens.Text = "tan";
-        M.Text = "M";
-        mp.Text = "M+";
+        m.Text = "m";
+        mp.Text = "m+";
         shift.BackColor = SystemColors.Control;
-        function = false;
+        alternativeFunctionsActive = false;
         operand1 = 0;
-        input_length = 0;
-        new_operand = false;
-        operation = "none";
+        inputLength = 0;
+        newOperand = false;
+        currentOperation = "none";
     }
 
 //Grundrechenarten
 
     //Diese Methode reagiert auf den Klick auf den Delete Button, welcher den zuletzt eingegebenen
     //Teil der TextBox entfernt (bspw. im Falle eines Vertippens).
-    void Del_Click(object sender, EventArgs e)
+    void delButtonClick(object sender, EventArgs e)
     {
-        if (!new_operand)
+        if (!newOperand)
         {
-            if (box.Text == "Error")
+            if (inputOutputBox.Text == "Error")
             {
-                box.Text = "0";
-                input_length = 0;
+                inputOutputBox.Text = "0";
+                inputLength = 0;
             }
-            else if ((box.Text.Contains("-") && box.TextLength == 2))
+            else if ((inputOutputBox.Text.Contains("-") && inputOutputBox.TextLength == 2))
             {
-                box.Text = "0";
-                input_length = 0;
+                inputOutputBox.Text = "0";
+                inputLength = 0;
             }
-            else if (box.TextLength == 1)
+            else if (inputOutputBox.TextLength == 1)
             {
-                box.Text = "0";
-                input_length = 0;
+                inputOutputBox.Text = "0";
+                inputLength = 0;
             }
-            else if (box.TextLength > 1)
+            else if (inputOutputBox.TextLength > 1)
             {
-                box.Text = box.Text.Substring(0, (box.TextLength - 1));
-                input_length -= 1;
+                inputOutputBox.Text = inputOutputBox.Text.Substring(0, (inputOutputBox.TextLength - 1));
+                inputLength -= 1;
             }
         }
     }
 
     //Diese Methode reagiert auf den Klick auf den Power Button, welcher die aktuelle Eingabe mit
     //einer nach dem Druecken des Buttons eingegebenen Zahl potenziert.
-    void Pow_Click(object sender, EventArgs e)
+    void exponentButtonClick(object sender, EventArgs e)
     {
-        if (!new_operand)
+        if (!newOperand)
         {
-            perform_current_operation();
+            performCurrentOperation();
         }
 
-        update_operation("pow");
+        updateOperation("pow");
     }
 
 
-    //Diese Methode reagiert auf den Klick auf den Add Button und bewirkt die Berechnung der Summe
+    //Diese Methode reagiert auf den Klick auf den addition Button und bewirkt die Berechnung der Summe
     //der aktuellen Eingabe und einer nach dem Klick einzugebenen Zahl. Die Berechnung wird nach
-    //einem weiteren Klick auf eine der Operations Buttons (Add, Subst, Mult, Div) oder den Equals
+    //einem weiteren Klick auf eine der Operations Buttons (addition, substraction, multiplication, division) oder den Equals
     //Button ausgefuehrt und angezeigt.
-    void Add_Click(object sender, EventArgs e)
+    void addButtonClick(object sender, EventArgs e)
     {
-        if (!new_operand)
+        if (!newOperand)
         {
-            perform_current_operation();
+            performCurrentOperation();
         }
 
-        update_operation("add");
+        updateOperation("addition");
     }
 
-    //Diese Methode reagiert auf den Klick auf den Subst Button und bewirkt die Berechnung der
+    //Diese Methode reagiert auf den Klick auf den substraction Button und bewirkt die Berechnung der
     //Differenz der aktuellen Eingabe und einer nach dem Klick einzugebenen Zahl. Die Berechnung
-    //wird nach einem weiteren Klick auf eine der Operations Buttons (Add, Subst, Mult, Div) oder
+    //wird nach einem weiteren Klick auf eine der Operations Buttons (addition, substraction, multiplication, division) oder
     //den Equals Button ausgefuehrt und angezeigt.
-    void Subst_Click(object sender, EventArgs e)
+    void substButtonClick(object sender, EventArgs e)
     {
-        if (!new_operand)
+        if (!newOperand)
         {
-            perform_current_operation();
+            performCurrentOperation();
         }
 
-        update_operation("subst");
+        updateOperation("substraction");
     }
 
-    //Diese Methode reagiert auf den Klick auf den Mult Button und bewirkt die Berechnung des
+    //Diese Methode reagiert auf den Klick auf den multiplication Button und bewirkt die Berechnung des
     //Produkts der aktuellen Eingabe und einer nach dem Klick einzugebenen Zahl. Die Berechnung wird
-    //nach einem weiteren Klick auf eine der Operations Buttons (Add, Subst, Mult, Div) oder den
+    //nach einem weiteren Klick auf eine der Operations Buttons (addition, substraction, multiplication, division) oder den
     //Equals Button ausgefuehrt und angezeigt.
-    void Mult_Click(object sender, EventArgs e)
+    void multButtonClick(object sender, EventArgs e)
     {
-        if (!new_operand)
+        if (!newOperand)
         {
-            perform_current_operation();
+            performCurrentOperation();
         }
 
-        update_operation("mult");
+        updateOperation("multiplication");
     }
 
-    //Diese Methode reagiert auf den Klick auf den Div Button und bewirkt die Berechnung des
+    //Diese Methode reagiert auf den Klick auf den division Button und bewirkt die Berechnung des
     //Quotienten der aktuellen Eingabe und einer nach dem Klick einzugebenen Zahl. Die Berechnung
-    //wird nach einem weiteren Klick auf eine der Operations Buttons (Add, Subst, Mult, Div) oder
+    //wird nach einem weiteren Klick auf eine der Operations Buttons (addition, substraction, multiplication, division) oder
     //den Equals Button ausgefuehrt und angezeigt.
-    void Div_Click(object sender, EventArgs e)
+    void divButtonClick(object sender, EventArgs e)
     {
-        if (!new_operand)
+        if (!newOperand)
         {
-            perform_current_operation();
+            performCurrentOperation();
         }
 
-        update_operation("div");
+        updateOperation("division");
     }
 
 //Winkelfunktionen
 
-     //Diese Methode reagiert auf den Klick auf den GradRad Button und schaltet zwischen dem
+     //Diese Methode reagiert auf den Klick auf den unitOfAngle Button und schaltet zwischen dem
     //Grad und dem Radian Modus von Winkelfunktionen (0°-360°/0-2*Pi) um.
-    void GradRad_Click(object sender, EventArgs e)
+    void unitOfAngleButtonClick(object sender, EventArgs e)
     {
-        if (gradrad.Text == "Rad")
-            gradrad.Text = "Grad"; //Ist noch nicht fertig eingebunden nur der Button steht schon
+        if (unitOfAngle.Text == "Rad")
+            unitOfAngle.Text = "Grad"; //Ist noch nicht fertig eingebunden nur der Button steht schon
         else
-            gradrad.Text = "Rad";
+            unitOfAngle.Text = "Rad";
     }
 
     //Diese Methode reagiert auf den Klick auf den Sinus Button und bewirkt eine Berechnung des
     //Sinus fuer die aktuelle Eingabe.
-    void Sinus_Click(object sender, EventArgs e)
+    void sinusButtonClick(object sender, EventArgs e)
     {
-        check_for_error_or_inf();
+        checkForErrorOrInfinity();
 
-        if (gradrad.Text == "Rad")
+        if (unitOfAngle.Text == "Rad")
         {
-            operand1 = (Math.Sin(double.Parse(box.Text)));
-            box.Text = operand1.ToString(precision);
+            operand1 = (Math.Sin(double.Parse(inputOutputBox.Text)));
+            inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
         }
-        else if (gradrad.Text == "Grad")
+        else if (unitOfAngle.Text == "Grad")
         {
-            var temp = double.Parse(box.Text);
+            var temp = double.Parse(inputOutputBox.Text);
             temp *= (Math.PI / 180);
             operand1 = Math.Sin(temp);
-            box.Text = operand1.ToString(precision);
+            inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
         }
         else
         {
-            box.Text = "Error";
+            inputOutputBox.Text = "Error";
             operand1 = 0;
-            input_length = 0;
+            inputLength = 0;
         }
 
-        new_operand = true;
+        newOperand = true;
     }
 
-    //Diese Methode reagiert auf den Klick auf den Sinush Button und bewirkt eine Berechnung des
-    //Sinush fuer die aktuelle Eingabe.
-    void Sinush_Click(object sender, EventArgs e)
+    //Diese Methode reagiert auf den Klick auf den sinusHyp Button und bewirkt eine Berechnung des
+    //sinusHyp fuer die aktuelle Eingabe.
+    void sinusHypButtonClick(object sender, EventArgs e)
     {
-        check_for_error_or_inf();
+        checkForErrorOrInfinity();
 
-        if (gradrad.Text == "Rad")
+        if (unitOfAngle.Text == "Rad")
         {
-            operand1 = (Math.Sinh(double.Parse(box.Text)));
-            box.Text = operand1.ToString(precision);
+            operand1 = (Math.Sinh(double.Parse(inputOutputBox.Text)));
+            inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
         }
-        else if (gradrad.Text == "Grad")
+        else if (unitOfAngle.Text == "Grad")
         {
-            var temp = double.Parse(box.Text);
+            var temp = double.Parse(inputOutputBox.Text);
             temp *= (Math.PI / 180);
             operand1 = Math.Sinh(temp);
-            box.Text = operand1.ToString(precision);
+            inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
         }
         else
         {
-            box.Text = "Error";
+            inputOutputBox.Text = "Error";
         }
 
-        new_operand = true;
+        newOperand = true;
     }
 
     //Diese Methode reagiert auf den Klick auf den Cosinus Button und bewirkt eine Berechnung des
     //Cosinus fuer die aktuelle Eingabe.
-    void Cosinus_Click(object sender, EventArgs e)
+    void cosinusButtonClick(object sender, EventArgs e)
     {
-        check_for_error_or_inf();
+        checkForErrorOrInfinity();
 
-        if (gradrad.Text == "Rad")
+        if (unitOfAngle.Text == "Rad")
         {
-            operand1 = (Math.Cos(double.Parse(box.Text)));
-            box.Text = operand1.ToString(precision);
+            operand1 = (Math.Cos(double.Parse(inputOutputBox.Text)));
+            inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
         }
-        else if (gradrad.Text == "Grad")
+        else if (unitOfAngle.Text == "Grad")
         {
-            var temp = double.Parse(box.Text);
+            var temp = double.Parse(inputOutputBox.Text);
             temp *= (Math.PI / 180);
             operand1 = Math.Cos(temp);
-            box.Text = operand1.ToString(precision);
+            inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
         }
         else
         {
-            box.Text = "Error";
+            inputOutputBox.Text = "Error";
             operand1 = 0;
-            input_length = 0;
+            inputLength = 0;
         }
 
-        new_operand = true;
+        newOperand = true;
     }
 
-    //Diese Methode reagiert auf den Klick auf den Cosinush Button und bewirkt eine Berechnung des
-    //Cosinush fuer die aktuelle Eingabe.
-    void Cosinush_Click(object sender, EventArgs e)
+    //Diese Methode reagiert auf den Klick auf den cosinusHyp Button und bewirkt eine Berechnung des
+    //cosinusHyp fuer die aktuelle Eingabe.
+    void cosinusHypButtonClick(object sender, EventArgs e)
     {
-        check_for_error_or_inf();
+        checkForErrorOrInfinity();
 
-        if (gradrad.Text == "Rad")
+        if (unitOfAngle.Text == "Rad")
         {
-            operand1 = (Math.Cosh(double.Parse(box.Text)));
-            box.Text = operand1.ToString(precision);
+            operand1 = (Math.Cosh(double.Parse(inputOutputBox.Text)));
+            inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
         }
-        else if (gradrad.Text == "Grad")
+        else if (unitOfAngle.Text == "Grad")
         {
-            var temp = double.Parse(box.Text);
+            var temp = double.Parse(inputOutputBox.Text);
             temp *= (Math.PI / 180);
             operand1 = Math.Cosh(temp);
-            box.Text = operand1.ToString(precision);
+            inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
         }
         else
         {
-            box.Text = "Error";
+            inputOutputBox.Text = "Error";
         }
 
-        new_operand = true;
+        newOperand = true;
     }
 
     //Diese Methode reagiert auf den Klick auf den Tangens Button und bewirkt eine Berechnung des
     //Tangens fuer die aktuelle Eingabe.
-    void Tangens_Click(object sender, EventArgs e)
+    void tangensButtonClick(object sender, EventArgs e)
     {
-        check_for_error_or_inf();
+        checkForErrorOrInfinity();
 
-        if (gradrad.Text == "Rad")
+        if (unitOfAngle.Text == "Rad")
         {
-            operand1 = (Math.Tan(double.Parse(box.Text)));
-            box.Text = operand1.ToString(precision);
+            operand1 = (Math.Tan(double.Parse(inputOutputBox.Text)));
+            inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
         }
-        else if (gradrad.Text == "Grad")
+        else if (unitOfAngle.Text == "Grad")
         {
-            var temp = double.Parse(box.Text);
+            var temp = double.Parse(inputOutputBox.Text);
             temp *= (Math.PI / 180);
             operand1 = Math.Tan(temp);
-            box.Text = operand1.ToString(precision);
+            inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
         }
         else
         {
-            box.Text = "Error";
+            inputOutputBox.Text = "Error";
             operand1 = 0;
-            input_length = 0;
+            inputLength = 0;
         }
 
-        new_operand = true;
+        newOperand = true;
     }
 
     //Diese Methode reagiert auf den Klick auf den ASinus Button und bewirkt eine Berechnung des
     //ArcSinus fuer die aktuelle Eingabe.
-    void ASinus_Click(object sender, EventArgs e)
+    void arcSinusButtonClick(object sender, EventArgs e)
     {
-        check_for_error_or_inf();
+        checkForErrorOrInfinity();
 
-        if (gradrad.Text == "Rad")
+        if (unitOfAngle.Text == "Rad")
         {
-            operand1 = (Math.Asin(double.Parse(box.Text)));
-            box.Text = operand1.ToString(precision);
+            operand1 = (Math.Asin(double.Parse(inputOutputBox.Text)));
+            inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
         }
-        else if (gradrad.Text == "Grad")
+        else if (unitOfAngle.Text == "Grad")
         {
-            operand1 = Math.Asin(double.Parse(box.Text)) * 180 / Math.PI;
-            box.Text = operand1.ToString(precision);
+            operand1 = Math.Asin(double.Parse(inputOutputBox.Text)) * 180 / Math.PI;
+            inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
         }
         else
         {
-            box.Text = "Error";
+            inputOutputBox.Text = "Error";
             operand1 = 0;
-            input_length = 0;
+            inputLength = 0;
         }
 
-        new_operand = true;
+        newOperand = true;
     }
 
     //Diese Methode reagiert auf den Klick auf den ACosinus Button und bewirkt eine Berechnung des
     //ArcCosinus fuer die aktuelle Eingabe.
-    void ACosinus_Click(object sender, EventArgs e)
+    void arcCosinusbuttonClick(object sender, EventArgs e)
     {
-        check_for_error_or_inf();
+        checkForErrorOrInfinity();
 
-        if (gradrad.Text == "Rad")
+        if (unitOfAngle.Text == "Rad")
         {
-            operand1 = (Math.Acos(double.Parse(box.Text)));
-            box.Text = operand1.ToString(precision);
+            operand1 = (Math.Acos(double.Parse(inputOutputBox.Text)));
+            inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
         }
-        else if (gradrad.Text == "Grad")
+        else if (unitOfAngle.Text == "Grad")
         {
-            operand1 = Math.Acos(double.Parse(box.Text)) * 180 / Math.PI;
-            box.Text = operand1.ToString(precision);
+            operand1 = Math.Acos(double.Parse(inputOutputBox.Text)) * 180 / Math.PI;
+            inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
         }
         else
         {
-            box.Text = "Error";
+            inputOutputBox.Text = "Error";
             operand1 = 0;
-            input_length = 0;
+            inputLength = 0;
         }
 
-        new_operand = true;
+        newOperand = true;
     }
 
     //Diese Methode reagiert auf den Klick auf den ATangens Button und bewirkt eine Berechnung des
     //ArcTangens fuer die aktuelle Eingabe.
-    void ATangens_Click(object sender, EventArgs e)
+    void arcTangensButtonClick(object sender, EventArgs e)
     {
-        check_for_error_or_inf();
+        checkForErrorOrInfinity();
 
-        if (gradrad.Text == "Rad")
+        if (unitOfAngle.Text == "Rad")
         {
-            operand1 = (Math.Atan(double.Parse(box.Text)));
-            box.Text = operand1.ToString(precision);
+            operand1 = (Math.Atan(double.Parse(inputOutputBox.Text)));
+            inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
         }
-        else if (gradrad.Text == "Grad")
+        else if (unitOfAngle.Text == "Grad")
         {
-            operand1 = Math.Atan(double.Parse(box.Text)) * 180 / Math.PI;
-            box.Text = operand1.ToString(precision);
+            operand1 = Math.Atan(double.Parse(inputOutputBox.Text)) * 180 / Math.PI;
+            inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
         }
         else
         {
-            box.Text = "Error";
+            inputOutputBox.Text = "Error";
             operand1 = 0;
-            input_length = 0;
+            inputLength = 0;
         }
 
-        new_operand = true;
+        newOperand = true;
     }
 
 
@@ -945,164 +950,166 @@ class calculator : Form
     //Diese Methode reagiert auf den Klick auf den Factorial Button und bewirkt die Berechnung der
     //Fakultaet (Produkt saemtlicher ganzer Zahlen kleiner gleich der Eingabe). Dabei ist zu
     //beachten, dass die Fakultaet nur fuer natuerliche Zahlen und '0' definiert ist. 
-    void Factorial_Click(object sender, EventArgs e)
+    void factorialButtonClick(object sender, EventArgs e)
     {
-        check_for_error_or_inf();
+        checkForErrorOrInfinity();
         
         double EPSILON = 0.0000000000000001f;
-        double temp_max = double.Parse(box.Text);
+        double tempMax = double.Parse(inputOutputBox.Text);
 
-        if (Math.Abs((temp_max % 1)) < EPSILON)
+        if (Math.Abs((tempMax % 1)) < EPSILON)
         {
             double temp = 1;
-            for (int i = 1; i <= temp_max; i++)
+            for (int i = 1; i <= tempMax; i++)
                 temp *= i;
 
             operand1 = temp;
-            box.Text = operand1.ToString(precision);
-            new_operand = true;
+            inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
+            newOperand = true;
         }
         else 
         {
-            errorMessage();
+            inputOutputBox.Text = "Error";
+            newOperand = true;
         }
     }
 
     //Diese Methode reagiert auf den Klick auf den Factorial Button wenn SHIFT zuvorgedrückt wurde und bewirkt die Berechnung des
     //Kehrwertes. Dabei ist darauf zu achten, dass der Wert ungleich 0 ist.
-    void MarketValue_Click(object sender, EventArgs e)
+    void reciprocalButtonClick(object sender, EventArgs e)
     {
-        check_for_error_or_inf();
+        checkForErrorOrInfinity();
 
-        double X = double.Parse(box.Text);
+        double X = double.Parse(inputOutputBox.Text);
         double EPSILON = 0.0000000000000001f;
         if (Math.Abs(X) < EPSILON)
         {
-            errorMessage();
+            inputOutputBox.Text = "Error";
+            newOperand = true;
         }
         else
         {
             double x = 0;
             x = 1 / X;
             operand1 = x;
-            box.Text = operand1.ToString(precision);
-            new_operand = true;
+            inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
+            newOperand = true;
         }
     }
 
     //Diese Methode reagiert auf den Klick auf den Square Button und bewirkt die Quadrierung der
     //aktuellen Eingabe.
-    void Square_Click(object sender, EventArgs e)
+    void squareButtonClick(object sender, EventArgs e)
     {
-        check_for_error_or_inf();
+        checkForErrorOrInfinity();
 
-        operand1 = double.Parse(box.Text) * double.Parse(box.Text);
-        box.Text = operand1.ToString(precision);
-        input_length = 0;
-        new_operand = true;
+        operand1 = double.Parse(inputOutputBox.Text) * double.Parse(inputOutputBox.Text);
+        inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
+        inputLength = 0;
+        newOperand = true;
     }
 
     //Diese Methode reagiert auf den Klick auf den Ln Button und bewirkt die Berechnung des
     //natuerlichen Logarithmus der aktuellen Eingabe. Dieser ist nur fuer positive Zahlen
     //definiert.
-    void Ln_Click(object sender, EventArgs e)
+    void lnButtonClick(object sender, EventArgs e)
     {
-        check_for_error_or_inf();
+        checkForErrorOrInfinity();
 
-        double ln_value = double.Parse(box.Text);
+        double lnValue = double.Parse(inputOutputBox.Text);
 
-        if (ln_value > 0)
+        if (lnValue > 0)
         {
-            operand1 = Math.Log(ln_value);
-            box.Text = operand1.ToString(precision);
-            input_length = 0;
+            operand1 = Math.Log(lnValue);
+            inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
+            inputLength = 0;
         }
         else
         {
             errorMessage();
         }
-        new_operand = true;
+        newOperand = true;
     }
 
     //Diese Methode reagiert auf den Klick auf den Sqrt Button und berechnet die Quadratwurzel
     //des aktuell eingegebenen Wertes. Ist dieser negativ wird ein Error ausgegeben.
-    void Sqrt_Click(object sender, EventArgs e)
+    void sqrtButtonClick(object sender, EventArgs e)
     {
-        check_for_error_or_inf();
+        checkForErrorOrInfinity();
 
-        double sqrt_value = Math.Sqrt(double.Parse(box.Text));
+        double sqrtValue = Math.Sqrt(double.Parse(inputOutputBox.Text));
 
-        if (sqrt_value > 0)
+        if (sqrtValue > 0)
         {
-            operand1 = Math.Sqrt(double.Parse(box.Text));
-            box.Text = operand1.ToString(precision);
+            operand1 = Math.Sqrt(double.Parse(inputOutputBox.Text));
+            inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
         }
         else
         {
             errorMessage();
         }
-        new_operand = true;
+        newOperand = true;
     }
 
     //Diese Methode reagiert auf den Klick auf den Equals Button und bewirkt die Berechnung der
-    //aktuelle Operation.
-    void Equals_Click(object sender, EventArgs e)
+    //aktuelle currentOperation.
+    void equalsButtonClick(object sender, EventArgs e)
     {
-        if (!new_operand)
+        if (!newOperand)
         {
-            perform_current_operation();
+            performCurrentOperation();
         }
 
-        update_operation("none");
+        updateOperation("none");
     }
 
 //Änderung des Layout und Einbindung weiterer Funktionen
 
-    void Comma_Precision_Click(object sender, EventArgs e)
+    void outputPrecisionButtonClick(object sender, EventArgs e)
     {
-        setNewPrecision(precision);
+        setNewPrecision(outputCommaPrecision);
     }
 
-    private void perform_current_operation()
+    private void performCurrentOperation()
     {
-        switch (operation)
+        switch (currentOperation)
         {
-            case "add":
-                operand1 = (operand1 + double.Parse(box.Text));
-                box.Text = operand1.ToString(precision);
+            case "addition":
+                operand1 = (operand1 + double.Parse(inputOutputBox.Text));
+                inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
                 break;
-            case "subst":
-                operand1 = (operand1 - double.Parse(box.Text));
-                box.Text = operand1.ToString(precision);
+            case "substraction":
+                operand1 = (operand1 - double.Parse(inputOutputBox.Text));
+                inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
                 break;
-            case "mult":
-                operand1 = (operand1 * double.Parse(box.Text));
-                box.Text = operand1.ToString(precision);
+            case "multiplication":
+                operand1 = (operand1 * double.Parse(inputOutputBox.Text));
+                inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
                 break;
-            case "div":
-                operand1 = (operand1 / double.Parse(box.Text));
-                box.Text = operand1.ToString(precision);
+            case "division":
+                operand1 = (operand1 / double.Parse(inputOutputBox.Text));
+                inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
                 break;
             case "pow":
-                operand1 = (Math.Pow(operand1, double.Parse(box.Text)));
-                box.Text = operand1.ToString(precision);
+                operand1 = (Math.Pow(operand1, double.Parse(inputOutputBox.Text)));
+                inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
                 break;
             case "none":
-                operand1 = double.Parse(box.Text);
+                operand1 = double.Parse(inputOutputBox.Text);
                 break;
         }
     }
 
-    private void update_operation(string new_operation)
+    private void updateOperation(string newOperation)
     {
-        new_operand = true;
-        operation = new_operation;
-        input_length = 0;
+        newOperand = true;
+        currentOperation = newOperation;
+        inputLength = 0;
     }
 
-    private void check_for_error_or_inf()
+    private void checkForErrorOrInfinity()
     {
-        if (box.Text == "Error" || box.Text == "∞")
+        if (inputOutputBox.Text == "Error" || inputOutputBox.Text == "∞")
             return;
     }
 
@@ -1112,42 +1119,43 @@ class calculator : Form
         {
             int newPrecisionInt = int.Parse(newPrecision.Substring(1, 1));
             newPrecisionInt += 1;
-            precision = "g" + newPrecisionInt.ToString();
+            outputCommaPrecision = "g" + newPrecisionInt.ToString();
         }
         else
-            precision = "g0";
+            outputCommaPrecision = "g0";
 
-        if (precision == "g1")
-            comma_precision.Text = precision.Substring(1, 1) + " Dgt";
+        if (outputCommaPrecision == "g1")
+            outputPrecisionButton.Text = outputCommaPrecision.Substring(1, 1) + " Dgt";
         else
-            comma_precision.Text = precision.Substring(1, 1) + " Dgts";
+            outputPrecisionButton.Text = outputCommaPrecision.Substring(1, 1) + " Dgts";
     }
 
     private void setOrAddNumber(int number)
     {
-        if (input_length == 0 && box.Text == "0" && number == 0)
+        if (inputLength == 0 && inputOutputBox.Text == "0" && number == 0)
         { }
-        else if (input_length == 0 || new_operand || box.Text == "∞" || box.Text == "Error")
+        else if (inputLength == 0 || newOperand || inputOutputBox.Text == "∞" || inputOutputBox.Text == "Error")
         {
-            box.Text = number.ToString();
-            input_length = 1;
+            inputOutputBox.Text = number.ToString();
+            inputLength = 1;
         }
         else {
-            box.Text += number.ToString();
-            input_length += 1;
+            inputOutputBox.Text += number.ToString();
+            inputLength += 1;
         }
-        new_operand = false;
+        newOperand = false;
     }
 
     private void setCurrentLanguage()
     {
-        system_language = 
+        systemLanguage = 
             System.Globalization.CultureInfo.CurrentCulture.ToString().Substring(0, 2);
     }
     private void errorMessage()
     {
-        box.Text = "Error";
-        new_operand = true;
+        inputOutputBox.Text = "Error";
+        operand1 = 0;
+        inputLength = 0;
     }
 }
 
