@@ -15,41 +15,6 @@ namespace ProjectTrojan
         bool alternativeFunctionsActive;
         double memoryValue = 0;
 
-        //Erstellt Buttons
-        Button number0;
-        Button number1;
-        Button number2;
-        Button number3;
-        Button number4;
-        Button number5;
-        Button number6;
-        Button number7;
-        Button number8;
-        Button number9;
-        Button pi;
-        Button e;
-        Button comma;
-        Button clear;
-        Button addition;
-        Button substraction;
-        Button multiplication;
-        Button division;
-        Button square;
-        Button sqrt;
-        Button equals;
-        Button del;
-        Button factorial;
-        Button ln;
-        Button sinus;
-        Button cosinus;
-        Button tangens;
-        Button cosinusHyp;
-        Button sinusHyp;
-        Button unitOfAngle;
-        Button shift;
-        Button outputPrecisionButton;
-        Button m;
-        Button mp;
 
         //Erstellt TextBox
         TextBox inputOutputBox;
@@ -57,323 +22,12 @@ namespace ProjectTrojan
         public calculator()
         {
             setCurrentLanguage();
-
-            number0 = new Button();
-            number1 = new Button();
-            number2 = new Button();
-            number3 = new Button();
-            number4 = new Button();
-            number5 = new Button();
-            number6 = new Button();
-            number7 = new Button();
-            number8 = new Button();
-            number9 = new Button();
-            pi = new Button();
-            e = new Button();
-            comma = new Button();
-            clear = new Button();
-            addition = new Button();
-            substraction = new Button();
-            multiplication = new Button();
-            division = new Button();
-            square = new Button();
-            sqrt = new Button();
-            equals = new Button();
-            del = new Button();
-            factorial = new Button();
-            ln = new Button();
-            sinus = new Button();
-            cosinus = new Button();
-            tangens = new Button();
-            sinusHyp = new Button();
-            cosinusHyp = new Button();
-            unitOfAngle = new Button();
-            shift = new Button();
-            outputPrecisionButton = new Button();
-            m = new Button();
-            mp = new Button();
-
-            inputOutputBox = new TextBox();
-
-            //Setzt inputOutputBox auf ReadOnly
-            inputOutputBox.ReadOnly = true;
-            //Legt Inhalt der Buttons fest
-            number0.Text = ("0");
-            number1.Text = ("1");
-            number2.Text = ("2");
-            number3.Text = ("3");
-            number4.Text = ("4");
-            number5.Text = ("5");
-            number6.Text = ("6");
-            number7.Text = ("7");
-            number8.Text = ("8");
-            number9.Text = ("9");
-            pi.Text = ("π");
-            e.Text = ("e");
-            comma.Text = (",");
-            clear.Text = ("AC");
-            addition.Text = ("+");
-            substraction.Text = ("-");
-            multiplication.Text = ("*");
-            division.Text = ("/");
-            square.Text = ("x²");
-            sqrt.Text = ("√¯x");
-            equals.Text = ("=");
-            del.Text = ("DEL");
-            factorial.Text = ("x!");
-            ln.Text = ("ln");
-            sinus.Text = ("sin");
-            cosinus.Text = ("cos");
-            tangens.Text = ("tan");
-            sinusHyp.Text = ("sinh");
-            cosinusHyp.Text = ("cosh");
-            unitOfAngle.Text = ("Rad");
-            shift.Text = ("Fn");
-            outputPrecisionButton.Text = ("4 Dgts");
-            m.Text = ("M");
-            mp.Text = ("M+");
-
-            Size = new Size(390, 500);
-
-            //Legt Hoehe und Breite der Buttons fest
-            number0.Height = 50;
-            number0.Width = 50;
-            number1.Height = 50;
-            number1.Width = 50;
-            number2.Height = 50;
-            number2.Width = 50;
-            number3.Height = 50;
-            number3.Width = 50;
-            number4.Height = 50;
-            number4.Width = 50;
-            number5.Height = 50;
-            number5.Width = 50;
-            number6.Height = 50;
-            number6.Width = 50;
-            number7.Height = 50;
-            number7.Width = 50;
-            number8.Height = 50;
-            number8.Width = 50;
-            number9.Height = 50;
-            number9.Width = 50;
-            pi.Height = 50;
-            pi.Width = 50;
-            e.Height = 50;
-            e.Width = 50;
-            comma.Height = 50;
-            comma.Width = 50;
-            clear.Height = 50;
-            clear.Width = 50;
-            addition.Height = 50;
-            addition.Width = 50;
-            substraction.Height = 50;
-            substraction.Width = 50;
-            multiplication.Height = 50;
-            multiplication.Width = 50;
-            division.Height = 50;
-            division.Width = 50;
-            square.Height = 50;
-            square.Width = 50;
-            sqrt.Height = 50;
-            sqrt.Width = 50;
-            equals.Height = 50;
-            equals.Width = 50;
-            del.Height = 50;
-            del.Width = 50;
-            factorial.Height = 50;
-            factorial.Width = 50;
-            ln.Height = 50;
-            ln.Width = 50;
-            sinus.Height = 50;
-            sinus.Width = 50;
-            cosinus.Height = 50;
-            cosinus.Width = 50;
-            cosinusHyp.Width = 50;
-            cosinusHyp.Height = 50;
-            sinusHyp.Height = 50;
-            sinusHyp.Width = 50;
-            tangens.Width = 50;
-            tangens.Height = 50;
-            unitOfAngle.Height = 50;
-            unitOfAngle.Width = 50;
-            shift.Height = 50;
-            shift.Width = 50;
-            outputPrecisionButton.Height = 50;
-            outputPrecisionButton.Width = 50;
-            m.Height = 50;
-            m.Width = 50;
-            mp.Height = 50;
-            mp.Width = 50;
-
-            //Legt Hoehe und Breite der Ergebnis-inputOutputBox fest
-            inputOutputBox.Width = 320;
-            inputOutputBox.Font = new Font("Arial", 30, FontStyle.Bold);
-
-            inputOutputBox.Location = new Point(5, 5);
-
-            sinus.Location = new Point(inputOutputBox.Left, inputOutputBox.Top + inputOutputBox.Height + 10);
-            cosinus.Location = new Point(sinus.Left + sinus.Width, sinus.Top);
-            tangens.Location = new Point(cosinus.Left + cosinus.Width, cosinus.Top);
-            unitOfAngle.Location = new Point(tangens.Left + tangens.Width + 10 + ln.Width + e.Width + 10, tangens.Top);
-
-            sinusHyp.Location = new Point(sinus.Left, sinus.Top + sinus.Height);
-            cosinusHyp.Location = new Point(cosinus.Left, cosinus.Top + cosinus.Height);
-            pi.Location = new Point(tangens.Left, tangens.Top + tangens.Height);
-            shift.Location = new Point(pi.Left + pi.Width + 10 + ln.Width + e.Width + 10, pi.Top);
-
-            square.Location = new Point(sinusHyp.Left, sinusHyp.Top + sinusHyp.Height + 10);
-            sqrt.Location = new Point(square.Left + square.Width, square.Top);
-            factorial.Location = new Point(sqrt.Left + sqrt.Width, sqrt.Top);
-            ln.Location = new Point(factorial.Left + factorial.Width + 10, factorial.Top);
-            e.Location = new Point(ln.Left + ln.Width, ln.Top);
-            outputPrecisionButton.Location = new Point(e.Left + e.Width + 10, e.Top);
-
-            number7.Location = new Point(square.Left, square.Top + square.Height + 20);
-            number8.Location = new Point(number7.Left + number8.Width, number7.Top);
-            number9.Location = new Point(number8.Left + number9.Width, number7.Top);
-            del.Location = new Point(number9.Left + number9.Width + 10, number9.Top);
-            clear.Location = new Point(del.Left + del.Width, del.Top);
-
-            number4.Location = new Point(number7.Left, number7.Top + number7.Height);
-            number5.Location = new Point(number4.Left + number4.Width, number4.Top);
-            number6.Location = new Point(number5.Left + number5.Width, number5.Top);
-            multiplication.Location = new Point(number6.Left + number6.Width + 10, number6.Top);
-            division.Location = new Point(multiplication.Left + multiplication.Width, multiplication.Top);
-
-            number1.Location = new Point(number4.Left, number4.Top + number4.Height);
-            number2.Location = new Point(number5.Left, number5.Top + number5.Height);
-            number3.Location = new Point(number6.Left, number6.Top + number6.Height);
-            addition.Location = new Point(number3.Left + number3.Width + 10, number3.Top);
-            substraction.Location = new Point(addition.Left + addition.Width, addition.Top);
-
-            number0.Location = new Point(number1.Left, number1.Top + number1.Height);
-            comma.Location = new Point(number2.Left, number2.Top + number2.Height);
-            m.Location = new Point(comma.Left + comma.Width, comma.Top);
-            mp.Location = new Point(m.Left + m.Width + 10, m.Top);
-            equals.Location = new Point(mp.Left + mp.Width, mp.Top);
-
-            //Erstelle EventHandler mit entsprechenden ButtonClick Funktionen um ClickEvent der Buttons zu
-            //kontrollieren.
-            number0.Click += number0ButtonClick;
-            number1.Click += number1ButtonClick;
-            number2.Click += number2ButtonClick;
-            number3.Click += number3ButtonClick;
-            number4.Click += number4ButtonClick;
-            number5.Click += number5ButtonClick;
-            number6.Click += number6ButtonClick;
-            number7.Click += number7ButtonClick;
-            number8.Click += number8ButtonClick;
-            number9.Click += number9ButtonClick;
-            pi.Click += piButtonClick;
-            e.Click += eButtonClick;
-            comma.Click += commaButtonClick;
-            clear.Click += clearButtonClick;
-            addition.Click += addButtonClick;
-            substraction.Click += substButtonClick;
-            multiplication.Click += multButtonClick;
-            division.Click += divButtonClick;
-            square.Click += squareButtonClick;
-            sqrt.Click += sqrtButtonClick;
-            equals.Click += equalsButtonClick;
-            del.Click += delButtonClick;
-            factorial.Click += factorialButtonClick;
-            ln.Click += lnButtonClick;
-            sinus.Click += sinusButtonClick;
-            sinusHyp.Click += sinusHypButtonClick;
-            cosinusHyp.Click += cosinusHypButtonClick;
-            cosinus.Click += cosinusButtonClick;
-            tangens.Click += tangensButtonClick;
-            unitOfAngle.Click += unitOfAngleButtonClick;
-            shift.Click += shiftButtonClick;
-            outputPrecisionButton.Click += outputPrecisionButtonClick;
-            mp.Click += memoryPButtonClick;
-            m.Click += memoryButtonClick;
-
-            //Setze Ergebnis auf 0
-            inputOutputBox.Text = "0";
-
-            //Füge Controls für die Buttons hinzu
-            Controls.Add(number0);
-            Controls.Add(number1);
-            Controls.Add(number2);
-            Controls.Add(number3);
-            Controls.Add(number4);
-            Controls.Add(number5);
-            Controls.Add(number6);
-            Controls.Add(number7);
-            Controls.Add(number8);
-            Controls.Add(number9);
-            Controls.Add(pi);
-            Controls.Add(e);
-            Controls.Add(comma);
-            Controls.Add(clear);
-            Controls.Add(addition);
-            Controls.Add(substraction);
-            Controls.Add(multiplication);
-            Controls.Add(division);
-            Controls.Add(square);
-            Controls.Add(sqrt);
-            Controls.Add(inputOutputBox);
-            Controls.Add(equals);
-            Controls.Add(del);
-            Controls.Add(factorial);
-            Controls.Add(ln);
-            Controls.Add(shift);
-            Controls.Add(outputPrecisionButton);
-            Controls.Add(m);
-            Controls.Add(mp);
-            Controls.Add(sinus);
-            Controls.Add(cosinus);
-            Controls.Add(tangens);
-            Controls.Add(sinusHyp);
-            Controls.Add(cosinusHyp);
-            Controls.Add(unitOfAngle);
-
-            Text = ("Project Trojan"); //Fenstertitel
-            FormBorderStyle = FormBorderStyle.FixedDialog;
-            MinimizeBox = false; //Deaktivieren der minimize und maximize inputOutputBox neben der Schließen-inputOutputBox
-                                 //in der Titelleiste
-            MaximizeBox = false;
-
-            //Farben
-            number0.BackColor = Color.LightGray;
-            number1.BackColor = Color.LightGray;
-            number2.BackColor = Color.LightGray;
-            number3.BackColor = Color.LightGray;
-            number4.BackColor = Color.LightGray;
-            number5.BackColor = Color.LightGray;
-            number6.BackColor = Color.LightGray;
-            number7.BackColor = Color.LightGray;
-            number8.BackColor = Color.LightGray;
-            number9.BackColor = Color.LightGray;
-
-            inputOutputBox.TextAlign = HorizontalAlignment.Right;
-            inputOutputBox.ForeColor = Color.WhiteSmoke;
-            inputOutputBox.BackColor = Color.Black;
-            addition.BackColor = Color.Orange;
-            substraction.BackColor = Color.Orange;
-            multiplication.BackColor = Color.Orange;
-            division.BackColor = Color.Orange;
-            square.BackColor = Color.Gray;
-            sqrt.BackColor = Color.Gray;
-            factorial.BackColor = Color.Gray;
-            equals.BackColor = Color.Orange;
-            ln.BackColor = Color.Gray;
-            m.BackColor = Color.Gray;
-            mp.BackColor = Color.Gray;
-
-            e.BackColor = Color.Gray;
-            pi.BackColor = Color.Gray;
-
-            sinus.BackColor = Color.Gray;
-            cosinus.BackColor = Color.Gray;
-            sinusHyp.BackColor = Color.Gray;
-            cosinusHyp.BackColor = Color.Gray;
-            tangens.BackColor = Color.Gray;
-            unitOfAngle.BackColor = Color.Gray;
-
-            del.BackColor = Color.Red;
-            clear.BackColor = Color.Red;
+            setWindowProperties(390, 500, "Project Trojan", FormBorderStyle.FixedDialog, false, false);
+            initializeUIComponents();
+            setIOBoxProperties(320, new Font("ArialBlack", 30, FontStyle.Bold), true, HorizontalAlignment.Right);
+            setUIComponentsPositions();
+            createButtonsEventHandlers();
+            setIOBoxText(inputOutputBox, "0");
         }
 
         //Diese Methode reagiert auf den Klick auf den Funktions/Shift Button, welcher benoetigt wird,
@@ -382,67 +36,9 @@ namespace ProjectTrojan
         //zwischen Winkelfunktionen und ihren Umkehrfunktionen um.
         void shiftButtonClick(object sender, EventArgs e)
         {
-            if (!alternativeFunctionsActive)
-            {
-                sinus.Click -= sinusButtonClick;
-                sinus.Click += arcSinusButtonClick;
-                cosinus.Click -= cosinusButtonClick;
-                cosinus.Click += arcCosinusbuttonClick;
-                tangens.Click -= tangensButtonClick;
-                tangens.Click += arcTangensButtonClick;
-                m.Click -= memoryButtonClick;
-                m.Click += memoryClearButtonClick;
-                mp.Click -= memoryPButtonClick;
-                mp.Click += memoryMButtonClick;
-                factorial.Click -= factorialButtonClick;
-                factorial.Click += reciprocalButtonClick;
-                square.Click += exponentButtonClick;
-                square.Click -= squareButtonClick;
-
-                sinus.Text = "arcsin";
-                cosinus.Text = "arccos";
-                tangens.Text = "arctan";
-                factorial.Text = "1/x";
-                square.Text = "x^n";
-                m.Text = "MC";
-                mp.Text = "M-";
-
-                alternativeFunctionsActive = true;
-
-                shift.BackColor = Color.Red;
-            }
-
-            else
-            {
-                sinus.Click += sinusButtonClick;
-                sinus.Click -= arcSinusButtonClick;
-                cosinus.Click += cosinusButtonClick;
-                cosinus.Click -= arcCosinusbuttonClick;
-                tangens.Click += tangensButtonClick;
-                tangens.Click -= arcTangensButtonClick;
-                m.Click += memoryButtonClick;
-                m.Click -= memoryClearButtonClick;
-                mp.Click += memoryPButtonClick;
-                mp.Click -= memoryMButtonClick;
-                factorial.Click += factorialButtonClick;
-                factorial.Click -= reciprocalButtonClick;
-                square.Click += squareButtonClick;
-                square.Click -= exponentButtonClick;
-
-                sinus.Text = "sin";
-                cosinus.Text = "cos";
-                tangens.Text = "tan";
-                m.Text = "M";
-                factorial.Text = "x!";
-                square.Text = "x²";
-                mp.Text = "M+";
-
-                alternativeFunctionsActive = false;
-
-                shift.BackColor = SystemColors.Control;
-            }
+            toggleShift();
         }
-        //m Funktionen
+        //memory Funktionen
 
         // Abspeichern des Inhaltes der inputOutputBox 
         void memoryButtonClick(object sender, EventArgs e)
@@ -458,16 +54,16 @@ namespace ProjectTrojan
         void memoryClearButtonClick(object sender, EventArgs e)
         {
             memoryValue = 0;
-            m.BackColor = Color.Gray;
+            memoryButton.BackColor = Color.Gray;
         }
 
         void memoryPButtonClick(object sender, EventArgs e)
         {
             memoryValue += double.Parse(inputOutputBox.Text);
             if (memoryValue != 0)
-                m.BackColor = Color.PaleVioletRed;
+                memoryButton.BackColor = Color.PaleVioletRed;
             else
-                m.BackColor = Color.Gray;
+                memoryButton.BackColor = Color.Gray;
             newOperand = true;
         }
 
@@ -475,9 +71,9 @@ namespace ProjectTrojan
         {
             memoryValue -= double.Parse(inputOutputBox.Text);
             if (memoryValue != 0)
-                m.BackColor = Color.PaleVioletRed;
+                memoryButton.BackColor = Color.PaleVioletRed;
             else
-                m.BackColor = Color.Gray;
+                memoryButton.BackColor = Color.Gray;
             newOperand = true;
         }
 
@@ -610,18 +206,16 @@ namespace ProjectTrojan
         //Ergebnisse sowie die aktuelle Eingabe leert.
         void clearButtonClick(object sender, EventArgs e)
         {
-            inputOutputBox.Text = "0";
-            sinus.Text = "sin";
-            cosinus.Text = "cos";
-            tangens.Text = "tan";
-            m.Text = "m";
-            mp.Text = "m+";
-            shift.BackColor = SystemColors.Control;
+            setIOBoxText(inputOutputBox, "0");
+            setButtonText(sinus, "sin");
+            setButtonText(cosinus, "cos");
+            setButtonText(tangens, "tan");
+            setButtonText(memoryButton, "M");
+            setButtonText(memoryAddSubstButton, "M+");
+            setButtonBackColor(shift, SystemColors.Control);
             alternativeFunctionsActive = false;
             operand1 = 0;
-            inputLength = 0;
-            newOperand = false;
-            currentOperation = "none";
+            updateOperation("none");
         }
 
         //Grundrechenarten
@@ -634,22 +228,22 @@ namespace ProjectTrojan
             {
                 if (inputOutputBox.Text == "Error")
                 {
-                    inputOutputBox.Text = "0";
+                    setIOBoxText(inputOutputBox, "0");
                     inputLength = 0;
                 }
                 else if ((inputOutputBox.Text.Contains("-") && inputOutputBox.TextLength == 2))
                 {
-                    inputOutputBox.Text = "0";
+                    setIOBoxText(inputOutputBox, "0");
                     inputLength = 0;
                 }
                 else if (inputOutputBox.TextLength == 1)
                 {
-                    inputOutputBox.Text = "0";
+                    setIOBoxText(inputOutputBox, "0");
                     inputLength = 0;
                 }
                 else if (inputOutputBox.TextLength > 1)
                 {
-                    inputOutputBox.Text = inputOutputBox.Text.Substring(0, (inputOutputBox.TextLength - 1));
+                    setIOBoxText(inputOutputBox, inputOutputBox.Text.Substring(0, (inputOutputBox.TextLength - 1)));
                     inputLength -= 1;
                 }
             }
@@ -731,9 +325,9 @@ namespace ProjectTrojan
         void unitOfAngleButtonClick(object sender, EventArgs e)
         {
             if (unitOfAngle.Text == "Rad")
-                unitOfAngle.Text = "Grad"; //Ist noch nicht fertig eingebunden nur der Button steht schon
+                setButtonText(unitOfAngle, "Grad");
             else
-                unitOfAngle.Text = "Rad";
+                setButtonText(unitOfAngle, "Rad");
         }
 
         //Diese Methode reagiert auf den Klick auf den Sinus Button und bewirkt eine Berechnung des
