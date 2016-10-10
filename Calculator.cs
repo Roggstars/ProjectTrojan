@@ -45,7 +45,7 @@ namespace ProjectTrojan
         {
             if (memoryValue != 0)
             {
-                inputOutputBox.Text = memoryValue.ToString(outputCommaPrecision);
+                setIOBoxText(inputOutputBox, memoryValue.ToString(outputCommaPrecision));
                 newOperand = false;
             }
         }
@@ -54,26 +54,30 @@ namespace ProjectTrojan
         void memoryClearButtonClick(object sender, EventArgs e)
         {
             memoryValue = 0;
-            memoryButton.BackColor = Color.Gray;
+            setButtonBackColor(memoryButton, Color.Gray);
         }
 
         void memoryPButtonClick(object sender, EventArgs e)
         {
             memoryValue += double.Parse(inputOutputBox.Text);
+
             if (memoryValue != 0)
-                memoryButton.BackColor = Color.PaleVioletRed;
+                setButtonBackColor(memoryButton, Color.PaleVioletRed);
             else
-                memoryButton.BackColor = Color.Gray;
+                setButtonBackColor(memoryButton, Color.Gray);
+            
             newOperand = true;
         }
 
         void memoryMButtonClick(object sender, EventArgs e)
         {
             memoryValue -= double.Parse(inputOutputBox.Text);
+
             if (memoryValue != 0)
-                memoryButton.BackColor = Color.PaleVioletRed;
+                setButtonBackColor(memoryButton, Color.PaleVioletRed);
             else
-                memoryButton.BackColor = Color.Gray;
+                setButtonBackColor(memoryButton, Color.Gray);
+            
             newOperand = true;
         }
 
@@ -113,7 +117,7 @@ namespace ProjectTrojan
         }
 
         //Diese Methode reagiert auf den Klick auf den Ziffer 4 Button. Dieser erstellt, je nach
-        //bisheriger Eingabe entweder eine '4' in der TextBox oder haengt eine '4' an den aktuellen
+        //bisheriger Eingabe entweder eine '4' in der TeIOBoxngt eine '4' an den aktuellen
         //TextBox String an.
         void number4ButtonClick(object sender, EventArgs e)
         {
@@ -164,13 +168,13 @@ namespace ProjectTrojan
         //TextBox auf die Konstante Pi.
         void piButtonClick(object sender, EventArgs e)
         {
-            inputOutputBox.Text = (Math.PI).ToString(outputCommaPrecision);
+            setIOBoxText(inputOutputBox, (Math.PI).ToString(outputCommaPrecision));
             newOperand = false;
         }
 
         void eButtonClick(object sender, EventArgs e)
         {
-            inputOutputBox.Text = (Math.E).ToString(outputCommaPrecision);
+            setIOBoxText(inputOutputBox, (Math.E).ToString(outputCommaPrecision));
             newOperand = false;
         }
 
@@ -183,23 +187,8 @@ namespace ProjectTrojan
         {
             if (inputContainsErrorOrInfinity())
                 return;
-
-            if (systemLanguage == "de")
-            {
-                if (!inputOutputBox.Text.Contains(","))
-                {
-                    inputOutputBox.Text += ",";
-                    inputLength += 1;
-                }
-            }
-            else
-            {
-                if (!inputOutputBox.Text.Contains("."))
-                {
-                    inputOutputBox.Text += ".";
-                    inputLength += 1;
-                }
-            }
+            
+            putCorrectlyFormattedComma();
         }
 
         //Diese Methode reagiert auf den Klick auf den Clear Button, welcher saemtliche gespeicherten
@@ -214,7 +203,7 @@ namespace ProjectTrojan
             setButtonText(memoryAddSubstButton, "M+");
             setButtonBackColor(shift, SystemColors.Control);
             alternativeFunctionsActive = false;
-            operand1 = 0;
+            setOperand1(0);
             updateOperation("none");
         }
 

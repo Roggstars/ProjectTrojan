@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 using System.Drawing;
 
@@ -385,7 +385,7 @@ namespace ProjectTrojan
             MaximizeBox = ActivateMaxBox;
         }
 
-        private void performCurrentOperation()
+        void performCurrentOperation()
         {
             switch (currentOperation)
             {
@@ -415,14 +415,14 @@ namespace ProjectTrojan
             }
         }
 
-        private void updateOperation(string newOperation)
+        void updateOperation(string newOperation)
         {
             newOperand = true;
             currentOperation = newOperation;
             inputLength = 0;
         }
 
-        private bool inputContainsErrorOrInfinity()
+        bool inputContainsErrorOrInfinity()
         {
             if (inputOutputBox.Text == "Error" || inputOutputBox.Text == "∞" || inputOutputBox.Text == "NaN")
                 return true;
@@ -430,7 +430,7 @@ namespace ProjectTrojan
                 return false;
         }
 
-        private void setNewPrecision(string newPrecision)
+        void setNewPrecision(string newPrecision)
         {
             if (newPrecision != "g8")
             {
@@ -447,7 +447,7 @@ namespace ProjectTrojan
                 outputPrecisionButton.Text = outputCommaPrecision.Substring(1, 1) + " Dgts";
         }
 
-        private void setOrAddNumber(int number)
+        void setOrAddNumber(int number)
         {
             if (inputLength == 0 && inputOutputBox.Text == "0" && number == 0)
             { }
@@ -464,17 +464,43 @@ namespace ProjectTrojan
             newOperand = false;
         }
 
-        private void setCurrentLanguage()
+        void setCurrentLanguage()
         {
             systemLanguage =
                 System.Globalization.CultureInfo.CurrentCulture.ToString().Substring(0, 2);
         }
 
-        private void errorMessage()
+        void errorMessage()
         {
             inputOutputBox.Text = "Error";
             operand1 = 0;
             inputLength = 0;
+        }
+
+        void putCorrectlyFormattedComma()
+        {
+            if (systemLanguage == "de")
+            {
+                if (!inputOutputBox.Text.Contains(","))
+                {
+                    inputOutputBox.Text += ",";
+                    inputLength += 1;
+                }
+            }
+            else
+            {
+                if (!inputOutputBox.Text.Contains("."))
+                {
+                    inputOutputBox.Text += ".";
+                    inputLength += 1;
+                }
+            }
+
+        }
+
+        void setOperand1(double newValue)
+        {
+            operand1 = newValue;
         }
 
         void toggleShift()
