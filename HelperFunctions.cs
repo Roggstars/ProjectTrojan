@@ -504,5 +504,49 @@ namespace ProjectTrojan
                 shift.BackColor = SystemColors.Control;
             }
         }
+
+        delegate double AngularFunction(double value);
+
+        void CalculateAngularFunction(AngularFunction angularFunction, double boxValue)
+        {
+            if (unitOfAngle.Text == "Rad")
+            {
+                operand1 = (angularFunction(boxValue));
+                inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
+            }
+            else if (unitOfAngle.Text == "Grad")
+            {
+                var temp = boxValue;
+                temp *= (Math.PI / 180);
+                operand1 = angularFunction(temp);
+                inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
+            }
+            else
+            {
+                inputOutputBox.Text = "Error";
+                operand1 = 0;
+                inputLength = 0;
+            }
+        }
+
+        void CalculateArcAngularFunction(AngularFunction angularFunction, double boxValue)
+        {
+            if (unitOfAngle.Text == "Rad")
+            {
+                operand1 = (angularFunction(boxValue));
+                inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
+            }
+            else if (unitOfAngle.Text == "Grad")
+            {
+                operand1 = angularFunction(boxValue) * 180 / Math.PI;
+                inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
+            }
+            else
+            {
+                inputOutputBox.Text = "Error";
+                operand1 = 0;
+                inputLength = 0;
+            }
+        }
     }
 }

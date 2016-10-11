@@ -326,24 +326,7 @@ namespace ProjectTrojan
             if (InputContainsErrorOrInfinity())
                 return;
 
-            if (unitOfAngle.Text == "Rad")
-            {
-                operand1 = (Math.Sin(double.Parse(inputOutputBox.Text)));
-                inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
-            }
-            else if (unitOfAngle.Text == "Grad")
-            {
-                var temp = double.Parse(inputOutputBox.Text);
-                temp *= (Math.PI / 180);
-                operand1 = Math.Sin(temp);
-                inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
-            }
-            else
-            {
-                inputOutputBox.Text = "Error";
-                operand1 = 0;
-                inputLength = 0;
-            }
+            CalculateAngularFunction (Math.Sin, double.Parse(inputOutputBox.Text));
 
             newOperand = true;
         }
@@ -355,22 +338,7 @@ namespace ProjectTrojan
             if (InputContainsErrorOrInfinity())
                 return;
 
-            if (unitOfAngle.Text == "Rad")
-            {
-                operand1 = (Math.Sinh(double.Parse(inputOutputBox.Text)));
-                inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
-            }
-            else if (unitOfAngle.Text == "Grad")
-            {
-                var temp = double.Parse(inputOutputBox.Text);
-                temp *= (Math.PI / 180);
-                operand1 = Math.Sinh(temp);
-                inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
-            }
-            else
-            {
-                inputOutputBox.Text = "Error";
-            }
+            CalculateAngularFunction (Math.Sinh, double.Parse(inputOutputBox.Text));
 
             newOperand = true;
         }
@@ -382,24 +350,7 @@ namespace ProjectTrojan
             if (InputContainsErrorOrInfinity())
                 return;
 
-            if (unitOfAngle.Text == "Rad")
-            {
-                operand1 = (Math.Cos(double.Parse(inputOutputBox.Text)));
-                inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
-            }
-            else if (unitOfAngle.Text == "Grad")
-            {
-                var temp = double.Parse(inputOutputBox.Text);
-                temp *= (Math.PI / 180);
-                operand1 = Math.Cos(temp);
-                inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
-            }
-            else
-            {
-                inputOutputBox.Text = "Error";
-                operand1 = 0;
-                inputLength = 0;
-            }
+            CalculateAngularFunction (Math.Cos, double.Parse(inputOutputBox.Text));
 
             newOperand = true;
         }
@@ -411,22 +362,7 @@ namespace ProjectTrojan
             if (InputContainsErrorOrInfinity())
                 return;
 
-            if (unitOfAngle.Text == "Rad")
-            {
-                operand1 = (Math.Cosh(double.Parse(inputOutputBox.Text)));
-                inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
-            }
-            else if (unitOfAngle.Text == "Grad")
-            {
-                var temp = double.Parse(inputOutputBox.Text);
-                temp *= (Math.PI / 180);
-                operand1 = Math.Cosh(temp);
-                inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
-            }
-            else
-            {
-                inputOutputBox.Text = "Error";
-            }
+            CalculateAngularFunction (Math.Cosh, double.Parse(inputOutputBox.Text));
 
             newOperand = true;
         }
@@ -438,24 +374,7 @@ namespace ProjectTrojan
             if (InputContainsErrorOrInfinity())
                 return;
 
-            if (unitOfAngle.Text == "Rad")
-            {
-                operand1 = (Math.Tan(double.Parse(inputOutputBox.Text)));
-                inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
-            }
-            else if (unitOfAngle.Text == "Grad")
-            {
-                var temp = double.Parse(inputOutputBox.Text);
-                temp *= (Math.PI / 180);
-                operand1 = Math.Tan(temp);
-                inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
-            }
-            else
-            {
-                inputOutputBox.Text = "Error";
-                operand1 = 0;
-                inputLength = 0;
-            }
+            CalculateAngularFunction (Math.Tan, double.Parse(inputOutputBox.Text));
 
             newOperand = true;
         }
@@ -467,22 +386,7 @@ namespace ProjectTrojan
             if (InputContainsErrorOrInfinity())
                 return;
 
-            if (unitOfAngle.Text == "Rad")
-            {
-                operand1 = (Math.Asin(double.Parse(inputOutputBox.Text)));
-                inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
-            }
-            else if (unitOfAngle.Text == "Grad")
-            {
-                operand1 = Math.Asin(double.Parse(inputOutputBox.Text)) * 180 / Math.PI;
-                inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
-            }
-            else
-            {
-                inputOutputBox.Text = "Error";
-                operand1 = 0;
-                inputLength = 0;
-            }
+            CalculateArcAngularFunction (Math.Asin, double.Parse (inputOutputBox.Text));
 
             newOperand = true;
         }
@@ -494,22 +398,7 @@ namespace ProjectTrojan
             if (InputContainsErrorOrInfinity())
                 return;
 
-            if (unitOfAngle.Text == "Rad")
-            {
-                operand1 = (Math.Acos(double.Parse(inputOutputBox.Text)));
-                inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
-            }
-            else if (unitOfAngle.Text == "Grad")
-            {
-                operand1 = Math.Acos(double.Parse(inputOutputBox.Text)) * 180 / Math.PI;
-                inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
-            }
-            else
-            {
-                inputOutputBox.Text = "Error";
-                operand1 = 0;
-                inputLength = 0;
-            }
+            CalculateArcAngularFunction (Math.Acos, double.Parse (inputOutputBox.Text));
 
             newOperand = true;
         }
@@ -521,22 +410,7 @@ namespace ProjectTrojan
             if (InputContainsErrorOrInfinity())
                 return;
 
-            if (unitOfAngle.Text == "Rad")
-            {
-                operand1 = (Math.Atan(double.Parse(inputOutputBox.Text)));
-                inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
-            }
-            else if (unitOfAngle.Text == "Grad")
-            {
-                operand1 = Math.Atan(double.Parse(inputOutputBox.Text)) * 180 / Math.PI;
-                inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
-            }
-            else
-            {
-                inputOutputBox.Text = "Error";
-                operand1 = 0;
-                inputLength = 0;
-            }
+            CalculateArcAngularFunction (Math.Atan, double.Parse (inputOutputBox.Text));
 
             newOperand = true;
         }
