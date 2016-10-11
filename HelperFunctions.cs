@@ -226,7 +226,7 @@ namespace ProjectTrojan
             unitOfAngle.BackColor = Color.Gray;
 
             inputOutputBox.ForeColor = Color.WhiteSmoke;
-            inputOutputBox.ForeColor = Color.Black;
+            inputOutputBox.BackColor = Color.Black;
         }
 
         void SetUIComponentsPositions()
@@ -275,12 +275,12 @@ namespace ProjectTrojan
             equals.Location = new Point(memoryAddSubstButton.Left + memoryAddSubstButton.Width, memoryAddSubstButton.Top);
         }
 
-        void SetIOBoxProperties(int width, Font font, bool ReadOnly, HorizontalAlignment alignment)
+        void SetIOBoxProperties(int width, Font font, bool readOnly, HorizontalAlignment alignment)
         {
             inputOutputBox.Width = width;
             inputOutputBox.Font = font;
-            inputOutputBox.ReadOnly = ReadOnly;
-            inputOutputBox.TextAlign = HorizontalAlignment.Right;
+            inputOutputBox.ReadOnly = readOnly;
+            inputOutputBox.TextAlign = alignment;
         }
 
         void CreateButtonsEventHandlers()
@@ -321,13 +321,13 @@ namespace ProjectTrojan
             memoryButton.Click += MemoryButtonClick;
         }
 
-        void SetWindowProperties(int width, int height, string title, FormBorderStyle formBorderStyle, bool ActivateMinBox, bool ActivateMaxBox)
+        void SetWindowProperties(int width, int height, string title, FormBorderStyle formBorderStyle, bool activateMinBox, bool activateMaxBox)
         {
             Size = new Size(width, height);
             Text = title;
             FormBorderStyle = formBorderStyle;
-            MinimizeBox = ActivateMinBox; 
-            MaximizeBox = ActivateMaxBox;
+            MinimizeBox = activateMinBox;
+            MaximizeBox = activateMaxBox;
         }
 
         void PerformCurrentOperation()
@@ -394,7 +394,9 @@ namespace ProjectTrojan
         void AddNumber(int number)
         {
             if (inputLength == 0 && inputOutputBox.Text == "0" && number == 0)
-            { }
+            {
+                return;
+            }
             else if (inputLength == 0 || newOperand || inputOutputBox.Text == "∞" || inputOutputBox.Text == "Error")
             {
                 inputOutputBox.Text = number.ToString();
@@ -439,7 +441,6 @@ namespace ProjectTrojan
                     inputLength += 1;
                 }
             }
-
         }
 
         void ToggleShift()
@@ -523,9 +524,7 @@ namespace ProjectTrojan
             }
             else
             {
-                inputOutputBox.Text = "Error";
-                operand1 = 0;
-                inputLength = 0;
+                ErrorMessage();
             }
         }
 
@@ -543,9 +542,7 @@ namespace ProjectTrojan
             }
             else
             {
-                inputOutputBox.Text = "Error";
-                operand1 = 0;
-                inputLength = 0;
+                ErrorMessage();
             }
         }
     }
