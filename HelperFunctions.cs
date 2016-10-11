@@ -285,40 +285,40 @@ namespace ProjectTrojan
 
         void CreateButtonsEventHandlers()
         {
-            number0.Click += number0ButtonClick;
-            number1.Click += number1ButtonClick;
-            number2.Click += number2ButtonClick;
-            number3.Click += number3ButtonClick;
-            number4.Click += number4ButtonClick;
-            number5.Click += number5ButtonClick;
-            number6.Click += number6ButtonClick;
-            number7.Click += number7ButtonClick;
-            number8.Click += number8ButtonClick;
-            number9.Click += number9ButtonClick;
-            pi.Click += piButtonClick;
-            e.Click += eButtonClick;
-            comma.Click += commaButtonClick;
-            clear.Click += clearButtonClick;
-            addition.Click += addButtonClick;
-            substraction.Click += substButtonClick;
-            multiplication.Click += multButtonClick;
-            division.Click += divButtonClick;
-            square.Click += squareButtonClick;
-            sqrt.Click += sqrtButtonClick;
-            equals.Click += equalsButtonClick;
-            del.Click += delButtonClick;
-            factorial.Click += factorialButtonClick;
-            ln.Click += lnButtonClick;
-            sinus.Click += sinusButtonClick;
-            sinusHyp.Click += sinusHypButtonClick;
-            cosinus.Click += cosinusButtonClick;
-            cosinusHyp.Click += cosinusHypButtonClick;
-            tangens.Click += tangensButtonClick;
-            unitOfAngle.Click += unitOfAngleButtonClick;
-            shift.Click += shiftButtonClick;
-            outputPrecisionButton.Click += outputPrecisionButtonClick;
-            memoryAddSubstButton.Click += memoryPButtonClick;
-            memoryButton.Click += memoryButtonClick;
+            number0.Click += Number0ButtonClick;
+            number1.Click += Number1ButtonClick;
+            number2.Click += Number2ButtonClick;
+            number3.Click += Number3ButtonClick;
+            number4.Click += Number4ButtonClick;
+            number5.Click += Number5ButtonClick;
+            number6.Click += Number6ButtonClick;
+            number7.Click += Number7ButtonClick;
+            number8.Click += Number8ButtonClick;
+            number9.Click += Number9ButtonClick;
+            pi.Click += PiButtonClick;
+            e.Click += EButtonClick;
+            comma.Click += CommaButtonClick;
+            clear.Click += ClearButtonClick;
+            addition.Click += AddButtonClick;
+            substraction.Click += SubstButtonClick;
+            multiplication.Click += MultButtonClick;
+            division.Click += DivButtonClick;
+            square.Click += SquareButtonClick;
+            sqrt.Click += SqrtButtonClick;
+            equals.Click += EqualsButtonClick;
+            del.Click += DelButtonClick;
+            factorial.Click += FactorialButtonClick;
+            ln.Click += LnButtonClick;
+            sinus.Click += SinusButtonClick;
+            sinusHyp.Click += SinusHypButtonClick;
+            cosinus.Click += CosinusButtonClick;
+            cosinusHyp.Click += CosinusHypButtonClick;
+            tangens.Click += TangensButtonClick;
+            unitOfAngle.Click += UnitOfAngleButtonClick;
+            shift.Click += ShiftButtonClick;
+            outputPrecisionButton.Click += OutputPrecisionButtonClick;
+            memoryAddSubstButton.Click += MemoryAddButtonClick;
+            memoryButton.Click += MemoryButtonClick;
         }
 
         void SetWindowProperties(int width, int height, string title, FormBorderStyle formBorderStyle, bool ActivateMinBox, bool ActivateMaxBox)
@@ -446,20 +446,20 @@ namespace ProjectTrojan
         {
             if (!alternativeFunctionsActive)
             {
-                sinus.Click -= sinusButtonClick;
-                sinus.Click += arcSinusButtonClick;
-                cosinus.Click -= cosinusButtonClick;
-                cosinus.Click += arcCosinusbuttonClick;
-                tangens.Click -= tangensButtonClick;
-                tangens.Click += arcTangensButtonClick;
-                memoryButton.Click -= memoryButtonClick;
-                memoryButton.Click += memoryClearButtonClick;
-                memoryAddSubstButton.Click -= memoryPButtonClick;
-                memoryAddSubstButton.Click += memoryMButtonClick;
-                factorial.Click -= factorialButtonClick;
-                factorial.Click += reciprocalButtonClick;
-                square.Click -= squareButtonClick;
-                square.Click += exponentButtonClick;
+                sinus.Click -= SinusButtonClick;
+                sinus.Click += ArcSinusButtonClick;
+                cosinus.Click -= CosinusButtonClick;
+                cosinus.Click += ArcCosinusButtonClick;
+                tangens.Click -= TangensButtonClick;
+                tangens.Click += ArcTangensButtonClick;
+                memoryButton.Click -= MemoryButtonClick;
+                memoryButton.Click += MemoryClearButtonClick;
+                memoryAddSubstButton.Click += MemoryAddButtonClick;
+                memoryAddSubstButton.Click += MemorySubstractButtonClick;
+                factorial.Click -= FactorialButtonClick;
+                factorial.Click += ReciprocalButtonClick;
+                square.Click -= SquareButtonClick;
+                square.Click += ExponentButtonClick;
 
                 sinus.Text = "arcsin";
                 cosinus.Text = "arccos";
@@ -476,20 +476,20 @@ namespace ProjectTrojan
 
             else
             {
-                sinus.Click += sinusButtonClick;
-                sinus.Click -= arcSinusButtonClick;
-                cosinus.Click += cosinusButtonClick;
-                cosinus.Click -= arcCosinusbuttonClick;
-                tangens.Click += tangensButtonClick;
-                tangens.Click -= arcTangensButtonClick;
-                memoryButton.Click += memoryButtonClick;
-                memoryButton.Click -= memoryClearButtonClick;
-                memoryAddSubstButton.Click += memoryPButtonClick;
-                memoryAddSubstButton.Click -= memoryMButtonClick;
-                factorial.Click += factorialButtonClick;
-                factorial.Click -= reciprocalButtonClick;
-                square.Click += squareButtonClick;
-                square.Click -= exponentButtonClick;
+                sinus.Click += SinusButtonClick;
+                sinus.Click -= ArcSinusButtonClick;
+                cosinus.Click += CosinusButtonClick;
+                cosinus.Click -= ArcCosinusButtonClick;
+                tangens.Click += TangensButtonClick;
+                tangens.Click -= ArcTangensButtonClick;
+                memoryButton.Click += MemoryButtonClick;
+                memoryButton.Click -= MemoryClearButtonClick;
+                memoryAddSubstButton.Click += MemoryAddButtonClick;
+                memoryAddSubstButton.Click -= MemorySubstractButtonClick;
+                factorial.Click += FactorialButtonClick;
+                factorial.Click -= ReciprocalButtonClick;
+                square.Click += SquareButtonClick;
+                square.Click -= ExponentButtonClick;
 
                 sinus.Text = "sin";
                 cosinus.Text = "cos";

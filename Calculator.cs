@@ -34,14 +34,14 @@ namespace ProjectTrojan
         //um ein uebersichtlicheres UI zu gewaehrleisten. Dazu werden einem Button mehrere Funktionen
         //zugewiesen anstatt viele neue (Platz einnehmende) Buttons zu erzeugen. Der Button schaltet
         //zwischen Winkelfunktionen und ihren Umkehrfunktionen um.
-        void shiftButtonClick(object sender, EventArgs e)
+        void ShiftButtonClick(object sender, EventArgs e)
         {
             ToggleShift();
         }
         //memory Funktionen
 
         // Abspeichern des Inhaltes der inputOutputBox 
-        void memoryButtonClick(object sender, EventArgs e)
+        void MemoryButtonClick(object sender, EventArgs e)
         {
             if (memoryValue != 0)
             {
@@ -51,13 +51,13 @@ namespace ProjectTrojan
         }
 
         //Löschen des Speichers
-        void memoryClearButtonClick(object sender, EventArgs e)
+        void MemoryClearButtonClick(object sender, EventArgs e)
         {
             memoryValue = 0;
             memoryButton.BackColor = Color.Gray;
         }
 
-        void memoryPButtonClick(object sender, EventArgs e)
+        void MemoryAddButtonClick(object sender, EventArgs e)
         {
             memoryValue += double.Parse(inputOutputBox.Text);
 
@@ -69,7 +69,7 @@ namespace ProjectTrojan
             newOperand = true;
         }
 
-        void memoryMButtonClick(object sender, EventArgs e)
+        void MemorySubstractButtonClick(object sender, EventArgs e)
         {
             memoryValue -= double.Parse(inputOutputBox.Text);
 
@@ -87,7 +87,7 @@ namespace ProjectTrojan
         //Diese Methode reagiert auf den Klick auf den Ziffer 0 Button. Dieser erstellt, je nach
         //bisheriger Eingabe entweder eine 0 in der TextBox oder haengt eine '0' an den aktuellen
         //TextBox String an, erweitert somit die Eingabe um eine Zehnerpotenz.
-        void number0ButtonClick(object sender, EventArgs e)
+        void Number0ButtonClick(object sender, EventArgs e)
         {
             AddNumber(0);
         }
@@ -95,7 +95,7 @@ namespace ProjectTrojan
         //Diese Methode reagiert auf den Klick auf den Ziffer 1 Button. Dieser erstellt, je nach
         //bisheriger Eingabe entweder eine '1' in der TextBox oder haengt eine '1' an den aktuellen
         //TextBox String an.
-        void number1ButtonClick(object sender, EventArgs e)
+        void Number1ButtonClick(object sender, EventArgs e)
         {
             AddNumber(1);
         }
@@ -103,7 +103,7 @@ namespace ProjectTrojan
         //Diese Methode reagiert auf den Klick auf den Ziffer 2 Button. Dieser erstellt, je nach
         //bisheriger Eingabe entweder eine '2' in der TextBox oder haengt eine '2' an den aktuellen
         //TextBox String an.
-        void number2ButtonClick(object sender, EventArgs e)
+        void Number2ButtonClick(object sender, EventArgs e)
         {
             AddNumber(2);
         }
@@ -111,7 +111,7 @@ namespace ProjectTrojan
         //Diese Methode reagiert auf den Klick auf den Ziffer 3 Button. Dieser erstellt, je nach
         //bisheriger Eingabe entweder eine '3' in der TextBox oder haengt eine '3' an den aktuellen
         //TextBox String an.
-        void number3ButtonClick(object sender, EventArgs e)
+        void Number3ButtonClick(object sender, EventArgs e)
         {
             AddNumber(3);
         }
@@ -119,7 +119,7 @@ namespace ProjectTrojan
         //Diese Methode reagiert auf den Klick auf den Ziffer 4 Button. Dieser erstellt, je nach
         //bisheriger Eingabe entweder eine '4' in der TeIOBoxngt eine '4' an den aktuellen
         //TextBox String an.
-        void number4ButtonClick(object sender, EventArgs e)
+        void Number4ButtonClick(object sender, EventArgs e)
         {
             AddNumber(4);
         }
@@ -127,7 +127,7 @@ namespace ProjectTrojan
         //Diese Methode reagiert auf den Klick auf den Ziffer 5 Button. Dieser erstellt, je nach
         //bisheriger Eingabe entweder eine '5' in der TextBox oder haengt eine '5' an den aktuellen
         //TextBox String an.
-        void number5ButtonClick(object sender, EventArgs e)
+        void Number5ButtonClick(object sender, EventArgs e)
         {
             AddNumber(5);
         }
@@ -135,7 +135,7 @@ namespace ProjectTrojan
         //Diese Methode reagiert auf den Klick auf den Ziffer 6 Button. Dieser erstellt, je nach
         //bisheriger Eingabe entweder eine '6' in der TextBox oder haengt eine '6' an den aktuellen
         //TextBox String an.
-        void number6ButtonClick(object sender, EventArgs e)
+        void Number6ButtonClick(object sender, EventArgs e)
         {
             AddNumber(6);
         }
@@ -143,7 +143,7 @@ namespace ProjectTrojan
         //Diese Methode reagiert auf den Klick auf den Ziffer 7 Button. Dieser erstellt, je nach
         //bisheriger Eingabe entweder eine '7' in der TextBox oder haengt eine '7' an den aktuellen
         //TextBox String an.
-        void number7ButtonClick(object sender, EventArgs e)
+        void Number7ButtonClick(object sender, EventArgs e)
         {
             AddNumber(7);
         }
@@ -151,7 +151,7 @@ namespace ProjectTrojan
         //Diese Methode reagiert auf den Klick auf den Ziffer 8 Button. Dieser erstellt, je nach
         //bisheriger Eingabe entweder eine '8' in der TextBox oder haengt eine '8' an den aktuellen
         //TextBox String an.
-        void number8ButtonClick(object sender, EventArgs e)
+        void Number8ButtonClick(object sender, EventArgs e)
         {
             AddNumber(8);
         }
@@ -159,20 +159,20 @@ namespace ProjectTrojan
         //Diese Methode reagiert auf den Klick auf den Ziffer 9 Button. Dieser erstellt, je nach
         //bisheriger Eingabe entweder eine '9' in der TextBox oder haengt eine '9' an den aktuellen
         //TextBox String an.
-        void number9ButtonClick(object sender, EventArgs e)
+        void Number9ButtonClick(object sender, EventArgs e)
         {
             AddNumber(9);
         }
 
         //Diese Methode reagiert auf den Klick auf den Button der Konstante Pi. Sie setzt den String der
         //TextBox auf die Konstante Pi.
-        void piButtonClick(object sender, EventArgs e)
+        void PiButtonClick(object sender, EventArgs e)
         {
             inputOutputBox.Text = (Math.PI).ToString(outputCommaPrecision);
             newOperand = false;
         }
 
-        void eButtonClick(object sender, EventArgs e)
+        void EButtonClick(object sender, EventArgs e)
         {
             inputOutputBox.Text = (Math.E).ToString(outputCommaPrecision);
             newOperand = false;
@@ -183,7 +183,7 @@ namespace ProjectTrojan
         //Diese Methode reagiert auf den Klick auf den Komma Button. Es muss von System zu System,
         //abhaengig von der Sprache, unterschieden werden, ob ein '.' oder ein ',' eingesetzt wird,
         //da Systeme verschieden auf die beiden Zeichen reagieren.
-        void commaButtonClick(object sender, EventArgs e)
+        void CommaButtonClick(object sender, EventArgs e)
         {
             if (InputContainsErrorOrInfinity())
                 return;
@@ -193,7 +193,7 @@ namespace ProjectTrojan
 
         //Diese Methode reagiert auf den Klick auf den Clear Button, welcher saemtliche gespeicherten
         //Ergebnisse sowie die aktuelle Eingabe leert.
-        void clearButtonClick(object sender, EventArgs e)
+        void ClearButtonClick(object sender, EventArgs e)
         {
             inputOutputBox.Text = "0";
             sinus.Text = "sin";
@@ -211,7 +211,7 @@ namespace ProjectTrojan
 
         //Diese Methode reagiert auf den Klick auf den Delete Button, welcher den zuletzt eingegebenen
         //Teil der TextBox entfernt (bspw. im Falle eines Vertippens).
-        void delButtonClick(object sender, EventArgs e)
+        void DelButtonClick(object sender, EventArgs e)
         {
             if (!newOperand)
             {
@@ -240,7 +240,7 @@ namespace ProjectTrojan
 
         //Diese Methode reagiert auf den Klick auf den Power Button, welcher die aktuelle Eingabe mit
         //einer nach dem Druecken des Buttons eingegebenen Zahl potenziert.
-        void exponentButtonClick(object sender, EventArgs e)
+        void ExponentButtonClick(object sender, EventArgs e)
         {
             if (!newOperand)
             {
@@ -255,7 +255,7 @@ namespace ProjectTrojan
         //der aktuellen Eingabe und einer nach dem Klick einzugebenen Zahl. Die Berechnung wird nach
         //einem weiteren Klick auf eine der Operations Buttons (addition, substraction, multiplication, division) oder den Equals
         //Button ausgefuehrt und angezeigt.
-        void addButtonClick(object sender, EventArgs e)
+        void AddButtonClick(object sender, EventArgs e)
         {
             if (!newOperand)
             {
@@ -269,7 +269,7 @@ namespace ProjectTrojan
         //Differenz der aktuellen Eingabe und einer nach dem Klick einzugebenen Zahl. Die Berechnung
         //wird nach einem weiteren Klick auf eine der Operations Buttons (addition, substraction, multiplication, division) oder
         //den Equals Button ausgefuehrt und angezeigt.
-        void substButtonClick(object sender, EventArgs e)
+        void SubstButtonClick(object sender, EventArgs e)
         {
             if (!newOperand)
             {
@@ -283,7 +283,7 @@ namespace ProjectTrojan
         //Produkts der aktuellen Eingabe und einer nach dem Klick einzugebenen Zahl. Die Berechnung wird
         //nach einem weiteren Klick auf eine der Operations Buttons (addition, substraction, multiplication, division) oder den
         //Equals Button ausgefuehrt und angezeigt.
-        void multButtonClick(object sender, EventArgs e)
+        void MultButtonClick(object sender, EventArgs e)
         {
             if (!newOperand)
             {
@@ -297,7 +297,7 @@ namespace ProjectTrojan
         //Quotienten der aktuellen Eingabe und einer nach dem Klick einzugebenen Zahl. Die Berechnung
         //wird nach einem weiteren Klick auf eine der Operations Buttons (addition, substraction, multiplication, division) oder
         //den Equals Button ausgefuehrt und angezeigt.
-        void divButtonClick(object sender, EventArgs e)
+        void DivButtonClick(object sender, EventArgs e)
         {
             if (!newOperand)
             {
@@ -311,7 +311,7 @@ namespace ProjectTrojan
 
         //Diese Methode reagiert auf den Klick auf den unitOfAngle Button und schaltet zwischen dem
         //Grad und dem Radian Modus von Winkelfunktionen (0°-360°/0-2*Pi) um.
-        void unitOfAngleButtonClick(object sender, EventArgs e)
+        void UnitOfAngleButtonClick(object sender, EventArgs e)
         {
             if (unitOfAngle.Text == "Rad")
                 unitOfAngle.Text = "Grad";
@@ -321,7 +321,7 @@ namespace ProjectTrojan
 
         //Diese Methode reagiert auf den Klick auf den Sinus Button und bewirkt eine Berechnung des
         //Sinus fuer die aktuelle Eingabe.
-        void sinusButtonClick(object sender, EventArgs e)
+        void SinusButtonClick(object sender, EventArgs e)
         {
             if (InputContainsErrorOrInfinity())
                 return;
@@ -350,7 +350,7 @@ namespace ProjectTrojan
 
         //Diese Methode reagiert auf den Klick auf den sinusHyp Button und bewirkt eine Berechnung des
         //sinusHyp fuer die aktuelle Eingabe.
-        void sinusHypButtonClick(object sender, EventArgs e)
+        void SinusHypButtonClick(object sender, EventArgs e)
         {
             if (InputContainsErrorOrInfinity())
                 return;
@@ -377,7 +377,7 @@ namespace ProjectTrojan
 
         //Diese Methode reagiert auf den Klick auf den Cosinus Button und bewirkt eine Berechnung des
         //Cosinus fuer die aktuelle Eingabe.
-        void cosinusButtonClick(object sender, EventArgs e)
+        void CosinusButtonClick(object sender, EventArgs e)
         {
             if (InputContainsErrorOrInfinity())
                 return;
@@ -406,7 +406,7 @@ namespace ProjectTrojan
 
         //Diese Methode reagiert auf den Klick auf den cosinusHyp Button und bewirkt eine Berechnung des
         //cosinusHyp fuer die aktuelle Eingabe.
-        void cosinusHypButtonClick(object sender, EventArgs e)
+        void CosinusHypButtonClick(object sender, EventArgs e)
         {
             if (InputContainsErrorOrInfinity())
                 return;
@@ -433,7 +433,7 @@ namespace ProjectTrojan
 
         //Diese Methode reagiert auf den Klick auf den Tangens Button und bewirkt eine Berechnung des
         //Tangens fuer die aktuelle Eingabe.
-        void tangensButtonClick(object sender, EventArgs e)
+        void TangensButtonClick(object sender, EventArgs e)
         {
             if (InputContainsErrorOrInfinity())
                 return;
@@ -462,7 +462,7 @@ namespace ProjectTrojan
 
         //Diese Methode reagiert auf den Klick auf den ASinus Button und bewirkt eine Berechnung des
         //ArcSinus fuer die aktuelle Eingabe.
-        void arcSinusButtonClick(object sender, EventArgs e)
+        void ArcSinusButtonClick(object sender, EventArgs e)
         {
             if (InputContainsErrorOrInfinity())
                 return;
@@ -489,7 +489,7 @@ namespace ProjectTrojan
 
         //Diese Methode reagiert auf den Klick auf den ACosinus Button und bewirkt eine Berechnung des
         //ArcCosinus fuer die aktuelle Eingabe.
-        void arcCosinusbuttonClick(object sender, EventArgs e)
+        void ArcCosinusButtonClick(object sender, EventArgs e)
         {
             if (InputContainsErrorOrInfinity())
                 return;
@@ -516,7 +516,7 @@ namespace ProjectTrojan
 
         //Diese Methode reagiert auf den Klick auf den ATangens Button und bewirkt eine Berechnung des
         //ArcTangens fuer die aktuelle Eingabe.
-        void arcTangensButtonClick(object sender, EventArgs e)
+        void ArcTangensButtonClick(object sender, EventArgs e)
         {
             if (InputContainsErrorOrInfinity())
                 return;
@@ -547,7 +547,7 @@ namespace ProjectTrojan
         //Diese Methode reagiert auf den Klick auf den Factorial Button und bewirkt die Berechnung der
         //Fakultaet (Produkt saemtlicher ganzer Zahlen kleiner gleich der Eingabe). Dabei ist zu
         //beachten, dass die Fakultaet nur fuer natuerliche Zahlen und '0' definiert ist. 
-        void factorialButtonClick(object sender, EventArgs e)
+        void FactorialButtonClick(object sender, EventArgs e)
         {
             if (InputContainsErrorOrInfinity())
                 return;
@@ -581,7 +581,7 @@ namespace ProjectTrojan
 
         //Diese Methode reagiert auf den Klick auf den Factorial Button wenn SHIFT zuvorgedrückt wurde und bewirkt die Berechnung des
         //Kehrwertes. Dabei ist darauf zu achten, dass der Wert ungleich 0 ist.
-        void reciprocalButtonClick(object sender, EventArgs e)
+        void ReciprocalButtonClick(object sender, EventArgs e)
         {
             if (InputContainsErrorOrInfinity())
                 return;
@@ -605,7 +605,7 @@ namespace ProjectTrojan
 
         //Diese Methode reagiert auf den Klick auf den Square Button und bewirkt die Quadrierung der
         //aktuellen Eingabe.
-        void squareButtonClick(object sender, EventArgs e)
+        void SquareButtonClick(object sender, EventArgs e)
         {
             if (InputContainsErrorOrInfinity())
                 return;
@@ -619,7 +619,7 @@ namespace ProjectTrojan
         //Diese Methode reagiert auf den Klick auf den Ln Button und bewirkt die Berechnung des
         //natuerlichen Logarithmus der aktuellen Eingabe. Dieser ist nur fuer positive Zahlen
         //definiert.
-        void lnButtonClick(object sender, EventArgs e)
+        void LnButtonClick(object sender, EventArgs e)
         {
             if (InputContainsErrorOrInfinity())
                 return;
@@ -641,7 +641,7 @@ namespace ProjectTrojan
 
         //Diese Methode reagiert auf den Klick auf den Sqrt Button und berechnet die Quadratwurzel
         //des aktuell eingegebenen Wertes. Ist dieser negativ wird ein Error ausgegeben.
-        void sqrtButtonClick(object sender, EventArgs e)
+        void SqrtButtonClick(object sender, EventArgs e)
         {
             if (InputContainsErrorOrInfinity())
                 return;
@@ -662,7 +662,7 @@ namespace ProjectTrojan
 
         //Diese Methode reagiert auf den Klick auf den Equals Button und bewirkt die Berechnung der
         //aktuelle currentOperation.
-        void equalsButtonClick(object sender, EventArgs e)
+        void EqualsButtonClick(object sender, EventArgs e)
         {
             if (!newOperand)
             {
@@ -674,7 +674,7 @@ namespace ProjectTrojan
 
         //Änderung des Layout und Einbindung weiterer Funktionen
 
-        void outputPrecisionButtonClick(object sender, EventArgs e)
+        void OutputPrecisionButtonClick(object sender, EventArgs e)
         {
             SetNewIOPrecision(outputCommaPrecision);
         }
