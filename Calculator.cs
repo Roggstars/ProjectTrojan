@@ -27,7 +27,7 @@ namespace ProjectTrojan
             SetIOBoxProperties(320, new Font("ArialBlack", 30, FontStyle.Bold), true, HorizontalAlignment.Right);
             SetUIComponentsPositions();
             CreateButtonsEventHandlers();
-            SetIOBoxText(inputOutputBox, "0");
+            inputOutputBox.Text = "0";
         }
 
         //Diese Methode reagiert auf den Klick auf den Funktions/Shift Button, welcher benoetigt wird,
@@ -45,7 +45,7 @@ namespace ProjectTrojan
         {
             if (memoryValue != 0)
             {
-                SetIOBoxText(inputOutputBox, memoryValue.ToString(outputCommaPrecision));
+                inputOutputBox.Text = memoryValue.ToString(outputCommaPrecision);
                 newOperand = false;
             }
         }
@@ -54,7 +54,7 @@ namespace ProjectTrojan
         void memoryClearButtonClick(object sender, EventArgs e)
         {
             memoryValue = 0;
-            SetButtonBackColor(memoryButton, Color.Gray);
+            memoryButton.BackColor = Color.Gray;
         }
 
         void memoryPButtonClick(object sender, EventArgs e)
@@ -62,9 +62,9 @@ namespace ProjectTrojan
             memoryValue += double.Parse(inputOutputBox.Text);
 
             if (memoryValue != 0)
-                SetButtonBackColor(memoryButton, Color.PaleVioletRed);
+                memoryButton.BackColor = Color.PaleVioletRed;
             else
-                SetButtonBackColor(memoryButton, Color.Gray);
+                memoryButton.BackColor = Color.Gray;
             
             newOperand = true;
         }
@@ -74,9 +74,9 @@ namespace ProjectTrojan
             memoryValue -= double.Parse(inputOutputBox.Text);
 
             if (memoryValue != 0)
-                SetButtonBackColor(memoryButton, Color.PaleVioletRed);
+                memoryButton.BackColor = Color.PaleVioletRed;
             else
-                SetButtonBackColor(memoryButton, Color.Gray);
+                memoryButton.BackColor = Color.Gray;
             
             newOperand = true;
         }
@@ -168,13 +168,13 @@ namespace ProjectTrojan
         //TextBox auf die Konstante Pi.
         void piButtonClick(object sender, EventArgs e)
         {
-            SetIOBoxText(inputOutputBox, (Math.PI).ToString(outputCommaPrecision));
+            inputOutputBox.Text = (Math.PI).ToString(outputCommaPrecision);
             newOperand = false;
         }
 
         void eButtonClick(object sender, EventArgs e)
         {
-            SetIOBoxText(inputOutputBox, (Math.E).ToString(outputCommaPrecision));
+            inputOutputBox.Text = (Math.E).ToString(outputCommaPrecision);
             newOperand = false;
         }
 
@@ -195,15 +195,15 @@ namespace ProjectTrojan
         //Ergebnisse sowie die aktuelle Eingabe leert.
         void clearButtonClick(object sender, EventArgs e)
         {
-            SetIOBoxText(inputOutputBox, "0");
-            SetButtonText(sinus, "sin");
-            SetButtonText(cosinus, "cos");
-            SetButtonText(tangens, "tan");
-            SetButtonText(memoryButton, "M");
-            SetButtonText(memoryAddSubstButton, "M+");
-            SetButtonBackColor(shift, SystemColors.Control);
+            inputOutputBox.Text = "0";
+            sinus.Text = "sin";
+            cosinus.Text = "cos";
+            tangens.Text = "tan";
+            memoryButton.Text = "M";
+            memoryAddSubstButton.Text = "M+";
+            shift.BackColor = SystemColors.Control;
             alternativeFunctionsActive = false;
-            SetOperand1(0);
+            operand1 = 0;
             UpdateOperation("none");
         }
 
@@ -217,22 +217,22 @@ namespace ProjectTrojan
             {
                 if (inputOutputBox.Text == "Error")
                 {
-                    SetIOBoxText(inputOutputBox, "0");
+                    inputOutputBox.Text = "0";
                     inputLength = 0;
                 }
                 else if ((inputOutputBox.Text.Contains("-") && inputOutputBox.TextLength == 2))
                 {
-                    SetIOBoxText(inputOutputBox, "0");
+                    inputOutputBox.Text = "0";
                     inputLength = 0;
                 }
                 else if (inputOutputBox.TextLength == 1)
                 {
-                    SetIOBoxText(inputOutputBox, "0");
+                    inputOutputBox.Text = "0";
                     inputLength = 0;
                 }
                 else if (inputOutputBox.TextLength > 1)
                 {
-                    SetIOBoxText(inputOutputBox, inputOutputBox.Text.Substring(0, (inputOutputBox.TextLength - 1)));
+                    inputOutputBox.Text = inputOutputBox.Text.Substring(0, (inputOutputBox.TextLength - 1));
                     inputLength -= 1;
                 }
             }
@@ -314,9 +314,9 @@ namespace ProjectTrojan
         void unitOfAngleButtonClick(object sender, EventArgs e)
         {
             if (unitOfAngle.Text == "Rad")
-                SetButtonText(unitOfAngle, "Grad");
+                unitOfAngle.Text = "Grad";
             else
-                SetButtonText(unitOfAngle, "Rad");
+                unitOfAngle.Text = "Rad";
         }
 
         //Diese Methode reagiert auf den Klick auf den Sinus Button und bewirkt eine Berechnung des

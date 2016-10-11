@@ -41,16 +41,6 @@ namespace ProjectTrojan
         Button memoryButton;
         Button memoryAddSubstButton;
 
-        void SetWindowSize(int width, int height)
-        {
-            Size = new Size(width, height);
-        }
-
-        void SetButtonText(Button button, string text)
-        {
-            button.Text = (text);
-        }
-
         void SetButtonSize(Button button, int width, int height)
         {
             button.Width = width;
@@ -96,40 +86,40 @@ namespace ProjectTrojan
 
             inputOutputBox = new TextBox();
 
-            SetButtonText(number0, "0");
-            SetButtonText(number1, "1");
-            SetButtonText(number2, "2");
-            SetButtonText(number3, "3");
-            SetButtonText(number4, "4");
-            SetButtonText(number5, "5");
-            SetButtonText(number6, "6");
-            SetButtonText(number7, "7");
-            SetButtonText(number8, "8");
-            SetButtonText(number9, "9");
-            SetButtonText(pi, "Pi");
-            SetButtonText(e, "e");
-            SetButtonText(comma, ",");
-            SetButtonText(clear, "AC");
-            SetButtonText(addition, "+");
-            SetButtonText(substraction, "-");
-            SetButtonText(multiplication, "*");
-            SetButtonText(division, "/");
-            SetButtonText(square, "x²");
-            SetButtonText(sqrt, "√¯x");
-            SetButtonText(equals, "=");
-            SetButtonText(del, "Del");
-            SetButtonText(factorial, "x!");
-            SetButtonText(ln, "ln x");
-            SetButtonText(sinus, "sin");
-            SetButtonText(cosinus, "cos");
-            SetButtonText(tangens, "tan");
-            SetButtonText(sinusHyp, "sinH");
-            SetButtonText(cosinusHyp, "cosH");
-            SetButtonText(unitOfAngle, "Rad");
-            SetButtonText(shift, "Shift");
-            SetButtonText(outputPrecisionButton, "4 Dgts");
-            SetButtonText(memoryButton, "M");
-            SetButtonText(memoryAddSubstButton, "M+");
+            number0.Text = "0";
+            number1.Text = "1";
+            number2.Text = "2";
+            number3.Text = "3";
+            number4.Text = "4";
+            number5.Text = "5";
+            number6.Text = "6";
+            number7.Text = "7";
+            number8.Text = "8";
+            number9.Text = "9";
+            pi.Text = "Pi";
+            e.Text = "e";
+            comma.Text = ",";
+            clear.Text = "AC";
+            addition.Text = "+";
+            substraction.Text = "-";
+            multiplication.Text = "*";
+            division.Text = "/";
+            square.Text = "x²";
+            sqrt.Text = "√¯x";
+            equals.Text = "=";
+            del.Text = "Del";
+            factorial.Text = "x!";
+            ln.Text = "ln x";
+            sinus.Text = "sin";
+            cosinus.Text = "cos";
+            tangens.Text = "tan";
+            sinusHyp.Text = "sinH";
+            cosinusHyp.Text = "cosH";
+            unitOfAngle.Text = "Rad";
+            shift.Text = "Shift";
+            outputPrecisionButton.Text = "4 Dgts";
+            memoryButton.Text = "M";
+            memoryAddSubstButton.Text = "M+";
 
             SetButtonSize(number0, 50, 50);
             SetButtonSize(number1, 50, 50);
@@ -167,76 +157,76 @@ namespace ProjectTrojan
             SetButtonSize(memoryButton, 50, 50);
             SetButtonSize(memoryAddSubstButton, 50, 50);
 
-            AddButtonControl(number0);
-            AddButtonControl(number1);
-            AddButtonControl(number2);
-            AddButtonControl(number3);
-            AddButtonControl(number4);
-            AddButtonControl(number5);
-            AddButtonControl(number6);
-            AddButtonControl(number7);
-            AddButtonControl(number8);
-            AddButtonControl(number9);
-            AddButtonControl(pi);
-            AddButtonControl(e);
-            AddButtonControl(comma);
-            AddButtonControl(clear);
-            AddButtonControl(addition);
-            AddButtonControl(substraction);
-            AddButtonControl(multiplication);
-            AddButtonControl(division);
-            AddButtonControl(square);
-            AddButtonControl(sqrt);
-            AddTextBoxControl(inputOutputBox);
-            AddButtonControl(equals);
-            AddButtonControl(del);
-            AddButtonControl(factorial);
-            AddButtonControl(ln);
-            AddButtonControl(shift);
-            AddButtonControl(outputPrecisionButton);
-            AddButtonControl(memoryButton);
-            AddButtonControl(memoryAddSubstButton);
-            AddButtonControl(sinus);
-            AddButtonControl(cosinus);
-            AddButtonControl(tangens);
-            AddButtonControl(sinusHyp);
-            AddButtonControl(cosinusHyp);
-            AddButtonControl(unitOfAngle);
+            Controls.Add(number0);
+            Controls.Add(number1);
+            Controls.Add(number2);
+            Controls.Add(number3);
+            Controls.Add(number4);
+            Controls.Add(number5);
+            Controls.Add(number6);
+            Controls.Add(number7);
+            Controls.Add(number8);
+            Controls.Add(number9);
+            Controls.Add(pi);
+            Controls.Add(e);
+            Controls.Add(comma);
+            Controls.Add(clear);
+            Controls.Add(addition);
+            Controls.Add(substraction);
+            Controls.Add(multiplication);
+            Controls.Add(division);
+            Controls.Add(square);
+            Controls.Add(sqrt);
+            Controls.Add(inputOutputBox);
+            Controls.Add(equals);
+            Controls.Add(del);
+            Controls.Add(factorial);
+            Controls.Add(ln);
+            Controls.Add(shift);
+            Controls.Add(outputPrecisionButton);
+            Controls.Add(memoryButton);
+            Controls.Add(memoryAddSubstButton);
+            Controls.Add(sinus);
+            Controls.Add(cosinus);
+            Controls.Add(tangens);
+            Controls.Add(sinusHyp);
+            Controls.Add(cosinusHyp);
+            Controls.Add(unitOfAngle);
 
-            SetButtonBackColor(number0, Color.LightGray);
-            SetButtonBackColor(number1, Color.LightGray);
-            SetButtonBackColor(number2, Color.LightGray);
-            SetButtonBackColor(number3, Color.LightGray);
-            SetButtonBackColor(number4, Color.LightGray);
-            SetButtonBackColor(number5, Color.LightGray);
-            SetButtonBackColor(number6, Color.LightGray);
-            SetButtonBackColor(number7, Color.LightGray);
-            SetButtonBackColor(number8, Color.LightGray);
-            SetButtonBackColor(number9, Color.LightGray);
-            SetButtonBackColor(pi, Color.Gray);
-            SetButtonBackColor(e, Color.Gray);
-            SetButtonBackColor(clear, Color.Red);
-            SetButtonBackColor(addition, Color.Orange);
-            SetButtonBackColor(substraction, Color.Orange);
-            SetButtonBackColor(multiplication, Color.Orange);
-            SetButtonBackColor(division, Color.Orange);
-            SetButtonBackColor(square, Color.Gray);
-            SetButtonBackColor(sqrt, Color.Gray);
-            SetButtonBackColor(equals, Color.Orange);
-            SetButtonBackColor(del, Color.Red);
-            SetButtonBackColor(factorial, Color.Gray);
-            SetButtonBackColor(ln, Color.Gray);
-            SetButtonBackColor(memoryButton, Color.Gray);
-            SetButtonBackColor(memoryAddSubstButton, Color.Gray);
-            SetButtonBackColor(sinus, Color.Gray);
-            SetButtonBackColor(cosinus, Color.Gray);
-            SetButtonBackColor(tangens, Color.Gray);
-            SetButtonBackColor(sinusHyp, Color.Gray);
-            SetButtonBackColor(cosinusHyp, Color.Gray);
-            SetButtonBackColor(unitOfAngle, Color.Gray);
+            number0.BackColor = Color.LightGray;
+            number1.BackColor = Color.LightGray;
+            number2.BackColor = Color.LightGray;
+            number3.BackColor = Color.LightGray;
+            number4.BackColor = Color.LightGray;
+            number5.BackColor = Color.LightGray;
+            number6.BackColor = Color.LightGray;
+            number7.BackColor = Color.LightGray;
+            number8.BackColor = Color.LightGray;
+            number9.BackColor = Color.LightGray;
+            pi.BackColor = Color.Gray;
+            e.BackColor = Color.Gray;
+            clear.BackColor = Color.Red;
+            addition.BackColor = Color.Orange;
+            substraction.BackColor = Color.Orange;
+            multiplication.BackColor = Color.Orange;
+            division.BackColor = Color.Orange;
+            square.BackColor = Color.Gray;
+            sqrt.BackColor = Color.Gray;
+            equals.BackColor = Color.Orange;
+            del.BackColor = Color.Red;
+            factorial.BackColor = Color.Gray;
+            ln.BackColor = Color.Gray;
+            memoryButton.BackColor = Color.Gray;
+            memoryAddSubstButton.BackColor = Color.Gray;
+            sinus.BackColor = Color.Gray;
+            cosinus.BackColor = Color.Gray;
+            tangens.BackColor = Color.Gray;
+            sinusHyp.BackColor = Color.Gray;
+            cosinusHyp.BackColor = Color.Gray;
+            unitOfAngle.BackColor = Color.Gray;
 
-            SetIOBoxForeColor(inputOutputBox, Color.WhiteSmoke);
-            SetIOBoxBackColor(inputOutputBox, Color.Black);
+            inputOutputBox.ForeColor = Color.WhiteSmoke;
+            inputOutputBox.ForeColor = Color.Black;
         }
 
         void SetUIComponentsPositions()
@@ -293,92 +283,47 @@ namespace ProjectTrojan
             inputOutputBox.TextAlign = HorizontalAlignment.Right;
         }
 
-        void SetIOBoxText(TextBox IOBox, string text)
-        {
-            IOBox.Text = text;
-        }
-
-        void AddButtonClickEvent(Button button, EventHandler clickFunction)
-        {
-            button.Click += clickFunction;
-        }
-
-        void RemoveButtonClickEvent(Button button, EventHandler clickFunction)
-        {
-            button.Click -= clickFunction;
-        }
-
-        void AddButtonControl(Button button)
-        {
-            Controls.Add(button);
-        }
-
-        void AddTextBoxControl(TextBox box)
-        {
-            Controls.Add(box);
-        }
-
-        void SetButtonBackColor(Button button, Color backColor)
-        {
-            button.BackColor = backColor;
-        }
-
-        void SetButtonForeColor(Button button, Color foreColor)
-        {
-            button.ForeColor = foreColor;
-        }
-
-        void SetIOBoxBackColor(TextBox box, Color backColor)
-        {
-            box.BackColor = backColor;
-        }
-
-        void SetIOBoxForeColor(TextBox box, Color foreColor)
-        {
-            box.ForeColor = foreColor;
-        }
-
         void CreateButtonsEventHandlers()
         {
-            AddButtonClickEvent(number0, number0ButtonClick);
-            AddButtonClickEvent(number1, number1ButtonClick);
-            AddButtonClickEvent(number2, number2ButtonClick);
-            AddButtonClickEvent(number3, number3ButtonClick);
-            AddButtonClickEvent(number4, number4ButtonClick);
-            AddButtonClickEvent(number5, number5ButtonClick);
-            AddButtonClickEvent(number6, number6ButtonClick);
-            AddButtonClickEvent(number7, number7ButtonClick);
-            AddButtonClickEvent(number8, number8ButtonClick);
-            AddButtonClickEvent(number9, number9ButtonClick);
-            AddButtonClickEvent(pi, piButtonClick);
-            AddButtonClickEvent(e, eButtonClick);
-            AddButtonClickEvent(comma, commaButtonClick);
-            AddButtonClickEvent(clear, clearButtonClick);
-            AddButtonClickEvent(addition, addButtonClick);
-            AddButtonClickEvent(substraction, substButtonClick);
-            AddButtonClickEvent(multiplication, multButtonClick);
-            AddButtonClickEvent(division, divButtonClick);
-            AddButtonClickEvent(square, squareButtonClick);
-            AddButtonClickEvent(sqrt, sqrtButtonClick);
-            AddButtonClickEvent(equals, equalsButtonClick);
-            AddButtonClickEvent(del, delButtonClick);
-            AddButtonClickEvent(factorial, factorialButtonClick);
-            AddButtonClickEvent(ln, lnButtonClick);
-            AddButtonClickEvent(sinus, sinusButtonClick);
-            AddButtonClickEvent(sinusHyp, sinusHypButtonClick);
-            AddButtonClickEvent(cosinus, cosinusButtonClick);
-            AddButtonClickEvent(cosinusHyp, cosinusHypButtonClick);
-            AddButtonClickEvent(tangens, tangensButtonClick);
-            AddButtonClickEvent(unitOfAngle, unitOfAngleButtonClick);
-            AddButtonClickEvent(shift, shiftButtonClick);
-            AddButtonClickEvent(outputPrecisionButton, outputPrecisionButtonClick);
-            AddButtonClickEvent(memoryAddSubstButton, memoryPButtonClick);
-            AddButtonClickEvent(memoryButton, memoryButtonClick);
+            number0.Click += number0ButtonClick;
+            number1.Click += number1ButtonClick;
+            number2.Click += number2ButtonClick;
+            number3.Click += number3ButtonClick;
+            number4.Click += number4ButtonClick;
+            number5.Click += number5ButtonClick;
+            number6.Click += number6ButtonClick;
+            number7.Click += number7ButtonClick;
+            number8.Click += number8ButtonClick;
+            number9.Click += number9ButtonClick;
+            pi.Click += piButtonClick;
+            e.Click += eButtonClick;
+            comma.Click += commaButtonClick;
+            clear.Click += clearButtonClick;
+            addition.Click += addButtonClick;
+            substraction.Click += substButtonClick;
+            multiplication.Click += multButtonClick;
+            division.Click += divButtonClick;
+            square.Click += squareButtonClick;
+            sqrt.Click += sqrtButtonClick;
+            equals.Click += equalsButtonClick;
+            del.Click += delButtonClick;
+            factorial.Click += factorialButtonClick;
+            ln.Click += lnButtonClick;
+            sinus.Click += sinusButtonClick;
+            sinusHyp.Click += sinusHypButtonClick;
+            cosinus.Click += cosinusButtonClick;
+            cosinusHyp.Click += cosinusHypButtonClick;
+            tangens.Click += tangensButtonClick;
+            unitOfAngle.Click += unitOfAngleButtonClick;
+            shift.Click += shiftButtonClick;
+            outputPrecisionButton.Click += outputPrecisionButtonClick;
+            memoryAddSubstButton.Click += memoryPButtonClick;
+            memoryButton.Click += memoryButtonClick;
         }
 
         void SetWindowProperties(int width, int height, string title, FormBorderStyle formBorderStyle, bool ActivateMinBox, bool ActivateMaxBox)
         {
-            SetWindowSize(width, height);
+            Size = new Size(width, height);
             Text = title;
             FormBorderStyle = formBorderStyle;
             MinimizeBox = ActivateMinBox; 
@@ -497,37 +442,32 @@ namespace ProjectTrojan
 
         }
 
-        void SetOperand1(double newValue)
-        {
-            operand1 = newValue;
-        }
-
         void ToggleShift()
         {
             if (!alternativeFunctionsActive)
             {
-                RemoveButtonClickEvent(sinus, sinusButtonClick);
-                AddButtonClickEvent(sinus, arcSinusButtonClick);
-                RemoveButtonClickEvent(cosinus, cosinusButtonClick);
-                AddButtonClickEvent(cosinus, arcCosinusbuttonClick);
-                RemoveButtonClickEvent(tangens, tangensButtonClick);
-                AddButtonClickEvent(tangens, arcTangensButtonClick);
-                RemoveButtonClickEvent(memoryButton, memoryButtonClick);
-                AddButtonClickEvent(memoryButton, memoryClearButtonClick);
-                RemoveButtonClickEvent(memoryAddSubstButton, memoryPButtonClick);
-                AddButtonClickEvent(memoryAddSubstButton, memoryMButtonClick);
-                RemoveButtonClickEvent(factorial, factorialButtonClick);
-                AddButtonClickEvent(factorial, reciprocalButtonClick);
-                RemoveButtonClickEvent(square, squareButtonClick);
-                AddButtonClickEvent(square, exponentButtonClick);
+                sinus.Click -= sinusButtonClick;
+                sinus.Click += arcSinusButtonClick;
+                cosinus.Click -= cosinusButtonClick;
+                cosinus.Click += arcCosinusbuttonClick;
+                tangens.Click -= tangensButtonClick;
+                tangens.Click += arcTangensButtonClick;
+                memoryButton.Click -= memoryButtonClick;
+                memoryButton.Click += memoryClearButtonClick;
+                memoryAddSubstButton.Click -= memoryPButtonClick;
+                memoryAddSubstButton.Click += memoryMButtonClick;
+                factorial.Click -= factorialButtonClick;
+                factorial.Click += reciprocalButtonClick;
+                square.Click -= squareButtonClick;
+                square.Click += exponentButtonClick;
 
-                SetButtonText(sinus, "arcsin");
-                SetButtonText(cosinus, "arccos");
-                SetButtonText(tangens, "arctan");
-                SetButtonText(factorial, "1/x");
-                SetButtonText(square, "x^n");
-                SetButtonText(memoryButton, "MC");
-                SetButtonText(memoryAddSubstButton, "M-");
+                sinus.Text = "arcsin";
+                cosinus.Text = "arccos";
+                tangens.Text = "arctan";
+                factorial.Text = "1/x";
+                square.Text = "x^n";
+                memoryButton.Text = "MC";
+                memoryAddSubstButton.Text = "M-";
 
                 alternativeFunctionsActive = true;
 
@@ -536,28 +476,28 @@ namespace ProjectTrojan
 
             else
             {
-                AddButtonClickEvent(sinus, sinusButtonClick);
-                RemoveButtonClickEvent(sinus, arcSinusButtonClick);
-                AddButtonClickEvent(cosinus, cosinusButtonClick);
-                RemoveButtonClickEvent(cosinus, arcCosinusbuttonClick);
-                AddButtonClickEvent(tangens, tangensButtonClick);
-                RemoveButtonClickEvent(tangens, arcTangensButtonClick);
-                AddButtonClickEvent(memoryButton, memoryButtonClick);
-                RemoveButtonClickEvent(memoryButton, memoryClearButtonClick);
-                AddButtonClickEvent(memoryAddSubstButton, memoryPButtonClick);
-                RemoveButtonClickEvent(memoryAddSubstButton, memoryMButtonClick);
-                AddButtonClickEvent(factorial, factorialButtonClick);
-                RemoveButtonClickEvent(factorial, reciprocalButtonClick);
-                AddButtonClickEvent(square, squareButtonClick);
-                RemoveButtonClickEvent(square, exponentButtonClick);
+                sinus.Click += sinusButtonClick;
+                sinus.Click -= arcSinusButtonClick;
+                cosinus.Click += cosinusButtonClick;
+                cosinus.Click -= arcCosinusbuttonClick;
+                tangens.Click += tangensButtonClick;
+                tangens.Click -= arcTangensButtonClick;
+                memoryButton.Click += memoryButtonClick;
+                memoryButton.Click -= memoryClearButtonClick;
+                memoryAddSubstButton.Click += memoryPButtonClick;
+                memoryAddSubstButton.Click -= memoryMButtonClick;
+                factorial.Click += factorialButtonClick;
+                factorial.Click -= reciprocalButtonClick;
+                square.Click += squareButtonClick;
+                square.Click -= exponentButtonClick;
 
-                SetButtonText(sinus, "sin");
-                SetButtonText(cosinus, "cos");
-                SetButtonText(tangens, "tan");
-                SetButtonText(factorial, "x!");
-                SetButtonText(square, "x²");
-                SetButtonText(memoryButton, "M");
-                SetButtonText(memoryAddSubstButton, "M+");
+                sinus.Text = "sin";
+                cosinus.Text = "cos";
+                tangens.Text = "tan";
+                factorial.Text = "x!";
+                square.Text = "x²";
+                memoryButton.Text = "M";
+                memoryAddSubstButton.Text = "M+";
 
                 alternativeFunctionsActive = false;
 
