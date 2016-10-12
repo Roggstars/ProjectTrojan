@@ -357,6 +357,10 @@ namespace ProjectTrojan
                 case "none":
                     operand1 = double.Parse(inputOutputBox.Text);
                     break;
+                case "binominal":
+                    operand1 = BinomialCoefficient( operand1, double.Parse(inputOutputBox.Text));
+                    inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
+                    break;
             }
         }
 
@@ -461,6 +465,8 @@ namespace ProjectTrojan
                 factorial.Click += ReciprocalButtonClick;
                 square.Click -= SquareButtonClick;
                 square.Click += ExponentButtonClick;
+                division.Click -= DivButtonClick;
+                division.Click += BinomialCoefficientButtonClick;
 
                 sinus.Text = "arcsin";
                 cosinus.Text = "arccos";
@@ -469,6 +475,7 @@ namespace ProjectTrojan
                 square.Text = "x^n";
                 memoryButton.Text = "MC";
                 memoryAddSubstButton.Text = "M-";
+                division.Text = "nPr"; 
 
                 alternativeFunctionsActive = true;
 
@@ -491,6 +498,8 @@ namespace ProjectTrojan
                 factorial.Click -= ReciprocalButtonClick;
                 square.Click += SquareButtonClick;
                 square.Click -= ExponentButtonClick;
+                division.Click += DivButtonClick;
+                division.Click -= BinomialCoefficientButtonClick;
 
                 sinus.Text = "sin";
                 cosinus.Text = "cos";
@@ -499,6 +508,7 @@ namespace ProjectTrojan
                 square.Text = "x²";
                 memoryButton.Text = "M";
                 memoryAddSubstButton.Text = "M+";
+                division.Text = " / ";
 
                 alternativeFunctionsActive = false;
 
@@ -539,6 +549,25 @@ namespace ProjectTrojan
             {
                 operand1 = angularFunction(boxValue) * 180 / Math.PI;
                 inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
+            }
+            else
+            {
+                ErrorMessage();
+            }
+        }
+
+        void BinomialCoefficient(double n, double k)
+        {
+            double binom = 1;
+            double EPSILON = 0.0000000000000001f;
+
+            if ( n < k && Math.Abs(n) < Math.Abs(k) && (n % 1) + (k % 1) < EPSILON &&  n > 0)
+            {
+                for(int i=1; i <= n; i++)
+                {
+                    binom = binom * (k - i + 1) / i;
+                }
+                inputOutputBox.Text = binom.ToString(outputCommaPrecision);
             }
             else
             {

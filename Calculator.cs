@@ -534,6 +534,18 @@ namespace ProjectTrojan
             newOperand = true;
         }
 
+        //Diese Methode reagiert auf den Klick auf den Division Button wenn SHIFT zuvorgedrückt wurde und bewirkt die Berechnung des
+        //Binomialkoeffizenten. Dabei ist darauf zu achten, dass die Eingabe Werten die Vorrrausetzungen erfüllen.
+        void BinomialCoefficientButtonClick(object sender, EventArgs e)
+        {
+            if (!newOperand)
+            {
+                PerformCurrentOperation();
+            }
+
+            UpdateOperation("binominal");
+        }
+
         //Diese Methode reagiert auf den Klick auf den Equals Button und bewirkt die Berechnung der
         //aktuelle currentOperation.
         void EqualsButtonClick(object sender, EventArgs e)
