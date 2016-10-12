@@ -358,7 +358,7 @@ namespace ProjectTrojan
                     operand1 = double.Parse(inputOutputBox.Text);
                     break;
                 case "binominal":
-                    operand1 = BinomialCoefficient( operand1, double.Parse(inputOutputBox.Text));
+                    BinomialCoefficient(operand1, double.Parse(inputOutputBox.Text));
                     inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
                     break;
             }
@@ -567,7 +567,7 @@ namespace ProjectTrojan
                 {
                     binom = binom * (k - i + 1) / i;
                 }
-                inputOutputBox.Text = binom.ToString(outputCommaPrecision);
+                operand1 = binom;
             }
             else
             {
