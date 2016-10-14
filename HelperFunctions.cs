@@ -47,7 +47,20 @@ namespace ProjectTrojan
             button.Height = height;
         }
 
-        void InitializeUIComponents()
+        void InitializeCalculatorAndUIComponents()
+        {
+            SetWindowProperties(390, 500);
+            CreateUIComponents ();
+            SetUIButtonsTexts ();
+            SetUIButtonsSizes ();
+            AddControlsToButtons ();
+            CreateButtonsEventHandlers();
+            SetUIComponentsColors ();
+            SetIOBoxProperties ();
+            SetUIComponentsPositions();
+        }
+
+        void CreateUIComponents()
         {
             number0 = new Button();
             number1 = new Button();
@@ -85,7 +98,10 @@ namespace ProjectTrojan
             memoryAddSubstButton = new Button();
 
             inputOutputBox = new TextBox();
+        }
 
+        void SetUIButtonsTexts()
+        {
             number0.Text = "0";
             number1.Text = "1";
             number2.Text = "2";
@@ -120,7 +136,10 @@ namespace ProjectTrojan
             outputPrecisionButton.Text = "4 Dgts";
             memoryButton.Text = "M";
             memoryAddSubstButton.Text = "M+";
+        }
 
+        void SetUIButtonsSizes()
+        {
             SetButtonSize(number0, 50, 50);
             SetButtonSize(number1, 50, 50);
             SetButtonSize(number2, 50, 50);
@@ -156,7 +175,10 @@ namespace ProjectTrojan
             SetButtonSize(outputPrecisionButton, 50, 50);
             SetButtonSize(memoryButton, 50, 50);
             SetButtonSize(memoryAddSubstButton, 50, 50);
+        }
 
+        void AddControlsToButtons()
+        {
             Controls.Add(number0);
             Controls.Add(number1);
             Controls.Add(number2);
@@ -192,7 +214,10 @@ namespace ProjectTrojan
             Controls.Add(sinusHyp);
             Controls.Add(cosinusHyp);
             Controls.Add(unitOfAngle);
+        }
 
+        void SetUIComponentsColors()
+        {
             number0.BackColor = Color.LightGray;
             number1.BackColor = Color.LightGray;
             number2.BackColor = Color.LightGray;
@@ -275,12 +300,13 @@ namespace ProjectTrojan
             equals.Location = new Point(memoryAddSubstButton.Left + memoryAddSubstButton.Width, memoryAddSubstButton.Top);
         }
 
-        void SetIOBoxProperties(int width, Font font, bool readOnly, HorizontalAlignment alignment)
+        void SetIOBoxProperties()
         {
-            inputOutputBox.Width = width;
-            inputOutputBox.Font = font;
-            inputOutputBox.ReadOnly = readOnly;
-            inputOutputBox.TextAlign = alignment;
+            inputOutputBox.Width = 320;
+            inputOutputBox.Font = new Font("ArialBlack", 30, FontStyle.Bold);
+            inputOutputBox.ReadOnly = true;
+            inputOutputBox.TextAlign = HorizontalAlignment.Right;
+            inputOutputBox.Text = "0";
         }
 
         void CreateButtonsEventHandlers()
@@ -321,13 +347,13 @@ namespace ProjectTrojan
             memoryButton.Click += MemoryButtonClick;
         }
 
-        void SetWindowProperties(int width, int height, string title, FormBorderStyle formBorderStyle, bool activateMinBox, bool activateMaxBox)
+        void SetWindowProperties(int width, int height)
         {
             Size = new Size(width, height);
-            Text = title;
-            FormBorderStyle = formBorderStyle;
-            MinimizeBox = activateMinBox;
-            MaximizeBox = activateMaxBox;
+            Text = "Project Trojan";
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MinimizeBox = false;
+            MaximizeBox = false;
         }
 
         void PerformCurrentOperation()
@@ -336,30 +362,30 @@ namespace ProjectTrojan
             {
                 case "addition":
                     operand1 = (operand1 + double.Parse(inputOutputBox.Text));
-                    inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
+                    inputOutputBox.Text = operand1.ToString(outputPrecision.GetCurrentPrecision());
                     break;
                 case "substraction":
                     operand1 = (operand1 - double.Parse(inputOutputBox.Text));
-                    inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
+                    inputOutputBox.Text = operand1.ToString(outputPrecision.GetCurrentPrecision());
                     break;
                 case "multiplication":
                     operand1 = (operand1 * double.Parse(inputOutputBox.Text));
-                    inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
+                    inputOutputBox.Text = operand1.ToString(outputPrecision.GetCurrentPrecision());
                     break;
                 case "division":
                     operand1 = (operand1 / double.Parse(inputOutputBox.Text));
-                    inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
+                    inputOutputBox.Text = operand1.ToString(outputPrecision.GetCurrentPrecision());
                     break;
                 case "pow":
                     operand1 = (Math.Pow(operand1, double.Parse(inputOutputBox.Text)));
-                    inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
-                    break;
-                case "none":
-                    operand1 = double.Parse(inputOutputBox.Text);
+                    inputOutputBox.Text = operand1.ToString(outputPrecision.GetCurrentPrecision());
                     break;
                 case "binominal":
                     BinomialCoefficient(operand1, double.Parse(inputOutputBox.Text));
-                    inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
+                    inputOutputBox.Text = operand1.ToString(outputPrecision.GetCurrentPrecision());
+                    break;
+                case "none":
+                    operand1 = double.Parse(inputOutputBox.Text);
                     break;
             }
         }
@@ -376,23 +402,6 @@ namespace ProjectTrojan
                 return true;
             else
                 return false;
-        }
-
-        void SetNewIOPrecision(string newPrecision)
-        {
-            if (newPrecision != "g8")
-            {
-                int newPrecisionInt = int.Parse(newPrecision.Substring(1, 1));
-                newPrecisionInt += 1;
-                outputCommaPrecision = "g" + newPrecisionInt.ToString();
-            }
-            else
-                outputCommaPrecision = "g0";
-
-            if (outputCommaPrecision == "g1")
-                outputPrecisionButton.Text = outputCommaPrecision.Substring(1, 1) + " Dgt";
-            else
-                outputPrecisionButton.Text = outputCommaPrecision.Substring(1, 1) + " Dgts";
         }
 
         void AddNumber(int number)
@@ -523,14 +532,14 @@ namespace ProjectTrojan
             if (unitOfAngle.Text == "Rad")
             {
                 operand1 = (angularFunction(boxValue));
-                inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
+                inputOutputBox.Text = operand1.ToString(outputPrecision.GetCurrentPrecision());
             }
             else if (unitOfAngle.Text == "Grad")
             {
                 var temp = boxValue;
                 temp *= (Math.PI / 180);
                 operand1 = angularFunction(temp);
-                inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
+                inputOutputBox.Text = operand1.ToString(outputPrecision.GetCurrentPrecision());
             }
             else
             {
@@ -543,12 +552,12 @@ namespace ProjectTrojan
             if (unitOfAngle.Text == "Rad")
             {
                 operand1 = (angularFunction(boxValue));
-                inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
+                inputOutputBox.Text = operand1.ToString(outputPrecision.GetCurrentPrecision());
             }
             else if (unitOfAngle.Text == "Grad")
             {
                 operand1 = angularFunction(boxValue) * 180 / Math.PI;
-                inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
+                inputOutputBox.Text = operand1.ToString(outputPrecision.GetCurrentPrecision());
             }
             else
             {

@@ -11,10 +11,9 @@ namespace ProjectTrojan
         bool newOperand;
         double operand1;
         string currentOperation = "none";
-        string outputCommaPrecision = "g4";
         bool alternativeFunctionsActive;
         double memoryValue = 0;
-
+        OutputPrecision outputPrecision = new OutputPrecision();
 
         //Erstellt TextBox
         TextBox inputOutputBox;
@@ -22,12 +21,7 @@ namespace ProjectTrojan
         public Calculator()
         {
             SetCurrentLanguage();
-            SetWindowProperties(390, 500, "Project Trojan", FormBorderStyle.FixedDialog, false, false);
-            InitializeUIComponents();
-            SetIOBoxProperties(320, new Font("ArialBlack", 30, FontStyle.Bold), true, HorizontalAlignment.Right);
-            SetUIComponentsPositions();
-            CreateButtonsEventHandlers();
-            inputOutputBox.Text = "0";
+            InitializeCalculatorAndUIComponents();
         }
 
         //Diese Methode reagiert auf den Klick auf den Funktions/Shift Button, welcher benoetigt wird,
@@ -45,7 +39,7 @@ namespace ProjectTrojan
         {
             if (memoryValue != 0)
             {
-                inputOutputBox.Text = memoryValue.ToString(outputCommaPrecision);
+                inputOutputBox.Text = memoryValue.ToString(outputPrecision.GetCurrentPrecision());
                 newOperand = false;
             }
         }
@@ -168,13 +162,13 @@ namespace ProjectTrojan
         //TextBox auf die Konstante Pi.
         void PiButtonClick(object sender, EventArgs e)
         {
-            inputOutputBox.Text = (Math.PI).ToString(outputCommaPrecision);
+            inputOutputBox.Text = (Math.PI).ToString(outputPrecision.GetCurrentPrecision());
             newOperand = false;
         }
 
         void EButtonClick(object sender, EventArgs e)
         {
-            inputOutputBox.Text = (Math.E).ToString(outputCommaPrecision);
+            inputOutputBox.Text = (Math.E).ToString(outputPrecision.GetCurrentPrecision());
             newOperand = false;
         }
 
@@ -443,7 +437,7 @@ namespace ProjectTrojan
                     temp *= i;
 
                 operand1 = temp;
-                inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
+                inputOutputBox.Text = operand1.ToString(outputPrecision.GetCurrentPrecision());
                 newOperand = true;
             }
             else
@@ -472,7 +466,7 @@ namespace ProjectTrojan
                 double x = 0;
                 x = 1 / X;
                 operand1 = x;
-                inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
+                inputOutputBox.Text = operand1.ToString(outputPrecision.GetCurrentPrecision());
                 newOperand = true;
             }
         }
@@ -485,7 +479,7 @@ namespace ProjectTrojan
                 return;
 
             operand1 = double.Parse(inputOutputBox.Text) * double.Parse(inputOutputBox.Text);
-            inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
+            inputOutputBox.Text = operand1.ToString(outputPrecision.GetCurrentPrecision());
             inputLength = 0;
             newOperand = true;
         }
@@ -503,7 +497,7 @@ namespace ProjectTrojan
             if (lnValue > 0)
             {
                 operand1 = Math.Log(lnValue);
-                inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
+                inputOutputBox.Text = operand1.ToString(outputPrecision.GetCurrentPrecision());
                 inputLength = 0;
             }
             else
@@ -525,7 +519,7 @@ namespace ProjectTrojan
             if (sqrtValue > 0)
             {
                 operand1 = Math.Sqrt(double.Parse(inputOutputBox.Text));
-                inputOutputBox.Text = operand1.ToString(outputCommaPrecision);
+                inputOutputBox.Text = operand1.ToString(outputPrecision.GetCurrentPrecision());
             }
             else
             {
@@ -562,7 +556,11 @@ namespace ProjectTrojan
 
         void OutputPrecisionButtonClick(object sender, EventArgs e)
         {
-            SetNewIOPrecision(outputCommaPrecision);
+            outputPrecision.SetToNextPrecisionInCycle ();
+            if (outputPrecision.GetCurrentPrecision() == "g1")
+                outputPrecisionButton.Text = (outputPrecision.GetCurrentPrecision().Substring (1, 1) + " Dgt");
+            else
+                outputPrecisionButton.Text = (outputPrecision.GetCurrentPrecision().Substring (1, 1) + " Dgts");
         }
 
 
