@@ -12,7 +12,7 @@ namespace ProjectTrojan
         double operand1;
         string currentOperation = "none";
         bool alternativeFunctionsActive;
-        double memoryValue = 0;
+        Memory currentMemory = new Memory();
         OutputPrecision outputPrecision = new OutputPrecision();
 
         //Erstellt TextBox
@@ -37,9 +37,9 @@ namespace ProjectTrojan
         // Abspeichern des Inhaltes der inputOutputBox 
         void MemoryButtonClick(object sender, EventArgs e)
         {
-            if (memoryValue != 0)
+            if (currentMemory.GetMemoryValue() != 0)
             {
-                inputOutputBox.Text = memoryValue.ToString(outputPrecision.GetCurrentPrecision());
+                inputOutputBox.Text = currentMemory.GetMemoryValue().ToString(outputPrecision.GetCurrentPrecision());
                 newOperand = false;
             }
         }
@@ -47,15 +47,15 @@ namespace ProjectTrojan
         //Löschen des Speichers
         void MemoryClearButtonClick(object sender, EventArgs e)
         {
-            memoryValue = 0;
+            currentMemory.SetMemoryValue(0);
             memoryButton.BackColor = Color.Gray;
         }
 
         void MemoryAddButtonClick(object sender, EventArgs e)
         {
-            memoryValue += double.Parse(inputOutputBox.Text);
+            currentMemory.AddValueToMemory(double.Parse(inputOutputBox.Text));
 
-            if (memoryValue != 0)
+            if (currentMemory.GetMemoryValue() != 0)
                 memoryButton.BackColor = Color.PaleVioletRed;
             else
                 memoryButton.BackColor = Color.Gray;
@@ -65,9 +65,9 @@ namespace ProjectTrojan
 
         void MemorySubstractButtonClick(object sender, EventArgs e)
         {
-            memoryValue -= double.Parse(inputOutputBox.Text);
+            currentMemory.SubstractValueFromMemory(double.Parse(inputOutputBox.Text));
 
-            if (memoryValue != 0)
+            if (currentMemory.GetMemoryValue() != 0)
                 memoryButton.BackColor = Color.PaleVioletRed;
             else
                 memoryButton.BackColor = Color.Gray;
