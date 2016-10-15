@@ -209,20 +209,17 @@ namespace ProjectTrojan
         {
             if (!newOperand)
             {
-                if (inputOutputBox.Text == "Error")
+                if (InputContainsErrorOrInfinity())
                 {
-                    inputOutputBox.Text = "0";
-                    inputLength = 0;
+                    ResetIOToZero ();
                 }
                 else if ((inputOutputBox.Text.Contains("-") && inputOutputBox.TextLength == 2))
                 {
-                    inputOutputBox.Text = "0";
-                    inputLength = 0;
+                    ResetIOToZero ();
                 }
                 else if (inputOutputBox.TextLength == 1)
                 {
-                    inputOutputBox.Text = "0";
-                    inputLength = 0;
+                    ResetIOToZero ();
                 }
                 else if (inputOutputBox.TextLength > 1)
                 {
@@ -237,10 +234,7 @@ namespace ProjectTrojan
         void ExponentButtonClick(object sender, EventArgs e)
         {
             if (!newOperand)
-            {
                 PerformCurrentOperation();
-            }
-
             UpdateOperation("pow");
         }
 
@@ -252,10 +246,7 @@ namespace ProjectTrojan
         void AddButtonClick(object sender, EventArgs e)
         {
             if (!newOperand)
-            {
                 PerformCurrentOperation();
-            }
-
             UpdateOperation("addition");
         }
 
@@ -266,10 +257,7 @@ namespace ProjectTrojan
         void SubstButtonClick(object sender, EventArgs e)
         {
             if (!newOperand)
-            {
                 PerformCurrentOperation();
-            }
-
             UpdateOperation("substraction");
         }
 
@@ -280,10 +268,7 @@ namespace ProjectTrojan
         void MultButtonClick(object sender, EventArgs e)
         {
             if (!newOperand)
-            {
                 PerformCurrentOperation();
-            }
-
             UpdateOperation("multiplication");
         }
 
@@ -294,10 +279,7 @@ namespace ProjectTrojan
         void DivButtonClick(object sender, EventArgs e)
         {
             if (!newOperand)
-            {
                 PerformCurrentOperation();
-            }
-
             UpdateOperation("division");
         }
 
@@ -321,7 +303,6 @@ namespace ProjectTrojan
                 return;
 
             CalculateAngularFunction (Math.Sin, double.Parse(inputOutputBox.Text));
-
             newOperand = true;
         }
 
@@ -333,7 +314,6 @@ namespace ProjectTrojan
                 return;
 
             CalculateAngularFunction (Math.Sinh, double.Parse(inputOutputBox.Text));
-
             newOperand = true;
         }
 
@@ -345,7 +325,6 @@ namespace ProjectTrojan
                 return;
 
             CalculateAngularFunction (Math.Cos, double.Parse(inputOutputBox.Text));
-
             newOperand = true;
         }
 
@@ -357,7 +336,6 @@ namespace ProjectTrojan
                 return;
 
             CalculateAngularFunction (Math.Cosh, double.Parse(inputOutputBox.Text));
-
             newOperand = true;
         }
 
@@ -369,7 +347,6 @@ namespace ProjectTrojan
                 return;
 
             CalculateAngularFunction (Math.Tan, double.Parse(inputOutputBox.Text));
-
             newOperand = true;
         }
 
@@ -381,7 +358,6 @@ namespace ProjectTrojan
                 return;
 
             CalculateArcAngularFunction (Math.Asin, double.Parse (inputOutputBox.Text));
-
             newOperand = true;
         }
 
@@ -393,7 +369,6 @@ namespace ProjectTrojan
                 return;
 
             CalculateArcAngularFunction (Math.Acos, double.Parse (inputOutputBox.Text));
-
             newOperand = true;
         }
 
@@ -405,7 +380,6 @@ namespace ProjectTrojan
                 return;
 
             CalculateArcAngularFunction (Math.Atan, double.Parse (inputOutputBox.Text));
-
             newOperand = true;
         }
 
@@ -477,7 +451,7 @@ namespace ProjectTrojan
         {
             if (InputContainsErrorOrInfinity())
                 return;
-
+            
             operand1 = double.Parse(inputOutputBox.Text) * double.Parse(inputOutputBox.Text);
             inputOutputBox.Text = operand1.ToString(outputPrecision.GetCurrentPrecision());
             inputLength = 0;
@@ -493,7 +467,6 @@ namespace ProjectTrojan
                 return;
 
             double lnValue = double.Parse(inputOutputBox.Text);
-
             if (lnValue > 0)
             {
                 operand1 = Math.Log(lnValue);
@@ -501,9 +474,7 @@ namespace ProjectTrojan
                 inputLength = 0;
             }
             else
-            {
                 ErrorMessage();
-            }
             newOperand = true;
         }
 
@@ -513,18 +484,15 @@ namespace ProjectTrojan
         {
             if (InputContainsErrorOrInfinity())
                 return;
-
+            
             double sqrtValue = Math.Sqrt(double.Parse(inputOutputBox.Text));
-
             if (sqrtValue > 0)
             {
                 operand1 = Math.Sqrt(double.Parse(inputOutputBox.Text));
                 inputOutputBox.Text = operand1.ToString(outputPrecision.GetCurrentPrecision());
             }
             else
-            {
                 ErrorMessage();
-            }
             newOperand = true;
         }
 
@@ -533,10 +501,7 @@ namespace ProjectTrojan
         void BinomialCoefficientButtonClick(object sender, EventArgs e)
         {
             if (!newOperand)
-            {
                 PerformCurrentOperation();
-            }
-
             UpdateOperation("binominal");
         }
 
@@ -545,10 +510,7 @@ namespace ProjectTrojan
         void EqualsButtonClick(object sender, EventArgs e)
         {
             if (!newOperand)
-            {
                 PerformCurrentOperation();
-            }
-
             UpdateOperation("none");
         }
 

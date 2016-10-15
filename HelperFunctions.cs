@@ -362,32 +362,27 @@ namespace ProjectTrojan
             {
                 case "addition":
                     operand1 = (operand1 + double.Parse(inputOutputBox.Text));
-                    inputOutputBox.Text = operand1.ToString(outputPrecision.GetCurrentPrecision());
                     break;
                 case "substraction":
                     operand1 = (operand1 - double.Parse(inputOutputBox.Text));
-                    inputOutputBox.Text = operand1.ToString(outputPrecision.GetCurrentPrecision());
                     break;
                 case "multiplication":
                     operand1 = (operand1 * double.Parse(inputOutputBox.Text));
-                    inputOutputBox.Text = operand1.ToString(outputPrecision.GetCurrentPrecision());
                     break;
                 case "division":
                     operand1 = (operand1 / double.Parse(inputOutputBox.Text));
-                    inputOutputBox.Text = operand1.ToString(outputPrecision.GetCurrentPrecision());
                     break;
                 case "pow":
                     operand1 = (Math.Pow(operand1, double.Parse(inputOutputBox.Text)));
-                    inputOutputBox.Text = operand1.ToString(outputPrecision.GetCurrentPrecision());
                     break;
                 case "binominal":
                     BinomialCoefficient(operand1, double.Parse(inputOutputBox.Text));
-                    inputOutputBox.Text = operand1.ToString(outputPrecision.GetCurrentPrecision());
                     break;
                 case "none":
                     operand1 = double.Parse(inputOutputBox.Text);
-                    break;
+                    return;
             }
+            inputOutputBox.Text = operand1.ToString(outputPrecision.GetCurrentPrecision());
         }
 
         void UpdateOperation(string newOperation)
@@ -402,6 +397,12 @@ namespace ProjectTrojan
                 return true;
             else
                 return false;
+        }
+
+        void ResetIOToZero()
+        {
+            inputOutputBox.Text = "0";
+            inputLength = 0;
         }
 
         void AddNumber(int number)
