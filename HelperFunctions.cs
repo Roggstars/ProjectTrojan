@@ -460,69 +460,83 @@ namespace ProjectTrojan
         {
             if (!alternativeFunctionsActive)
             {
-                sinus.Click -= SinusButtonClick;
-                sinus.Click += ArcSinusButtonClick;
-                cosinus.Click -= CosinusButtonClick;
-                cosinus.Click += ArcCosinusButtonClick;
-                tangens.Click -= TangensButtonClick;
-                tangens.Click += ArcTangensButtonClick;
-                memoryButton.Click -= MemoryButtonClick;
-                memoryButton.Click += MemoryClearButtonClick;
-                memoryAddSubstButton.Click += MemoryAddButtonClick;
-                memoryAddSubstButton.Click += MemorySubstractButtonClick;
-                factorial.Click -= FactorialButtonClick;
-                factorial.Click += ReciprocalButtonClick;
-                square.Click -= SquareButtonClick;
-                square.Click += ExponentButtonClick;
-                division.Click -= DivButtonClick;
-                division.Click += BinomialCoefficientButtonClick;
-
-                sinus.Text = "arcsin";
-                cosinus.Text = "arccos";
-                tangens.Text = "arctan";
-                factorial.Text = "1/x";
-                square.Text = "x^n";
-                memoryButton.Text = "MC";
-                memoryAddSubstButton.Text = "M-";
-                division.Text = "nPr"; 
-
+                SetButtonEventHandlersToShiftCase ();
+                SetButtonTextsToShiftCase ();
                 alternativeFunctionsActive = true;
-
                 shift.BackColor = Color.Red;
             }
 
             else
             {
-                sinus.Click += SinusButtonClick;
-                sinus.Click -= ArcSinusButtonClick;
-                cosinus.Click += CosinusButtonClick;
-                cosinus.Click -= ArcCosinusButtonClick;
-                tangens.Click += TangensButtonClick;
-                tangens.Click -= ArcTangensButtonClick;
-                memoryButton.Click += MemoryButtonClick;
-                memoryButton.Click -= MemoryClearButtonClick;
-                memoryAddSubstButton.Click += MemoryAddButtonClick;
-                memoryAddSubstButton.Click -= MemorySubstractButtonClick;
-                factorial.Click += FactorialButtonClick;
-                factorial.Click -= ReciprocalButtonClick;
-                square.Click += SquareButtonClick;
-                square.Click -= ExponentButtonClick;
-                division.Click += DivButtonClick;
-                division.Click -= BinomialCoefficientButtonClick;
-
-                sinus.Text = "sin";
-                cosinus.Text = "cos";
-                tangens.Text = "tan";
-                factorial.Text = "x!";
-                square.Text = "x²";
-                memoryButton.Text = "M";
-                memoryAddSubstButton.Text = "M+";
-                division.Text = " / ";
-
+                SetButtonEventHandlersToNonShiftCase ();
+                SetButtonEventHandlersToNonShiftCase ();
                 alternativeFunctionsActive = false;
-
                 shift.BackColor = SystemColors.Control;
             }
+        }
+
+        void SetButtonEventHandlersToShiftCase()
+        {
+            sinus.Click -= SinusButtonClick;
+            sinus.Click += ArcSinusButtonClick;
+            cosinus.Click -= CosinusButtonClick;
+            cosinus.Click += ArcCosinusButtonClick;
+            tangens.Click -= TangensButtonClick;
+            tangens.Click += ArcTangensButtonClick;
+            memoryButton.Click -= MemoryButtonClick;
+            memoryButton.Click += MemoryClearButtonClick;
+            memoryAddSubstButton.Click += MemoryAddButtonClick;
+            memoryAddSubstButton.Click += MemorySubstractButtonClick;
+            factorial.Click -= FactorialButtonClick;
+            factorial.Click += ReciprocalButtonClick;
+            square.Click -= SquareButtonClick;
+            square.Click += ExponentButtonClick;
+            division.Click -= DivButtonClick;
+            division.Click += BinomialCoefficientButtonClick;
+        }
+
+        void SetButtonEventHandlersToNonShiftCase()
+        {
+            sinus.Click += SinusButtonClick;
+            sinus.Click -= ArcSinusButtonClick;
+            cosinus.Click += CosinusButtonClick;
+            cosinus.Click -= ArcCosinusButtonClick;
+            tangens.Click += TangensButtonClick;
+            tangens.Click -= ArcTangensButtonClick;
+            memoryButton.Click += MemoryButtonClick;
+            memoryButton.Click -= MemoryClearButtonClick;
+            memoryAddSubstButton.Click += MemoryAddButtonClick;
+            memoryAddSubstButton.Click -= MemorySubstractButtonClick;
+            factorial.Click += FactorialButtonClick;
+            factorial.Click -= ReciprocalButtonClick;
+            square.Click += SquareButtonClick;
+            square.Click -= ExponentButtonClick;
+            division.Click += DivButtonClick;
+            division.Click -= BinomialCoefficientButtonClick;
+        }
+
+        void SetButtonTextsToShiftCase()
+        {
+            sinus.Text = "arcsin";
+            cosinus.Text = "arccos";
+            tangens.Text = "arctan";
+            factorial.Text = "1/x";
+            square.Text = "x^n";
+            memoryButton.Text = "MC";
+            memoryAddSubstButton.Text = "M-";
+            division.Text = "nPr"; 
+        }
+
+        void SetButtonTextsToNonShiftCase()
+        {
+            sinus.Text = "sin";
+            cosinus.Text = "cos";
+            tangens.Text = "tan";
+            factorial.Text = "x!";
+            square.Text = "x²";
+            memoryButton.Text = "M";
+            memoryAddSubstButton.Text = "M+";
+            division.Text = " / ";
         }
 
         delegate double AngularFunction(double value);
