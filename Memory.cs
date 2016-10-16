@@ -6,27 +6,27 @@ namespace ProjectTrojan
     {
         double memoryValue;
 
-        public Memory()
+        public Memory ()
         {
             memoryValue = 0;
         }
 
-        public void SetMemoryValue(double newMemoryValue)
+        public void SetMemoryValue (double newMemoryValue)
         {
             memoryValue = newMemoryValue;
         }
 
-        public double GetMemoryValue()
+        public double GetMemoryValue ()
         {
             return memoryValue;
         }
 
-        public void AddValueToMemory(double addValue)
+        public void AddValueToMemory (double addValue)
         {
             memoryValue += addValue;
         }
 
-        public void SubstractValueFromMemory(double subValue)
+        public void SubstractValueFromMemory (double subValue)
         {
             memoryValue -= subValue;
         }

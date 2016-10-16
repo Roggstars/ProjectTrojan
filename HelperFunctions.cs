@@ -41,66 +41,66 @@ namespace ProjectTrojan
         Button memoryButton;
         Button memoryAddSubstButton;
 
-        void SetButtonSize(Button button, int width, int height)
+        void SetButtonSize (Button button, int width, int height)
         {
             button.Width = width;
             button.Height = height;
         }
 
-        void InitializeCalculatorAndUIComponents()
+        void InitializeCalculatorAndUIComponents ()
         {
-            SetWindowProperties(390, 500);
+            SetWindowProperties (390, 500);
             CreateUIComponents ();
             SetUIButtonsTexts ();
             SetUIButtonsSizes ();
             AddControlsToButtons ();
-            CreateButtonsEventHandlers();
+            CreateButtonsEventHandlers ();
             SetUIComponentsColors ();
             SetIOBoxProperties ();
-            SetUIComponentsPositions();
+            SetUIComponentsPositions ();
         }
 
-        void CreateUIComponents()
+        void CreateUIComponents ()
         {
-            number0 = new Button();
-            number1 = new Button();
-            number2 = new Button();
-            number3 = new Button();
-            number4 = new Button();
-            number5 = new Button();
-            number6 = new Button();
-            number7 = new Button();
-            number8 = new Button();
-            number9 = new Button();
-            pi = new Button();
-            e = new Button();
-            comma = new Button();
-            clear = new Button();
-            addition = new Button();
-            substraction = new Button();
-            multiplication = new Button();
-            division = new Button();
-            square = new Button();
-            sqrt = new Button();
-            equals = new Button();
-            del = new Button();
-            factorial = new Button();
-            ln = new Button();
-            sinus = new Button();
-            cosinus = new Button();
-            tangens = new Button();
-            sinusHyp = new Button();
-            cosinusHyp = new Button();
-            unitOfAngle = new Button();
-            shift = new Button();
-            outputPrecisionButton = new Button();
-            memoryButton = new Button();
-            memoryAddSubstButton = new Button();
+            number0 = new Button ();
+            number1 = new Button ();
+            number2 = new Button ();
+            number3 = new Button ();
+            number4 = new Button ();
+            number5 = new Button ();
+            number6 = new Button ();
+            number7 = new Button ();
+            number8 = new Button ();
+            number9 = new Button ();
+            pi = new Button ();
+            e = new Button ();
+            comma = new Button ();
+            clear = new Button ();
+            addition = new Button ();
+            substraction = new Button ();
+            multiplication = new Button ();
+            division = new Button ();
+            square = new Button ();
+            sqrt = new Button ();
+            equals = new Button ();
+            del = new Button ();
+            factorial = new Button ();
+            ln = new Button ();
+            sinus = new Button ();
+            cosinus = new Button ();
+            tangens = new Button ();
+            sinusHyp = new Button ();
+            cosinusHyp = new Button ();
+            unitOfAngle = new Button ();
+            shift = new Button ();
+            outputPrecisionButton = new Button ();
+            memoryButton = new Button ();
+            memoryAddSubstButton = new Button ();
 
-            inputOutputBox = new TextBox();
+            inputOutputBox = new TextBox ();
         }
 
-        void SetUIButtonsTexts()
+        void SetUIButtonsTexts ()
         {
             number0.Text = "0";
             number1.Text = "1";
@@ -138,85 +138,85 @@ namespace ProjectTrojan
             memoryAddSubstButton.Text = "M+";
         }
 
-        void SetUIButtonsSizes()
+        void SetUIButtonsSizes ()
         {
-            SetButtonSize(number0, 50, 50);
-            SetButtonSize(number1, 50, 50);
-            SetButtonSize(number2, 50, 50);
-            SetButtonSize(number3, 50, 50);
-            SetButtonSize(number4, 50, 50);
-            SetButtonSize(number5, 50, 50);
-            SetButtonSize(number6, 50, 50);
-            SetButtonSize(number7, 50, 50);
-            SetButtonSize(number8, 50, 50);
-            SetButtonSize(number9, 50, 50);
-            SetButtonSize(pi, 50, 50);
-            SetButtonSize(e, 50, 50);
-            SetButtonSize(comma, 50, 50);
-            SetButtonSize(clear, 50, 50);
-            SetButtonSize(addition, 50, 50);
-            SetButtonSize(substraction, 50, 50);
-            SetButtonSize(multiplication, 50, 50);
-            SetButtonSize(division, 50, 50);
-            SetButtonSize(square, 50, 50);
-            SetButtonSize(number0, 50, 50);
-            SetButtonSize(sqrt, 50, 50);
-            SetButtonSize(equals, 50, 50);
-            SetButtonSize(del, 50, 50);
-            SetButtonSize(factorial, 50, 50);
-            SetButtonSize(ln, 50, 50);
-            SetButtonSize(sinus, 50, 50);
-            SetButtonSize(cosinus, 50, 50);
-            SetButtonSize(sinusHyp, 50, 50);
-            SetButtonSize(cosinusHyp, 50, 50);
-            SetButtonSize(tangens, 50, 50);
-            SetButtonSize(unitOfAngle, 50, 50);
-            SetButtonSize(shift, 50, 50);
-            SetButtonSize(outputPrecisionButton, 50, 50);
-            SetButtonSize(memoryButton, 50, 50);
-            SetButtonSize(memoryAddSubstButton, 50, 50);
+            SetButtonSize (number0, 50, 50);
+            SetButtonSize (number1, 50, 50);
+            SetButtonSize (number2, 50, 50);
+            SetButtonSize (number3, 50, 50);
+            SetButtonSize (number4, 50, 50);
+            SetButtonSize (number5, 50, 50);
+            SetButtonSize (number6, 50, 50);
+            SetButtonSize (number7, 50, 50);
+            SetButtonSize (number8, 50, 50);
+            SetButtonSize (number9, 50, 50);
+            SetButtonSize (pi, 50, 50);
+            SetButtonSize (e, 50, 50);
+            SetButtonSize (comma, 50, 50);
+            SetButtonSize (clear, 50, 50);
+            SetButtonSize (addition, 50, 50);
+            SetButtonSize (substraction, 50, 50);
+            SetButtonSize (multiplication, 50, 50);
+            SetButtonSize (division, 50, 50);
+            SetButtonSize (square, 50, 50);
+            SetButtonSize (number0, 50, 50);
+            SetButtonSize (sqrt, 50, 50);
+            SetButtonSize (equals, 50, 50);
+            SetButtonSize (del, 50, 50);
+            SetButtonSize (factorial, 50, 50);
+            SetButtonSize (ln, 50, 50);
+            SetButtonSize (sinus, 50, 50);
+            SetButtonSize (cosinus, 50, 50);
+            SetButtonSize (sinusHyp, 50, 50);
+            SetButtonSize (cosinusHyp, 50, 50);
+            SetButtonSize (tangens, 50, 50);
+            SetButtonSize (unitOfAngle, 50, 50);
+            SetButtonSize (shift, 50, 50);
+            SetButtonSize (outputPrecisionButton, 50, 50);
+            SetButtonSize (memoryButton, 50, 50);
+            SetButtonSize (memoryAddSubstButton, 50, 50);
         }
 
-        void AddControlsToButtons()
+        void AddControlsToButtons ()
         {
-            Controls.Add(number0);
-            Controls.Add(number1);
-            Controls.Add(number2);
-            Controls.Add(number3);
-            Controls.Add(number4);
-            Controls.Add(number5);
-            Controls.Add(number6);
-            Controls.Add(number7);
-            Controls.Add(number8);
-            Controls.Add(number9);
-            Controls.Add(pi);
-            Controls.Add(e);
-            Controls.Add(comma);
-            Controls.Add(clear);
-            Controls.Add(addition);
-            Controls.Add(substraction);
-            Controls.Add(multiplication);
-            Controls.Add(division);
-            Controls.Add(square);
-            Controls.Add(sqrt);
-            Controls.Add(inputOutputBox);
-            Controls.Add(equals);
-            Controls.Add(del);
-            Controls.Add(factorial);
-            Controls.Add(ln);
-            Controls.Add(shift);
-            Controls.Add(outputPrecisionButton);
-            Controls.Add(memoryButton);
-            Controls.Add(memoryAddSubstButton);
-            Controls.Add(sinus);
-            Controls.Add(cosinus);
-            Controls.Add(tangens);
-            Controls.Add(sinusHyp);
-            Controls.Add(cosinusHyp);
-            Controls.Add(unitOfAngle);
+            Controls.Add (number0);
+            Controls.Add (number1);
+            Controls.Add (number2);
+            Controls.Add (number3);
+            Controls.Add (number4);
+            Controls.Add (number5);
+            Controls.Add (number6);
+            Controls.Add (number7);
+            Controls.Add (number8);
+            Controls.Add (number9);
+            Controls.Add (pi);
+            Controls.Add (e);
+            Controls.Add (comma);
+            Controls.Add (clear);
+            Controls.Add (addition);
+            Controls.Add (substraction);
+            Controls.Add (multiplication);
+            Controls.Add (division);
+            Controls.Add (square);
+            Controls.Add (sqrt);
+            Controls.Add (inputOutputBox);
+            Controls.Add (equals);
+            Controls.Add (del);
+            Controls.Add (factorial);
+            Controls.Add (ln);
+            Controls.Add (shift);
+            Controls.Add (outputPrecisionButton);
+            Controls.Add (memoryButton);
+            Controls.Add (memoryAddSubstButton);
+            Controls.Add (sinus);
+            Controls.Add (cosinus);
+            Controls.Add (tangens);
+            Controls.Add (sinusHyp);
+            Controls.Add (cosinusHyp);
+            Controls.Add (unitOfAngle);
         }
 
-        void SetUIComponentsColors()
+        void SetUIComponentsColors ()
         {
             number0.BackColor = Color.LightGray;
             number1.BackColor = Color.LightGray;
@@ -254,62 +254,62 @@ namespace ProjectTrojan
             inputOutputBox.BackColor = Color.Black;
         }
 
-        void SetUIComponentsPositions()
+        void SetUIComponentsPositions ()
         {
-            inputOutputBox.Location = new Point(5, 5);
+            inputOutputBox.Location = new Point (5, 5);
 
-            sinus.Location = new Point(inputOutputBox.Left, inputOutputBox.Top + inputOutputBox.Height + 10);
-            cosinus.Location = new Point(sinus.Left + sinus.Width, sinus.Top);
-            tangens.Location = new Point(cosinus.Left + cosinus.Width, cosinus.Top);
-            unitOfAngle.Location = new Point(tangens.Left + tangens.Width + 10 + ln.Width + e.Width + 10, tangens.Top);
+            sinus.Location = new Point (inputOutputBox.Left, inputOutputBox.Top + inputOutputBox.Height + 10);
+            cosinus.Location = new Point (sinus.Left + sinus.Width, sinus.Top);
+            tangens.Location = new Point (cosinus.Left + cosinus.Width, cosinus.Top);
+            unitOfAngle.Location = new Point (tangens.Left + tangens.Width + 10 + ln.Width + e.Width + 10, tangens.Top);
 
-            sinusHyp.Location = new Point(sinus.Left, sinus.Top + sinus.Height);
-            cosinusHyp.Location = new Point(cosinus.Left, cosinus.Top + cosinus.Height);
-            pi.Location = new Point(tangens.Left, tangens.Top + tangens.Height);
-            shift.Location = new Point(pi.Left + pi.Width + 10 + ln.Width + e.Width + 10, pi.Top);
+            sinusHyp.Location = new Point (sinus.Left, sinus.Top + sinus.Height);
+            cosinusHyp.Location = new Point (cosinus.Left, cosinus.Top + cosinus.Height);
+            pi.Location = new Point (tangens.Left, tangens.Top + tangens.Height);
+            shift.Location = new Point (pi.Left + pi.Width + 10 + ln.Width + e.Width + 10, pi.Top);
 
-            square.Location = new Point(sinusHyp.Left, sinusHyp.Top + sinusHyp.Height + 10);
-            sqrt.Location = new Point(square.Left + square.Width, square.Top);
-            factorial.Location = new Point(sqrt.Left + sqrt.Width, sqrt.Top);
-            ln.Location = new Point(factorial.Left + factorial.Width + 10, factorial.Top);
-            e.Location = new Point(ln.Left + ln.Width, ln.Top);
-            outputPrecisionButton.Location = new Point(e.Left + e.Width + 10, e.Top);
+            square.Location = new Point (sinusHyp.Left, sinusHyp.Top + sinusHyp.Height + 10);
+            sqrt.Location = new Point (square.Left + square.Width, square.Top);
+            factorial.Location = new Point (sqrt.Left + sqrt.Width, sqrt.Top);
+            ln.Location = new Point (factorial.Left + factorial.Width + 10, factorial.Top);
+            e.Location = new Point (ln.Left + ln.Width, ln.Top);
+            outputPrecisionButton.Location = new Point (e.Left + e.Width + 10, e.Top);
 
-            number7.Location = new Point(square.Left, square.Top + square.Height + 20);
-            number8.Location = new Point(number7.Left + number8.Width, number7.Top);
-            number9.Location = new Point(number8.Left + number9.Width, number7.Top);
-            del.Location = new Point(number9.Left + number9.Width + 10, number9.Top);
-            clear.Location = new Point(del.Left + del.Width, del.Top);
+            number7.Location = new Point (square.Left, square.Top + square.Height + 20);
+            number8.Location = new Point (number7.Left + number8.Width, number7.Top);
+            number9.Location = new Point (number8.Left + number9.Width, number7.Top);
+            del.Location = new Point (number9.Left + number9.Width + 10, number9.Top);
+            clear.Location = new Point (del.Left + del.Width, del.Top);
 
-            number4.Location = new Point(number7.Left, number7.Top + number7.Height);
-            number5.Location = new Point(number4.Left + number4.Width, number4.Top);
-            number6.Location = new Point(number5.Left + number5.Width, number5.Top);
-            multiplication.Location = new Point(number6.Left + number6.Width + 10, number6.Top);
-            division.Location = new Point(multiplication.Left + multiplication.Width, multiplication.Top);
+            number4.Location = new Point (number7.Left, number7.Top + number7.Height);
+            number5.Location = new Point (number4.Left + number4.Width, number4.Top);
+            number6.Location = new Point (number5.Left + number5.Width, number5.Top);
+            multiplication.Location = new Point (number6.Left + number6.Width + 10, number6.Top);
+            division.Location = new Point (multiplication.Left + multiplication.Width, multiplication.Top);
 
-            number1.Location = new Point(number4.Left, number4.Top + number4.Height);
-            number2.Location = new Point(number5.Left, number5.Top + number5.Height);
-            number3.Location = new Point(number6.Left, number6.Top + number6.Height);
-            addition.Location = new Point(number3.Left + number3.Width + 10, number3.Top);
-            substraction.Location = new Point(addition.Left + addition.Width, addition.Top);
+            number1.Location = new Point (number4.Left, number4.Top + number4.Height);
+            number2.Location = new Point (number5.Left, number5.Top + number5.Height);
+            number3.Location = new Point (number6.Left, number6.Top + number6.Height);
+            addition.Location = new Point (number3.Left + number3.Width + 10, number3.Top);
+            substraction.Location = new Point (addition.Left + addition.Width, addition.Top);
 
-            number0.Location = new Point(number1.Left, number1.Top + number1.Height);
-            comma.Location = new Point(number2.Left, number2.Top + number2.Height);
-            memoryButton.Location = new Point(comma.Left + comma.Width, comma.Top);
-            memoryAddSubstButton.Location = new Point(memoryButton.Left + memoryButton.Width + 10, memoryButton.Top);
-            equals.Location = new Point(memoryAddSubstButton.Left + memoryAddSubstButton.Width, memoryAddSubstButton.Top);
+            number0.Location = new Point (number1.Left, number1.Top + number1.Height);
+            comma.Location = new Point (number2.Left, number2.Top + number2.Height);
+            memoryButton.Location = new Point (comma.Left + comma.Width, comma.Top);
+            memoryAddSubstButton.Location = new Point (memoryButton.Left + memoryButton.Width + 10, memoryButton.Top);
+            equals.Location = new Point (memoryAddSubstButton.Left + memoryAddSubstButton.Width, memoryAddSubstButton.Top);
         }
 
-        void SetIOBoxProperties()
+        void SetIOBoxProperties ()
         {
             inputOutputBox.Width = 320;
-            inputOutputBox.Font = new Font("ArialBlack", 30, FontStyle.Bold);
+            inputOutputBox.Font = new Font ("ArialBlack", 30, FontStyle.Bold);
             inputOutputBox.ReadOnly = true;
             inputOutputBox.TextAlign = HorizontalAlignment.Right;
             inputOutputBox.Text = "0";
         }
 
-        void CreateButtonsEventHandlers()
+        void CreateButtonsEventHandlers ()
         {
             number0.Click += Number0ButtonClick;
             number1.Click += Number1ButtonClick;
@@ -347,51 +347,51 @@ namespace ProjectTrojan
             memoryButton.Click += MemoryButtonClick;
         }
 
-        void SetWindowProperties(int width, int height)
+        void SetWindowProperties (int width, int height)
         {
-            Size = new Size(width, height);
+            Size = new Size (width, height);
             Text = "Project Trojan";
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MinimizeBox = false;
             MaximizeBox = false;
         }
 
-        void PerformCurrentOperation()
+        void PerformCurrentOperation ()
         {
             switch (currentOperation)
             {
-                case "addition":
-                    operand1 = (operand1 + double.Parse(inputOutputBox.Text));
-                    break;
-                case "substraction":
-                    operand1 = (operand1 - double.Parse(inputOutputBox.Text));
-                    break;
-                case "multiplication":
-                    operand1 = (operand1 * double.Parse(inputOutputBox.Text));
-                    break;
-                case "division":
-                    operand1 = (operand1 / double.Parse(inputOutputBox.Text));
-                    break;
-                case "pow":
-                    operand1 = (Math.Pow(operand1, double.Parse(inputOutputBox.Text)));
-                    break;
-                case "binominal":
-                    BinomialCoefficient(operand1, double.Parse(inputOutputBox.Text));
-                    break;
-                case "none":
-                    operand1 = double.Parse(inputOutputBox.Text);
-                    return;
+            case "addition":
+                operand1 = (operand1 + double.Parse (inputOutputBox.Text));
+                break;
+            case "substraction":
+                operand1 = (operand1 - double.Parse (inputOutputBox.Text));
+                break;
+            case "multiplication":
+                operand1 = (operand1 * double.Parse (inputOutputBox.Text));
+                break;
+            case "division":
+                operand1 = (operand1 / double.Parse (inputOutputBox.Text));
+                break;
+            case "pow":
+                operand1 = (Math.Pow (operand1, double.Parse (inputOutputBox.Text)));
+                break;
+            case "binominal":
+                BinomialCoefficient (operand1, double.Parse (inputOutputBox.Text));
+                break;
+            case "none":
+                operand1 = double.Parse (inputOutputBox.Text);
+                return;
             }
-            inputOutputBox.Text = operand1.ToString(outputPrecision.GetCurrentPrecision());
+            inputOutputBox.Text = operand1.ToString (outputPrecision.GetCurrentPrecision ());
         }
 
-        void UpdateOperation(string newOperation)
+        void UpdateOperation (string newOperation)
         {
             newOperand = true;
             currentOperation = newOperation;
         }
 
-        bool InputContainsErrorOrInfinity()
+        bool InputContainsErrorOrInfinity ()
         {
             if (inputOutputBox.Text == "Error" || inputOutputBox.Text == "∞" || inputOutputBox.Text == "NaN")
                 return true;
@@ -399,49 +399,50 @@ namespace ProjectTrojan
                 return false;
         }
 
-        void ResetIOToZero()
+        void ResetIOToZero ()
         {
             inputOutputBox.Text = "0";
             inputLength = 0;
         }
 
-        void AddNumber(int number)
+        void AddNumber (int number)
         {
             if (inputLength == 0 && inputOutputBox.Text == "0" && number == 0)
             {
                 return;
             }
-            else if (inputLength == 0 || newOperand || inputOutputBox.Text == "∞" || inputOutputBox.Text == "Error")
+            else
+            if (inputLength == 0 || newOperand || inputOutputBox.Text == "∞" || inputOutputBox.Text == "Error")
             {
-                inputOutputBox.Text = number.ToString();
+                inputOutputBox.Text = number.ToString ();
                 inputLength = 1;
             }
             else
             {
-                inputOutputBox.Text += number.ToString();
+                inputOutputBox.Text += number.ToString ();
                 inputLength += 1;
             }
             newOperand = false;
         }
 
-        void SetCurrentLanguage()
+        void SetCurrentLanguage ()
         {
             systemLanguage =
-                System.Globalization.CultureInfo.CurrentCulture.ToString().Substring(0, 2);
+                System.Globalization.CultureInfo.CurrentCulture.ToString ().Substring (0, 2);
         }
 
-        void ErrorMessage()
+        void ErrorMessage ()
         {
             inputOutputBox.Text = "Error";
             operand1 = 0;
             newOperand = true;
         }
 
-        void AddComma()
+        void AddComma ()
         {
             if (systemLanguage == "de")
             {
-                if (!inputOutputBox.Text.Contains(","))
+                if (!inputOutputBox.Text.Contains (","))
                 {
                     inputOutputBox.Text += ",";
                     inputLength += 1;
@@ -449,7 +450,7 @@ namespace ProjectTrojan
             }
             else
             {
-                if (!inputOutputBox.Text.Contains("."))
+                if (!inputOutputBox.Text.Contains ("."))
                 {
                     inputOutputBox.Text += ".";
                     inputLength += 1;
@@ -457,7 +458,7 @@ namespace ProjectTrojan
             }
         }
 
-        void ToggleShift()
+        void ToggleShift ()
         {
             if (!alternativeFunctionsActive)
             {
@@ -466,7 +467,6 @@ namespace ProjectTrojan
                 alternativeFunctionsActive = true;
                 shift.BackColor = Color.Red;
             }
-
             else
             {
                 SetButtonEventHandlersToNonShiftCase ();
@@ -476,7 +476,7 @@ namespace ProjectTrojan
             }
         }
 
-        void SetButtonEventHandlersToShiftCase()
+        void SetButtonEventHandlersToShiftCase ()
         {
             sinus.Click -= SinusButtonClick;
             sinus.Click += ArcSinusButtonClick;
@@ -496,7 +496,7 @@ namespace ProjectTrojan
             division.Click += BinomialCoefficientButtonClick;
         }
 
-        void SetButtonEventHandlersToNonShiftCase()
+        void SetButtonEventHandlersToNonShiftCase ()
         {
             sinus.Click += SinusButtonClick;
             sinus.Click -= ArcSinusButtonClick;
@@ -516,7 +516,7 @@ namespace ProjectTrojan
             division.Click -= BinomialCoefficientButtonClick;
         }
 
-        void SetButtonTextsToShiftCase()
+        void SetButtonTextsToShiftCase ()
         {
             sinus.Text = "arcsin";
             cosinus.Text = "arccos";
@@ -528,7 +528,7 @@ namespace ProjectTrojan
             division.Text = "nPr"; 
         }
 
-        void SetButtonTextsToNonShiftCase()
+        void SetButtonTextsToNonShiftCase ()
         {
             sinus.Text = "sin";
             cosinus.Text = "cos";
@@ -540,54 +540,56 @@ namespace ProjectTrojan
             division.Text = " / ";
         }
 
-        delegate double AngularFunction(double value);
+        delegate double AngularFunction (double value);
 
-        void CalculateAngularFunction(AngularFunction angularFunction, double boxValue)
+        void CalculateAngularFunction (AngularFunction angularFunction, double boxValue)
         {
             if (unitOfAngle.Text == "Rad")
             {
-                operand1 = (angularFunction(boxValue));
-                inputOutputBox.Text = operand1.ToString(outputPrecision.GetCurrentPrecision());
+                operand1 = (angularFunction (boxValue));
+                inputOutputBox.Text = operand1.ToString (outputPrecision.GetCurrentPrecision ());
             }
-            else if (unitOfAngle.Text == "Grad")
+            else
+            if (unitOfAngle.Text == "Grad")
             {
                 var temp = boxValue;
                 temp *= (Math.PI / 180);
-                operand1 = angularFunction(temp);
-                inputOutputBox.Text = operand1.ToString(outputPrecision.GetCurrentPrecision());
+                operand1 = angularFunction (temp);
+                inputOutputBox.Text = operand1.ToString (outputPrecision.GetCurrentPrecision ());
             }
             else
             {
-                ErrorMessage();
+                ErrorMessage ();
             }
         }
 
-        void CalculateArcAngularFunction(AngularFunction angularFunction, double boxValue)
+        void CalculateArcAngularFunction (AngularFunction angularFunction, double boxValue)
         {
             if (unitOfAngle.Text == "Rad")
             {
-                operand1 = (angularFunction(boxValue));
-                inputOutputBox.Text = operand1.ToString(outputPrecision.GetCurrentPrecision());
+                operand1 = (angularFunction (boxValue));
+                inputOutputBox.Text = operand1.ToString (outputPrecision.GetCurrentPrecision ());
             }
-            else if (unitOfAngle.Text == "Grad")
+            else
+            if (unitOfAngle.Text == "Grad")
             {
-                operand1 = angularFunction(boxValue) * 180 / Math.PI;
-                inputOutputBox.Text = operand1.ToString(outputPrecision.GetCurrentPrecision());
+                operand1 = angularFunction (boxValue) * 180 / Math.PI;
+                inputOutputBox.Text = operand1.ToString (outputPrecision.GetCurrentPrecision ());
             }
             else
             {
-                ErrorMessage();
+                ErrorMessage ();
             }
         }
 
-        void BinomialCoefficient(double n, double k)
+        void BinomialCoefficient (double n, double k)
         {
             double binom = 1;
             double EPSILON = 0.0000000000000001f;
 
-            if ( n < k && Math.Abs(n) < Math.Abs(k) && (n % 1) + (k % 1) < EPSILON &&  n > 0)
+            if (n < k && Math.Abs (n) < Math.Abs (k) && (n % 1) + (k % 1) < EPSILON && n > 0)
             {
-                for(int i=1; i <= n; i++)
+                for (int i = 1; i <= n; i++)
                 {
                     binom = binom * (k - i + 1) / i;
                 }
@@ -595,7 +597,7 @@ namespace ProjectTrojan
             }
             else
             {
-                ErrorMessage();
+                ErrorMessage ();
             }
         }
     }
