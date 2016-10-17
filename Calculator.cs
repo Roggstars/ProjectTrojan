@@ -152,14 +152,10 @@ namespace ProjectTrojan
                 if (InputContainsErrorOrInfinity ()
                     || (inputOutputBox.Text.Contains ("-") && inputOutputBox.TextLength == 2)
                     || inputOutputBox.TextLength == 1)
-                {
                     ResetIOToZero ();
-                }
                 else
                 if (inputOutputBox.TextLength > 1)
-                {
                     inputOutputBox.Text = inputOutputBox.Text.Substring (0, (inputOutputBox.TextLength - 1));
-                }
             }
         }
 
