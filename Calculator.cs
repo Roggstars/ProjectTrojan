@@ -139,16 +139,10 @@ namespace ProjectTrojan
 
         void ClearButtonClick (object sender, EventArgs e)
         {
-            inputOutputBox.Text = "0";
-            sinus.Text = "sin";
-            cosinus.Text = "cos";
-            tangens.Text = "tan";
-            memoryButton.Text = "M";
-            memoryAddSubstButton.Text = "M+";
-            shift.BackColor = SystemColors.Control;
+            SetButtonsToDefault ();
             alternativeFunctionsActive = false;
             operand1 = 0;
-            UpdateOperation ("none");
+            SetNewOperation ("none");
         }
 
         void DelButtonClick (object sender, EventArgs e)

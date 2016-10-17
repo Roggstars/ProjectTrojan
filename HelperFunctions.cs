@@ -385,10 +385,21 @@ namespace ProjectTrojan
             inputOutputBox.Text = operand1.ToString (outputPrecision.GetCurrentPrecision ());
         }
 
-        void UpdateOperation (string newOperation)
+        void SetNewOperation (string newOperation)
         {
             newOperand = true;
             currentOperation = newOperation;
+        }
+
+        void SetButtonsToInitState ()
+        {
+            inputOutputBox.Text = "0";
+            sinus.Text = "sin";
+            cosinus.Text = "cos";
+            tangens.Text = "tan";
+            memoryButton.Text = "M";
+            memoryAddSubstButton.Text = "M+";
+            shift.BackColor = SystemColors.Control;
         }
 
         bool InputContainsErrorOrInfinity ()
