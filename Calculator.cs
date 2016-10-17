@@ -149,17 +149,9 @@ namespace ProjectTrojan
         {
             if (!newOperand)
             {
-                if (InputContainsErrorOrInfinity ())
-                {
-                    ResetIOToZero ();
-                }
-                else
-                if ((inputOutputBox.Text.Contains ("-") && inputOutputBox.TextLength == 2))
-                {
-                    ResetIOToZero ();
-                }
-                else
-                if (inputOutputBox.TextLength == 1)
+                if (InputContainsErrorOrInfinity ()
+                    || (inputOutputBox.Text.Contains ("-") && inputOutputBox.TextLength == 2)
+                    || inputOutputBox.TextLength == 1)
                 {
                     ResetIOToZero ();
                 }
@@ -291,7 +283,7 @@ namespace ProjectTrojan
         {
             if (InputContainsErrorOrInfinity ())
                 return;
-
+    
             if (double.Parse (inputOutputBox.Text) < 0)
             {
                 inputOutputBox.Text = "Error";
