@@ -6,7 +6,6 @@ namespace ProjectTrojan
 {
     partial class Calculator : Form
     {
-        int inputLength;
         string systemLanguage;
         bool newOperand;
         double operand1;
@@ -14,6 +13,7 @@ namespace ProjectTrojan
         bool alternativeFunctionsActive;
         Memory currentMemory = new Memory ();
         OutputPrecision outputPrecision = new OutputPrecision ();
+        double EPSILON = 0.0000000000000001f;
 
         TextBox inputOutputBox;
 
@@ -159,7 +159,6 @@ namespace ProjectTrojan
                 if (inputOutputBox.TextLength > 1)
                 {
                     inputOutputBox.Text = inputOutputBox.Text.Substring (0, (inputOutputBox.TextLength - 1));
-                    inputLength -= 1;
                 }
             }
         }
@@ -286,12 +285,10 @@ namespace ProjectTrojan
     
             if (double.Parse (inputOutputBox.Text) < 0)
             {
-                inputOutputBox.Text = "Error";
-                newOperand = true;
+                ErrorMessage ();
                 return;
             }
 
-            double EPSILON = 0.0000000000000001f;
             double tempMax = double.Parse (inputOutputBox.Text);
 
             if (Math.Abs ((tempMax % 1)) < EPSILON)
@@ -305,10 +302,7 @@ namespace ProjectTrojan
                 newOperand = true;
             }
             else
-            {
-                inputOutputBox.Text = "Error";
-                newOperand = true;
-            }
+                ErrorMessage ();
         }
 
         void ReciprocalButtonClick (object sender, EventArgs e)
@@ -317,12 +311,8 @@ namespace ProjectTrojan
                 return;
 
             double X = double.Parse (inputOutputBox.Text);
-            double EPSILON = 0.0000000000000001f;
             if (Math.Abs (X) < EPSILON)
-            {
-                inputOutputBox.Text = "Error";
-                newOperand = true;
-            }
+                ErrorMessage ();
             else
             {
                 double x = 0;
@@ -340,7 +330,6 @@ namespace ProjectTrojan
             
             operand1 = double.Parse (inputOutputBox.Text) * double.Parse (inputOutputBox.Text);
             inputOutputBox.Text = operand1.ToString (outputPrecision.GetCurrentPrecision ());
-            inputLength = 0;
             newOperand = true;
         }
 
@@ -354,11 +343,10 @@ namespace ProjectTrojan
             {
                 operand1 = Math.Log (lnValue);
                 inputOutputBox.Text = operand1.ToString (outputPrecision.GetCurrentPrecision ());
-                inputLength = 0;
+                newOperand = true;
             }
             else
                 ErrorMessage ();
-            newOperand = true;
         }
 
         void SqrtButtonClick (object sender, EventArgs e)

@@ -413,25 +413,23 @@ namespace ProjectTrojan
         void ResetIOToZero ()
         {
             inputOutputBox.Text = "0";
-            inputLength = 0;
+            newOperand = true;
         }
 
         void AddNumber (int number)
         {
-            if (inputLength == 0 && inputOutputBox.Text == "0" && number == 0)
+            if (inputOutputBox.Text == "0" && number == 0)
             {
                 return;
             }
             else
-            if (inputLength == 0 || newOperand || inputOutputBox.Text == "∞" || inputOutputBox.Text == "Error")
+            if (newOperand || inputOutputBox.Text == "∞" || inputOutputBox.Text == "Error")
             {
                 inputOutputBox.Text = number.ToString ();
-                inputLength = 1;
             }
             else
             {
                 inputOutputBox.Text += number.ToString ();
-                inputLength += 1;
             }
             newOperand = false;
         }
@@ -456,7 +454,6 @@ namespace ProjectTrojan
                 if (!inputOutputBox.Text.Contains (","))
                 {
                     inputOutputBox.Text += ",";
-                    inputLength += 1;
                 }
             }
             else
@@ -464,7 +461,6 @@ namespace ProjectTrojan
                 if (!inputOutputBox.Text.Contains ("."))
                 {
                     inputOutputBox.Text += ".";
-                    inputLength += 1;
                 }
             }
         }
