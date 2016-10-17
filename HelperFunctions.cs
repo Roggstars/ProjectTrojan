@@ -419,18 +419,12 @@ namespace ProjectTrojan
         void AddNumber (int number)
         {
             if (inputOutputBox.Text == "0" && number == 0)
-            {
                 return;
-            }
             else
             if (newOperand || inputOutputBox.Text == "∞" || inputOutputBox.Text == "Error")
-            {
                 inputOutputBox.Text = number.ToString ();
-            }
             else
-            {
                 inputOutputBox.Text += number.ToString ();
-            }
             newOperand = false;
         }
 
@@ -449,20 +443,11 @@ namespace ProjectTrojan
 
         void AddComma ()
         {
-            if (systemLanguage == "de")
-            {
-                if (!inputOutputBox.Text.Contains (","))
-                {
-                    inputOutputBox.Text += ",";
-                }
-            }
+            if (systemLanguage == "de" && !inputOutputBox.Text.Contains (","))
+                inputOutputBox.Text += ",";
             else
-            {
                 if (!inputOutputBox.Text.Contains ("."))
-                {
                     inputOutputBox.Text += ".";
-                }
-            }
         }
 
         void ToggleShift ()
@@ -565,9 +550,7 @@ namespace ProjectTrojan
                 inputOutputBox.Text = operand1.ToString (outputPrecision.GetCurrentPrecision ());
             }
             else
-            {
                 ErrorMessage ();
-            }
         }
 
         void CalculateArcAngularFunction (AngularFunction angularFunction, double boxValue)
@@ -584,28 +567,21 @@ namespace ProjectTrojan
                 inputOutputBox.Text = operand1.ToString (outputPrecision.GetCurrentPrecision ());
             }
             else
-            {
                 ErrorMessage ();
-            }
         }
 
         void BinomialCoefficient (double n, double k)
         {
             double binom = 1;
-            double EPSILON = 0.0000000000000001f;
 
             if (n < k && Math.Abs (n) < Math.Abs (k) && (n % 1) + (k % 1) < EPSILON && n > 0)
             {
                 for (int i = 1; i <= n; i++)
-                {
                     binom = binom * (k - i + 1) / i;
-                }
                 operand1 = binom;
             }
             else
-            {
                 ErrorMessage ();
-            }
         }
     }
 }

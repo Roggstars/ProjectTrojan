@@ -309,18 +309,10 @@ namespace ProjectTrojan
         {
             if (InputContainsErrorOrInfinity ())
                 return;
-
-            double X = double.Parse (inputOutputBox.Text);
-            if (Math.Abs (X) < EPSILON)
-                ErrorMessage ();
-            else
-            {
-                double x = 0;
-                x = 1 / X;
-                operand1 = x;
-                inputOutputBox.Text = operand1.ToString (outputPrecision.GetCurrentPrecision ());
-                newOperand = true;
-            }
+            
+            operand1 = 1 / operand1;
+            inputOutputBox.Text = operand1.ToString (outputPrecision.GetCurrentPrecision ());
+            newOperand = true;
         }
 
         void SquareButtonClick (object sender, EventArgs e)
@@ -338,10 +330,9 @@ namespace ProjectTrojan
             if (InputContainsErrorOrInfinity ())
                 return;
 
-            double lnValue = double.Parse (inputOutputBox.Text);
-            if (lnValue > 0)
+            if (double.Parse (inputOutputBox.Text) > 0)
             {
-                operand1 = Math.Log (lnValue);
+                operand1 = Math.Log (double.Parse (inputOutputBox.Text));
                 inputOutputBox.Text = operand1.ToString (outputPrecision.GetCurrentPrecision ());
                 newOperand = true;
             }
@@ -354,8 +345,7 @@ namespace ProjectTrojan
             if (InputContainsErrorOrInfinity ())
                 return;
             
-            double sqrtValue = Math.Sqrt (double.Parse (inputOutputBox.Text));
-            if (sqrtValue > 0)
+            if (double.Parse (inputOutputBox.Text) > 0)
             {
                 operand1 = Math.Sqrt (double.Parse (inputOutputBox.Text));
                 inputOutputBox.Text = operand1.ToString (outputPrecision.GetCurrentPrecision ());
