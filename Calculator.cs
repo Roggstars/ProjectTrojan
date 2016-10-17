@@ -139,7 +139,7 @@ namespace ProjectTrojan
 
         void ClearButtonClick (object sender, EventArgs e)
         {
-            SetButtonsToDefault ();
+            SetButtonsToInitState ();
             alternativeFunctionsActive = false;
             operand1 = 0;
             SetNewOperation ("none");
@@ -176,35 +176,35 @@ namespace ProjectTrojan
         {
             if (!newOperand)
                 PerformCurrentOperation ();
-            UpdateOperation ("pow");
+            SetNewOperation ("pow");
         }
 
         void AddButtonClick (object sender, EventArgs e)
         {
             if (!newOperand)
                 PerformCurrentOperation ();
-            UpdateOperation ("addition");
+            SetNewOperation ("addition");
         }
 
         void SubstButtonClick (object sender, EventArgs e)
         {
             if (!newOperand)
                 PerformCurrentOperation ();
-            UpdateOperation ("substraction");
+            SetNewOperation ("substraction");
         }
 
         void MultButtonClick (object sender, EventArgs e)
         {
             if (!newOperand)
                 PerformCurrentOperation ();
-            UpdateOperation ("multiplication");
+            SetNewOperation ("multiplication");
         }
 
         void DivButtonClick (object sender, EventArgs e)
         {
             if (!newOperand)
                 PerformCurrentOperation ();
-            UpdateOperation ("division");
+            SetNewOperation ("division");
         }
 
         void UnitOfAngleButtonClick (object sender, EventArgs e)
@@ -389,14 +389,14 @@ namespace ProjectTrojan
         {
             if (!newOperand)
                 PerformCurrentOperation ();
-            UpdateOperation ("binominal");
+            SetNewOperation ("binominal");
         }
 
         void EqualsButtonClick (object sender, EventArgs e)
         {
             if (!newOperand)
                 PerformCurrentOperation ();
-            UpdateOperation ("none");
+            SetNewOperation ("none");
         }
 
         void OutputPrecisionButtonClick (object sender, EventArgs e)
