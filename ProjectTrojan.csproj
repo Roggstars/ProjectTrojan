@@ -46,6 +46,8 @@
     <Compile Include="HelperFunctions.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Memory.cs" />
+    <Compile Include="Precision.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
