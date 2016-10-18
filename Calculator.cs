@@ -11,6 +11,8 @@ namespace ProjectTrojan
         double operand1;
         string currentOperation = "none";
         bool alternativeFunctionsActive;
+        Size standardButtonSize = new Size (50, 50);
+        Size windowSize = new Size (390, 500);
         Memory currentMemory = new Memory ();
         OutputPrecision outputPrecision = new OutputPrecision ();
         double EPSILON = 0.0000000000000001f;

@@ -43,7 +43,7 @@ namespace ProjectTrojan
 
         void InitializeCalculatorAndUIComponents ()
         {
-            SetWindowProperties (390, 500);
+            SetWindowSizeAndProperties (windowSize);
             CreateUIComponents ();
             SetUIButtonsTexts ();
             SetUIButtonsSizes ();
@@ -54,9 +54,9 @@ namespace ProjectTrojan
             SetUIComponentsPositions ();
         }
 
-        void SetWindowProperties (int width, int height)
+        void SetWindowSizeAndProperties (Size windowSize)
         {
-            Size = new Size (width, height);
+            Size = windowSize;
             Text = "Project Trojan";
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MinimizeBox = false;
@@ -143,46 +143,45 @@ namespace ProjectTrojan
 
         void SetUIButtonsSizes ()
         {
-            SetButtonSize (number0, 50, 50);
-            SetButtonSize (number1, 50, 50);
-            SetButtonSize (number2, 50, 50);
-            SetButtonSize (number3, 50, 50);
-            SetButtonSize (number4, 50, 50);
-            SetButtonSize (number5, 50, 50);
-            SetButtonSize (number6, 50, 50);
-            SetButtonSize (number7, 50, 50);
-            SetButtonSize (number8, 50, 50);
-            SetButtonSize (number9, 50, 50);
-            SetButtonSize (addition, 50, 50);
-            SetButtonSize (substraction, 50, 50);
-            SetButtonSize (multiplication, 50, 50);
-            SetButtonSize (division, 50, 50);
-            SetButtonSize (equals, 50, 50);
-            SetButtonSize (comma, 50, 50);
-            SetButtonSize (del, 50, 50);
-            SetButtonSize (clear, 50, 50);
-            SetButtonSize (shift, 50, 50);
-            SetButtonSize (square, 50, 50);
-            SetButtonSize (sqrt, 50, 50);
-            SetButtonSize (factorial, 50, 50);
-            SetButtonSize (ln, 50, 50);
-            SetButtonSize (sinus, 50, 50);
-            SetButtonSize (sinusHyp, 50, 50);
-            SetButtonSize (cosinus, 50, 50);
-            SetButtonSize (cosinusHyp, 50, 50);
-            SetButtonSize (tangens, 50, 50);
-            SetButtonSize (unitOfAngle, 50, 50);
-            SetButtonSize (outputPrecisionButton, 50, 50);
-            SetButtonSize (memoryButton, 50, 50);
-            SetButtonSize (memoryAddSubstButton, 50, 50);
-            SetButtonSize (pi, 50, 50);
-            SetButtonSize (e, 50, 50);
+            SetButtonSize (number0, standardButtonSize);
+            SetButtonSize (number1, standardButtonSize);
+            SetButtonSize (number2, standardButtonSize);
+            SetButtonSize (number3, standardButtonSize);
+            SetButtonSize (number4, standardButtonSize);
+            SetButtonSize (number5, standardButtonSize);
+            SetButtonSize (number6, standardButtonSize);
+            SetButtonSize (number7, standardButtonSize);
+            SetButtonSize (number8, standardButtonSize);
+            SetButtonSize (number9, standardButtonSize);
+            SetButtonSize (addition, standardButtonSize);
+            SetButtonSize (substraction, standardButtonSize);
+            SetButtonSize (multiplication, standardButtonSize);
+            SetButtonSize (division, standardButtonSize);
+            SetButtonSize (equals, standardButtonSize);
+            SetButtonSize (comma, standardButtonSize);
+            SetButtonSize (del, standardButtonSize);
+            SetButtonSize (clear, standardButtonSize);
+            SetButtonSize (shift, standardButtonSize);
+            SetButtonSize (square, standardButtonSize);
+            SetButtonSize (sqrt, standardButtonSize);
+            SetButtonSize (factorial, standardButtonSize);
+            SetButtonSize (ln, standardButtonSize);
+            SetButtonSize (sinus, standardButtonSize);
+            SetButtonSize (sinusHyp, standardButtonSize);
+            SetButtonSize (cosinus, standardButtonSize);
+            SetButtonSize (cosinusHyp, standardButtonSize);
+            SetButtonSize (tangens, standardButtonSize);
+            SetButtonSize (unitOfAngle, standardButtonSize);
+            SetButtonSize (memoryButton, standardButtonSize);
+            SetButtonSize (memoryAddSubstButton, standardButtonSize);
+            SetButtonSize (pi, standardButtonSize);
+            SetButtonSize (e, standardButtonSize);
         }
 
-        void SetButtonSize (Button button, int width, int height)
+        void SetButtonSize (Button button, Size size)
         {
-            button.Width = width;
-            button.Height = height;
+            button.Width = size.Width;
+            button.Height = size.Height;
         }
 
         void AddControlsToUIComponents ()
