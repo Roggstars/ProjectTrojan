@@ -372,10 +372,10 @@ namespace ProjectTrojan
             if (IOBox.Text == "0" && number == 0)
                 return;
             else
-                if (newOperand || IOBox.Text == "∞" || IOBox.Text == "Error")
-                    IOBox.Text = number.ToString ();
-                else
-                    IOBox.Text += number.ToString ();
+            if (newOperand || IOBox.Text == "∞" || IOBox.Text == "Error")
+                IOBox.Text = number.ToString ();
+            else
+                IOBox.Text += number.ToString ();
             newOperand = false;
         }
 
@@ -384,8 +384,8 @@ namespace ProjectTrojan
             if (systemLanguage == "de" && !IOBox.Text.Contains (","))
                 IOBox.Text += ",";
             else
-                if (!IOBox.Text.Contains ("."))
-                    IOBox.Text += ".";
+            if (!IOBox.Text.Contains ("."))
+                IOBox.Text += ".";
         }
 
         void ResetIOToZero ()
