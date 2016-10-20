@@ -43,7 +43,7 @@ namespace ProjectTrojan
 
         void InitializeCalculatorAndUIComponents ()
         {
-            SetWindowSizeAndProperties (windowSize);
+            SetWindowSizeAndProperties ();
             CreateUIComponents ();
             SetUIButtonsTexts ();
             SetUIButtonsSizes ();
@@ -54,8 +54,9 @@ namespace ProjectTrojan
             SetUIComponentsPositions ();
         }
 
-        void SetWindowSizeAndProperties (Size windowSize)
+        void SetWindowSizeAndProperties ()
         {
+            Size windowSize = new Size (390, 500);
             Size = windowSize;
             Text = "Project Trojan";
             FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -100,7 +101,7 @@ namespace ProjectTrojan
             pi = new Button ();
             e = new Button ();
 
-            inputOutputBox = new TextBox ();
+            IOBox = new TextBox ();
         }
 
         void SetUIButtonsTexts ()
@@ -143,6 +144,8 @@ namespace ProjectTrojan
 
         void SetUIButtonsSizes ()
         {
+            Size standardButtonSize = new Size (50, 50);
+
             SetButtonSize (number0, standardButtonSize);
             SetButtonSize (number1, standardButtonSize);
             SetButtonSize (number2, standardButtonSize);
@@ -221,7 +224,7 @@ namespace ProjectTrojan
             Controls.Add (pi);
             Controls.Add (e);
 
-            Controls.Add (inputOutputBox);
+            Controls.Add (IOBox);
         }
 
         void CreateButtonsEventHandlers ()
@@ -296,24 +299,24 @@ namespace ProjectTrojan
             pi.BackColor = Color.Gray;
             e.BackColor = Color.Gray;
 
-            inputOutputBox.ForeColor = Color.WhiteSmoke;
-            inputOutputBox.BackColor = Color.Black;
+            IOBox.ForeColor = Color.WhiteSmoke;
+            IOBox.BackColor = Color.Black;
         }
 
         void SetIOBoxProperties ()
         {
-            inputOutputBox.Width = 320;
-            inputOutputBox.Font = new Font ("ArialBlack", 30, FontStyle.Bold);
-            inputOutputBox.ReadOnly = true;
-            inputOutputBox.TextAlign = HorizontalAlignment.Right;
-            inputOutputBox.Text = "0";
+            IOBox.Width = 320;
+            IOBox.Font = new Font ("ArialBlack", 30, FontStyle.Bold);
+            IOBox.ReadOnly = true;
+            IOBox.TextAlign = HorizontalAlignment.Right;
+            IOBox.Text = "0";
         }
 
         void SetUIComponentsPositions ()
         {
-            inputOutputBox.Location = new Point (5, 5);
+            IOBox.Location = new Point (5, 5);
 
-            sinus.Location = new Point (inputOutputBox.Left, inputOutputBox.Top + inputOutputBox.Height + 10);
+            sinus.Location = new Point (IOBox.Left, IOBox.Top + IOBox.Height + 10);
             cosinus.Location = new Point (sinus.Left + sinus.Width, sinus.Top);
             tangens.Location = new Point (cosinus.Left + cosinus.Width, cosinus.Top);
             unitOfAngle.Location = new Point (tangens.Left + tangens.Width + 10 + ln.Width + e.Width + 10, tangens.Top);
@@ -363,41 +366,41 @@ namespace ProjectTrojan
 
         void AddNumber (int number)
         {
-            if (inputOutputBox.Text == "0" && number == 0)
+            if (IOBox.Text == "0" && number == 0)
                 return;
             else
-                if (newOperand || inputOutputBox.Text == "∞" || inputOutputBox.Text == "Error")
-                    inputOutputBox.Text = number.ToString ();
+                if (newOperand || IOBox.Text == "∞" || IOBox.Text == "Error")
+                    IOBox.Text = number.ToString ();
                 else
-                    inputOutputBox.Text += number.ToString ();
+                    IOBox.Text += number.ToString ();
             newOperand = false;
         }
 
         void AddComma ()
         {
-            if (systemLanguage == "de" && !inputOutputBox.Text.Contains (","))
-                inputOutputBox.Text += ",";
+            if (systemLanguage == "de" && !IOBox.Text.Contains (","))
+                IOBox.Text += ",";
             else
-                if (!inputOutputBox.Text.Contains ("."))
-                    inputOutputBox.Text += ".";
+                if (!IOBox.Text.Contains ("."))
+                    IOBox.Text += ".";
         }
 
         void ResetIOToZero ()
         {
-            inputOutputBox.Text = "0";
+            IOBox.Text = "0";
             newOperand = true;
         }
 
         void ErrorMessage ()
         {
-            inputOutputBox.Text = "Error";
+            IOBox.Text = "Error";
             operand1 = 0;
             newOperand = true;
         }
 
-        bool InputContainsErrorOrInfinity ()
+        bool IOContainsErrorOrInfinity ()
         {
-            if (inputOutputBox.Text == "Error" || inputOutputBox.Text == "∞" || inputOutputBox.Text == "NaN")
+            if (IOBox.Text == "Error" || IOBox.Text == "∞" || IOBox.Text == "NaN")
                 return true;
             else
                 return false;
@@ -408,28 +411,28 @@ namespace ProjectTrojan
             switch (currentOperation)
             {
             case "addition":
-                operand1 = (operand1 + double.Parse (inputOutputBox.Text));
+                operand1 = (operand1 + double.Parse (IOBox.Text));
                 break;
             case "substraction":
-                operand1 = (operand1 - double.Parse (inputOutputBox.Text));
+                operand1 = (operand1 - double.Parse (IOBox.Text));
                 break;
             case "multiplication":
-                operand1 = (operand1 * double.Parse (inputOutputBox.Text));
+                operand1 = (operand1 * double.Parse (IOBox.Text));
                 break;
             case "division":
-                operand1 = (operand1 / double.Parse (inputOutputBox.Text));
+                operand1 = (operand1 / double.Parse (IOBox.Text));
                 break;
             case "pow":
-                operand1 = (Math.Pow (operand1, double.Parse (inputOutputBox.Text)));
+                operand1 = (Math.Pow (operand1, double.Parse (IOBox.Text)));
                 break;
             case "binominal":
-                CalculateBinomialCoefficient (operand1, double.Parse (inputOutputBox.Text));
+                CalculateBinomialCoefficient (operand1, double.Parse (IOBox.Text));
                 break;
             case "none":
-                operand1 = double.Parse (inputOutputBox.Text);
+                operand1 = double.Parse (IOBox.Text);
                 return;
             }
-            inputOutputBox.Text = operand1.ToString (outputPrecision.GetCurrentPrecision ());
+            IOBox.Text = operand1.ToString (outputPrecision.GetCurrentOutputPrecision ());
         }
 
         void SetNewOperation (string newOperation)
@@ -522,7 +525,7 @@ namespace ProjectTrojan
 
         void SetButtonsToInitState ()
         {
-            inputOutputBox.Text = "0";
+            IOBox.Text = "0";
             sinus.Text = "sin";
             cosinus.Text = "cos";
             tangens.Text = "tan";
@@ -538,7 +541,7 @@ namespace ProjectTrojan
             if (unitOfAngle.Text == "Rad")
             {
                 operand1 = (angularFunction (boxValue));
-                inputOutputBox.Text = operand1.ToString (outputPrecision.GetCurrentPrecision ());
+                IOBox.Text = operand1.ToString (outputPrecision.GetCurrentOutputPrecision ());
             }
             else
             if (unitOfAngle.Text == "Grad")
@@ -546,7 +549,7 @@ namespace ProjectTrojan
                 var temp = boxValue;
                 temp *= (Math.PI / 180);
                 operand1 = angularFunction (temp);
-                inputOutputBox.Text = operand1.ToString (outputPrecision.GetCurrentPrecision ());
+                IOBox.Text = operand1.ToString (outputPrecision.GetCurrentOutputPrecision ());
             }
             else
                 ErrorMessage ();
@@ -557,13 +560,13 @@ namespace ProjectTrojan
             if (unitOfAngle.Text == "Rad")
             {
                 operand1 = (angularFunction (boxValue));
-                inputOutputBox.Text = operand1.ToString (outputPrecision.GetCurrentPrecision ());
+                IOBox.Text = operand1.ToString (outputPrecision.GetCurrentOutputPrecision ());
             }
             else
             if (unitOfAngle.Text == "Grad")
             {
                 operand1 = angularFunction (boxValue) * 180 / Math.PI;
-                inputOutputBox.Text = operand1.ToString (outputPrecision.GetCurrentPrecision ());
+                IOBox.Text = operand1.ToString (outputPrecision.GetCurrentOutputPrecision ());
             }
             else
                 ErrorMessage ();
@@ -573,7 +576,7 @@ namespace ProjectTrojan
         {
             double binom = 1;
 
-            if (n < k && Math.Abs (n) < Math.Abs (k) && (n % 1) + (k % 1) < EPSILON && n > 0)
+            if (n < k && Math.Abs (n) < Math.Abs (k) && (n % 1) + (k % 1) < doubleIsZeroTolerance && n > 0)
             {
                 for (int i = 1; i <= n; i++)
                     binom = binom * (k - i + 1) / i;

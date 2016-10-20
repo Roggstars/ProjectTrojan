@@ -11,7 +11,7 @@ namespace ProjectTrojan
             currentPrecision = "g4";
         }
 
-        public string GetCurrentPrecision ()
+        public string GetCurrentOutputPrecision ()
         {
             return currentPrecision;
         }

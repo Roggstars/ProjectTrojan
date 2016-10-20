@@ -11,13 +11,11 @@ namespace ProjectTrojan
         double operand1;
         string currentOperation = "none";
         bool alternativeFunctionsActive;
-        Size standardButtonSize = new Size (50, 50);
-        Size windowSize = new Size (390, 500);
-        Memory currentMemory = new Memory ();
+        Memory calculatorMemory = new Memory ();
         OutputPrecision outputPrecision = new OutputPrecision ();
-        double EPSILON = 0.0000000000000001f;
+        double doubleIsZeroTolerance = 0.0000000000001f;
 
-        TextBox inputOutputBox;
+        TextBox IOBox;
 
         public Calculator ()
         {
@@ -119,7 +117,7 @@ namespace ProjectTrojan
 
         void CommaButtonClick (object sender, EventArgs e)
         {
-            if (InputContainsErrorOrInfinity ())
+            if (IOContainsErrorOrInfinity ())
                 return;
             
             AddComma ();
@@ -129,13 +127,13 @@ namespace ProjectTrojan
         {
             if (!newOperand)
             {
-                if (InputContainsErrorOrInfinity ()
-                    || (inputOutputBox.Text.Contains ("-") && inputOutputBox.TextLength == 2)
-                    || inputOutputBox.TextLength == 1)
+                if (IOContainsErrorOrInfinity ()
+                    || (IOBox.Text.Contains ("-") && IOBox.TextLength == 2)
+                    || IOBox.TextLength == 1)
                     ResetIOToZero ();
                 else
-                    if (inputOutputBox.TextLength > 1)
-                        inputOutputBox.Text = inputOutputBox.Text.Substring (0, (inputOutputBox.TextLength - 1));
+                if (IOBox.TextLength > 1)
+                    IOBox.Text = IOBox.Text.Substring (0, (IOBox.TextLength - 1));
             }
         }
 
@@ -154,11 +152,11 @@ namespace ProjectTrojan
 
         void SquareButtonClick (object sender, EventArgs e)
         {
-            if (InputContainsErrorOrInfinity ())
+            if (IOContainsErrorOrInfinity ())
                 return;
 
-            operand1 = double.Parse (inputOutputBox.Text) * double.Parse (inputOutputBox.Text);
-            inputOutputBox.Text = operand1.ToString (outputPrecision.GetCurrentPrecision ());
+            operand1 = double.Parse (IOBox.Text) * double.Parse (IOBox.Text);
+            IOBox.Text = operand1.ToString (outputPrecision.GetCurrentOutputPrecision ());
             newOperand = true;
         }
 
@@ -171,13 +169,13 @@ namespace ProjectTrojan
 
         void SqrtButtonClick (object sender, EventArgs e)
         {
-            if (InputContainsErrorOrInfinity ())
+            if (IOContainsErrorOrInfinity ())
                 return;
 
-            if (double.Parse (inputOutputBox.Text) > 0)
+            if (double.Parse (IOBox.Text) > 0)
             {
-                operand1 = Math.Sqrt (double.Parse (inputOutputBox.Text));
-                inputOutputBox.Text = operand1.ToString (outputPrecision.GetCurrentPrecision ());
+                operand1 = Math.Sqrt (double.Parse (IOBox.Text));
+                IOBox.Text = operand1.ToString (outputPrecision.GetCurrentOutputPrecision ());
             }
             else
                 ErrorMessage ();
@@ -186,25 +184,25 @@ namespace ProjectTrojan
 
         void FactorialButtonClick (object sender, EventArgs e)
         {
-            if (InputContainsErrorOrInfinity ())
+            if (IOContainsErrorOrInfinity ())
                 return;
 
-            if (double.Parse (inputOutputBox.Text) < 0)
+            if (double.Parse (IOBox.Text) < 0)
             {
                 ErrorMessage ();
                 return;
             }
 
-            double tempMax = double.Parse (inputOutputBox.Text);
+            double tempMax = double.Parse (IOBox.Text);
 
-            if (Math.Abs ((tempMax % 1)) < EPSILON)
+            if (Math.Abs ((tempMax % 1)) < doubleIsZeroTolerance)
             {
                 double temp = 1;
                 for (int i = 1; i <= tempMax; i++)
                     temp *= i;
 
                 operand1 = temp;
-                inputOutputBox.Text = operand1.ToString (outputPrecision.GetCurrentPrecision ());
+                IOBox.Text = operand1.ToString (outputPrecision.GetCurrentOutputPrecision ());
                 newOperand = true;
             }
             else
@@ -213,23 +211,23 @@ namespace ProjectTrojan
 
         void ReciprocalButtonClick (object sender, EventArgs e)
         {
-            if (InputContainsErrorOrInfinity ())
+            if (IOContainsErrorOrInfinity ())
                 return;
 
             operand1 = 1 / operand1;
-            inputOutputBox.Text = operand1.ToString (outputPrecision.GetCurrentPrecision ());
+            IOBox.Text = operand1.ToString (outputPrecision.GetCurrentOutputPrecision ());
             newOperand = true;
         }
 
         void LnButtonClick (object sender, EventArgs e)
         {
-            if (InputContainsErrorOrInfinity ())
+            if (IOContainsErrorOrInfinity ())
                 return;
 
-            if (double.Parse (inputOutputBox.Text) > 0)
+            if (double.Parse (IOBox.Text) > 0)
             {
-                operand1 = Math.Log (double.Parse (inputOutputBox.Text));
-                inputOutputBox.Text = operand1.ToString (outputPrecision.GetCurrentPrecision ());
+                operand1 = Math.Log (double.Parse (IOBox.Text));
+                IOBox.Text = operand1.ToString (outputPrecision.GetCurrentOutputPrecision ());
                 newOperand = true;
             }
             else
@@ -238,73 +236,73 @@ namespace ProjectTrojan
 
         void SinusButtonClick (object sender, EventArgs e)
         {
-            if (InputContainsErrorOrInfinity ())
+            if (IOContainsErrorOrInfinity ())
                 return;
 
-            CalculateAngularFunction (Math.Sin, double.Parse (inputOutputBox.Text));
+            CalculateAngularFunction (Math.Sin, double.Parse (IOBox.Text));
             newOperand = true;
         }
 
         void SinusHypButtonClick (object sender, EventArgs e)
         {
-            if (InputContainsErrorOrInfinity ())
+            if (IOContainsErrorOrInfinity ())
                 return;
 
-            CalculateAngularFunction (Math.Sinh, double.Parse (inputOutputBox.Text));
+            CalculateAngularFunction (Math.Sinh, double.Parse (IOBox.Text));
             newOperand = true;
         }
 
         void ArcSinusButtonClick (object sender, EventArgs e)
         {
-            if (InputContainsErrorOrInfinity ())
+            if (IOContainsErrorOrInfinity ())
                 return;
 
-            CalculateArcAngularFunction (Math.Asin, double.Parse (inputOutputBox.Text));
+            CalculateArcAngularFunction (Math.Asin, double.Parse (IOBox.Text));
             newOperand = true;
         }
 
         void CosinusButtonClick (object sender, EventArgs e)
         {
-            if (InputContainsErrorOrInfinity ())
+            if (IOContainsErrorOrInfinity ())
                 return;
 
-            CalculateAngularFunction (Math.Cos, double.Parse (inputOutputBox.Text));
+            CalculateAngularFunction (Math.Cos, double.Parse (IOBox.Text));
             newOperand = true;
         }
 
         void CosinusHypButtonClick (object sender, EventArgs e)
         {
-            if (InputContainsErrorOrInfinity ())
+            if (IOContainsErrorOrInfinity ())
                 return;
 
-            CalculateAngularFunction (Math.Cosh, double.Parse (inputOutputBox.Text));
+            CalculateAngularFunction (Math.Cosh, double.Parse (IOBox.Text));
             newOperand = true;
         }
 
         void ArcCosinusButtonClick (object sender, EventArgs e)
         {
-            if (InputContainsErrorOrInfinity ())
+            if (IOContainsErrorOrInfinity ())
                 return;
 
-            CalculateArcAngularFunction (Math.Acos, double.Parse (inputOutputBox.Text));
+            CalculateArcAngularFunction (Math.Acos, double.Parse (IOBox.Text));
             newOperand = true;
         }
 
         void TangensButtonClick (object sender, EventArgs e)
         {
-            if (InputContainsErrorOrInfinity ())
+            if (IOContainsErrorOrInfinity ())
                 return;
 
-            CalculateAngularFunction (Math.Tan, double.Parse (inputOutputBox.Text));
+            CalculateAngularFunction (Math.Tan, double.Parse (IOBox.Text));
             newOperand = true;
         }
 
         void ArcTangensButtonClick (object sender, EventArgs e)
         {
-            if (InputContainsErrorOrInfinity ())
+            if (IOContainsErrorOrInfinity ())
                 return;
 
-            CalculateArcAngularFunction (Math.Atan, double.Parse (inputOutputBox.Text));
+            CalculateArcAngularFunction (Math.Atan, double.Parse (IOBox.Text));
             newOperand = true;
         }
 
@@ -319,32 +317,32 @@ namespace ProjectTrojan
         void OutputPrecisionButtonClick (object sender, EventArgs e)
         {
             outputPrecision.SetToNextPrecisionInCycle ();
-            if (outputPrecision.GetCurrentPrecision () == "g1")
-                outputPrecisionButton.Text = (outputPrecision.GetCurrentPrecision ().Substring (1, 1) + " Dgt");
+            if (outputPrecision.GetCurrentOutputPrecision () == "g1")
+                outputPrecisionButton.Text = (outputPrecision.GetCurrentOutputPrecision ().Substring (1, 1) + " Dgt");
             else
-                outputPrecisionButton.Text = (outputPrecision.GetCurrentPrecision ().Substring (1, 1) + " Dgts");
+                outputPrecisionButton.Text = (outputPrecision.GetCurrentOutputPrecision ().Substring (1, 1) + " Dgts");
         }
 
         void MemoryButtonClick (object sender, EventArgs e)
         {
-            if (currentMemory.GetMemoryValue () != 0)
+            if (calculatorMemory.GetMemoryValue () != 0)
             {
-                inputOutputBox.Text = currentMemory.GetMemoryValue ().ToString (outputPrecision.GetCurrentPrecision ());
+                IOBox.Text = calculatorMemory.GetMemoryValue ().ToString (outputPrecision.GetCurrentOutputPrecision ());
                 newOperand = false;
             }
         }
 
         void MemoryClearButtonClick (object sender, EventArgs e)
         {
-            currentMemory.SetMemoryValue (0);
+            calculatorMemory.SetMemoryValue (0);
             memoryButton.BackColor = Color.Gray;
         }
 
         void MemoryAddButtonClick (object sender, EventArgs e)
         {
-            currentMemory.AddValueToMemory (double.Parse (inputOutputBox.Text));
+            calculatorMemory.AddValueToMemory (double.Parse (IOBox.Text));
 
-            if (currentMemory.GetMemoryValue () != 0)
+            if (calculatorMemory.GetMemoryValue () != 0)
                 memoryButton.BackColor = Color.PaleVioletRed;
             else
                 memoryButton.BackColor = Color.Gray;
@@ -354,9 +352,9 @@ namespace ProjectTrojan
 
         void MemorySubstractButtonClick (object sender, EventArgs e)
         {
-            currentMemory.SubstractValueFromMemory (double.Parse (inputOutputBox.Text));
+            calculatorMemory.SubstractValueFromMemory (double.Parse (IOBox.Text));
 
-            if (currentMemory.GetMemoryValue () != 0)
+            if (calculatorMemory.GetMemoryValue () != 0)
                 memoryButton.BackColor = Color.PaleVioletRed;
             else
                 memoryButton.BackColor = Color.Gray;
@@ -366,13 +364,13 @@ namespace ProjectTrojan
 
         void PiButtonClick (object sender, EventArgs e)
         {
-            inputOutputBox.Text = (Math.PI).ToString (outputPrecision.GetCurrentPrecision ());
+            IOBox.Text = (Math.PI).ToString (outputPrecision.GetCurrentOutputPrecision ());
             newOperand = false;
         }
 
         void EButtonClick (object sender, EventArgs e)
         {
-            inputOutputBox.Text = (Math.E).ToString (outputPrecision.GetCurrentPrecision ());
+            IOBox.Text = (Math.E).ToString (outputPrecision.GetCurrentOutputPrecision ());
             newOperand = false;
         }
     }
