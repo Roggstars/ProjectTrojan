@@ -374,13 +374,4 @@ namespace ProjectTrojan
             newOperand = false;
         }
     }
-
-    class MainClass
-    {
-        public static void Main ()
-        {
-            Application.Run (new Calculator ());
-            return;
-        }
-    }
 }
