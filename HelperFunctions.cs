@@ -357,7 +357,8 @@ namespace ProjectTrojan
             comma.Location = new Point (number2.Left, number2.Top + number2.Height);
             memoryButton.Location = new Point (comma.Left + comma.Width, comma.Top);
             memoryAddSubstButton.Location = new Point (memoryButton.Left + memoryButton.Width + 10, memoryButton.Top);
-            equals.Location = new Point (memoryAddSubstButton.Left + memoryAddSubstButton.Width, memoryAddSubstButton.Top);
+            equals.Location =
+                new Point (memoryAddSubstButton.Left + memoryAddSubstButton.Width, memoryAddSubstButton.Top);
         }
 
         void SetCurrentLanguage (out string systemLanguage)
