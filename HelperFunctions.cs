@@ -41,6 +41,8 @@ namespace ProjectTrojan
         Button pi;
         Button e;
 
+        TextBox IOBox;
+
         void InitializeCalculatorAndUIComponents ()
         {
             SetWindowSizeAndProperties ();
@@ -358,7 +360,7 @@ namespace ProjectTrojan
             equals.Location = new Point (memoryAddSubstButton.Left + memoryAddSubstButton.Width, memoryAddSubstButton.Top);
         }
 
-        void SetCurrentLanguage ()
+        void SetCurrentLanguage (out string systemLanguage)
         {
             systemLanguage =
                 System.Globalization.CultureInfo.CurrentCulture.ToString ().Substring (0, 2);
@@ -576,7 +578,7 @@ namespace ProjectTrojan
         {
             double binom = 1;
 
-            if (n < k && Math.Abs (n) < Math.Abs (k) && (n % 1) + (k % 1) < doubleIsZeroTolerance && n > 0)
+            if (n < k && Math.Abs (n) < Math.Abs (k) && (n % 1) + (k % 1) < zeroTolerance && n > 0)
             {
                 for (int i = 1; i <= n; i++)
                     binom = binom * (k - i + 1) / i;

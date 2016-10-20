@@ -6,21 +6,21 @@ namespace ProjectTrojan
 {
     partial class Calculator : Form
     {
-        string systemLanguage;
-        bool newOperand;
+        readonly string systemLanguage;
+        readonly double zeroTolerance = 0.0000000000001f;
+
         double operand1;
         string currentOperation = "none";
+        bool newOperand;
         bool alternativeFunctionsActive;
+
         Memory calculatorMemory = new Memory ();
         OutputPrecision outputPrecision = new OutputPrecision ();
-        double doubleIsZeroTolerance = 0.0000000000001f;
-
-        TextBox IOBox;
 
         public Calculator ()
         {
             InitializeCalculatorAndUIComponents ();
-            SetCurrentLanguage ();
+            SetCurrentLanguage (out systemLanguage);
         }
 
         void Number0ButtonClick (object sender, EventArgs e)
@@ -193,12 +193,12 @@ namespace ProjectTrojan
                 return;
             }
 
-            double tempMax = double.Parse (IOBox.Text);
+            double factorialValue = double.Parse (IOBox.Text);
 
-            if (Math.Abs ((tempMax % 1)) < doubleIsZeroTolerance)
+            if (Math.Abs ((factorialValue % 1)) < zeroTolerance)
             {
                 double temp = 1;
-                for (int i = 1; i <= tempMax; i++)
+                for (int i = 1; i <= factorialValue; i++)
                     temp *= i;
 
                 operand1 = temp;
