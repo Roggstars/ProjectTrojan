@@ -435,7 +435,7 @@ namespace ProjectTrojan
                 operand1 = double.Parse (IOBox.Text);
                 return;
             }
-            IOBox.Text = operand1.ToString (outputPrecision.GetCurrentOutputPrecision ());
+            IOBox.Text = operand1.ToString (outputPrecision.GetPrecision ());
         }
 
         void SetNewOperation (string newOperation)
@@ -544,7 +544,7 @@ namespace ProjectTrojan
             if (unitOfAngle.Text == "Rad")
             {
                 operand1 = (angularFunction (boxValue));
-                IOBox.Text = operand1.ToString (outputPrecision.GetCurrentOutputPrecision ());
+                IOBox.Text = operand1.ToString (outputPrecision.GetPrecision ());
             }
             else
             if (unitOfAngle.Text == "Grad")
@@ -552,7 +552,7 @@ namespace ProjectTrojan
                 var temp = boxValue;
                 temp *= (Math.PI / 180);
                 operand1 = angularFunction (temp);
-                IOBox.Text = operand1.ToString (outputPrecision.GetCurrentOutputPrecision ());
+                IOBox.Text = operand1.ToString (outputPrecision.GetPrecision ());
             }
             else
                 ErrorMessage ();
@@ -563,13 +563,13 @@ namespace ProjectTrojan
             if (unitOfAngle.Text == "Rad")
             {
                 operand1 = (angularFunction (boxValue));
-                IOBox.Text = operand1.ToString (outputPrecision.GetCurrentOutputPrecision ());
+                IOBox.Text = operand1.ToString (outputPrecision.GetPrecision ());
             }
             else
             if (unitOfAngle.Text == "Grad")
             {
                 operand1 = angularFunction (boxValue) * 180 / Math.PI;
-                IOBox.Text = operand1.ToString (outputPrecision.GetCurrentOutputPrecision ());
+                IOBox.Text = operand1.ToString (outputPrecision.GetPrecision ());
             }
             else
                 ErrorMessage ();

@@ -156,7 +156,7 @@ namespace ProjectTrojan
                 return;
 
             operand1 = double.Parse (IOBox.Text) * double.Parse (IOBox.Text);
-            IOBox.Text = operand1.ToString (outputPrecision.GetCurrentOutputPrecision ());
+            IOBox.Text = operand1.ToString (outputPrecision.GetPrecision ());
             newOperand = true;
         }
 
@@ -175,7 +175,7 @@ namespace ProjectTrojan
             if (double.Parse (IOBox.Text) > 0)
             {
                 operand1 = Math.Sqrt (double.Parse (IOBox.Text));
-                IOBox.Text = operand1.ToString (outputPrecision.GetCurrentOutputPrecision ());
+                IOBox.Text = operand1.ToString (outputPrecision.GetPrecision ());
             }
             else
                 ErrorMessage ();
@@ -202,7 +202,7 @@ namespace ProjectTrojan
                     temp *= i;
 
                 operand1 = temp;
-                IOBox.Text = operand1.ToString (outputPrecision.GetCurrentOutputPrecision ());
+                IOBox.Text = operand1.ToString (outputPrecision.GetPrecision ());
                 newOperand = true;
             }
             else
@@ -215,7 +215,7 @@ namespace ProjectTrojan
                 return;
 
             operand1 = 1 / operand1;
-            IOBox.Text = operand1.ToString (outputPrecision.GetCurrentOutputPrecision ());
+            IOBox.Text = operand1.ToString (outputPrecision.GetPrecision ());
             newOperand = true;
         }
 
@@ -227,7 +227,7 @@ namespace ProjectTrojan
             if (double.Parse (IOBox.Text) > 0)
             {
                 operand1 = Math.Log (double.Parse (IOBox.Text));
-                IOBox.Text = operand1.ToString (outputPrecision.GetCurrentOutputPrecision ());
+                IOBox.Text = operand1.ToString (outputPrecision.GetPrecision ());
                 newOperand = true;
             }
             else
@@ -316,18 +316,18 @@ namespace ProjectTrojan
 
         void OutputPrecisionButtonClick (object sender, EventArgs e)
         {
-            outputPrecision.SetToNextPrecisionInCycle ();
-            if (outputPrecision.GetCurrentOutputPrecision () == "g1")
-                outputPrecisionButton.Text = (outputPrecision.GetCurrentOutputPrecision ().Substring (1, 1) + " Dgt");
+            outputPrecision.CycleToNextPrecision ();
+            if (outputPrecision.GetPrecision () == "g1")
+                outputPrecisionButton.Text = (outputPrecision.GetPrecision ().Substring (1, 1) + " Dgt");
             else
-                outputPrecisionButton.Text = (outputPrecision.GetCurrentOutputPrecision ().Substring (1, 1) + " Dgts");
+                outputPrecisionButton.Text = (outputPrecision.GetPrecision ().Substring (1, 1) + " Dgts");
         }
 
         void MemoryButtonClick (object sender, EventArgs e)
         {
             if (calculatorMemory.GetMemoryValue () != 0)
             {
-                IOBox.Text = calculatorMemory.GetMemoryValue ().ToString (outputPrecision.GetCurrentOutputPrecision ());
+                IOBox.Text = calculatorMemory.GetMemoryValue ().ToString (outputPrecision.GetPrecision ());
                 newOperand = false;
             }
         }
@@ -364,13 +364,13 @@ namespace ProjectTrojan
 
         void PiButtonClick (object sender, EventArgs e)
         {
-            IOBox.Text = (Math.PI).ToString (outputPrecision.GetCurrentOutputPrecision ());
+            IOBox.Text = (Math.PI).ToString (outputPrecision.GetPrecision ());
             newOperand = false;
         }
 
         void EButtonClick (object sender, EventArgs e)
         {
-            IOBox.Text = (Math.E).ToString (outputPrecision.GetCurrentOutputPrecision ());
+            IOBox.Text = (Math.E).ToString (outputPrecision.GetPrecision ());
             newOperand = false;
         }
     }

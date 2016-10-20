@@ -4,33 +4,33 @@ namespace ProjectTrojan
 {
     public class OutputPrecision
     {
-        string currentPrecision;
+        string precision;
 
         public OutputPrecision ()
         {
-            currentPrecision = "g4";
+            precision = "g4";
         }
 
-        public string GetCurrentOutputPrecision ()
+        public string GetPrecision ()
         {
-            return currentPrecision;
+            return precision;
         }
 
-        public void SetCurrentPrecision (string newPrecision)
+        public void SetPrecision (string newPrecision)
         {
-            currentPrecision = newPrecision;
+            precision = newPrecision;
         }
 
-        public void SetToNextPrecisionInCycle ()
+        public void CycleToNextPrecision ()
         {
-            if (currentPrecision != "g8")
+            if (precision != "g8")
             {
-                int currentPrecisionInt = int.Parse (currentPrecision.Substring (1, 1));
+                int currentPrecisionInt = int.Parse (precision.Substring (1, 1));
                 currentPrecisionInt += 1;
-                SetCurrentPrecision ("g" + currentPrecisionInt.ToString ());
+                SetPrecision ("g" + currentPrecisionInt.ToString ());
             }
             else
-                SetCurrentPrecision ("g0");
+                SetPrecision ("g0");
         }
     }
 }
