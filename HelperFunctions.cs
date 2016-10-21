@@ -372,7 +372,7 @@ namespace ProjectTrojan
             if (IOBox.Text == "0" && number == 0)
                 return;
             else
-            if (newOperand || IOBox.Text == "∞" || IOBox.Text == "Error")
+            if (newOperand || IOContainsErrorOrInfinity ())
                 IOBox.Text = number.ToString ();
             else
                 IOBox.Text += number.ToString ();
@@ -403,7 +403,7 @@ namespace ProjectTrojan
 
         void ErrorMessage ()
         {
-            ErrorMessage("Error");
+            ErrorMessage ("Error");
         }
 
         bool IOContainsErrorOrInfinity ()
@@ -588,7 +588,7 @@ namespace ProjectTrojan
                 ErrorMessage ();
         }
 
-        bool BinomialCoefficientIsCalculatable(double n, double k)
+        bool BinomialCoefficientIsCalculatable (double n, double k)
         {
             return (n < k && Math.Abs (n) < Math.Abs (k) && (n % 1) + (k % 1) < zeroTolerance && n > 0);
         }
