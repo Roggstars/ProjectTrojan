@@ -197,11 +197,7 @@ namespace ProjectTrojan
 
             if ((factorialValue % 1) < zeroTolerance)
             {
-                double factorial = 1;
-                for (int i = 1; i <= factorialValue; i++)
-                    factorial *= i;
-
-                operand = factorial;
+                operand = CalculateFactorial ((int)factorialValue);
                 IOBox.Text = operand.ToString (outputPrecision.GetPrecision ());
                 newOperand = true;
             }

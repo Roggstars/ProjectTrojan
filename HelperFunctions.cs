@@ -542,6 +542,14 @@ namespace ProjectTrojan
             shift.BackColor = SystemColors.Control;
         }
 
+        int CalculateFactorial (int factorialValue)
+        {
+            int factorial = 1;
+            for (int i = 1; i <= factorialValue; i++)
+                factorial *= i;
+            return factorial;
+        }
+
         delegate double AngularFunction (double value);
 
         void CalculateAngularFunction (AngularFunction angularFunction, double boxValue)
