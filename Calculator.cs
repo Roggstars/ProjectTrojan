@@ -178,7 +178,7 @@ namespace ProjectTrojan
                 IOBox.Text = operand1.ToString (outputPrecision.GetPrecision ());
             }
             else
-                ErrorMessage ();
+                ErrorMessage ("Low0Error");
             newOperand = true;
         }
 
@@ -189,24 +189,24 @@ namespace ProjectTrojan
 
             if (double.Parse (IOBox.Text) < 0)
             {
-                ErrorMessage ();
+                ErrorMessage ("Low0Error");
                 return;
             }
 
             double factorialValue = double.Parse (IOBox.Text);
 
-            if (Math.Abs ((factorialValue % 1)) < zeroTolerance)
+            if ((factorialValue % 1) < zeroTolerance)
             {
-                double temp = 1;
+                double factorial = 1;
                 for (int i = 1; i <= factorialValue; i++)
-                    temp *= i;
+                    factorial *= i;
 
-                operand1 = temp;
+                operand1 = factorial;
                 IOBox.Text = operand1.ToString (outputPrecision.GetPrecision ());
                 newOperand = true;
             }
             else
-                ErrorMessage ();
+                ErrorMessage ("Low0Error");
         }
 
         void ReciprocalButtonClick (object sender, EventArgs e)
@@ -231,7 +231,7 @@ namespace ProjectTrojan
                 newOperand = true;
             }
             else
-                ErrorMessage ();
+                ErrorMessage ("Low0Error");
         }
 
         void SinusButtonClick (object sender, EventArgs e)
@@ -256,6 +256,12 @@ namespace ProjectTrojan
         {
             if (IOContainsErrorOrInfinity ())
                 return;
+            
+            if (double.Parse (IOBox.Text) < -1 || double.Parse (IOBox.Text) > 1)
+            {
+                ErrorMessage ("OutOfDefArea");
+                return;
+            }
 
             CalculateArcAngularFunction (Math.Asin, double.Parse (IOBox.Text));
             newOperand = true;
@@ -283,6 +289,12 @@ namespace ProjectTrojan
         {
             if (IOContainsErrorOrInfinity ())
                 return;
+            
+            if (double.Parse (IOBox.Text) < -1 || double.Parse (IOBox.Text) > 1)
+            {
+                ErrorMessage ("OutOfDefArea");
+                return;
+            }
 
             CalculateArcAngularFunction (Math.Acos, double.Parse (IOBox.Text));
             newOperand = true;
@@ -301,6 +313,12 @@ namespace ProjectTrojan
         {
             if (IOContainsErrorOrInfinity ())
                 return;
+
+            if (double.Parse (IOBox.Text) < -1 || double.Parse (IOBox.Text) > 1)
+            {
+                ErrorMessage ("OutOfDefArea");
+                return;
+            }
 
             CalculateArcAngularFunction (Math.Atan, double.Parse (IOBox.Text));
             newOperand = true;

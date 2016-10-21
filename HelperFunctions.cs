@@ -394,11 +394,16 @@ namespace ProjectTrojan
             newOperand = true;
         }
 
-        void ErrorMessage ()
+        void ErrorMessage (string message)
         {
-            IOBox.Text = "Error";
+            IOBox.Text = message;
             operand1 = 0;
             newOperand = true;
+        }
+
+        void ErrorMessage ()
+        {
+            ErrorMessage("Error");
         }
 
         bool IOContainsErrorOrInfinity ()
