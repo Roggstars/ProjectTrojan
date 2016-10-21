@@ -6,10 +6,10 @@ namespace ProjectTrojan
 {
     partial class Calculator : Form
     {
-        readonly string systemLanguage;
+        readonly string calculatorLanguage;
         readonly double zeroTolerance = 0.0000000000001f;
 
-        double operand1;
+        double operand;
         string currentOperation = "none";
         bool newOperand;
         bool alternativeFunctionsActive;
@@ -20,7 +20,7 @@ namespace ProjectTrojan
         public Calculator ()
         {
             InitializeCalculatorAndUIComponents ();
-            SetCurrentLanguage (out systemLanguage);
+            SetCurrentLanguage (out calculatorLanguage);
         }
 
         void Number0ButtonClick (object sender, EventArgs e)
@@ -141,7 +141,7 @@ namespace ProjectTrojan
         {
             SetButtonsToInitState ();
             alternativeFunctionsActive = false;
-            operand1 = 0;
+            operand = 0;
             SetNewOperation ("none");
         }
 
@@ -155,8 +155,8 @@ namespace ProjectTrojan
             if (IOContainsErrorOrInfinity ())
                 return;
 
-            operand1 = double.Parse (IOBox.Text) * double.Parse (IOBox.Text);
-            IOBox.Text = operand1.ToString (outputPrecision.GetPrecision ());
+            operand = double.Parse (IOBox.Text) * double.Parse (IOBox.Text);
+            IOBox.Text = operand.ToString (outputPrecision.GetPrecision ());
             newOperand = true;
         }
 
@@ -174,8 +174,8 @@ namespace ProjectTrojan
 
             if (double.Parse (IOBox.Text) > 0)
             {
-                operand1 = Math.Sqrt (double.Parse (IOBox.Text));
-                IOBox.Text = operand1.ToString (outputPrecision.GetPrecision ());
+                operand = Math.Sqrt (double.Parse (IOBox.Text));
+                IOBox.Text = operand.ToString (outputPrecision.GetPrecision ());
             }
             else
                 ErrorMessage ("Low0Error");
@@ -201,8 +201,8 @@ namespace ProjectTrojan
                 for (int i = 1; i <= factorialValue; i++)
                     factorial *= i;
 
-                operand1 = factorial;
-                IOBox.Text = operand1.ToString (outputPrecision.GetPrecision ());
+                operand = factorial;
+                IOBox.Text = operand.ToString (outputPrecision.GetPrecision ());
                 newOperand = true;
             }
             else
@@ -214,8 +214,8 @@ namespace ProjectTrojan
             if (IOContainsErrorOrInfinity ())
                 return;
 
-            operand1 = 1 / operand1;
-            IOBox.Text = operand1.ToString (outputPrecision.GetPrecision ());
+            operand = 1 / operand;
+            IOBox.Text = operand.ToString (outputPrecision.GetPrecision ());
             newOperand = true;
         }
 
@@ -226,8 +226,8 @@ namespace ProjectTrojan
 
             if (double.Parse (IOBox.Text) > 0)
             {
-                operand1 = Math.Log (double.Parse (IOBox.Text));
-                IOBox.Text = operand1.ToString (outputPrecision.GetPrecision ());
+                operand = Math.Log (double.Parse (IOBox.Text));
+                IOBox.Text = operand.ToString (outputPrecision.GetPrecision ());
                 newOperand = true;
             }
             else

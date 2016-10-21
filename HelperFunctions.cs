@@ -381,7 +381,7 @@ namespace ProjectTrojan
 
         void AddComma ()
         {
-            if (systemLanguage == "de" && !IOBox.Text.Contains (","))
+            if (calculatorLanguage == "de" && !IOBox.Text.Contains (","))
                 IOBox.Text += ",";
             else
             if (!IOBox.Text.Contains ("."))
@@ -397,7 +397,7 @@ namespace ProjectTrojan
         void ErrorMessage (string message)
         {
             IOBox.Text = message;
-            operand1 = 0;
+            operand = 0;
             newOperand = true;
         }
 
@@ -419,28 +419,28 @@ namespace ProjectTrojan
             switch (currentOperation)
             {
             case "addition":
-                operand1 = (operand1 + double.Parse (IOBox.Text));
+                operand = (operand + double.Parse (IOBox.Text));
                 break;
             case "substraction":
-                operand1 = (operand1 - double.Parse (IOBox.Text));
+                operand = (operand - double.Parse (IOBox.Text));
                 break;
             case "multiplication":
-                operand1 = (operand1 * double.Parse (IOBox.Text));
+                operand = (operand * double.Parse (IOBox.Text));
                 break;
             case "division":
-                operand1 = (operand1 / double.Parse (IOBox.Text));
+                operand = (operand / double.Parse (IOBox.Text));
                 break;
             case "pow":
-                operand1 = (Math.Pow (operand1, double.Parse (IOBox.Text)));
+                operand = (Math.Pow (operand, double.Parse (IOBox.Text)));
                 break;
             case "binominal":
-                CalculateBinomialCoefficient (operand1, double.Parse (IOBox.Text));
+                CalculateBinomialCoefficient (operand, double.Parse (IOBox.Text));
                 break;
             case "none":
-                operand1 = double.Parse (IOBox.Text);
+                operand = double.Parse (IOBox.Text);
                 return;
             }
-            IOBox.Text = operand1.ToString (outputPrecision.GetPrecision ());
+            IOBox.Text = operand.ToString (outputPrecision.GetPrecision ());
         }
 
         void SetNewOperation (string newOperation)
@@ -548,16 +548,16 @@ namespace ProjectTrojan
         {
             if (unitOfAngle.Text == "Rad")
             {
-                operand1 = (angularFunction (boxValue));
-                IOBox.Text = operand1.ToString (outputPrecision.GetPrecision ());
+                operand = (angularFunction (boxValue));
+                IOBox.Text = operand.ToString (outputPrecision.GetPrecision ());
             }
             else
             if (unitOfAngle.Text == "Grad")
             {
                 var temp = boxValue;
                 temp *= (Math.PI / 180);
-                operand1 = angularFunction (temp);
-                IOBox.Text = operand1.ToString (outputPrecision.GetPrecision ());
+                operand = angularFunction (temp);
+                IOBox.Text = operand.ToString (outputPrecision.GetPrecision ());
             }
             else
                 ErrorMessage ();
@@ -567,14 +567,14 @@ namespace ProjectTrojan
         {
             if (unitOfAngle.Text == "Rad")
             {
-                operand1 = (angularFunction (boxValue));
-                IOBox.Text = operand1.ToString (outputPrecision.GetPrecision ());
+                operand = (angularFunction (boxValue));
+                IOBox.Text = operand.ToString (outputPrecision.GetPrecision ());
             }
             else
             if (unitOfAngle.Text == "Grad")
             {
-                operand1 = angularFunction (boxValue) * 180 / Math.PI;
-                IOBox.Text = operand1.ToString (outputPrecision.GetPrecision ());
+                operand = angularFunction (boxValue) * 180 / Math.PI;
+                IOBox.Text = operand.ToString (outputPrecision.GetPrecision ());
             }
             else
                 ErrorMessage ();
@@ -588,7 +588,7 @@ namespace ProjectTrojan
             {
                 for (int i = 1; i <= n; i++)
                     binom = binom * (k - i + 1) / i;
-                operand1 = binom;
+                operand = binom;
             }
             else
                 ErrorMessage ();
