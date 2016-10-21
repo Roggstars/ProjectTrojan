@@ -552,15 +552,12 @@ namespace ProjectTrojan
                 IOBox.Text = operand.ToString (outputPrecision.GetPrecision ());
             }
             else
-            if (unitOfAngle.Text == "Grad")
             {
                 var temp = boxValue;
                 temp *= (Math.PI / 180);
                 operand = angularFunction (temp);
                 IOBox.Text = operand.ToString (outputPrecision.GetPrecision ());
             }
-            else
-                ErrorMessage ();
         }
 
         void CalculateArcAngularFunction (AngularFunction angularFunction, double boxValue)
@@ -571,13 +568,10 @@ namespace ProjectTrojan
                 IOBox.Text = operand.ToString (outputPrecision.GetPrecision ());
             }
             else
-            if (unitOfAngle.Text == "Grad")
             {
                 operand = angularFunction (boxValue) * 180 / Math.PI;
                 IOBox.Text = operand.ToString (outputPrecision.GetPrecision ());
             }
-            else
-                ErrorMessage ();
         }
 
         void CalculateBinomialCoefficient (double n, double k)
