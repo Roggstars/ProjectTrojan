@@ -339,24 +339,24 @@ namespace ProjectTrojan
 
         void MemoryButtonClick (object sender, EventArgs e)
         {
-            if (calculatorMemory.GetMemoryValue () != 0)
+            if (!calculatorMemory.ValueIsZero())
             {
-                IOBox.Text = calculatorMemory.GetMemoryValue ().ToString (outputPrecision.GetPrecision ());
+                IOBox.Text = calculatorMemory.ConvertToStringWithPrecision(outputPrecision);
                 newOperand = false;
             }
         }
 
         void MemoryClearButtonClick (object sender, EventArgs e)
         {
-            calculatorMemory.SetMemoryValue (0);
+            calculatorMemory.SetValue (0);
             memoryButton.BackColor = Color.Gray;
         }
 
         void MemoryAddButtonClick (object sender, EventArgs e)
         {
-            calculatorMemory.AddValueToMemory (double.Parse (IOBox.Text));
+            calculatorMemory.AddValue (double.Parse (IOBox.Text));
 
-            if (calculatorMemory.GetMemoryValue () != 0)
+            if (!calculatorMemory.ValueIsZero())
                 memoryButton.BackColor = Color.PaleVioletRed;
             else
                 memoryButton.BackColor = Color.Gray;
@@ -366,9 +366,9 @@ namespace ProjectTrojan
 
         void MemorySubstractButtonClick (object sender, EventArgs e)
         {
-            calculatorMemory.SubstractValueFromMemory (double.Parse (IOBox.Text));
+            calculatorMemory.SubstractValue (double.Parse (IOBox.Text));
 
-            if (calculatorMemory.GetMemoryValue () != 0)
+            if (!calculatorMemory.ValueIsZero())
                 memoryButton.BackColor = Color.PaleVioletRed;
             else
                 memoryButton.BackColor = Color.Gray;
