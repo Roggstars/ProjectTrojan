@@ -177,6 +177,7 @@ namespace ProjectTrojan
             SetButtonSize (cosinusHyp, standardButtonSize);
             SetButtonSize (tangens, standardButtonSize);
             SetButtonSize (unitOfAngle, standardButtonSize);
+            SetButtonSize (outputPrecisionButton, standardButtonSize);
             SetButtonSize (memoryButton, standardButtonSize);
             SetButtonSize (memoryAddSubstButton, standardButtonSize);
             SetButtonSize (pi, standardButtonSize);
@@ -369,10 +370,10 @@ namespace ProjectTrojan
 
         void AddNumber (int number)
         {
-            if (IOBox.Text == "0" && number == 0)
+            if (IOIsZero() && number == 0)
                 return;
             else
-            if (newOperand || IOContainsErrorOrInfinity ())
+            if (newOperand || IOContainsErrorOrInfinity () || IOIsZero())
                 IOBox.Text = number.ToString ();
             else
                 IOBox.Text += number.ToString ();
@@ -384,7 +385,7 @@ namespace ProjectTrojan
             if (calculatorLanguage == "de" && !IOBox.Text.Contains (","))
                 IOBox.Text += ",";
             else
-            if (!IOBox.Text.Contains ("."))
+            if (calculatorLanguage == "en" && !IOBox.Text.Contains("."))
                 IOBox.Text += ".";
         }
 
@@ -412,6 +413,11 @@ namespace ProjectTrojan
                 return true;
             else
                 return false;
+        }
+
+        bool IOIsZero()
+        {
+            return IOBox.Text == "0";
         }
 
         void PerformCurrentOperation ()
@@ -461,7 +467,7 @@ namespace ProjectTrojan
             else
             {
                 SetButtonEventHandlersToNonShiftCase ();
-                SetButtonEventHandlersToNonShiftCase ();
+                SetButtonTextsToNonShiftCase();
                 alternativeFunctionsActive = false;
                 shift.BackColor = SystemColors.Control;
             }
