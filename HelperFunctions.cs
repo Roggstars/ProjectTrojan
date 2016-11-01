@@ -397,7 +397,8 @@ namespace ProjectTrojan
 
         void ErrorMessage (string message)
         {
-            IOBox.Text = message;
+            IOBox.Text = "Error";
+            MessageBox.Show("An error with the code -" + message + "- has occured." , "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             operand = 0;
             newOperand = true;
         }
