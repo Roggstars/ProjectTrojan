@@ -595,8 +595,8 @@ namespace ProjectTrojan
 
             if (BinomialCoefficientIsCalculatable (n, k))
             {
-                for (int i = 1; i <= n; i++)
-                    binom = binom * (k - i + 1) / i;
+                for (int i = 1; i <= k; i++)
+                    binom = binom * (n - i + 1) / i;
                 operand = binom;
             }
             else
@@ -605,7 +605,7 @@ namespace ProjectTrojan
 
         bool BinomialCoefficientIsCalculatable (double n, double k)
         {
-            return (n < k && Math.Abs (n) < Math.Abs (k) && (n % 1) + (k % 1) < zeroTolerance && n > 0);
+            return (n > k && (n % 1) + (k % 1) < zeroTolerance && n > 0);
         }
     }
 }
