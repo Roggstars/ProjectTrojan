@@ -541,15 +541,18 @@ namespace ProjectTrojan
         void SetButtonsToInitState ()
         {
             IOBox.Text = "0";
-            sinus.Text = "sin";
-            cosinus.Text = "cos";
-            tangens.Text = "tan";
-            memoryButton.Text = "M";
-            memoryAddSubstButton.Text = "M+";
+            SetButtonEventHandlersToNonShiftCase ();
+            SetButtonTextsToNonShiftCase();
+            alternativeFunctionsActive = false;
             shift.BackColor = SystemColors.Control;
         }
 
-        int CalculateFactorial (int factorialValue)
+        double CalculateSquareOf (double squareValue)
+        {
+            return squareValue * squareValue;
+        }
+
+        int CalculateFactorialOf (int factorialValue)
         {
             int factorial = 1;
             for (int i = 1; i <= factorialValue; i++)

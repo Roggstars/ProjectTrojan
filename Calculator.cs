@@ -155,7 +155,7 @@ namespace ProjectTrojan
             if (IOContainsErrorOrInfinity ())
                 return;
 
-            operand = double.Parse (IOBox.Text) * double.Parse (IOBox.Text);
+            operand = CalculateSquareOf (double.Parse(IOBox.Text));
             IOBox.Text = operand.ToString (outputPrecision.GetPrecision ());
             newOperand = true;
         }
@@ -197,12 +197,12 @@ namespace ProjectTrojan
 
             if ((factorialValue % 1) < zeroTolerance)
             {
-                operand = CalculateFactorial ((int)factorialValue);
+                operand = CalculateFactorialOf ((int)factorialValue);
                 IOBox.Text = operand.ToString (outputPrecision.GetPrecision ());
                 newOperand = true;
             }
             else
-                ErrorMessage ("Low0Error");
+                ErrorMessage ("UncalculatableFactorial");
         }
 
         void ReciprocalButtonClick (object sender, EventArgs e)
