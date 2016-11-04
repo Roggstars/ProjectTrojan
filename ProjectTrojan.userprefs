@@ -6,9 +6,8 @@
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workbench ActiveDocument="Calculator.cs">
     <Files>
-      <File FileName="Calculator.cs" Line="18" Column="66" />
+      <File FileName="Calculator.cs" Line="26" Column="61" />
       <File FileName="HelperFunctions.cs" Line="1" Column="1" />
-      <File FileName="MainClass.cs" Line="11" Column="1" />
       <File FileName="Memory.cs" Line="1" Column="1" />
       <File FileName="Precision.cs" Line="1" Column="1" />
     </Files>
