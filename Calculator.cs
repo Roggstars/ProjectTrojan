@@ -20,7 +20,7 @@ namespace ProjectTrojan
         public Calculator ()
         {
             InitializeCalculatorAndUIComponents ();
-            SetCurrentLanguage (out calculatorLanguage);
+            SetCalculatorLanguageTo (out calculatorLanguage);
         }
 
         void Number0ButtonClick (object sender, EventArgs e)
@@ -77,42 +77,42 @@ namespace ProjectTrojan
         {
             if (!newOperand)
                 PerformCurrentOperation ();
-            SetNewOperation ("addition");
+            SetNewOperationTo ("addition");
         }
 
         void SubstButtonClick (object sender, EventArgs e)
         {
             if (!newOperand)
                 PerformCurrentOperation ();
-            SetNewOperation ("substraction");
+            SetNewOperationTo ("substraction");
         }
 
         void MultButtonClick (object sender, EventArgs e)
         {
             if (!newOperand)
                 PerformCurrentOperation ();
-            SetNewOperation ("multiplication");
+            SetNewOperationTo ("multiplication");
         }
 
         void DivButtonClick (object sender, EventArgs e)
         {
             if (!newOperand)
                 PerformCurrentOperation ();
-            SetNewOperation ("division");
+            SetNewOperationTo ("division");
         }
 
         void BinomialCoefficientButtonClick (object sender, EventArgs e)
         {
             if (!newOperand)
                 PerformCurrentOperation ();
-            SetNewOperation ("binominal");
+            SetNewOperationTo ("binominal");
         }
 
         void EqualsButtonClick (object sender, EventArgs e)
         {
             if (!newOperand)
                 PerformCurrentOperation ();
-            SetNewOperation ("none");
+            SetNewOperationTo ("none");
         }
 
         void CommaButtonClick (object sender, EventArgs e)
@@ -142,7 +142,7 @@ namespace ProjectTrojan
             SetButtonsToInitState ();
             alternativeFunctionsActive = false;
             operand = 0;
-            SetNewOperation ("none");
+            SetNewOperationTo ("none");
         }
 
         void ShiftButtonClick (object sender, EventArgs e)
@@ -155,7 +155,7 @@ namespace ProjectTrojan
             if (IOContainsErrorOrInfinity ())
                 return;
 
-            operand = CalculateSquareOf (double.Parse(IOBox.Text));
+            operand = CalculateSquareOf (double.Parse (IOBox.Text));
             IOBox.Text = operand.ToString (outputPrecision.GetPrecision ());
             newOperand = true;
         }
@@ -164,7 +164,7 @@ namespace ProjectTrojan
         {
             if (!newOperand)
                 PerformCurrentOperation ();
-            SetNewOperation ("pow");
+            SetNewOperationTo ("pow");
         }
 
         void SqrtButtonClick (object sender, EventArgs e)
@@ -339,9 +339,9 @@ namespace ProjectTrojan
 
         void MemoryButtonClick (object sender, EventArgs e)
         {
-            if (!calculatorMemory.ValueIsZero())
+            if (!calculatorMemory.ValueIsZero ())
             {
-                IOBox.Text = calculatorMemory.ConvertToStringWithPrecision(outputPrecision);
+                IOBox.Text = calculatorMemory.ConvertToStringWithPrecision (outputPrecision);
                 newOperand = false;
             }
         }
@@ -356,7 +356,7 @@ namespace ProjectTrojan
         {
             calculatorMemory.AddValue (double.Parse (IOBox.Text));
 
-            if (!calculatorMemory.ValueIsZero())
+            if (!calculatorMemory.ValueIsZero ())
                 memoryButton.BackColor = Color.PaleVioletRed;
             else
                 memoryButton.BackColor = Color.Gray;
@@ -368,7 +368,7 @@ namespace ProjectTrojan
         {
             calculatorMemory.SubstractValue (double.Parse (IOBox.Text));
 
-            if (!calculatorMemory.ValueIsZero())
+            if (!calculatorMemory.ValueIsZero ())
                 memoryButton.BackColor = Color.PaleVioletRed;
             else
                 memoryButton.BackColor = Color.Gray;

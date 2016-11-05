@@ -362,7 +362,7 @@ namespace ProjectTrojan
                 new Point (memoryAddSubstButton.Left + memoryAddSubstButton.Width, memoryAddSubstButton.Top);
         }
 
-        void SetCurrentLanguage (out string systemLanguage)
+        void SetCalculatorLanguageTo (out string systemLanguage)
         {
             systemLanguage =
                 System.Globalization.CultureInfo.CurrentCulture.ToString ().Substring (0, 2);
@@ -370,10 +370,10 @@ namespace ProjectTrojan
 
         void AddNumber (int number)
         {
-            if (IOIsZero() && number == 0)
+            if (IOIsZero () && number == 0)
                 return;
             else
-            if (newOperand || IOContainsErrorOrInfinity () || IOIsZero())
+            if (newOperand || IOContainsErrorOrInfinity () || IOIsZero ())
                 IOBox.Text = number.ToString ();
             else
                 IOBox.Text += number.ToString ();
@@ -385,7 +385,7 @@ namespace ProjectTrojan
             if (calculatorLanguage == "de" && !IOBox.Text.Contains (","))
                 IOBox.Text += ",";
             else
-            if (calculatorLanguage == "en" && !IOBox.Text.Contains("."))
+            if (calculatorLanguage == "en" && !IOBox.Text.Contains ("."))
                 IOBox.Text += ".";
         }
 
@@ -398,7 +398,7 @@ namespace ProjectTrojan
         void ErrorMessage (string message)
         {
             IOBox.Text = "Error";
-            MessageBox.Show("An error with the code -" + message + "- has occured." , "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show ("An error with the code -" + message + "- has occured.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             operand = 0;
             newOperand = true;
         }
@@ -416,7 +416,7 @@ namespace ProjectTrojan
                 return false;
         }
 
-        bool IOIsZero()
+        bool IOIsZero ()
         {
             return IOBox.Text == "0";
         }
@@ -441,7 +441,7 @@ namespace ProjectTrojan
                 operand = (Math.Pow (operand, double.Parse (IOBox.Text)));
                 break;
             case "binominal":
-                CalculateBinomialCoefficient (operand, double.Parse (IOBox.Text));
+                CalculateBinomialCoefficientOf (operand, double.Parse (IOBox.Text));
                 break;
             case "none":
                 operand = double.Parse (IOBox.Text);
@@ -450,7 +450,7 @@ namespace ProjectTrojan
             IOBox.Text = operand.ToString (outputPrecision.GetPrecision ());
         }
 
-        void SetNewOperation (string newOperation)
+        void SetNewOperationTo (string newOperation)
         {
             newOperand = true;
             currentOperation = newOperation;
@@ -468,7 +468,7 @@ namespace ProjectTrojan
             else
             {
                 SetButtonEventHandlersToNonShiftCase ();
-                SetButtonTextsToNonShiftCase();
+                SetButtonTextsToNonShiftCase ();
                 alternativeFunctionsActive = false;
                 shift.BackColor = SystemColors.Control;
             }
@@ -542,7 +542,7 @@ namespace ProjectTrojan
         {
             IOBox.Text = "0";
             SetButtonEventHandlersToNonShiftCase ();
-            SetButtonTextsToNonShiftCase();
+            SetButtonTextsToNonShiftCase ();
             alternativeFunctionsActive = false;
             shift.BackColor = SystemColors.Control;
         }
@@ -592,11 +592,11 @@ namespace ProjectTrojan
             }
         }
 
-        void CalculateBinomialCoefficient (double n, double k)
+        void CalculateBinomialCoefficientOf (double n, double k)
         {
             double binom = 1;
 
-            if (BinomialCoefficientIsCalculatable (n, k))
+            if (BinomialCoefficientIsCalculatableOf (n, k))
             {
                 for (int i = 1; i <= k; i++)
                     binom = binom * (n - i + 1) / i;
@@ -606,7 +606,7 @@ namespace ProjectTrojan
                 ErrorMessage ();
         }
 
-        bool BinomialCoefficientIsCalculatable (double n, double k)
+        bool BinomialCoefficientIsCalculatableOf (double n, double k)
         {
             return (n > k && (n % 1) + (k % 1) < zeroTolerance && n > 0);
         }
