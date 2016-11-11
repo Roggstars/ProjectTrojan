@@ -11,14 +11,9 @@ namespace ProjectTrojan
             memoryValue = 0;
         }
 
-        public void SetValue (double newMemoryValue)
+        public void Clear ()
         {
-            memoryValue = newMemoryValue;
-        }
-
-        double GetValue ()
-        {
-            return memoryValue;
+            memoryValue = 0;
         }
 
         public string ConvertToStringWithPrecision(OutputPrecision precision)
@@ -31,12 +26,12 @@ namespace ProjectTrojan
             return memoryValue == 0;
         }
 
-        public void AddValue (double addValue)
+        public void Add (double addValue)
         {
             memoryValue += addValue;
         }
 
-        public void SubstractValue (double subValue)
+        public void Substract (double subValue)
         {
             memoryValue -= subValue;
         }

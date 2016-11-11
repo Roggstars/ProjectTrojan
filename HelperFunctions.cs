@@ -477,41 +477,57 @@ namespace ProjectTrojan
         void SetButtonEventHandlersToShiftCase ()
         {
             sinus.Click -= SinusButtonClick;
+            sinus.Click -= ArcSinusButtonClick;
             sinus.Click += ArcSinusButtonClick;
             cosinus.Click -= CosinusButtonClick;
+            cosinus.Click -= ArcCosinusButtonClick;
             cosinus.Click += ArcCosinusButtonClick;
             tangens.Click -= TangensButtonClick;
+            tangens.Click -= ArcTangensButtonClick;
             tangens.Click += ArcTangensButtonClick;
             memoryButton.Click -= MemoryButtonClick;
+            memoryButton.Click -= MemoryClearButtonClick;
             memoryButton.Click += MemoryClearButtonClick;
-            memoryAddSubstButton.Click += MemoryAddButtonClick;
+            memoryAddSubstButton.Click -= MemoryAddButtonClick;
+            memoryAddSubstButton.Click -= MemorySubstractButtonClick;
             memoryAddSubstButton.Click += MemorySubstractButtonClick;
             factorial.Click -= FactorialButtonClick;
+            factorial.Click -= ReciprocalButtonClick;
             factorial.Click += ReciprocalButtonClick;
             square.Click -= SquareButtonClick;
+            square.Click -= ExponentButtonClick;
             square.Click += ExponentButtonClick;
             division.Click -= DivButtonClick;
+            division.Click -= BinomialCoefficientButtonClick;
             division.Click += BinomialCoefficientButtonClick;
         }
 
         void SetButtonEventHandlersToNonShiftCase ()
         {
-            sinus.Click += SinusButtonClick;
+            sinus.Click -= SinusButtonClick;
             sinus.Click -= ArcSinusButtonClick;
-            cosinus.Click += CosinusButtonClick;
+            sinus.Click += SinusButtonClick;
             cosinus.Click -= ArcCosinusButtonClick;
-            tangens.Click += TangensButtonClick;
+            cosinus.Click -= CosinusButtonClick;
+            cosinus.Click += CosinusButtonClick;
             tangens.Click -= ArcTangensButtonClick;
-            memoryButton.Click += MemoryButtonClick;
+            tangens.Click -= TangensButtonClick;
+            tangens.Click += TangensButtonClick;
             memoryButton.Click -= MemoryClearButtonClick;
-            memoryAddSubstButton.Click += MemoryAddButtonClick;
+            memoryButton.Click -= MemoryButtonClick;
+            memoryButton.Click += MemoryButtonClick;
             memoryAddSubstButton.Click -= MemorySubstractButtonClick;
-            factorial.Click += FactorialButtonClick;
+            memoryAddSubstButton.Click -= MemoryAddButtonClick;
+            memoryAddSubstButton.Click += MemoryAddButtonClick;
             factorial.Click -= ReciprocalButtonClick;
-            square.Click += SquareButtonClick;
+            factorial.Click -= FactorialButtonClick;
+            factorial.Click += FactorialButtonClick;
             square.Click -= ExponentButtonClick;
-            division.Click += DivButtonClick;
+            square.Click -= SquareButtonClick;
+            square.Click += SquareButtonClick;
             division.Click -= BinomialCoefficientButtonClick;
+            division.Click -= DivButtonClick;
+            division.Click += DivButtonClick;
         }
 
         void SetButtonTextsToShiftCase ()
