@@ -22,13 +22,13 @@ namespace ProjectTrojan
         Button division;
         Button equals;
         Button comma;
-        Button del;
+        Button delete;
         Button clear;
         Button shift;
         Button square;
-        Button sqrt;
+        Button squareRoot;
         Button factorial;
-        Button ln;
+        Button natualLogarithm;
         Button sinus;
         Button sinusHyp;
         Button cosinus;
@@ -47,6 +47,8 @@ namespace ProjectTrojan
         {
             SetWindowSizeAndProperties ();
             CreateUIComponents ();
+            RemoveButtonBorders ();
+            SetButtonCursors ();
             SetUIButtonsTexts ();
             SetUIButtonsSizes ();
             AddControlsToUIComponents ();
@@ -58,7 +60,7 @@ namespace ProjectTrojan
 
         void SetWindowSizeAndProperties ()
         {
-            Size windowSize = new Size (390, 500);
+            Size windowSize = new Size (345, 492);
             Size = windowSize;
             Text = "Project Trojan";
             FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -84,13 +86,13 @@ namespace ProjectTrojan
             division = new Button ();
             equals = new Button ();
             comma = new Button ();
-            del = new Button ();
+            delete = new Button ();
             clear = new Button ();
             shift = new Button ();
             square = new Button ();
-            sqrt = new Button ();
+            squareRoot = new Button ();
             factorial = new Button ();
-            ln = new Button ();
+            natualLogarithm = new Button ();
             sinus = new Button ();
             sinusHyp = new Button ();
             cosinus = new Button ();
@@ -104,6 +106,92 @@ namespace ProjectTrojan
             e = new Button ();
 
             IOBox = new TextBox ();
+        }
+
+        void RemoveButtonBorders ()
+        {
+            RemoveButtonBordersFromButton (number0);
+            RemoveButtonBordersFromButton (number1);
+            RemoveButtonBordersFromButton (number2);
+            RemoveButtonBordersFromButton (number3);
+            RemoveButtonBordersFromButton (number4);
+            RemoveButtonBordersFromButton (number5);
+            RemoveButtonBordersFromButton (number6);
+            RemoveButtonBordersFromButton (number7);
+            RemoveButtonBordersFromButton (number8);
+            RemoveButtonBordersFromButton (number9);
+            RemoveButtonBordersFromButton (addition);
+            RemoveButtonBordersFromButton (substraction);
+            RemoveButtonBordersFromButton (multiplication);
+            RemoveButtonBordersFromButton (division);
+            RemoveButtonBordersFromButton (equals);
+            RemoveButtonBordersFromButton (comma);
+            RemoveButtonBordersFromButton (delete);
+            RemoveButtonBordersFromButton (clear);
+            RemoveButtonBordersFromButton (shift);
+            RemoveButtonBordersFromButton (square);
+            RemoveButtonBordersFromButton (squareRoot);
+            RemoveButtonBordersFromButton (factorial);
+            RemoveButtonBordersFromButton (natualLogarithm);
+            RemoveButtonBordersFromButton (sinus);
+            RemoveButtonBordersFromButton (sinusHyp);
+            RemoveButtonBordersFromButton (cosinus);
+            RemoveButtonBordersFromButton (cosinusHyp);
+            RemoveButtonBordersFromButton (tangens);
+            RemoveButtonBordersFromButton (unitOfAngle);
+            RemoveButtonBordersFromButton (outputPrecisionButton);
+            RemoveButtonBordersFromButton (memoryButton);
+            RemoveButtonBordersFromButton (memoryAddSubstButton);
+            RemoveButtonBordersFromButton (pi);
+            RemoveButtonBordersFromButton (e);
+        }
+
+        void RemoveButtonBordersFromButton (Button button)
+        {
+            button.FlatStyle = FlatStyle.Flat;
+        }
+
+        void SetButtonCursors ()
+        {
+            SetButtonCursorForButton (number0);
+            SetButtonCursorForButton (number1);
+            SetButtonCursorForButton (number2);
+            SetButtonCursorForButton (number3);
+            SetButtonCursorForButton (number4);
+            SetButtonCursorForButton (number5);
+            SetButtonCursorForButton (number6);
+            SetButtonCursorForButton (number7);
+            SetButtonCursorForButton (number8);
+            SetButtonCursorForButton (number9);
+            SetButtonCursorForButton (addition);
+            SetButtonCursorForButton (substraction);
+            SetButtonCursorForButton (multiplication);
+            SetButtonCursorForButton (division);
+            SetButtonCursorForButton (equals);
+            SetButtonCursorForButton (comma);
+            SetButtonCursorForButton (delete);
+            SetButtonCursorForButton (clear);
+            SetButtonCursorForButton (shift);
+            SetButtonCursorForButton (square);
+            SetButtonCursorForButton (squareRoot);
+            SetButtonCursorForButton (factorial);
+            SetButtonCursorForButton (natualLogarithm);
+            SetButtonCursorForButton (sinus);
+            SetButtonCursorForButton (sinusHyp);
+            SetButtonCursorForButton (cosinus);
+            SetButtonCursorForButton (cosinusHyp);
+            SetButtonCursorForButton (tangens);
+            SetButtonCursorForButton (unitOfAngle);
+            SetButtonCursorForButton (outputPrecisionButton);
+            SetButtonCursorForButton (memoryButton);
+            SetButtonCursorForButton (memoryAddSubstButton);
+            SetButtonCursorForButton (pi);
+            SetButtonCursorForButton (e);
+        }
+
+        void SetButtonCursorForButton (Button button)
+        {
+            button.Cursor = Cursors.Hand;
         }
 
         void SetUIButtonsTexts ()
@@ -124,13 +212,13 @@ namespace ProjectTrojan
             division.Text = "/";
             equals.Text = "=";
             comma.Text = ",";
-            del.Text = "Del";
+            delete.Text = "Del";
             clear.Text = "AC";
             shift.Text = "Shift";
             square.Text = "x²";
-            sqrt.Text = "√¯x";
+            squareRoot.Text = "√¯x";
             factorial.Text = "x!";
-            ln.Text = "ln x";
+            natualLogarithm.Text = "ln x";
             sinus.Text = "sin";
             sinusHyp.Text = "sinH";
             cosinus.Text = "cos";
@@ -164,13 +252,13 @@ namespace ProjectTrojan
             SetButtonSize (division, standardButtonSize);
             SetButtonSize (equals, standardButtonSize);
             SetButtonSize (comma, standardButtonSize);
-            SetButtonSize (del, standardButtonSize);
+            SetButtonSize (delete, standardButtonSize);
             SetButtonSize (clear, standardButtonSize);
             SetButtonSize (shift, standardButtonSize);
             SetButtonSize (square, standardButtonSize);
-            SetButtonSize (sqrt, standardButtonSize);
+            SetButtonSize (squareRoot, standardButtonSize);
             SetButtonSize (factorial, standardButtonSize);
-            SetButtonSize (ln, standardButtonSize);
+            SetButtonSize (natualLogarithm, standardButtonSize);
             SetButtonSize (sinus, standardButtonSize);
             SetButtonSize (sinusHyp, standardButtonSize);
             SetButtonSize (cosinus, standardButtonSize);
@@ -208,13 +296,13 @@ namespace ProjectTrojan
             Controls.Add (division);
             Controls.Add (equals);
             Controls.Add (comma);
-            Controls.Add (del);
+            Controls.Add (delete);
             Controls.Add (clear);
             Controls.Add (shift);
             Controls.Add (square);
-            Controls.Add (sqrt);
+            Controls.Add (squareRoot);
             Controls.Add (factorial);
-            Controls.Add (ln);
+            Controls.Add (natualLogarithm);
             Controls.Add (sinus);
             Controls.Add (sinusHyp);
             Controls.Add (cosinus);
@@ -248,13 +336,13 @@ namespace ProjectTrojan
             division.Click += DivButtonClick;
             equals.Click += EqualsButtonClick;
             comma.Click += CommaButtonClick;
-            del.Click += DelButtonClick;
+            delete.Click += DelButtonClick;
             clear.Click += ClearButtonClick;
             shift.Click += ShiftButtonClick;
             square.Click += SquareButtonClick;
-            sqrt.Click += SqrtButtonClick;
+            squareRoot.Click += SqrtButtonClick;
             factorial.Click += FactorialButtonClick;
-            ln.Click += LnButtonClick;
+            natualLogarithm.Click += LnButtonClick;
             sinus.Click += SinusButtonClick;
             sinusHyp.Click += SinusHypButtonClick;
             cosinus.Click += CosinusButtonClick;
@@ -285,12 +373,12 @@ namespace ProjectTrojan
             multiplication.BackColor = Color.Orange;
             division.BackColor = Color.Orange;
             equals.BackColor = Color.Orange;
-            del.BackColor = Color.Red;
+            delete.BackColor = Color.Red;
             clear.BackColor = Color.Red;
             square.BackColor = Color.Gray;
-            sqrt.BackColor = Color.Gray;
+            squareRoot.BackColor = Color.Gray;
             factorial.BackColor = Color.Gray;
-            ln.BackColor = Color.Gray;
+            natualLogarithm.BackColor = Color.Gray;
             sinus.BackColor = Color.Gray;
             sinusHyp.BackColor = Color.Gray;
             cosinus.BackColor = Color.Gray;
@@ -322,25 +410,25 @@ namespace ProjectTrojan
             sinus.Location = new Point (IOBox.Left, IOBox.Top + IOBox.Height + 10);
             cosinus.Location = new Point (sinus.Left + sinus.Width, sinus.Top);
             tangens.Location = new Point (cosinus.Left + cosinus.Width, cosinus.Top);
-            unitOfAngle.Location = new Point (tangens.Left + tangens.Width + 10 + ln.Width + e.Width + 10, tangens.Top);
+            unitOfAngle.Location = new Point (tangens.Left + tangens.Width + 10 + natualLogarithm.Width + e.Width + 10, tangens.Top);
 
             sinusHyp.Location = new Point (sinus.Left, sinus.Top + sinus.Height);
             cosinusHyp.Location = new Point (cosinus.Left, cosinus.Top + cosinus.Height);
             pi.Location = new Point (tangens.Left, tangens.Top + tangens.Height);
-            shift.Location = new Point (pi.Left + pi.Width + 10 + ln.Width + e.Width + 10, pi.Top);
+            shift.Location = new Point (pi.Left + pi.Width + 10 + natualLogarithm.Width + e.Width + 10, pi.Top);
 
             square.Location = new Point (sinusHyp.Left, sinusHyp.Top + sinusHyp.Height + 10);
-            sqrt.Location = new Point (square.Left + square.Width, square.Top);
-            factorial.Location = new Point (sqrt.Left + sqrt.Width, sqrt.Top);
-            ln.Location = new Point (factorial.Left + factorial.Width + 10, factorial.Top);
-            e.Location = new Point (ln.Left + ln.Width, ln.Top);
+            squareRoot.Location = new Point (square.Left + square.Width, square.Top);
+            factorial.Location = new Point (squareRoot.Left + squareRoot.Width, squareRoot.Top);
+            natualLogarithm.Location = new Point (factorial.Left + factorial.Width + 10, factorial.Top);
+            e.Location = new Point (natualLogarithm.Left + natualLogarithm.Width, natualLogarithm.Top);
             outputPrecisionButton.Location = new Point (e.Left + e.Width + 10, e.Top);
 
             number7.Location = new Point (square.Left, square.Top + square.Height + 20);
             number8.Location = new Point (number7.Left + number8.Width, number7.Top);
             number9.Location = new Point (number8.Left + number9.Width, number7.Top);
-            del.Location = new Point (number9.Left + number9.Width + 10, number9.Top);
-            clear.Location = new Point (del.Left + del.Width, del.Top);
+            delete.Location = new Point (number9.Left + number9.Width + 10, number9.Top);
+            clear.Location = new Point (delete.Left + delete.Width, delete.Top);
 
             number4.Location = new Point (number7.Left, number7.Top + number7.Height);
             number5.Location = new Point (number4.Left + number4.Width, number4.Top);
@@ -539,7 +627,7 @@ namespace ProjectTrojan
             square.Text = "x^n";
             memoryButton.Text = "MC";
             memoryAddSubstButton.Text = "M-";
-            division.Text = "nPr"; 
+            division.Text = "nPr";
         }
 
         void SetButtonTextsToNonShiftCase ()
