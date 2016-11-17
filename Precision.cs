@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ProjectTrojan
+﻿namespace ProjectTrojan
 {
     public class OutputPrecision
     {

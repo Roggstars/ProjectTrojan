@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ProjectTrojan
+﻿namespace ProjectTrojan
 {
     public class Memory
     {
@@ -16,12 +14,12 @@ namespace ProjectTrojan
             memoryValue = 0;
         }
 
-        public string ConvertToStringWithPrecision(OutputPrecision precision)
+        public string ConvertToStringWithPrecision (OutputPrecision precision)
         {
-            return memoryValue.ToString (precision.GetPrecision());
+            return memoryValue.ToString (precision.GetPrecision ());
         }
 
-        public bool ValueIsZero()
+        public bool ValueIsZero ()
         {
             return memoryValue == 0;
         }

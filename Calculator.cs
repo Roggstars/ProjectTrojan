@@ -130,8 +130,7 @@ namespace ProjectTrojan
                 || (ioBox.Text.Contains ("-") && ioBox.TextLength == 2)
                 || ioBox.TextLength == 1)
                 ResetIoToZero ();
-            else
-            if (ioBox.TextLength > 1)
+            else if (ioBox.TextLength > 1)
                 ioBox.Text = ioBox.Text.Substring (0, (ioBox.TextLength - 1));
         }
 

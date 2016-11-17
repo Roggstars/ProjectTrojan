@@ -460,8 +460,7 @@ namespace ProjectTrojan
         {
             if (IoIsZero () && number == 0)
                 return;
-            else
-            if (newOperand || IoContainsErrorOrInfinity () || IoIsZero ())
+            else if (newOperand || IoContainsErrorOrInfinity () || IoIsZero ())
                 ioBox.Text = number.ToString ();
             else
                 ioBox.Text += number.ToString ();
@@ -472,8 +471,7 @@ namespace ProjectTrojan
         {
             if (calculatorLanguage == "de" && !ioBox.Text.Contains (","))
                 ioBox.Text += ",";
-            else
-            if (calculatorLanguage == "en" && !ioBox.Text.Contains ("."))
+            else if (calculatorLanguage == "en" && !ioBox.Text.Contains ("."))
                 ioBox.Text += ".";
         }
 
@@ -505,27 +503,27 @@ namespace ProjectTrojan
         {
             switch (currentOperation)
             {
-            case "addition":
-                operand = (operand + double.Parse (ioBox.Text));
-                break;
-            case "substraction":
-                operand = (operand - double.Parse (ioBox.Text));
-                break;
-            case "multiplication":
-                operand = (operand * double.Parse (ioBox.Text));
-                break;
-            case "division":
-                operand = (operand / double.Parse (ioBox.Text));
-                break;
-            case "pow":
-                operand = (Math.Pow (operand, double.Parse (ioBox.Text)));
-                break;
-            case "binominal":
-                CalculateBinomialCoefficientOf (operand, double.Parse (ioBox.Text));
-                break;
-            case "none":
-                operand = double.Parse (ioBox.Text);
-                return;
+                case "addition":
+                    operand = (operand + double.Parse (ioBox.Text));
+                    break;
+                case "substraction":
+                    operand = (operand - double.Parse (ioBox.Text));
+                    break;
+                case "multiplication":
+                    operand = (operand * double.Parse (ioBox.Text));
+                    break;
+                case "division":
+                    operand = (operand / double.Parse (ioBox.Text));
+                    break;
+                case "pow":
+                    operand = (Math.Pow (operand, double.Parse (ioBox.Text)));
+                    break;
+                case "binominal":
+                    CalculateBinomialCoefficientOf (operand, double.Parse (ioBox.Text));
+                    break;
+                case "none":
+                    operand = double.Parse (ioBox.Text);
+                    return;
             }
             ioBox.Text = operand.ToString (outputPrecision.GetPrecision ());
         }

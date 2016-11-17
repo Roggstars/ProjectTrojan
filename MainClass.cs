@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows.Forms;
-using ProjectTrojan;
+﻿using System.Windows.Forms;
 
 namespace ProjectTrojan
 {
@@ -9,8 +7,6 @@ namespace ProjectTrojan
         public static void Main ()
         {
             Application.Run (new Calculator ());
-            return;
         }
     }
 }
-
