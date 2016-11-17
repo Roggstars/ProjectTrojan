@@ -192,7 +192,7 @@ namespace ProjectTrojan
 
             double factorialValue = double.Parse (ioBox.Text);
 
-            if ((factorialValue % 1) < zeroTolerance)
+            if ((factorialValue%1) < zeroTolerance)
             {
                 operand = CalculateFactorialOf ((int)factorialValue);
                 ioBox.Text = operand.ToString (outputPrecision.GetPrecision ());
@@ -207,7 +207,7 @@ namespace ProjectTrojan
             if (IoContainsErrorOrInfinity ())
                 return;
 
-            operand = 1 / operand;
+            operand = 1/operand;
             ioBox.Text = operand.ToString (outputPrecision.GetPrecision ());
             newOperand = true;
         }

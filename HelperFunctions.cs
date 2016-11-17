@@ -510,10 +510,10 @@ namespace ProjectTrojan
                     operand = (operand - double.Parse (ioBox.Text));
                     break;
                 case "multiplication":
-                    operand = (operand * double.Parse (ioBox.Text));
+                    operand = (operand*double.Parse (ioBox.Text));
                     break;
                 case "division":
-                    operand = (operand / double.Parse (ioBox.Text));
+                    operand = (operand/double.Parse (ioBox.Text));
                     break;
                 case "pow":
                     operand = (Math.Pow (operand, double.Parse (ioBox.Text)));
@@ -643,7 +643,7 @@ namespace ProjectTrojan
 
         private static double CalculateSquareOf (double squareValue)
         {
-            return squareValue * squareValue;
+            return squareValue*squareValue;
         }
 
         private static int CalculateFactorialOf (int factorialValue)
@@ -666,7 +666,7 @@ namespace ProjectTrojan
             else
             {
                 double temp = boxValue;
-                temp *= (Math.PI / 180);
+                temp *= (Math.PI/180);
                 operand = angularFunction (temp);
                 ioBox.Text = operand.ToString (outputPrecision.GetPrecision ());
             }
@@ -681,7 +681,7 @@ namespace ProjectTrojan
             }
             else
             {
-                operand = angularFunction (boxValue) * 180 / Math.PI;
+                operand = angularFunction (boxValue)*180/Math.PI;
                 ioBox.Text = operand.ToString (outputPrecision.GetPrecision ());
             }
         }
@@ -693,7 +693,7 @@ namespace ProjectTrojan
             if (BinomialCoefficientIsCalculatableOf (n, k))
             {
                 for (var i = 1; i <= k; i++)
-                    binom = binom * (n - i + 1) / i;
+                    binom = binom*(n - i + 1)/i;
                 operand = binom;
             }
             else
@@ -702,7 +702,7 @@ namespace ProjectTrojan
 
         private bool BinomialCoefficientIsCalculatableOf (double n, double k)
         {
-            return (n > k && (n % 1) + (k % 1) < zeroTolerance && n > 0);
+            return (n > k && (n%1) + (k%1) < zeroTolerance && n > 0);
         }
     }
 }
