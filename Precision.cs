@@ -4,7 +4,7 @@ namespace ProjectTrojan
 {
     public class OutputPrecision
     {
-        string precision;
+        private string precision;
 
         public OutputPrecision ()
         {

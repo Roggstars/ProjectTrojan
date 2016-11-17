@@ -6,61 +6,61 @@ namespace ProjectTrojan
 {
     partial class Calculator
     {
-        Button number0;
-        Button number1;
-        Button number2;
-        Button number3;
-        Button number4;
-        Button number5;
-        Button number6;
-        Button number7;
-        Button number8;
-        Button number9;
-        Button addition;
-        Button substraction;
-        Button multiplication;
-        Button division;
-        Button equals;
-        Button comma;
-        Button delete;
-        Button clear;
-        Button shift;
-        Button square;
-        Button squareRoot;
-        Button factorial;
-        Button natualLogarithm;
-        Button sinus;
-        Button sinusHyp;
-        Button cosinus;
-        Button cosinusHyp;
-        Button tangens;
-        Button unitOfAngle;
-        Button outputPrecisionButton;
-        Button memoryButton;
-        Button memoryAddSubstButton;
-        Button pi;
-        Button e;
+        private Button number0;
+        private Button number1;
+        private Button number2;
+        private Button number3;
+        private Button number4;
+        private Button number5;
+        private Button number6;
+        private Button number7;
+        private Button number8;
+        private Button number9;
+        private Button addition;
+        private Button substraction;
+        private Button multiplication;
+        private Button division;
+        private Button equals;
+        private Button comma;
+        private Button delete;
+        private Button clear;
+        private Button shift;
+        private Button square;
+        private Button squareRoot;
+        private Button factorial;
+        private Button natualLogarithm;
+        private Button sinus;
+        private Button sinusHyp;
+        private Button cosinus;
+        private Button cosinusHyp;
+        private Button tangens;
+        private Button unitOfAngle;
+        private Button outputPrecisionButton;
+        private Button memoryButton;
+        private Button memoryAddSubstButton;
+        private Button pi;
+        private Button e;
 
-        TextBox IOBox;
+        private TextBox ioBox;
 
-        void InitializeCalculatorAndUIComponents ()
+        private void InitializeCalculatorAndUiComponents ()
         {
             SetWindowSizeAndProperties ();
-            CreateUIComponents ();
+            CreateUiComponents ();
             RemoveButtonBorders ();
             SetButtonCursors ();
-            SetUIButtonsTexts ();
-            SetUIButtonsSizes ();
-            AddControlsToUIComponents ();
+            SetUiButtonsTexts ();
+            SetUiButtonsSizes ();
+            AddControlsToUiComponents ();
             CreateButtonsEventHandlers ();
-            SetUIComponentsColors ();
-            SetIOBoxProperties ();
-            SetUIComponentsPositions ();
+            SetUiComponentsColors ();
+            SetIoBoxProperties ();
+            SetUiComponentsPositions ();
         }
 
-        void SetWindowSizeAndProperties ()
+        private void SetWindowSizeAndProperties ()
         {
-            Size windowSize = new Size (345, 492);
+            var windowSize = new Size (345, 492);
             Size = windowSize;
             Text = "Project Trojan";
             FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -68,7 +68,7 @@ namespace ProjectTrojan
             MaximizeBox = false;
         }
 
-        void CreateUIComponents ()
+        private void CreateUiComponents ()
         {
             number0 = new Button ();
             number1 = new Button ();
@@ -105,10 +105,10 @@ namespace ProjectTrojan
             pi = new Button ();
             e = new Button ();
 
-            IOBox = new TextBox ();
+            ioBox = new TextBox ();
         }
 
-        void RemoveButtonBorders ()
+        private void RemoveButtonBorders ()
         {
             RemoveButtonBordersFromButton (number0);
             RemoveButtonBordersFromButton (number1);
@@ -146,12 +146,12 @@ namespace ProjectTrojan
             RemoveButtonBordersFromButton (e);
         }
 
-        void RemoveButtonBordersFromButton (Button button)
+        private static void RemoveButtonBordersFromButton (ButtonBase button)
         {
             button.FlatStyle = FlatStyle.Flat;
         }
 
-        void SetButtonCursors ()
+        private void SetButtonCursors ()
         {
             SetButtonCursorForButton (number0);
             SetButtonCursorForButton (number1);
@@ -189,12 +189,12 @@ namespace ProjectTrojan
             SetButtonCursorForButton (e);
         }
 
-        void SetButtonCursorForButton (Button button)
+        private static void SetButtonCursorForButton (Control button)
         {
             button.Cursor = Cursors.Hand;
         }
 
-        void SetUIButtonsTexts ()
+        private void SetUiButtonsTexts ()
         {
             number0.Text = "0";
             number1.Text = "1";
@@ -232,9 +232,9 @@ namespace ProjectTrojan
             e.Text = "e";
         }
 
-        void SetUIButtonsSizes ()
+        private void SetUiButtonsSizes ()
         {
-            Size standardButtonSize = new Size (50, 50);
+            var standardButtonSize = new Size (50, 50);
 
             SetButtonSize (number0, standardButtonSize);
             SetButtonSize (number1, standardButtonSize);
@@ -272,13 +272,13 @@ namespace ProjectTrojan
             SetButtonSize (e, standardButtonSize);
         }
 
-        void SetButtonSize (Button button, Size size)
+        private static void SetButtonSize (Control button, Size size)
         {
             button.Width = size.Width;
             button.Height = size.Height;
         }
 
-        void AddControlsToUIComponents ()
+        private void AddControlsToUiComponents ()
         {
             Controls.Add (number0);
             Controls.Add (number1);
@@ -315,10 +315,10 @@ namespace ProjectTrojan
             Controls.Add (pi);
             Controls.Add (e);
 
-            Controls.Add (IOBox);
+            Controls.Add (ioBox);
         }
 
-        void CreateButtonsEventHandlers ()
+        private void CreateButtonsEventHandlers ()
         {
             number0.Click += Number0ButtonClick;
             number1.Click += Number1ButtonClick;
@@ -356,7 +356,7 @@ namespace ProjectTrojan
             e.Click += EButtonClick;
         }
 
-        void SetUIComponentsColors ()
+        private void SetUiComponentsColors ()
         {
             number0.BackColor = Color.LightGray;
             number1.BackColor = Color.LightGray;
@@ -390,24 +390,24 @@ namespace ProjectTrojan
             pi.BackColor = Color.Gray;
             e.BackColor = Color.Gray;
 
-            IOBox.ForeColor = Color.WhiteSmoke;
-            IOBox.BackColor = Color.Black;
+            ioBox.ForeColor = Color.WhiteSmoke;
+            ioBox.BackColor = Color.Black;
         }
 
-        void SetIOBoxProperties ()
+        private void SetIoBoxProperties ()
         {
-            IOBox.Width = 320;
-            IOBox.Font = new Font ("ArialBlack", 30, FontStyle.Bold);
-            IOBox.ReadOnly = true;
-            IOBox.TextAlign = HorizontalAlignment.Right;
-            IOBox.Text = "0";
+            ioBox.Width = 320;
+            ioBox.Font = new Font ("ArialBlack", 30, FontStyle.Bold);
+            ioBox.ReadOnly = true;
+            ioBox.TextAlign = HorizontalAlignment.Right;
+            ioBox.Text = "0";
         }
 
-        void SetUIComponentsPositions ()
+        private void SetUiComponentsPositions ()
         {
-            IOBox.Location = new Point (5, 5);
+            ioBox.Location = new Point (5, 5);
 
-            sinus.Location = new Point (IOBox.Left, IOBox.Top + IOBox.Height + 10);
+            sinus.Location = new Point (ioBox.Left, ioBox.Top + ioBox.Height + 10);
             cosinus.Location = new Point (sinus.Left + sinus.Width, sinus.Top);
             tangens.Location = new Point (cosinus.Left + cosinus.Width, cosinus.Top);
             unitOfAngle.Location = new Point (tangens.Left + tangens.Width + 10 + natualLogarithm.Width + e.Width + 10, tangens.Top);
@@ -450,101 +450,93 @@ namespace ProjectTrojan
                 new Point (memoryAddSubstButton.Left + memoryAddSubstButton.Width, memoryAddSubstButton.Top);
         }
 
-        void SetCalculatorLanguageTo (out string systemLanguage)
+        private static void SetCalculatorLanguageTo (out string systemLanguage)
         {
             systemLanguage =
                 System.Globalization.CultureInfo.CurrentCulture.ToString ().Substring (0, 2);
         }
 
-        void AddNumber (int number)
+        private void AddNumber (int number)
         {
-            if (IOIsZero () && number == 0)
+            if (IoIsZero () && number == 0)
                 return;
             else
-            if (newOperand || IOContainsErrorOrInfinity () || IOIsZero ())
-                IOBox.Text = number.ToString ();
+            if (newOperand || IoContainsErrorOrInfinity () || IoIsZero ())
+                ioBox.Text = number.ToString ();
             else
-                IOBox.Text += number.ToString ();
+                ioBox.Text += number.ToString ();
             newOperand = false;
         }
 
-        void AddComma ()
+        private void AddComma ()
         {
-            if (calculatorLanguage == "de" && !IOBox.Text.Contains (","))
-                IOBox.Text += ",";
+            if (calculatorLanguage == "de" && !ioBox.Text.Contains (","))
+                ioBox.Text += ",";
             else
-            if (calculatorLanguage == "en" && !IOBox.Text.Contains ("."))
-                IOBox.Text += ".";
+            if (calculatorLanguage == "en" && !ioBox.Text.Contains ("."))
+                ioBox.Text += ".";
         }
 
-        void ResetIOToZero ()
+        private void ResetIoToZero ()
         {
-            IOBox.Text = "0";
+            ioBox.Text = "0";
             newOperand = true;
         }
 
-        void ErrorMessage (string message)
+        private void ErrorMessage (string message = "Error")
         {
-            IOBox.Text = "Error";
+            ioBox.Text = "Error";
             MessageBox.Show ("An error with the code -" + message + "- has occured.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             operand = 0;
             newOperand = true;
         }
 
-        void ErrorMessage ()
+        private bool IoContainsErrorOrInfinity ()
         {
-            ErrorMessage ("Error");
+            return ioBox.Text == "Error" || ioBox.Text == "∞" || ioBox.Text == "NaN";
         }
 
-        bool IOContainsErrorOrInfinity ()
+        private bool IoIsZero ()
         {
-            if (IOBox.Text == "Error" || IOBox.Text == "∞" || IOBox.Text == "NaN")
-                return true;
-            else
-                return false;
+            return ioBox.Text == "0";
         }
 
-        bool IOIsZero ()
-        {
-            return IOBox.Text == "0";
-        }
-
-        void PerformCurrentOperation ()
+        private void PerformCurrentOperation ()
         {
             switch (currentOperation)
             {
             case "addition":
-                operand = (operand + double.Parse (IOBox.Text));
+                operand = (operand + double.Parse (ioBox.Text));
                 break;
             case "substraction":
-                operand = (operand - double.Parse (IOBox.Text));
+                operand = (operand - double.Parse (ioBox.Text));
                 break;
             case "multiplication":
-                operand = (operand * double.Parse (IOBox.Text));
+                operand = (operand * double.Parse (ioBox.Text));
                 break;
             case "division":
-                operand = (operand / double.Parse (IOBox.Text));
+                operand = (operand / double.Parse (ioBox.Text));
                 break;
             case "pow":
-                operand = (Math.Pow (operand, double.Parse (IOBox.Text)));
+                operand = (Math.Pow (operand, double.Parse (ioBox.Text)));
                 break;
             case "binominal":
-                CalculateBinomialCoefficientOf (operand, double.Parse (IOBox.Text));
+                CalculateBinomialCoefficientOf (operand, double.Parse (ioBox.Text));
                 break;
             case "none":
-                operand = double.Parse (IOBox.Text);
+                operand = double.Parse (ioBox.Text);
                 return;
             }
-            IOBox.Text = operand.ToString (outputPrecision.GetPrecision ());
+            ioBox.Text = operand.ToString (outputPrecision.GetPrecision ());
         }
 
-        void SetNewOperationTo (string newOperation)
+        private void SetNewOperationTo (string newOperation)
         {
             newOperand = true;
             currentOperation = newOperation;
         }
 
-        void ToggleShift ()
+        private void ToggleShift ()
         {
             if (!alternativeFunctionsActive)
             {
@@ -562,7 +554,7 @@ namespace ProjectTrojan
             }
         }
 
-        void SetButtonEventHandlersToShiftCase ()
+        private void SetButtonEventHandlersToShiftCase ()
         {
             sinus.Click -= SinusButtonClick;
             sinus.Click -= ArcSinusButtonClick;
@@ -590,7 +582,7 @@ namespace ProjectTrojan
             division.Click += BinomialCoefficientButtonClick;
         }
 
-        void SetButtonEventHandlersToNonShiftCase ()
+        private void SetButtonEventHandlersToNonShiftCase ()
         {
             sinus.Click -= SinusButtonClick;
             sinus.Click -= ArcSinusButtonClick;
@@ -618,7 +610,7 @@ namespace ProjectTrojan
             division.Click += DivButtonClick;
         }
 
-        void SetButtonTextsToShiftCase ()
+        private void SetButtonTextsToShiftCase ()
         {
             sinus.Text = "arcsin";
             cosinus.Text = "arccos";
@@ -630,7 +622,7 @@ namespace ProjectTrojan
             division.Text = "nPr";
         }
 
-        void SetButtonTextsToNonShiftCase ()
+        private void SetButtonTextsToNonShiftCase ()
         {
             sinus.Text = "sin";
             cosinus.Text = "cos";
@@ -642,67 +634,67 @@ namespace ProjectTrojan
             division.Text = " / ";
         }
 
-        void SetButtonsToInitState ()
+        private void SetButtonsToInitState ()
         {
-            IOBox.Text = "0";
+            ioBox.Text = "0";
             SetButtonEventHandlersToNonShiftCase ();
             SetButtonTextsToNonShiftCase ();
             alternativeFunctionsActive = false;
             shift.BackColor = SystemColors.Control;
         }
 
-        double CalculateSquareOf (double squareValue)
+        private static double CalculateSquareOf (double squareValue)
         {
             return squareValue * squareValue;
         }
 
-        int CalculateFactorialOf (int factorialValue)
+        private static int CalculateFactorialOf (int factorialValue)
         {
-            int factorial = 1;
-            for (int i = 1; i <= factorialValue; i++)
-                factorial *= i;
-            return factorial;
+            var factorialInt = 1;
+            for (var i = 1; i <= factorialValue; i++)
+                factorialInt *= i;
+            return factorialInt;
         }
 
-        delegate double AngularFunction (double value);
+        private delegate double AngularFunction (double value);
 
-        void CalculateAngularFunction (AngularFunction angularFunction, double boxValue)
+        private void CalculateAngularFunction (AngularFunction angularFunction, double boxValue)
         {
             if (unitOfAngle.Text == "Rad")
             {
                 operand = (angularFunction (boxValue));
-                IOBox.Text = operand.ToString (outputPrecision.GetPrecision ());
+                ioBox.Text = operand.ToString (outputPrecision.GetPrecision ());
             }
             else
             {
-                var temp = boxValue;
+                double temp = boxValue;
                 temp *= (Math.PI / 180);
                 operand = angularFunction (temp);
-                IOBox.Text = operand.ToString (outputPrecision.GetPrecision ());
+                ioBox.Text = operand.ToString (outputPrecision.GetPrecision ());
             }
         }
 
-        void CalculateArcAngularFunction (AngularFunction angularFunction, double boxValue)
+        private void CalculateArcAngularFunction (AngularFunction angularFunction, double boxValue)
         {
             if (unitOfAngle.Text == "Rad")
             {
                 operand = (angularFunction (boxValue));
-                IOBox.Text = operand.ToString (outputPrecision.GetPrecision ());
+                ioBox.Text = operand.ToString (outputPrecision.GetPrecision ());
             }
             else
             {
                 operand = angularFunction (boxValue) * 180 / Math.PI;
-                IOBox.Text = operand.ToString (outputPrecision.GetPrecision ());
+                ioBox.Text = operand.ToString (outputPrecision.GetPrecision ());
             }
         }
 
-        void CalculateBinomialCoefficientOf (double n, double k)
+        private void CalculateBinomialCoefficientOf (double n, double k)
         {
             double binom = 1;
 
             if (BinomialCoefficientIsCalculatableOf (n, k))
             {
-                for (int i = 1; i <= k; i++)
+                for (var i = 1; i <= k; i++)
                     binom = binom * (n - i + 1) / i;
                 operand = binom;
             }
@@ -710,7 +702,7 @@ namespace ProjectTrojan
                 ErrorMessage ();
         }
 
-        bool BinomialCoefficientIsCalculatableOf (double n, double k)
+        private bool BinomialCoefficientIsCalculatableOf (double n, double k)
         {
             return (n > k && (n % 1) + (k % 1) < zeroTolerance && n > 0);
         }

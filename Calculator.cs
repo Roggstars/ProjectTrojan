@@ -6,138 +6,136 @@ namespace ProjectTrojan
 {
     partial class Calculator : Form
     {
-        readonly string calculatorLanguage;
-        readonly double zeroTolerance = 0.0000000000001f;
+        internal readonly string calculatorLanguage;
+        internal readonly double zeroTolerance = 0.0000000000001f;
 
-        double operand;
-        string currentOperation = "none";
-        bool newOperand;
-        bool alternativeFunctionsActive;
+        internal double operand;
+        internal string currentOperation = "none";
+        internal bool newOperand;
+        internal bool alternativeFunctionsActive;
 
-        Memory calculatorMemory = new Memory ();
-        OutputPrecision outputPrecision = new OutputPrecision ();
+        internal readonly Memory calculatorMemory = new Memory ();
+        internal readonly OutputPrecision outputPrecision = new OutputPrecision ();
 
         public Calculator ()
         {
-            InitializeCalculatorAndUIComponents ();
+            InitializeCalculatorAndUiComponents ();
             SetCalculatorLanguageTo (out calculatorLanguage);
         }
 
-        void Number0ButtonClick (object sender, EventArgs e)
+        private void Number0ButtonClick (object sender, EventArgs eventArgs)
         {
             AddNumber (0);
         }
 
-        void Number1ButtonClick (object sender, EventArgs e)
+        private void Number1ButtonClick (object sender, EventArgs eventArgs)
         {
             AddNumber (1);
         }
 
-        void Number2ButtonClick (object sender, EventArgs e)
+        private void Number2ButtonClick (object sender, EventArgs eventArgs)
         {
             AddNumber (2);
         }
 
-        void Number3ButtonClick (object sender, EventArgs e)
+        private void Number3ButtonClick (object sender, EventArgs eventArgs)
         {
             AddNumber (3);
         }
 
-        void Number4ButtonClick (object sender, EventArgs e)
+        private void Number4ButtonClick (object sender, EventArgs eventArgs)
         {
             AddNumber (4);
         }
 
-        void Number5ButtonClick (object sender, EventArgs e)
+        private void Number5ButtonClick (object sender, EventArgs eventArgs)
         {
             AddNumber (5);
         }
 
-        void Number6ButtonClick (object sender, EventArgs e)
+        private void Number6ButtonClick (object sender, EventArgs eventArgs)
         {
             AddNumber (6);
         }
 
-        void Number7ButtonClick (object sender, EventArgs e)
+        private void Number7ButtonClick (object sender, EventArgs eventArgs)
         {
             AddNumber (7);
         }
 
-        void Number8ButtonClick (object sender, EventArgs e)
+        private void Number8ButtonClick (object sender, EventArgs eventArgs)
         {
             AddNumber (8);
         }
 
-        void Number9ButtonClick (object sender, EventArgs e)
+        private void Number9ButtonClick (object sender, EventArgs eventArgs)
         {
             AddNumber (9);
         }
 
-        void AddButtonClick (object sender, EventArgs e)
+        private void AddButtonClick (object sender, EventArgs eventArgs)
         {
             if (!newOperand)
                 PerformCurrentOperation ();
             SetNewOperationTo ("addition");
         }
 
-        void SubstButtonClick (object sender, EventArgs e)
+        private void SubstButtonClick (object sender, EventArgs eventArgs)
         {
             if (!newOperand)
                 PerformCurrentOperation ();
             SetNewOperationTo ("substraction");
         }
 
-        void MultButtonClick (object sender, EventArgs e)
+        private void MultButtonClick (object sender, EventArgs eventArgs)
         {
             if (!newOperand)
                 PerformCurrentOperation ();
             SetNewOperationTo ("multiplication");
         }
 
-        void DivButtonClick (object sender, EventArgs e)
+        private void DivButtonClick (object sender, EventArgs eventArgs)
         {
             if (!newOperand)
                 PerformCurrentOperation ();
             SetNewOperationTo ("division");
         }
 
-        void BinomialCoefficientButtonClick (object sender, EventArgs e)
+        private void BinomialCoefficientButtonClick (object sender, EventArgs eventArgs)
         {
             if (!newOperand)
                 PerformCurrentOperation ();
             SetNewOperationTo ("binominal");
         }
 
-        void EqualsButtonClick (object sender, EventArgs e)
+        private void EqualsButtonClick (object sender, EventArgs eventArgs)
         {
             if (!newOperand)
                 PerformCurrentOperation ();
             SetNewOperationTo ("none");
         }
 
-        void CommaButtonClick (object sender, EventArgs e)
+        private void CommaButtonClick (object sender, EventArgs eventArgs)
         {
-            if (IOContainsErrorOrInfinity ())
+            if (IoContainsErrorOrInfinity ())
                 return;
-            
+
             AddComma ();
         }
 
-        void DelButtonClick (object sender, EventArgs e)
+        private void DelButtonClick (object sender, EventArgs eventArgs)
         {
-            if (!newOperand)
-            {
-                if (IOContainsErrorOrInfinity ()
-                    || (IOBox.Text.Contains ("-") && IOBox.TextLength == 2)
-                    || IOBox.TextLength == 1)
-                    ResetIOToZero ();
-                else
-                if (IOBox.TextLength > 1)
-                    IOBox.Text = IOBox.Text.Substring (0, (IOBox.TextLength - 1));
-            }
+            if (newOperand) return;
+            if (IoContainsErrorOrInfinity ()
+                || (ioBox.Text.Contains ("-") && ioBox.TextLength == 2)
+                || ioBox.TextLength == 1)
+                ResetIoToZero ();
+            else
+            if (ioBox.TextLength > 1)
+                ioBox.Text = ioBox.Text.Substring (0, (ioBox.TextLength - 1));
         }
 
-        void ClearButtonClick (object sender, EventArgs e)
+        private void ClearButtonClick (object sender, EventArgs eventArgs)
         {
             SetButtonsToInitState ();
             alternativeFunctionsActive = false;
@@ -145,190 +143,187 @@ namespace ProjectTrojan
             SetNewOperationTo ("none");
         }
 
-        void ShiftButtonClick (object sender, EventArgs e)
+        private void ShiftButtonClick (object sender, EventArgs eventArgs)
         {
             ToggleShift ();
         }
 
-        void SquareButtonClick (object sender, EventArgs e)
+        private void SquareButtonClick (object sender, EventArgs eventArgs)
         {
-            if (IOContainsErrorOrInfinity ())
+            if (IoContainsErrorOrInfinity ())
                 return;
 
-            operand = CalculateSquareOf (double.Parse (IOBox.Text));
-            IOBox.Text = operand.ToString (outputPrecision.GetPrecision ());
+            operand = CalculateSquareOf (double.Parse (ioBox.Text));
+            ioBox.Text = operand.ToString (outputPrecision.GetPrecision ());
             newOperand = true;
         }
 
-        void ExponentButtonClick (object sender, EventArgs e)
+        private void ExponentButtonClick (object sender, EventArgs eventArgs)
         {
             if (!newOperand)
                 PerformCurrentOperation ();
             SetNewOperationTo ("pow");
         }
 
-        void SqrtButtonClick (object sender, EventArgs e)
+        private void SqrtButtonClick (object sender, EventArgs eventArgs)
         {
-            if (IOContainsErrorOrInfinity ())
+            if (IoContainsErrorOrInfinity ())
                 return;
 
-            if (double.Parse (IOBox.Text) > 0)
+            if (double.Parse (ioBox.Text) > 0)
             {
-                operand = Math.Sqrt (double.Parse (IOBox.Text));
-                IOBox.Text = operand.ToString (outputPrecision.GetPrecision ());
+                operand = Math.Sqrt (double.Parse (ioBox.Text));
+                ioBox.Text = operand.ToString (outputPrecision.GetPrecision ());
             }
             else
                 ErrorMessage ("Low0Error");
             newOperand = true;
         }
 
-        void FactorialButtonClick (object sender, EventArgs e)
+        private void FactorialButtonClick (object sender, EventArgs eventArgs)
         {
-            if (IOContainsErrorOrInfinity ())
+            if (IoContainsErrorOrInfinity ())
                 return;
 
-            if (double.Parse (IOBox.Text) < 0)
+            if (double.Parse (ioBox.Text) < 0)
             {
                 ErrorMessage ("Low0Error");
                 return;
             }
 
-            double factorialValue = double.Parse (IOBox.Text);
+            double factorialValue = double.Parse (ioBox.Text);
 
             if ((factorialValue % 1) < zeroTolerance)
             {
                 operand = CalculateFactorialOf ((int)factorialValue);
-                IOBox.Text = operand.ToString (outputPrecision.GetPrecision ());
+                ioBox.Text = operand.ToString (outputPrecision.GetPrecision ());
                 newOperand = true;
             }
             else
                 ErrorMessage ("UncalculatableFactorial");
         }
 
-        void ReciprocalButtonClick (object sender, EventArgs e)
+        private void ReciprocalButtonClick (object sender, EventArgs eventArgs)
         {
-            if (IOContainsErrorOrInfinity ())
+            if (IoContainsErrorOrInfinity ())
                 return;
 
             operand = 1 / operand;
-            IOBox.Text = operand.ToString (outputPrecision.GetPrecision ());
+            ioBox.Text = operand.ToString (outputPrecision.GetPrecision ());
             newOperand = true;
         }
 
-        void LnButtonClick (object sender, EventArgs e)
+        private void LnButtonClick (object sender, EventArgs eventArgs)
         {
-            if (IOContainsErrorOrInfinity ())
+            if (IoContainsErrorOrInfinity ())
                 return;
 
-            if (double.Parse (IOBox.Text) > 0)
+            if (double.Parse (ioBox.Text) > 0)
             {
-                operand = Math.Log (double.Parse (IOBox.Text));
-                IOBox.Text = operand.ToString (outputPrecision.GetPrecision ());
+                operand = Math.Log (double.Parse (ioBox.Text));
+                ioBox.Text = operand.ToString (outputPrecision.GetPrecision ());
                 newOperand = true;
             }
             else
                 ErrorMessage ("Low0Error");
         }
 
-        void SinusButtonClick (object sender, EventArgs e)
+        private void SinusButtonClick (object sender, EventArgs eventArgs)
         {
-            if (IOContainsErrorOrInfinity ())
+            if (IoContainsErrorOrInfinity ())
                 return;
 
-            CalculateAngularFunction (Math.Sin, double.Parse (IOBox.Text));
+            CalculateAngularFunction (Math.Sin, double.Parse (ioBox.Text));
             newOperand = true;
         }
 
-        void SinusHypButtonClick (object sender, EventArgs e)
+        private void SinusHypButtonClick (object sender, EventArgs eventArgs)
         {
-            if (IOContainsErrorOrInfinity ())
+            if (IoContainsErrorOrInfinity ())
                 return;
 
-            CalculateAngularFunction (Math.Sinh, double.Parse (IOBox.Text));
+            CalculateAngularFunction (Math.Sinh, double.Parse (ioBox.Text));
             newOperand = true;
         }
 
-        void ArcSinusButtonClick (object sender, EventArgs e)
+        private void ArcSinusButtonClick (object sender, EventArgs eventArgs)
         {
-            if (IOContainsErrorOrInfinity ())
+            if (IoContainsErrorOrInfinity ())
                 return;
-            
-            if (double.Parse (IOBox.Text) < -1 || double.Parse (IOBox.Text) > 1)
+
+            if (double.Parse (ioBox.Text) < -1 || double.Parse (ioBox.Text) > 1)
             {
                 ErrorMessage ("OutOfDefArea");
                 return;
             }
 
-            CalculateArcAngularFunction (Math.Asin, double.Parse (IOBox.Text));
+            CalculateArcAngularFunction (Math.Asin, double.Parse (ioBox.Text));
             newOperand = true;
         }
 
-        void CosinusButtonClick (object sender, EventArgs e)
+        private void CosinusButtonClick (object sender, EventArgs eventArgs)
         {
-            if (IOContainsErrorOrInfinity ())
+            if (IoContainsErrorOrInfinity ())
                 return;
 
-            CalculateAngularFunction (Math.Cos, double.Parse (IOBox.Text));
+            CalculateAngularFunction (Math.Cos, double.Parse (ioBox.Text));
             newOperand = true;
         }
 
-        void CosinusHypButtonClick (object sender, EventArgs e)
+        private void CosinusHypButtonClick (object sender, EventArgs eventArgs)
         {
-            if (IOContainsErrorOrInfinity ())
+            if (IoContainsErrorOrInfinity ())
                 return;
 
-            CalculateAngularFunction (Math.Cosh, double.Parse (IOBox.Text));
+            CalculateAngularFunction (Math.Cosh, double.Parse (ioBox.Text));
             newOperand = true;
         }
 
-        void ArcCosinusButtonClick (object sender, EventArgs e)
+        private void ArcCosinusButtonClick (object sender, EventArgs eventArgs)
         {
-            if (IOContainsErrorOrInfinity ())
+            if (IoContainsErrorOrInfinity ())
                 return;
-            
-            if (double.Parse (IOBox.Text) < -1 || double.Parse (IOBox.Text) > 1)
+
+            if (double.Parse (ioBox.Text) < -1 || double.Parse (ioBox.Text) > 1)
             {
                 ErrorMessage ("OutOfDefArea");
                 return;
             }
 
-            CalculateArcAngularFunction (Math.Acos, double.Parse (IOBox.Text));
+            CalculateArcAngularFunction (Math.Acos, double.Parse (ioBox.Text));
             newOperand = true;
         }
 
-        void TangensButtonClick (object sender, EventArgs e)
+        private void TangensButtonClick (object sender, EventArgs eventArgs)
         {
-            if (IOContainsErrorOrInfinity ())
+            if (IoContainsErrorOrInfinity ())
                 return;
 
-            CalculateAngularFunction (Math.Tan, double.Parse (IOBox.Text));
+            CalculateAngularFunction (Math.Tan, double.Parse (ioBox.Text));
             newOperand = true;
         }
 
-        void ArcTangensButtonClick (object sender, EventArgs e)
+        private void ArcTangensButtonClick (object sender, EventArgs eventArgs)
         {
-            if (IOContainsErrorOrInfinity ())
+            if (IoContainsErrorOrInfinity ())
                 return;
 
-            if (double.Parse (IOBox.Text) < -1 || double.Parse (IOBox.Text) > 1)
+            if (double.Parse (ioBox.Text) < -1 || double.Parse (ioBox.Text) > 1)
             {
                 ErrorMessage ("OutOfDefArea");
                 return;
             }
 
-            CalculateArcAngularFunction (Math.Atan, double.Parse (IOBox.Text));
+            CalculateArcAngularFunction (Math.Atan, double.Parse (ioBox.Text));
             newOperand = true;
         }
 
-        void UnitOfAngleButtonClick (object sender, EventArgs e)
+        private void UnitOfAngleButtonClick (object sender, EventArgs eventArgs)
         {
-            if (unitOfAngle.Text == "Rad")
-                unitOfAngle.Text = "Grad";
-            else
-                unitOfAngle.Text = "Rad";
+            unitOfAngle.Text = unitOfAngle.Text == "Rad" ? "Grad" : "Rad";
         }
 
-        void OutputPrecisionButtonClick (object sender, EventArgs e)
+        private void OutputPrecisionButtonClick (object sender, EventArgs eventArgs)
         {
             outputPrecision.CycleToNextPrecision ();
             if (outputPrecision.GetPrecision () == "g1")
@@ -337,51 +332,45 @@ namespace ProjectTrojan
                 outputPrecisionButton.Text = (outputPrecision.GetPrecision ().Substring (1, 1) + " Dgts");
         }
 
-        void MemoryButtonClick (object sender, EventArgs e)
+        private void MemoryButtonClick (object sender, EventArgs eventArgs)
         {
-            IOBox.Text = calculatorMemory.ConvertToStringWithPrecision (outputPrecision);
+            ioBox.Text = calculatorMemory.ConvertToStringWithPrecision (outputPrecision);
             newOperand = true;
         }
 
-        void MemoryClearButtonClick (object sender, EventArgs e)
+        private void MemoryClearButtonClick (object sender, EventArgs eventArgs)
         {
             calculatorMemory.Clear ();
             memoryButton.BackColor = Color.Gray;
         }
 
-        void MemoryAddButtonClick (object sender, EventArgs e)
+        private void MemoryAddButtonClick (object sender, EventArgs eventArgs)
         {
-            calculatorMemory.Add (double.Parse (IOBox.Text));
+            calculatorMemory.Add (double.Parse (ioBox.Text));
 
-            if (!calculatorMemory.ValueIsZero ())
-                memoryButton.BackColor = Color.PaleVioletRed;
-            else
-                memoryButton.BackColor = Color.Gray;
+            memoryButton.BackColor = !calculatorMemory.ValueIsZero () ? Color.PaleVioletRed : Color.Gray;
 
             newOperand = true;
         }
 
-        void MemorySubstractButtonClick (object sender, EventArgs e)
+        private void MemorySubstractButtonClick (object sender, EventArgs eventArgs)
         {
-            calculatorMemory.Substract (double.Parse (IOBox.Text));
+            calculatorMemory.Substract (double.Parse (ioBox.Text));
 
-            if (!calculatorMemory.ValueIsZero ())
-                memoryButton.BackColor = Color.PaleVioletRed;
-            else
-                memoryButton.BackColor = Color.Gray;
+            memoryButton.BackColor = !calculatorMemory.ValueIsZero () ? Color.PaleVioletRed : Color.Gray;
 
             newOperand = true;
         }
 
-        void PiButtonClick (object sender, EventArgs e)
+        private void PiButtonClick (object sender, EventArgs eventArgs)
         {
-            IOBox.Text = (Math.PI).ToString (outputPrecision.GetPrecision ());
+            ioBox.Text = (Math.PI).ToString (outputPrecision.GetPrecision ());
             newOperand = false;
         }
 
-        void EButtonClick (object sender, EventArgs e)
+        private void EButtonClick (object sender, EventArgs eventArgs)
         {
-            IOBox.Text = (Math.E).ToString (outputPrecision.GetPrecision ());
+            ioBox.Text = (Math.E).ToString (outputPrecision.GetPrecision ());
             newOperand = false;
         }
     }

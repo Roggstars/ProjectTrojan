@@ -4,7 +4,7 @@ namespace ProjectTrojan
 {
     public class Memory
     {
-        double memoryValue;
+        private double memoryValue;
 
         public Memory ()
         {
