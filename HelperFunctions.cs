@@ -499,39 +499,40 @@ namespace ProjectTrojan
             return ioBox.Text == "0";
         }
 
-        private void PerformCurrentOperation ()
+        private void PerformOperationWith (double operationValue, string operation)
         {
-            switch (currentOperation)
+            switch (operation)
             {
                 case "addition":
-                    operand = (operand + double.Parse (ioBox.Text));
+                    operand = (operand + operationValue);
                     break;
                 case "substraction":
-                    operand = (operand - double.Parse (ioBox.Text));
+                    operand = (operand - operationValue);
                     break;
                 case "multiplication":
-                    operand = (operand*double.Parse (ioBox.Text));
+                    operand = (operand* operationValue);
                     break;
                 case "division":
-                    operand = (operand/double.Parse (ioBox.Text));
+                    operand = (operand/ operationValue);
                     break;
                 case "pow":
-                    operand = (Math.Pow (operand, double.Parse (ioBox.Text)));
+                    operand = (Math.Pow (operand, operationValue));
                     break;
                 case "binominal":
-                    CalculateBinomialCoefficientOf (operand, double.Parse (ioBox.Text));
+                    CalculateBinomialCoefficientOf (operand, operationValue);
                     break;
                 case "none":
-                    operand = double.Parse (ioBox.Text);
+                    operand = operationValue;
                     return;
             }
             ioBox.Text = operand.ToString (outputPrecision.GetPrecision ());
         }
 
-        private void SetNewOperationTo (string newOperation)
+        private void SetNewOperationTo (string nextOperation)
         {
             newOperand = true;
-            currentOperation = newOperation;
+            newOperation = true;
+            currentOperation = nextOperation;
         }
 
         private void ToggleShift ()
@@ -646,12 +647,13 @@ namespace ProjectTrojan
             return squareValue*squareValue;
         }
 
-        private static int CalculateFactorialOf (int factorialValue)
+        private static long CalculateFactorialOf (long factorialValue)
         {
-            var factorialInt = 1;
+            long factorial = 1;
             for (var i = 1; i <= factorialValue; i++)
-                factorialInt *= i;
-            return factorialInt;
+                factorial *= i;
+
+            return factorial;
         }
 
         private delegate double AngularFunction (double value);

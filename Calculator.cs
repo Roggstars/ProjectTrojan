@@ -11,7 +11,10 @@ namespace ProjectTrojan
 
         internal double operand;
         internal string currentOperation = "none";
+        internal string lastOperation = "none";
+        internal double lastOperationValue = 0;
         internal bool newOperand;
+        internal bool newOperation;
         internal bool alternativeFunctionsActive;
 
         internal readonly Memory calculatorMemory = new Memory ();
@@ -76,43 +79,46 @@ namespace ProjectTrojan
         private void AddButtonClick (object sender, EventArgs eventArgs)
         {
             if (!newOperand)
-                PerformCurrentOperation ();
+                PerformOperationWith (double.Parse (ioBox.Text), currentOperation);
             SetNewOperationTo ("addition");
         }
 
         private void SubstButtonClick (object sender, EventArgs eventArgs)
         {
             if (!newOperand)
-                PerformCurrentOperation ();
+                PerformOperationWith (double.Parse (ioBox.Text), currentOperation);
             SetNewOperationTo ("substraction");
         }
 
         private void MultButtonClick (object sender, EventArgs eventArgs)
         {
             if (!newOperand)
-                PerformCurrentOperation ();
+                PerformOperationWith (double.Parse (ioBox.Text), currentOperation);
             SetNewOperationTo ("multiplication");
         }
 
         private void DivButtonClick (object sender, EventArgs eventArgs)
         {
             if (!newOperand)
-                PerformCurrentOperation ();
+                PerformOperationWith (double.Parse (ioBox.Text), currentOperation);
             SetNewOperationTo ("division");
         }
 
         private void BinomialCoefficientButtonClick (object sender, EventArgs eventArgs)
         {
             if (!newOperand)
-                PerformCurrentOperation ();
+                PerformOperationWith (double.Parse (ioBox.Text), currentOperation);
             SetNewOperationTo ("binominal");
         }
 
         private void EqualsButtonClick (object sender, EventArgs eventArgs)
         {
-            if (!newOperand)
-                PerformCurrentOperation ();
-            SetNewOperationTo ("none");
+            if (newOperation)
+                PerformOperationWith (double.Parse (ioBox.Text), currentOperation);
+
+            SetNewOperationTo("none");
+            newOperation = false;
+            newOperand = true;
         }
 
         private void CommaButtonClick (object sender, EventArgs eventArgs)
@@ -160,7 +166,7 @@ namespace ProjectTrojan
         private void ExponentButtonClick (object sender, EventArgs eventArgs)
         {
             if (!newOperand)
-                PerformCurrentOperation ();
+                PerformOperationWith (double.Parse (ioBox.Text), currentOperation);
             SetNewOperationTo ("pow");
         }
 
@@ -334,7 +340,7 @@ namespace ProjectTrojan
         private void MemoryButtonClick (object sender, EventArgs eventArgs)
         {
             ioBox.Text = calculatorMemory.ConvertToStringWithPrecision (outputPrecision);
-            newOperand = true;
+            newOperand = false;
         }
 
         private void MemoryClearButtonClick (object sender, EventArgs eventArgs)
@@ -364,13 +370,13 @@ namespace ProjectTrojan
         private void PiButtonClick (object sender, EventArgs eventArgs)
         {
             ioBox.Text = (Math.PI).ToString (outputPrecision.GetPrecision ());
-            newOperand = false;
+            newOperand = true;
         }
 
         private void EButtonClick (object sender, EventArgs eventArgs)
         {
             ioBox.Text = (Math.E).ToString (outputPrecision.GetPrecision ());
-            newOperand = false;
+            newOperand = true;
         }
     }
 }
