@@ -43,6 +43,9 @@ namespace ProjectTrojan
 
         private TextBox ioBox;
 
+        private ToolTip precisionToolTip;
+
+
         private void InitializeCalculatorAndUiComponents ()
         {
             SetWindowSizeAndProperties ();
@@ -52,6 +55,8 @@ namespace ProjectTrojan
             SetUiButtonsTexts ();
             SetUiButtonsSizes ();
             AddControlsToUiComponents ();
+            CreateButtonToolTips ();
+            AddButtonToolTipControlsForLanguage ();
             CreateButtonsEventHandlers ();
             SetUiComponentsColors ();
             SetIoBoxProperties ();
@@ -316,6 +321,21 @@ namespace ProjectTrojan
             Controls.Add (e);
 
             Controls.Add (ioBox);
+        }
+
+        private void CreateButtonToolTips ()
+        {
+            precisionToolTip = new ToolTip();
+        }
+
+        private void AddButtonToolTipControlsForLanguage ()
+        {
+            if (calculatorLanguage == "de")
+                precisionToolTip.SetToolTip (outputPrecisionButton, "Legt die Anzahl der signifikanten " +
+                                                                    "Stellen fest die angezeigt werden.");
+            else
+                precisionToolTip.SetToolTip (outputPrecisionButton, "Set the number of significant " +
+                                                                    "digits that are being shown.");
         }
 
         private void CreateButtonsEventHandlers ()
